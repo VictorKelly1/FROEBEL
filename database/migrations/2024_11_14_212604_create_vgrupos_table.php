@@ -24,6 +24,7 @@ return new class extends Migration
                 gr.idGrado,
                 gr.NombreGrado AS NombreGrado,
                 gr.NivelAcademico,
+                g.Paquete,
                 g.CantidadAlum AS cantidadAlumnos
             FROM 
                 Grupos g

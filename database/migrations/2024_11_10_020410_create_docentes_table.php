@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id('idDocente');
             $table->string('Carrera');
             $table->date('FechaIngreso');
-            $table->string('Estado');
+            $table->enum('Estado', ['Activo', 'Suspendido', 'Baja']);
             $table->string('RFC')->unique(); // Llave única para evitar duplicados
             $table->string('NoINE')->unique(); // Llave única para evitar duplicados
             $table->decimal('Sueldo', 8, 2);

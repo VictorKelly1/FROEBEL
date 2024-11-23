@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('Grupos', function (Blueprint $table) {
             $table->id('idGrupo');
             $table->integer('CantidadAlum'); // Cantidad de alumnos en el grupo
+            $table->string('Paquete'); // paquete del grupo ejemplo: a, b, c, d,
             $table->unsignedBigInteger('idGrado'); // Relación con la tabla Grados
             $table->unsignedBigInteger('idPeriodo'); // Relación con la tabla Periodos
             $table->timestamps();

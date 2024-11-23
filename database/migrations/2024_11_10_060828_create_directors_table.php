@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('Directores', function (Blueprint $table) {
             $table->id('idDirector');
-            $table->string('Estado');
+            $table->enum('Estado', ['Activo', 'Suspendido', 'Baja']);
             $table->date('FechaAsignacion');
             $table->string('RFC')->unique(); // Llave única para evitar duplicados
             $table->decimal('Sueldo', 8, 2);

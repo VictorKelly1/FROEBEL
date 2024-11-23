@@ -20,6 +20,7 @@ return new class extends Migration
                 d.Nombre AS NombreDocente,
                 d.ApellidoPaterno AS ApellidoPaternoDocente,
                 d.ApellidoMaterno AS ApellidoMaternoDocente,
+                d.Estado AS Estado,
                 gd.idGrupo,
                 g.NombreGrado,
                 g.NivelAcademico

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('Alumnos', function (Blueprint $table) {
             $table->id('idAlumno');
             $table->string('Matricula')->unique(); // Llave única para evitar duplicados
-            $table->string('Estado');
+            $table->enum('Estado', ['Activo', 'Suspendido', 'Baja']);
             $table->date('FechaIngreso');
             $table->string('EscuelaProcede');
             $table->unsignedBigInteger('idUsuario'); // Relación con la tabla users de Laravel

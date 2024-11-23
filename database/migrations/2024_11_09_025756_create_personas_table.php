@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('ApellidoMaterno')->nullable();
             $table->string('CURP', 18)->unique();
             $table->date('FechaNacimiento');
-            $table->enum('Genero', ['M', 'F']); // O cualquier otro formato que necesites
+            $table->enum('Genero', ['M', 'F', 'X']); // O cualquier otro formato que necesites
             $table->string('Ciudad');
             $table->string('Municipio');
             $table->string('CodigoPostal', 5);
