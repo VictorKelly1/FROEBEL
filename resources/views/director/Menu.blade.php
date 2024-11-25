@@ -1,2 +1,3 @@
+<x-director.layout>
 
-<h1>estas en Vdirector</h1>
+</x-director.layout>

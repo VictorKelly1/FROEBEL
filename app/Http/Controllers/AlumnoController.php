@@ -42,79 +42,89 @@ class AlumnoController extends Controller
 
         //Validacion del request -existen
         $request->validate([
-            'Nombre' => 'required|string|max:50',
-            'ApellidoMaterno' => 'required|string|max:50',
-            'ApellidoPaterno' => 'required|string|max:50',
-            'Ciudad' => 'required|string|max:50',
-            'Municipio' => 'required|string|max:50',
-            'ColFrac' => 'required|string|max:50',
-            'Calle' => 'required|string|max:50',
-            'EstadoCivil' => 'required|string|max:50',
-            'Nacionalidad' => 'required|string|max:50',
-            'Correo' => 'required|email|max:255|unique:users,email',
+            'Nombre' => 'required|string',
+            'ApellidoMaterno' => 'required|string',
+            'ApellidoPaterno' => 'required|string',
+            'Ciudad' => 'required|string',
+            'Municipio' => 'required|string',
+            'ColFrac' => 'required|string',
+            'Calle' => 'required|string',
+            'EstadoCivil' => 'required|string',
+            'Nacionalidad' => 'required|string',
+            'Matricula' => 'required|string',
+            'EscuelaProcede' => 'required|string',
+            'Correo' => 'required|unique:users,email',
             'FechaNacimiento' => 'required|date|before:today',
             'Foto' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
-            'Matricula' => 'required|string|max:50|unique:alumnos,Matricula',
-            'Estado' => 'required|in:Suspendido,Baja,Activo',
-            'FechaIngreso' => 'required|date|before_or_equal:today',
-            'EscuelaProcede' => 'required|string|max:100',
         ]);
 
-        //Integridad -filtro de correcion de sintaxis(en el modelo)
+        /*   */
+
+        //Integridad -filtro de correcion de sintaxis(en el modelo)           
         //Verificacion -requerimientos (en el modelo) 
 
         //Objeto persona
-        $Persona = new Persona();
-        $Persona->Nombre = $request->input('Nombre');
-        $Persona->ApellidoMaterno = $request->input('ApellidoMaterno');
-        $Persona->ApellidoPaterno = $request->input('ApellidoPaterno');
-        $Persona->CURP = $request->input('CURP');
-        $Persona->FechaNacimiento = $request->input('FechaNacimiento');
-        $Persona->Genero = $request->input('Genero');
-        $Persona->Ciudad = $request->input('Ciudad');
-        $Persona->Municipio = $request->input('Municipio');
-        $Persona->CodigoPostal = $request->input('CodigoPostal');
-        $Persona->ColFrac = $request->input('ColFrac');
-        $Persona->Calle = $request->input('Calle');
-        $Persona->NumeroExterior = $request->input('NumeroExterior');
-        $Persona->EstadoCivil = $request->input('EstadoCivil');
-        $Persona->Nacionalidad = $request->input('Nacionalidad');
+        DB::beginTransaction();
 
-        //Validacion/Integridad
-        if ($request->hasFile('Foto')) {
-            // Sube el archivo y obtiene la ruta
-            $rutaFoto = $request->file('Foto')->store('fotos', 'public');
-            $Persona->Foto = $rutaFoto;
-        } else {
-            // En caso de que no se proporcione una foto
-            $Persona->Foto = null;
+        try {
+            // Objeto Persona
+            $Persona = new Persona();
+            $Persona->Nombre = $request->input('Nombre');
+            $Persona->ApellidoMaterno = $request->input('ApellidoMaterno');
+            $Persona->ApellidoPaterno = $request->input('ApellidoPaterno');
+            $Persona->CURP = $request->input('CURP');
+            $Persona->FechaNacimiento = $request->input('FechaNacimiento');
+            $Persona->Genero = $request->input('Genero');
+            $Persona->Ciudad = $request->input('Ciudad');
+            $Persona->Municipio = $request->input('Municipio');
+            $Persona->CodigoPostal = $request->input('CodigoPostal');
+            $Persona->ColFrac = $request->input('ColFrac');
+            $Persona->Calle = $request->input('Calle');
+            $Persona->NumeroExterior = $request->input('NumeroExterior');
+            $Persona->EstadoCivil = $request->input('EstadoCivil');
+            $Persona->Nacionalidad = $request->input('Nacionalidad');
+
+            if ($request->hasFile('Foto')) {
+                $rutaFoto = $request->file('Foto')->store('fotos', 'public');
+                $Persona->Foto = $rutaFoto;
+            } else {
+                $Persona->Foto = null;
+            }
+
+            $Persona->save();
+
+            // Objeto Usuario
+            $Usuario = new User();
+            $Usuario->name = $request->input('Nombre');
+            $Usuario->email = $request->input('Correo');
+            $Usuario->idGoogle = null;
+
+            $Usuario->save();
+
+            // Obtener IDs para la tabla Alumno
+            $idPersona = $Persona->id;
+            $idUsuario = $Usuario->id;
+
+            $Alumno = new Alumno();
+            $Alumno->Matricula = $request->input('Matricula');
+            $Alumno->Estado = 'Activo';
+            $Alumno->FechaIngreso = today();
+            $Alumno->EscuelaProcede = $request->input('EscuelaProcede');
+            $Alumno->idUsuario = $idUsuario;
+            $Alumno->idPersona = $idPersona;
+
+            $Alumno->save();
+
+            // Confirmar transacción
+            DB::commit();
+
+            return response()->json(['message' => 'Alumno registrado correctamente!']);
+        } catch (\Exception $e) {
+            // Revertir transacción si hay un error
+            DB::rollBack();
+
+            return response()->json(['error' => 'Error al registrar el alumno: ' . $e->getMessage()], 500);
         }
-        $Persona->Save();
-
-        //Objeto Usuario
-        $Usuario = new User();
-        $Usuario->name = $request('Nombre');
-        $Usuario->email = $request('Correo');
-        $Usuario->idGoogle = null; //google lo actualizara al valor requerido momento de iniciar sesion con SSO 
-        $Usuario->Save();
-
-        //Objeto Alumno
-        //se obtiene la id de la persona donde esta su CURP(Valor unico de persona)
-        $idPersona = Persona::where('CURP', $request->input('CURP'))->value('idPersona');
-        //se obtiene la id del usuario donde esta el correo ingresado(valor unico de usuario)
-        $idUsuario = User::where('email', $request->input('Correo'))->value('id');
-
-        $Alumno = new Alumno();
-        $Alumno->Matricula = $request->input('Matricula');
-        $Alumno->Estado = $request->input('EstadoActividad');
-        $Alumno->FechaIngreso = today(); // (Y-m-d)
-        $Alumno->EscuelaProcede = $request->input('EscuelaProcede');
-        $Alumno->idUsuario = $idUsuario;
-        $Alumno->idPersona = $idPersona;
-        $Alumno->Save();
-
-        //Respuesta
-        return response()->json(['message' => 'Alumno registrado correctamente!']);
     }
 
 
@@ -155,58 +165,65 @@ class AlumnoController extends Controller
 
         //Validacion del request -Existen
         $request->validate([
-            'Nombre' => 'required|string|max:50',
-            'ApellidoMaterno' => 'required|string|max:50',
-            'ApellidoPaterno' => 'required|string|max:50',
-            'Ciudad' => 'required|string|max:50',
-            'Municipio' => 'required|string|max:50',
-            'ColFrac' => 'required|string|max:50',
-            'Calle' => 'required|string|max:50',
-            'EstadoCivil' => 'required|string|max:50',
-            'Nacionalidad' => 'required|string|max:50',
-            'Correo' => 'required|email|max:255|unique:users,email',
-            'FechaNacimiento' => 'required|date|before:today',
+            'Nombre' => 'required|string',
+            'ApellidoMaterno' => 'required|string',
+            'ApellidoPaterno' => 'required|string',
+            'Ciudad' => 'required|string',
+            'Municipio' => 'required|string',
+            'ColFrac' => 'required|string',
+            'Calle' => 'required|string',
+            'EstadoCivil' => 'required|string',
+            'Nacionalidad' => 'required|string',
+            'Correo' => 'required|unique:users,email',
+            'FechaNacimiento' => 'required',
             'Foto' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
-            'Matricula' => 'required|string|max:50|unique:alumnos,Matricula',
-            'Estado' => 'required|in:Suspendido,Baja,Activo',
-            'FechaIngreso' => 'required|date|before_or_equal:today',
-            'EscuelaProcede' => 'required|string|max:100',
+            'FechaIngreso' => 'required|before_or_equal:today',
+            'EscuelaProcede' => 'required|string',
         ]);
 
-        // Buscar al alumno por su ID
-        $Persona = Persona::findOrFail($id);
+        DB::beginTransaction();
 
-        $Persona->Nombre = $request->input('Nombre');
-        $Persona->ApellidoMaterno = $request->input('ApellidoMaterno');
-        $Persona->ApellidoPaterno = $request->input('ApellidoPaterno');
-        $Persona->CURP = $request->input('CURP');
-        $Persona->FechaNacimiento = $request->input('FechaNacimiento');
-        $Persona->Genero = $request->input('Genero');
-        $Persona->Ciudad = $request->input('Ciudad');
-        $Persona->Municipio = $request->input('Municipio');
-        $Persona->CodigoPostal = $request->input('CodigoPostal');
-        $Persona->ColFrac = $request->input('ColFrac');
-        $Persona->Calle = $request->input('Calle');
-        $Persona->NumeroExterior = $request->input('NumeroExterior');
-        $Persona->EstadoCivil = $request->input('EstadoCivil');
-        $Persona->Nacionalidad = $request->input('Nacionalidad');
+        try {
+            // Buscar al alumno por su ID
+            $Persona = Persona::findOrFail($id);
 
-        $Persona->save();
+            $Persona->Nombre = $request->input('Nombre');
+            $Persona->ApellidoMaterno = $request->input('ApellidoMaterno');
+            $Persona->ApellidoPaterno = $request->input('ApellidoPaterno');
+            $Persona->CURP = $request->input('CURP');
+            $Persona->FechaNacimiento = $request->input('FechaNacimiento');
+            $Persona->Genero = $request->input('Genero');
+            $Persona->Ciudad = $request->input('Ciudad');
+            $Persona->Municipio = $request->input('Municipio');
+            $Persona->CodigoPostal = $request->input('CodigoPostal');
+            $Persona->ColFrac = $request->input('ColFrac');
+            $Persona->Calle = $request->input('Calle');
+            $Persona->NumeroExterior = $request->input('NumeroExterior');
+            $Persona->EstadoCivil = $request->input('EstadoCivil');
+            $Persona->Nacionalidad = $request->input('Nacionalidad');
 
-        $Alumno = new Alumno();
+            $Persona->save();
 
-        $Alumno->Matricula = $request->input('Matricula');
-        $Alumno->Estado = $request->input('EstadoActividad');
-        $Alumno->FechaIngreso = $request->input('Fecha');
-        $Alumno->EscuelaProcede = $request->input('EscuelaProcede');
+            $Alumno = new Alumno();
 
-        $Alumno->Save();
+            $Alumno->Matricula = $request->input('Matricula');
+            $Alumno->Estado = $request->input('EstadoActividad');
+            $Alumno->FechaIngreso = $request->input('Fecha');
+            $Alumno->EscuelaProcede = $request->input('EscuelaProcede');
 
-        // Retornar una respuesta indicando éxito
-        return response()->json([
-            'message' => 'Datos del alumno actualizados correctamente!',
-            'alumno' => $Alumno,
-        ], 200);
+            $Alumno->Save();
+
+            // Retornar una respuesta indicando éxito
+            return response()->json([
+                'message' => 'Datos del alumno actualizados correctamente!',
+                'alumno' => $Alumno,
+            ], 200);
+        } catch (\Exception $e) {
+            // Revertir transacción si hay un error
+            DB::rollBack();
+
+            return response()->json(['error' => 'Error al registrar el alumno: ' . $e->getMessage()], 500);
+        }
     }
 
 

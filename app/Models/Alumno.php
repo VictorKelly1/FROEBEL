@@ -38,7 +38,7 @@ class Alumno extends Model
     }
 
     // Función de validación
-    private static function validateAttributes($Persona)
+    private static function validateAttributes($Alumno)
     {
         $requiredFields = [
             'Matricula',

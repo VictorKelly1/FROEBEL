@@ -1,10 +1,3 @@
-@viteReactRefresh
-@vite('resources/js/app.js')
+<x-director.layout>
 
-<header>
-        <h1>Registro Conceptos</h1>
-</header>
-
-<div id="RegisConcepto"></div>
-<div id="BtnGuardar"></div>
-<div id="TablaConcep"></div>
+</x-director.layout>

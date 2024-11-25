@@ -1,10 +1,3 @@
-@viteReactRefresh
-@vite('resources/js/app.js')
+<x-director.layout>
 
-<header>
-        <h1>Registro Grupo</h1>
-</header>
-
-<div id="RegisGrup"></div>
-<div id="BtnGuardar"></div>
-<div id="TablaRegisGrupo"></div>
+</x-director.layout>
