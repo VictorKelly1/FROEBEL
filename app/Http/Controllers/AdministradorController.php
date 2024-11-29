@@ -3,26 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-//Modelos
+use App\Models\Administrador;
 use App\Models\Persona;
-use App\Models\Alumno;
-use App\Models\Contacto;
 use App\Models\User;
-use App\Models\VAlumno;
-//Librerias
+use App\Models\VAdministrador;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class AlumnoController extends Controller
+class AdministradorController extends Controller
 {
 
     public function index()
     {
         /* 
-        Se obtiene una lista con todos los alumnos activos
+        Se obtiene una lista con todos los administradores activos
         */
-        $Alumnos = VAlumno::where('Estado', 'Activo')->get();
-        return view('director.ConsultasAlum', ['Alumnos' => $Alumnos]);
+        $Administradores = VAdministrador::where('Estado', 'Activo')->get();
+        return view('director.ConsultasAlum', ['Administrador' => $Administradores]);
     }
 
 
@@ -31,13 +28,14 @@ class AlumnoController extends Controller
         /*
         Regresa la vista para registrar un alumno
         */
-        return view('director.RegisAlum');
+        return view('director.RegisAdmin');
     }
+
 
     public function store(Request $request)
     {
         /* 
-        Funcion para registrar un alumno en la base de datos guardando los datos en las respectivas
+        Funcion para registrar un Administrador en la base de datos guardando los datos en las respectivas
         tablas y asignandole un correo al momento de su creacion para que tenga acceso al sistema
         */
 
@@ -58,8 +56,6 @@ class AlumnoController extends Controller
             'FechaNacimiento' => 'required|date|before:today',
             'Foto' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
         ]);
-
-        /*   */
 
         //Integridad -filtro de correcion de sintaxis(en el modelo)           
         //Verificacion -requerimientos (en el modelo) 
@@ -106,70 +102,55 @@ class AlumnoController extends Controller
             $idPersona = $Persona->id;
             $idUsuario = $Usuario->id;
 
-            $Alumno = new Alumno();
-            $Alumno->Matricula = $request->input('Matricula');
-            $Alumno->Estado = 'Activo';
-            $Alumno->FechaIngreso = today();
-            $Alumno->EscuelaProcede = $request->input('EscuelaProcede');
-            $Alumno->idUsuario = $idUsuario;
-            $Alumno->idPersona = $idPersona;
+            $Administrador = new Administrador();
+            $Administrador->Estado = 'Activo';
+            $Administrador->RFC = $request->input('RFC');
+            $Administrador->NoINE = $request->input('NoINE');
+            $Administrador->Sueldo = $request->input('Sueldo');
+            $Administrador->idUsuario = $idUsuario;
+            $Administrador->idPersona = $idPersona;
 
-            $Alumno->save();
-
-            //Poner un contacto al alumno a partir del correo recien asignado
-            $Contacto = new Contacto();
-
-            $Contacto->TipoContacto = "Email";
-            $Contacto->ValorContacto = $request->input('Correo');
-            $Contacto->idReceptor = $idPersona;
-
-            $Contacto->save();
+            $Administrador->save();
 
             // Confirmar transacción
             DB::commit();
 
-            return view('director.RegisTutor', ['Alumno' => $Alumno]);
+            return redirect()->view('director.RegisAdmin')->with('success', 'Grupo registrado con éxito.');
         } catch (\Exception $e) {
             // Revertir transacción si hay un error
             DB::rollBack();
 
-            return redirect()->back()->with('error', 'Error al registrar el Alumno: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Error al registrar el Administrador: ' . $e->getMessage());
         }
     }
-
 
     public function show(string $id)
     {
         /* 
         Regresa una respuesta que se usara en la vista dinamica para mostrar los 
-        datos de un alumno especifico(no se implementara por no ser nesesario
+        datos de un Administrador especifico(no se implementara por no ser nesesario
         porque ya se podran ver en la funcion edit)
         */
     }
 
 
-    public function edit(VAlumno $id)
+    public function edit(VAdministrador $id)
     {
         /*
-        Regresa la vista dinamica para editar un alumno 
+        Regresa la vista dinamica para editar un administrador 
         */
 
-        // Verificar si se encontró el alumno
+        // Verificar si se encontró el administrador
         if (!$id) {
-            return response()->json(['error' => 'Alumno no encontrado'], 404);
+            return response()->json(['error' => 'Administrador no encontrado'], 404);
         } else {
-            return view('dinamicas.EditarAlumno', ['Alumno' => $id]);
+            return view('dinamicas.EditarAdmin', ['Administrador' => $id]);
         }
     }
 
-
     public function update(Request $request, string $id)
     {
-        /*
-        Actualiza los datos de un alumno especifico
-        */
-
-        //Validacion del request -Existen
+        /* */
         $request->validate([
             'Nombre' => 'required|string',
             'ApellidoMaterno' => 'required|string',
@@ -181,10 +162,8 @@ class AlumnoController extends Controller
             'EstadoCivil' => 'required|string',
             'Nacionalidad' => 'required|string',
             'Correo' => 'required|unique:users,email',
-            'FechaNacimiento' => 'required',
+            'FechaNacimiento' => 'required|date|before:today',
             'Foto' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
-            'FechaIngreso' => 'required|before_or_equal:today',
-            'EscuelaProcede' => 'required|string',
         ]);
 
         DB::beginTransaction();
@@ -210,30 +189,30 @@ class AlumnoController extends Controller
 
             $Persona->save();
 
-            $Alumno = new Alumno();
+            $Administrador = new Administrador();
 
-            $Alumno->Matricula = $request->input('Matricula');
-            $Alumno->Estado = $request->input('EstadoActividad');
-            $Alumno->FechaIngreso = $request->input('Fecha');
-            $Alumno->EscuelaProcede = $request->input('EscuelaProcede');
+            $Administrador->Estado = 'Activo';
+            $Administrador->RFC = $request->input('RFC');
+            $Administrador->NoINE = $request->input('NoINE');
+            $Administrador->Sueldo = $request->input('Sueldo');
 
-            $Alumno->Save();
+            $Administrador->Save();
 
             // Retornar una respuesta indicando éxito
-            return redirect()->view('director.ConsultasAlum')->with('success', 'Alumno registrado con éxito.');
+            return redirect()->view('director.ConsulAdmin')->with(
+                'success',
+                'Administrador actualizado con éxito.'
+            );
         } catch (\Exception $e) {
             // Revertir transacción si hay un error
             DB::rollBack();
 
-            return redirect()->back()->with('error', 'Error al actualizar el Alumno: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Error al actualizar el Administrador: ' . $e->getMessage());
         }
     }
 
-
     public function destroy(string $id)
     {
-        /*
-        Borra registros de un alumno (no se implementara esta funcion por seguridad de los datos)
-        */
+        //
     }
 }
