@@ -36,7 +36,7 @@ class TutoresController extends Controller
         return view('director.RegisTutor', ['Alumnos' => $Alumnos]);
     }
 
-    public function store(Request $request, VAlumno $Alumno)
+    public function store(Request $request)
     {
         /* 
         Funcion para registrar un Administrador en la base de datos guardando los datos en las respectivas
@@ -59,6 +59,14 @@ class TutoresController extends Controller
             'Correo' => 'required|unique:users,email',
             'FechaNacimiento' => 'required|date|before:today',
             'Foto' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
+            'RFC' => [
+                'required',
+                'regex:/^[A-ZÑ&]{3,4}[0-9]{6}[A-Z0-9]{3}$/i'
+            ],
+            'CURP' => [
+                'required',
+                'regex:/^[A-Z]{4}[0-9]{6}[HM][A-Z]{5}[0-9]{2}$/i'
+            ],
         ]);
 
         //Integridad -filtro de correcion de sintaxis(en el modelo)           
@@ -118,14 +126,8 @@ class TutoresController extends Controller
             // Confirmar transacción
             DB::commit();
 
-            $Grupos = Vgrupos::All();
-            $GrupAlum = VgruposAlumnos::getAll();
-            return view(
-                'director.AsigGrupAlum',
-                ['Alumno' => $Alumno],
-                ['Grupos' => $Grupos],
-                ['GrupAlum' => $GrupAlum]
-            );
+            $Alumnos = VAlumno::all();
+            return view('director.RegisTutor', ['Alumnos' => $Alumnos]);
         } catch (\Exception $e) {
             // Revertir transacción si hay un error
             DB::rollBack();
@@ -171,16 +173,34 @@ class TutoresController extends Controller
             'Calle' => 'required|string',
             'EstadoCivil' => 'required|string',
             'Nacionalidad' => 'required|string',
-            'Correo' => 'required|unique:users,email',
             'FechaNacimiento' => 'required|date|before:today',
             'Foto' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
+
+            'RFC' => [
+                'required',
+                'regex:/^[A-ZÑ&]{3,4}[0-9]{6}[A-Z0-9]{3}$/i'
+            ],
+            'CURP' => [
+                'required',
+                'regex:/^[A-Z]{4}[0-9]{6}[HM][A-Z]{5}[0-9]{2}$/i'
+            ],
         ]);
 
         DB::beginTransaction();
 
         try {
             // Buscar al alumno por su ID
-            $Persona = Persona::findOrFail($id);
+            $Tutor = Tutor::findOrFail($id);
+
+            $Tutor->RFC = $request->input('RFC');
+            $Tutor->NoINE = $request->input('NoINE');
+            $Tutor->Sueldo = $request->input('LugarTrabajo');
+
+            $Tutor->save();
+
+            $idPersona = $Tutor->idPersona;
+
+            $Persona = Persona::findOrFail($idPersona);
 
             $Persona->Nombre = $request->input('Nombre');
             $Persona->ApellidoMaterno = $request->input('ApellidoMaterno');
@@ -199,16 +219,12 @@ class TutoresController extends Controller
 
             $Persona->save();
 
-            $Tutor = new Tutor();
 
-            $Tutor->RFC = $request->input('RFC');
-            $Tutor->NoINE = $request->input('NoINE');
-            $Tutor->Sueldo = $request->input('LugarTrabajo');
 
-            $Tutor->save();
+            DB::commit();
 
             // Retornar una respuesta indicando éxito
-            return redirect()->view('director.RegisGrup')->with('success', 'Tutor registrado con éxito.');
+            return redirect()->route('ListaTutores')->with('success', 'Administrador actualizado con éxito.');
         } catch (\Exception $e) {
             // Revertir transacción si hay un error
             DB::rollBack();

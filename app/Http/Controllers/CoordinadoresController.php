@@ -44,9 +44,17 @@ class CoordinadoresController extends Controller
             'Calle' => 'required|string',
             'EstadoCivil' => 'required|string',
             'Nacionalidad' => 'required|string',
-            'Correo' => 'required|unique:users,email',
             'FechaNacimiento' => 'required|date|before:today',
             'Foto' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
+
+            'RFC' => [
+                'required',
+                'regex:/^[A-ZÑ&]{3,4}[0-9]{6}[A-Z0-9]{3}$/i'
+            ],
+            'CURP' => [
+                'required',
+                'regex:/^[A-Z]{4}[0-9]{6}[HM][A-Z]{5}[0-9]{2}$/i'
+            ],
         ]);
 
         DB::beginTransaction();
@@ -105,7 +113,7 @@ class CoordinadoresController extends Controller
             // Confirmar transacción
             DB::commit();
 
-            return redirect()->view('director.ConsulCoordi')->with('success', 'Coordinador registrado con éxito.');
+            return redirect()->route('ListaCoordi')->with('success', 'Coordinador registrado con éxito.');
         } catch (\Exception $e) {
             // Revertir transacción si hay un error
             DB::rollBack();
@@ -148,16 +156,35 @@ class CoordinadoresController extends Controller
             'Calle' => 'required|string',
             'EstadoCivil' => 'required|string',
             'Nacionalidad' => 'required|string',
-            'Correo' => 'required|unique:users,email',
             'FechaNacimiento' => 'required|date|before:today',
             'Foto' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
+
+            'RFC' => [
+                'required',
+                'regex:/^[A-ZÑ&]{3,4}[0-9]{6}[A-Z0-9]{3}$/i'
+            ],
+            'CURP' => [
+                'required',
+                'regex:/^[A-Z]{4}[0-9]{6}[HM][A-Z]{5}[0-9]{2}$/i'
+            ],
         ]);
 
         DB::beginTransaction();
 
         try {
             // Buscar al alumno por su ID
-            $Persona = Persona::findOrFail($id);
+            $Coordinador = new Coordinador();
+
+            $Coordinador->Estado = 'Activo';
+            $Coordinador->RFC = $request->input('RFC');
+            $Coordinador->NoINE = $request->input('NoINE');
+            $Coordinador->Sueldo = $request->input('Sueldo');
+
+            $Coordinador->Save();
+
+            $idPersona = $Coordinador->idPersona;
+
+            $Persona = Persona::findOrFail($idPersona);
 
             $Persona->Nombre = $request->input('Nombre');
             $Persona->ApellidoMaterno = $request->input('ApellidoMaterno');
@@ -176,17 +203,10 @@ class CoordinadoresController extends Controller
 
             $Persona->save();
 
-            $Coordinador = new Coordinador();
-
-            $Coordinador->Estado = 'Activo';
-            $Coordinador->RFC = $request->input('RFC');
-            $Coordinador->NoINE = $request->input('NoINE');
-            $Coordinador->Sueldo = $request->input('Sueldo');
-
-            $Coordinador->Save();
+            DB::commit();
 
             // Retornar una respuesta indicando éxito
-            return redirect()->view('director.ConsulCoordi')->with('success', 'Coordinadores registrado con éxito.');
+            return redirect()->route('ListaCoordi')->with('success', 'Coordinador actualizado con éxito.');
         } catch (\Exception $e) {
             // Revertir transacción si hay un error
             DB::rollBack();

@@ -46,9 +46,19 @@ class IntendentesController extends Controller
             'Calle' => 'required|string',
             'EstadoCivil' => 'required|string',
             'Nacionalidad' => 'required|string',
+            'Matricula' => 'required|string',
+            'EscuelaProcede' => 'required|string',
             'Correo' => 'required|unique:users,email',
             'FechaNacimiento' => 'required|date|before:today',
             'Foto' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
+            'RFC' => [
+                'required',
+                'regex:/^[A-ZÑ&]{3,4}[0-9]{6}[A-Z0-9]{3}$/i'
+            ],
+            'CURP' => [
+                'required',
+                'regex:/^[A-Z]{4}[0-9]{6}[HM][A-Z]{5}[0-9]{2}$/i'
+            ],
         ]);
 
         DB::beginTransaction();
@@ -96,7 +106,7 @@ class IntendentesController extends Controller
             // Confirmar transacción
             DB::commit();
 
-            return redirect()->view('director.RegisGrup')->with('success', 'Intendente registrado con éxito.');
+            return redirect()->route('ListaInten')->with('success', 'Intendente registrado con éxito.');
         } catch (\Exception $e) {
             // Revertir transacción si hay un error
             DB::rollBack();
@@ -120,7 +130,7 @@ class IntendentesController extends Controller
         if (!$id) {
             return response()->json(['error' => 'Intendente no encontrado'], 404);
         } else {
-            return view('dinamicas.EditarAlumno', ['Intendente' => $id]);
+            return view('dinamicas.EditarInten', ['Intendente' => $id]);
         }
     }
 
@@ -137,16 +147,34 @@ class IntendentesController extends Controller
             'Calle' => 'required|string',
             'EstadoCivil' => 'required|string',
             'Nacionalidad' => 'required|string',
-            'Correo' => 'required|unique:users,email',
             'FechaNacimiento' => 'required|date|before:today',
             'Foto' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
-        ]);
 
+            'RFC' => [
+                'required',
+                'regex:/^[A-ZÑ&]{3,4}[0-9]{6}[A-Z0-9]{3}$/i'
+            ],
+            'CURP' => [
+                'required',
+                'regex:/^[A-Z]{4}[0-9]{6}[HM][A-Z]{5}[0-9]{2}$/i'
+            ],
+        ]);
         DB::beginTransaction();
 
         try {
             // Buscar al Intendente por su ID
-            $Persona = Persona::findOrFail($id);
+            $Intendente = Intendente::findOrFail($id);
+
+            $Intendente->Estado = 'Activo';
+            $Intendente->RFC = $request->input('RFC');
+            $Intendente->NoINE = $request->input('NoINE');
+            $Intendente->Sueldo = $request->input('Sueldo');
+
+            $Intendente->Save();
+
+            $idPersona = $Intendente->idPersona;
+
+            $Persona = Persona::findOrFail($idPersona);
 
             $Persona->Nombre = $request->input('Nombre');
             $Persona->ApellidoMaterno = $request->input('ApellidoMaterno');
@@ -165,17 +193,10 @@ class IntendentesController extends Controller
 
             $Persona->save();
 
-            $Intendente = new Intendente();
-
-            $Intendente->Estado = 'Activo';
-            $Intendente->RFC = $request->input('RFC');
-            $Intendente->NoINE = $request->input('NoINE');
-            $Intendente->Sueldo = $request->input('Sueldo');
-
-            $Intendente->Save();
+            DB::commit();
 
             // Retornar una respuesta indicando éxito
-            return redirect()->view('director.RegisGrup')->with('success', 'Intendente actualizado con éxito.');
+            return redirect()->route('ListaAdmin')->with('success', 'Administrador actualizado con éxito.');
         } catch (\Exception $e) {
             // Revertir transacción si hay un error
             DB::rollBack();

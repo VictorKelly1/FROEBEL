@@ -63,7 +63,7 @@ Route::controller(GruposController::class)->group(function () {
 Route::controller(GruposAlumnoController::class)->group(function () {
     Route::get('/GruposAlumnos', 'index')->name('ListaGruposAlumnos');
     Route::post('/AsignarGrupAlum/{idAlumno}/{idGrupo}', 'store')->name('AsignarGrupAlum');
-
+    Route::get('/GruposAlumnos/{GA}', 'destroy')->name('EliminarGrupAlum');
 });
 
 

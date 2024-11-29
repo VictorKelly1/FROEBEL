@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Descuento;
 use Illuminate\Http\Request;
 
 class DescuentosController extends Controller
@@ -12,7 +13,8 @@ class DescuentosController extends Controller
      */
     public function index()
     {
-        //
+        $Descuentos = Descuento::All();
+        return view('director.ConsultasDesc', ['Descuentos' => $Descuentos]);
     }
 
     /**

@@ -57,6 +57,10 @@ class AlumnoController extends Controller
             'Correo' => 'required|unique:users,email',
             'FechaNacimiento' => 'required|date|before:today',
             'Foto' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
+            'CURP' => [
+                'required',
+                'regex:/^[A-Z]{4}[0-9]{6}[HM][A-Z]{5}[0-9]{2}$/i'
+            ],
         ]);
 
         /*   */
@@ -128,7 +132,7 @@ class AlumnoController extends Controller
             // Confirmar transacción
             DB::commit();
 
-            return view('director.RegisTutor', ['Alumno' => $Alumno]);
+            return view('director.RegisAlum');
         } catch (\Exception $e) {
             // Revertir transacción si hay un error
             DB::rollBack();
@@ -181,17 +185,29 @@ class AlumnoController extends Controller
             'Calle' => 'required|string',
             'EstadoCivil' => 'required|string',
             'Nacionalidad' => 'required|string',
-            'Correo' => 'required|unique:users,email',
-            'FechaNacimiento' => 'required',
+            'FechaNacimiento' => 'required|date|before:today',
             'Foto' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
-            'FechaIngreso' => 'required|before_or_equal:today',
-            'EscuelaProcede' => 'required|string',
+            'CURP' => [
+                'required',
+                'regex:/^[A-Z]{4}[0-9]{6}[HM][A-Z]{5}[0-9]{2}$/i'
+            ],
         ]);
 
         DB::beginTransaction();
 
         try {
             // Buscar al alumno por su ID
+            $Alumno = Alumno::findOrFail($id);
+
+            $Alumno->Matricula = $request->input('Matricula');
+            $Alumno->Estado = $request->input('EstadoActividad');
+            $Alumno->FechaIngreso = $request->input('Fecha');
+            $Alumno->EscuelaProcede = $request->input('EscuelaProcede');
+
+            $Alumno->Save();
+
+            $idPersona = $Alumno->idPersona;
+
             $Persona = Persona::findOrFail($id);
 
             $Persona->Nombre = $request->input('Nombre');
@@ -211,17 +227,10 @@ class AlumnoController extends Controller
 
             $Persona->save();
 
-            $Alumno = new Alumno();
-
-            $Alumno->Matricula = $request->input('Matricula');
-            $Alumno->Estado = $request->input('EstadoActividad');
-            $Alumno->FechaIngreso = $request->input('Fecha');
-            $Alumno->EscuelaProcede = $request->input('EscuelaProcede');
-
-            $Alumno->Save();
+            DB::commit();
 
             // Retornar una respuesta indicando éxito
-            return redirect()->view('director.ConsultasAlum')->with('success', 'Alumno registrado con éxito.');
+            return redirect()->route('ListaAlumnos')->with('success', 'Alumno actualizado con éxito.');
         } catch (\Exception $e) {
             // Revertir transacción si hay un error
             DB::rollBack();

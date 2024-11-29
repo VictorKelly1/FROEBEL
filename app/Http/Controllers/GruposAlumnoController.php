@@ -87,12 +87,15 @@ class GruposAlumnoController extends Controller
 
     public function update(Request $request, string $id)
     {
-        //
+        //No se usara esta funcion porque seria mas practico eliminar y registrar de nuevo
     }
 
 
-    public function destroy(string $id)
+    public function destroy(GruposAlumno $GA)
     {
-        //
+        // Elimina el registro de la tabla GruposAlumnos
+        $GA->delete();
+        // Redirige a alguna vista o devuelve un mensaje de éxito
+        return redirect()->route('director.AsigGrupAlum')->with('success', 'Registro eliminado con correctamente.');
     }
 }

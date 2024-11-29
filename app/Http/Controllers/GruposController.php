@@ -83,7 +83,9 @@ class GruposController extends Controller
             //Objeto Grupo
             $Grupo = new Grupo();
 
-            $Grupo->CantidadAlum = $request->input('CantidadAlum');
+            $Grupo->CantidadAlum = DB::table('GruposAlumnos')
+                ->where('id_grupo', $Grupo->idGrupo)
+                ->count();
             $Grupo->Paquete = $request->input('Paquete');
             $Grupo->idGrado = $idGrado;
             $Grupo->idPeriodo = $idPeriodo;
@@ -93,7 +95,7 @@ class GruposController extends Controller
             // Confirmar transacción 
             DB::commit();
 
-            return redirect()->view('director.RegisGrup')->with('success', 'Grupo registrado con éxito.');
+            return redirect()->route('ListaGrupos')->with('success', 'Grupo registrado con éxito.');
         } catch (\Exception $e) {
             // Revertir transacción si hay un error
             DB::rollBack();
@@ -115,7 +117,7 @@ class GruposController extends Controller
         if (!$id) {
             return response()->json(['error' => 'Grupo no encontrado'], 404);
         } else {
-            return view('dinamicas.EditarGrupo', ['Docente' => $id]);
+            return view('dinamicas.EditarGrupo', ['Grupos' => $id]);
         }
     }
 
@@ -135,8 +137,21 @@ class GruposController extends Controller
         DB::beginTransaction();
 
         try {
+            //Objeto Grupo
+            $Grupo = Grupo::findOrFail($id);
+
+            $Grupo->CantidadAlum = DB::table('GruposAlumnos')
+                ->where('id_grupo', $Grupo->idGrupo)
+                ->count();
+            $Grupo->Paquete = $request->input('Paquete');
+
+            $Grupo->save();
+
+            $idGrado = $Grupo->idGrado;
+            $idPeriodo = $Grupo->idPeriodo;
+
             // Objeto Grado
-            $Grado = new Grado();
+            $Grado = Grado::findOrFail($idGrado);
 
             $Grado->NombreGrado = $request->input('NombreGrado');
             $Grado->NivelAcademico = $request->input('NivelAcademico');
@@ -144,7 +159,7 @@ class GruposController extends Controller
             $Grado->save();
 
             //Objeto Periodo
-            $Periodo = new Periodo();
+            $Periodo = Periodo::findOrFail($idPeriodo);
 
             $Periodo->Clave = $request->input('Clave');
             $Periodo->FechaInicio = $request->input('FechaInicio');
@@ -153,18 +168,10 @@ class GruposController extends Controller
 
             $Periodo->save();
 
-            // Obtener IDs de las tuplas que se acaban de guardar
-
-            //Objeto Grupo
-            $Grupo = new Grupo();
-
-            $Grupo->CantidadAlum = $request->input('CantidadAlum');
-            $Grupo->Paquete = $request->input('Paquete');
-
-            $Grupo->save();
-
             // Confirmar transacción 
             DB::commit();
+
+            return redirect()->route('ListaGrupos')->with('success', 'Grupos actualizado con éxito.');
         } catch (\Exception $e) {
             // Revertir transacción si hay un error
             DB::rollBack();

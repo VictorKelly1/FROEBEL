@@ -42,9 +42,19 @@ class DocenteController extends Controller
             'Calle' => 'required|string',
             'EstadoCivil' => 'required|string',
             'Nacionalidad' => 'required|string',
+            'Matricula' => 'required|string',
+            'EscuelaProcede' => 'required|string',
             'Correo' => 'required|unique:users,email',
             'FechaNacimiento' => 'required|date|before:today',
             'Foto' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
+            'RFC' => [
+                'required',
+                'regex:/^[A-ZÑ&]{3,4}[0-9]{6}[A-Z0-9]{3}$/i'
+            ],
+            'CURP' => [
+                'required',
+                'regex:/^[A-Z]{4}[0-9]{6}[HM][A-Z]{5}[0-9]{2}$/i'
+            ],
         ]);
 
         DB::beginTransaction();
@@ -105,10 +115,7 @@ class DocenteController extends Controller
             // Confirmar transacción
             DB::commit();
 
-            return redirect()->view('director.ConsulAdmin')->with(
-                'success',
-                'Docente registrado con éxito.'
-            );
+            return redirect()->route('ListaDocentes')->with('success', 'Docente registrado con éxito.');
         } catch (\Exception $e) {
             // Revertir transacción si hay un error
             DB::rollBack();
@@ -149,16 +156,38 @@ class DocenteController extends Controller
             'Calle' => 'required|string',
             'EstadoCivil' => 'required|string',
             'Nacionalidad' => 'required|string',
-            'Correo' => 'required|unique:users,email',
             'FechaNacimiento' => 'required|date|before:today',
             'Foto' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
+
+            'RFC' => [
+                'required',
+                'regex:/^[A-ZÑ&]{3,4}[0-9]{6}[A-Z0-9]{3}$/i'
+            ],
+            'CURP' => [
+                'required',
+                'regex:/^[A-Z]{4}[0-9]{6}[HM][A-Z]{5}[0-9]{2}$/i'
+            ],
         ]);
 
         DB::beginTransaction();
 
         try {
             // Buscar al docente por su ID
-            $Persona = Persona::findOrFail($id);
+
+            $Docente = Docente::findOrFail($id);
+
+            $Docente->Carrera = $request->input('Carrera');
+            $Docente->Estado = 'Activo';
+            $Docente->FechaIngreso = today();
+            $Docente->RFC = $request->input('RFC');
+            $Docente->NoINE = $request->input('NoINE');
+            $Docente->Sueldo = $request->input('Sueldo');
+
+            $Docente->Save();
+
+            $idPersona = $Docente->idPersona;
+
+            $Persona = Persona::findOrFail($idPersona);
 
             $Persona->Nombre = $request->input('Nombre');
             $Persona->ApellidoMaterno = $request->input('ApellidoMaterno');
@@ -177,22 +206,10 @@ class DocenteController extends Controller
 
             $Persona->save();
 
-            $Docente = new Docente();
-
-            $Docente->Carrera = $request->input('Carrera');
-            $Docente->Estado = 'Activo';
-            $Docente->FechaIngreso = today();
-            $Docente->RFC = $request->input('RFC');
-            $Docente->NoINE = $request->input('NoINE');
-            $Docente->Sueldo = $request->input('Sueldo');
-
-            $Docente->Save();
+            DB::commit();
 
             // Retornar una respuesta indicando éxito
-            return redirect()->view('director.ConsulAdmin')->with(
-                'success',
-                'Docente actualizado con éxito.'
-            );
+            return redirect()->route('ListaDocentes')->with('success', 'Administrador actualizado con éxito.');
         } catch (\Exception $e) {
             // Revertir transacción si hay un error
             DB::rollBack();

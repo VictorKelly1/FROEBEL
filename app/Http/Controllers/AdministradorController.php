@@ -55,6 +55,14 @@ class AdministradorController extends Controller
             'Correo' => 'required|unique:users,email',
             'FechaNacimiento' => 'required|date|before:today',
             'Foto' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
+            'RFC' => [
+                'required',
+                'regex:/^[A-ZÑ&]{3,4}[0-9]{6}[A-Z0-9]{3}$/i'
+            ],
+            'CURP' => [
+                'required',
+                'regex:/^[A-Z]{4}[0-9]{6}[HM][A-Z]{5}[0-9]{2}$/i'
+            ],
         ]);
 
         //Integridad -filtro de correcion de sintaxis(en el modelo)           
@@ -115,7 +123,7 @@ class AdministradorController extends Controller
             // Confirmar transacción
             DB::commit();
 
-            return redirect()->view('director.RegisAdmin')->with('success', 'Grupo registrado con éxito.');
+            return redirect()->route('ListaAdmin')->with('success', 'Administrador registrado con éxito.');
         } catch (\Exception $e) {
             // Revertir transacción si hay un error
             DB::rollBack();
@@ -161,16 +169,35 @@ class AdministradorController extends Controller
             'Calle' => 'required|string',
             'EstadoCivil' => 'required|string',
             'Nacionalidad' => 'required|string',
-            'Correo' => 'required|unique:users,email',
             'FechaNacimiento' => 'required|date|before:today',
             'Foto' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
+
+            'RFC' => [
+                'required',
+                'regex:/^[A-ZÑ&]{3,4}[0-9]{6}[A-Z0-9]{3}$/i'
+            ],
+            'CURP' => [
+                'required',
+                'regex:/^[A-Z]{4}[0-9]{6}[HM][A-Z]{5}[0-9]{2}$/i'
+            ],
         ]);
 
         DB::beginTransaction();
 
         try {
-            // Buscar al alumno por su ID
-            $Persona = Persona::findOrFail($id);
+            // Buscar por su ID
+            $Administrador = Administrador::findOrFail($id);
+
+            $Administrador->Estado = 'Activo';
+            $Administrador->RFC = $request->input('RFC');
+            $Administrador->NoINE = $request->input('NoINE');
+            $Administrador->Sueldo = $request->input('Sueldo');
+
+            $Administrador->Save();
+
+            $idPersona = $Administrador->idPersona;
+
+            $Persona = Persona::findOrFail($idPersona);
 
             $Persona->Nombre = $request->input('Nombre');
             $Persona->ApellidoMaterno = $request->input('ApellidoMaterno');
@@ -189,20 +216,11 @@ class AdministradorController extends Controller
 
             $Persona->save();
 
-            $Administrador = new Administrador();
-
-            $Administrador->Estado = 'Activo';
-            $Administrador->RFC = $request->input('RFC');
-            $Administrador->NoINE = $request->input('NoINE');
-            $Administrador->Sueldo = $request->input('Sueldo');
-
-            $Administrador->Save();
+            //
+            DB::commit();
 
             // Retornar una respuesta indicando éxito
-            return redirect()->view('director.ConsulAdmin')->with(
-                'success',
-                'Administrador actualizado con éxito.'
-            );
+            return redirect()->route('ListaAdmin')->with('success', 'Administrador actualizado con éxito.');
         } catch (\Exception $e) {
             // Revertir transacción si hay un error
             DB::rollBack();
