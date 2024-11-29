@@ -1,0 +1,66 @@
+.led {
+   
+    box-shadow: 0 0 20px rgb(132, 42, 157); /* Sombra luminosa */
+}
+
+.led2 {
+    margin: 760px;
+ /*   outline: 2px solid red;      margen color*/
+}
+
+.posicionsidebar{
+
+position: absolute;
+top: -699px;    /* alto */
+left: -762px; /* lado */
+}
+.posicionsregisalum{
+
+    position: absolute;
+    top: -500px;    /* alto */
+    left: 30px; /* lado */
+    }
+
+    .botonesdiseño{
+
+        width: 300px; /* Ajusta el ancho */
+    padding: 10px;
+    border: 2px solid #5a00c1; /* Borde púrpura */
+    border-radius: 10px; /* Bordes redondeados */
+    background-color: #1e1e1e; /* Fondo oscuro */
+    color: #ffffff; /* Texto blanco */
+    font-size: 14px;
+        }
+
+        input[type="text"] {   /* LOS CAMBIA DE MANERA GLOBAL*/
+            width: 300px; /* Ajusta el ancho */
+            padding: 10px;
+            border: 2px solid #5a00c1; /* Borde púrpura */
+            border-radius: 10px; /* Bordes redondeados */
+            background-color: #1e1e1e; /* Fondo oscuro */
+            color: #ffffff; /* Texto blanco */
+            font-size: 14px;
+        }
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #9b33ff; /* Púrpura más brillante al enfocar */
+            box-shadow: 0 0 8px #9b33ff; /* Efecto de brillo */
+        }
+        input[type="date"]:focus {
+            outline: none;
+            border-color: #9b33ff; /* Púrpura más brillante al enfocar */
+            box-shadow: 0 0 8px #9b33ff; /* Efecto de brillo */
+        }
+
+        label {
+            color: #ffffff; /* Texto blanco */
+            font-family: Arial, sans-serif; /* Fuente básica */
+        
+            display: block;
+            margin-bottom: 5px;
+            font-size: 18px;
+          
+        }
+        .group:hover #subMenu {
+            display: block; /* Submenús visibles al hover */
+        }

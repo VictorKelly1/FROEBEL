@@ -1,4 +1,7 @@
 import './bootstrap';
+// resources/js/app.js
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
 import './Codea.jsx'
 import './ListaGrupos.jsx'
 import './ListaTipoEmp'

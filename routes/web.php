@@ -23,7 +23,7 @@ Route::controller(pruebasController::class)->group(function () {
 Route::controller(AlumnoController::class)->group(function () {
     Route::get('/Alumnos', 'index');                                    //Obtienes una lista con todos los alumnos
     Route::get('/VistaRegistrarAlumno', 'create');                      //Te lleva a la vista para registar
-    Route::post('/Registrar', 'store')->name('store');                  //Llama la funcion para guardar el alumno
+    Route::post('/Registrar', 'store')->name('RegistrarAlumno');                  //Llama la funcion para guardar el alumno
     Route::get('/VistaEditarAlumno/{id}', 'edit');                      //Te lleva a la vista dinamica para editar  
     Route::post('/Editar/{id}', 'update');                              //Llama a la funcion para editar los datos 
 });

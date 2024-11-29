@@ -2,7 +2,8 @@
 
     <div class=" flex items-center led2 posicionsregisalum">
       
-        <form class="" action="{{ route('RegistrarAlumno') }}" method="POST" enctype="multipart/form-data">
+
+    <form class="" action="{{ route('RegistrarTutor') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <!-- Datos de Persona -->
@@ -93,21 +94,24 @@
                 <input type="email" name="Correo" id="Correo" class="form-control" required>
             </div>
 
-            <!-- Datos de Alumno -->
-            <h3>Datos Académicos</h3>
             <div class="form-group">
-                <label for="Matricula">Matrícula:</label>
-                <input type="text" name="Matricula" id="Matricula" class="form-control" required>
+                <label for="NoINE">NoINE:</label>
+                <input type="number" name="NoINE" id="NoINE" class="form-control" required>
             </div>
 
             <div class="form-group">
-                <label for="EscuelaProcede">Escuela de Procedencia:</label>
-                <input type="text" name="EscuelaProcede" id="EscuelaProcede" class="form-control" required>
+                <label for="RFC">RFC:</label>
+                <input type="text" name="RFC" id="RFC" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="LugarTrabajo">Lugar de Trabajo:</label>
+                <input type="text" name="LugarTrabajo" id="LugarTrabajo" class="form-control" required>
             </div>
 
             <!-- Botón de envío -->
-            <button type="submit" class="btn btn-primary">Registrar Alumno</button>
-        </form>
+            <button type="submit" class="btn btn-primary">Registrar Tutor</button>
+
     </div>
 
 </x-director.layout>

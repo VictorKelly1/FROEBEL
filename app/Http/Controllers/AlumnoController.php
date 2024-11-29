@@ -20,8 +20,8 @@ class AlumnoController extends Controller
         /* 
         Se obtiene una lista con todos los alumnos activos
         */
-        $Alumnos = VAlumno::where('Estado', 'activo')->get();
-        return response()->json($Alumnos);
+        $Alumnos = VAlumno::where('Estado', 'Activo')->get();
+        return view('director.ConsultasAlum', ['Alumnos' => $Alumnos]);
     }
 
 
@@ -143,16 +143,13 @@ class AlumnoController extends Controller
         /*
         Regresa la vista dinamica para editar un alumno 
         */
-
-        $Alumno = DB::table('vAlumnos')
-            ->where('idAlumno', $id)
-            ->first();
+       
 
         // Verificar si se encontró el alumno
-        if (!$Alumno) {
+        if (!$id) {
             return response()->json(['error' => 'Alumno no encontrado'], 404);
         } else {
-            return response()->json($Alumno);
+            return view('dinamicas.EditarAlumno', ['Alumno' => $id]);
         }
     }
 
