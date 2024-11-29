@@ -3,45 +3,35 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-//Modelos
+use App\Models\Docente;
 use App\Models\Persona;
-use App\Models\Alumno;
-use App\Models\Contacto;
 use App\Models\User;
-use App\Models\VAlumno;
-//Librerias
+use App\Models\VDocente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class AlumnoController extends Controller
+class DocenteController extends Controller
 {
 
     public function index()
     {
-        /* 
-        Se obtiene una lista con todos los alumnos activos
-        */
-        $Alumnos = VAlumno::where('Estado', 'Activo')->get();
-        return view('director.ConsultasAlum', ['Alumnos' => $Alumnos]);
+        //
+        $Docentes = VDocente::where('Estado', 'Activo')->get();
+        return response()->json($Docentes);
     }
-
 
     public function create()
     {
-        /*
-        Regresa la vista para registrar un alumno
-        */
-        return view('director.RegisAlum');
+        //
+        return view('director.RegisDocen');
     }
 
     public function store(Request $request)
     {
         /* 
-        Funcion para registrar un alumno en la base de datos guardando los datos en las respectivas
+        Funcion para registrar un docente en la base de datos guardando los datos en las respectivas
         tablas y asignandole un correo al momento de su creacion para que tenga acceso al sistema
         */
-
-        //Validacion del request -existen
         $request->validate([
             'Nombre' => 'required|string',
             'ApellidoMaterno' => 'required|string',
@@ -52,18 +42,10 @@ class AlumnoController extends Controller
             'Calle' => 'required|string',
             'EstadoCivil' => 'required|string',
             'Nacionalidad' => 'required|string',
-            'Matricula' => 'required|string',
-            'EscuelaProcede' => 'required|string',
             'Correo' => 'required|unique:users,email',
             'FechaNacimiento' => 'required|date|before:today',
             'Foto' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
         ]);
-
-        /*   */
-
-        //Integridad -filtro de correcion de sintaxis(en el modelo)           
-        //Verificacion -requerimientos (en el modelo) 
-
 
         DB::beginTransaction();
 
@@ -102,41 +84,38 @@ class AlumnoController extends Controller
 
             $Usuario->save();
 
+
+            // Objeto Docente
             // Obtener IDs de las tuplas que se acaban de guardar
             $idPersona = $Persona->id;
             $idUsuario = $Usuario->id;
 
-            $Alumno = new Alumno();
-            $Alumno->Matricula = $request->input('Matricula');
-            $Alumno->Estado = 'Activo';
-            $Alumno->FechaIngreso = today();
-            $Alumno->EscuelaProcede = $request->input('EscuelaProcede');
-            $Alumno->idUsuario = $idUsuario;
-            $Alumno->idPersona = $idPersona;
+            $Docente = new Docente();
+            $Docente->Carrera = $request->input('Carrera');
+            $Docente->Estado = 'Activo';
+            $Docente->FechaIngreso = today();
+            $Docente->RFC = $request->input('RFC');
+            $Docente->NoINE = $request->input('NoINE');
+            $Docente->Sueldo = $request->input('Sueldo');
+            $Docente->idUsuario = $idUsuario;
+            $Docente->idPersona = $idPersona;
 
-            $Alumno->save();
-
-            //Poner un contacto al alumno a partir del correo recien asignado
-            $Contacto = new Contacto();
-
-            $Contacto->TipoContacto = "Email";
-            $Contacto->ValorContacto = $request->input('Correo');
-            $Contacto->idReceptor = $idPersona;
-
-            $Contacto->save();
+            $Docente->save();
 
             // Confirmar transacción
             DB::commit();
 
-            return view('director.RegisTutor', ['Alumno' => $Alumno]);
+            return redirect()->view('director.ConsulAdmin')->with(
+                'success',
+                'Docente registrado con éxito.'
+            );
         } catch (\Exception $e) {
             // Revertir transacción si hay un error
             DB::rollBack();
 
-            return redirect()->back()->with('error', 'Error al registrar el Alumno: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Error al registrar el Docente: ' . $e->getMessage());
         }
     }
-
 
     public function show(string $id)
     {
@@ -147,33 +126,19 @@ class AlumnoController extends Controller
         */
     }
 
-
-    public function edit(VAlumno $id)
+    public function edit(VDocente $id)
     {
-        /*
-        Regresa la vista dinamica para editar un alumno 
-        */
-<<<<<<< HEAD
-       
-=======
->>>>>>> Controladores1.0
-
-        // Verificar si se encontró el alumno
+        //regresa la vista para la edicion 
         if (!$id) {
-            return response()->json(['error' => 'Alumno no encontrado'], 404);
+            return response()->json(['error' => 'Docente no encontrado'], 404);
         } else {
-            return view('dinamicas.EditarAlumno', ['Alumno' => $id]);
+            return view('dinamicas.EditarDocente', ['Docente' => $id]);
         }
     }
 
-
     public function update(Request $request, string $id)
     {
-        /*
-        Actualiza los datos de un alumno especifico
-        */
-
-        //Validacion del request -Existen
+        /* */
         $request->validate([
             'Nombre' => 'required|string',
             'ApellidoMaterno' => 'required|string',
@@ -185,16 +150,14 @@ class AlumnoController extends Controller
             'EstadoCivil' => 'required|string',
             'Nacionalidad' => 'required|string',
             'Correo' => 'required|unique:users,email',
-            'FechaNacimiento' => 'required',
+            'FechaNacimiento' => 'required|date|before:today',
             'Foto' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
-            'FechaIngreso' => 'required|before_or_equal:today',
-            'EscuelaProcede' => 'required|string',
         ]);
 
         DB::beginTransaction();
 
         try {
-            // Buscar al alumno por su ID
+            // Buscar al docente por su ID
             $Persona = Persona::findOrFail($id);
 
             $Persona->Nombre = $request->input('Nombre');
@@ -214,30 +177,34 @@ class AlumnoController extends Controller
 
             $Persona->save();
 
-            $Alumno = new Alumno();
+            $Docente = new Docente();
 
-            $Alumno->Matricula = $request->input('Matricula');
-            $Alumno->Estado = $request->input('EstadoActividad');
-            $Alumno->FechaIngreso = $request->input('Fecha');
-            $Alumno->EscuelaProcede = $request->input('EscuelaProcede');
+            $Docente->Carrera = $request->input('Carrera');
+            $Docente->Estado = 'Activo';
+            $Docente->FechaIngreso = today();
+            $Docente->RFC = $request->input('RFC');
+            $Docente->NoINE = $request->input('NoINE');
+            $Docente->Sueldo = $request->input('Sueldo');
 
-            $Alumno->Save();
+            $Docente->Save();
 
             // Retornar una respuesta indicando éxito
-            return redirect()->view('director.ConsultasAlum')->with('success', 'Alumno registrado con éxito.');
+            return redirect()->view('director.ConsulAdmin')->with(
+                'success',
+                'Docente actualizado con éxito.'
+            );
         } catch (\Exception $e) {
             // Revertir transacción si hay un error
             DB::rollBack();
 
-            return redirect()->back()->with('error', 'Error al actualizar el Alumno: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Error al registrar el Docente: ' . $e->getMessage());
         }
     }
-
 
     public function destroy(string $id)
     {
         /*
-        Borra registros de un alumno (no se implementara esta funcion por seguridad de los datos)
+        Borra registros de un docente (no se implementara esta funcion por seguridad de los datos)
         */
     }
 }

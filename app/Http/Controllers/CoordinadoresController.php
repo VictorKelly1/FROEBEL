@@ -3,17 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-//Modelos
+use App\Models\Coordinador;
 use App\Models\Persona;
-use App\Models\Alumno;
-use App\Models\Contacto;
 use App\Models\User;
-use App\Models\VAlumno;
-//Librerias
+use App\Models\VCoordinador;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class AlumnoController extends Controller
+class CoordinadoresController extends Controller
 {
 
     public function index()
@@ -21,27 +18,22 @@ class AlumnoController extends Controller
         /* 
         Se obtiene una lista con todos los alumnos activos
         */
-        $Alumnos = VAlumno::where('Estado', 'Activo')->get();
-        return view('director.ConsultasAlum', ['Alumnos' => $Alumnos]);
+        $Coordinador = VCoordinador::where('Estado', 'Activo')->get();
+        return response()->json($Coordinador);
     }
-
 
     public function create()
     {
-        /*
-        Regresa la vista para registrar un alumno
-        */
-        return view('director.RegisAlum');
+        //
+        return view('director.RegisCoordinador');
     }
 
     public function store(Request $request)
     {
         /* 
-        Funcion para registrar un alumno en la base de datos guardando los datos en las respectivas
+        Funcion para registrar un docente en la base de datos guardando los datos en las respectivas
         tablas y asignandole un correo al momento de su creacion para que tenga acceso al sistema
         */
-
-        //Validacion del request -existen
         $request->validate([
             'Nombre' => 'required|string',
             'ApellidoMaterno' => 'required|string',
@@ -52,18 +44,10 @@ class AlumnoController extends Controller
             'Calle' => 'required|string',
             'EstadoCivil' => 'required|string',
             'Nacionalidad' => 'required|string',
-            'Matricula' => 'required|string',
-            'EscuelaProcede' => 'required|string',
             'Correo' => 'required|unique:users,email',
             'FechaNacimiento' => 'required|date|before:today',
             'Foto' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
         ]);
-
-        /*   */
-
-        //Integridad -filtro de correcion de sintaxis(en el modelo)           
-        //Verificacion -requerimientos (en el modelo) 
-
 
         DB::beginTransaction();
 
@@ -102,38 +86,31 @@ class AlumnoController extends Controller
 
             $Usuario->save();
 
+
+            // Objeto Coordinador
             // Obtener IDs de las tuplas que se acaban de guardar
             $idPersona = $Persona->id;
             $idUsuario = $Usuario->id;
 
-            $Alumno = new Alumno();
-            $Alumno->Matricula = $request->input('Matricula');
-            $Alumno->Estado = 'Activo';
-            $Alumno->FechaIngreso = today();
-            $Alumno->EscuelaProcede = $request->input('EscuelaProcede');
-            $Alumno->idUsuario = $idUsuario;
-            $Alumno->idPersona = $idPersona;
+            $Coordinador = new Coordinador();
+            $Coordinador->Estado = 'Activo';
+            $Coordinador->RFC = $request->input('RFC');
+            $Coordinador->NoINE = $request->input('NoINE');
+            $Coordinador->Sueldo = $request->input('Sueldo');
+            $Coordinador->idUsuario = $idUsuario;
+            $Coordinador->idPersona = $idPersona;
 
-            $Alumno->save();
-
-            //Poner un contacto al alumno a partir del correo recien asignado
-            $Contacto = new Contacto();
-
-            $Contacto->TipoContacto = "Email";
-            $Contacto->ValorContacto = $request->input('Correo');
-            $Contacto->idReceptor = $idPersona;
-
-            $Contacto->save();
+            $Coordinador->save();
 
             // Confirmar transacción
             DB::commit();
 
-            return view('director.RegisTutor', ['Alumno' => $Alumno]);
+            return redirect()->view('director.ConsulCoordi')->with('success', 'Coordinador registrado con éxito.');
         } catch (\Exception $e) {
             // Revertir transacción si hay un error
             DB::rollBack();
 
-            return redirect()->back()->with('error', 'Error al registrar el Alumno: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Error al registrar el Coordinador: ' . $e->getMessage());
         }
     }
 
@@ -148,32 +125,19 @@ class AlumnoController extends Controller
     }
 
 
-    public function edit(VAlumno $id)
+    public function edit(VCoordinador $id)
     {
-        /*
-        Regresa la vista dinamica para editar un alumno 
-        */
-<<<<<<< HEAD
-       
-=======
->>>>>>> Controladores1.0
-
-        // Verificar si se encontró el alumno
+        //regresa la vista para editar 
         if (!$id) {
-            return response()->json(['error' => 'Alumno no encontrado'], 404);
+            return response()->json(['error' => 'Coordinador no encontrado'], 404);
         } else {
-            return view('dinamicas.EditarAlumno', ['Alumno' => $id]);
+            return view('dinamicas.EditarCoordinador', ['Coordinador' => $id]);
         }
     }
 
-
     public function update(Request $request, string $id)
     {
-        /*
-        Actualiza los datos de un alumno especifico
-        */
-
-        //Validacion del request -Existen
+        /* */
         $request->validate([
             'Nombre' => 'required|string',
             'ApellidoMaterno' => 'required|string',
@@ -185,10 +149,8 @@ class AlumnoController extends Controller
             'EstadoCivil' => 'required|string',
             'Nacionalidad' => 'required|string',
             'Correo' => 'required|unique:users,email',
-            'FechaNacimiento' => 'required',
+            'FechaNacimiento' => 'required|date|before:today',
             'Foto' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
-            'FechaIngreso' => 'required|before_or_equal:today',
-            'EscuelaProcede' => 'required|string',
         ]);
 
         DB::beginTransaction();
@@ -214,22 +176,22 @@ class AlumnoController extends Controller
 
             $Persona->save();
 
-            $Alumno = new Alumno();
+            $Coordinador = new Coordinador();
 
-            $Alumno->Matricula = $request->input('Matricula');
-            $Alumno->Estado = $request->input('EstadoActividad');
-            $Alumno->FechaIngreso = $request->input('Fecha');
-            $Alumno->EscuelaProcede = $request->input('EscuelaProcede');
+            $Coordinador->Estado = 'Activo';
+            $Coordinador->RFC = $request->input('RFC');
+            $Coordinador->NoINE = $request->input('NoINE');
+            $Coordinador->Sueldo = $request->input('Sueldo');
 
-            $Alumno->Save();
+            $Coordinador->Save();
 
             // Retornar una respuesta indicando éxito
-            return redirect()->view('director.ConsultasAlum')->with('success', 'Alumno registrado con éxito.');
+            return redirect()->view('director.ConsulCoordi')->with('success', 'Coordinadores registrado con éxito.');
         } catch (\Exception $e) {
             // Revertir transacción si hay un error
             DB::rollBack();
 
-            return redirect()->back()->with('error', 'Error al actualizar el Alumno: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Error al registrar el Coordinador: ' . $e->getMessage());
         }
     }
 
@@ -237,7 +199,7 @@ class AlumnoController extends Controller
     public function destroy(string $id)
     {
         /*
-        Borra registros de un alumno (no se implementara esta funcion por seguridad de los datos)
+        Borra registros de un docente (no se implementara esta funcion por seguridad de los datos)
         */
     }
 }
