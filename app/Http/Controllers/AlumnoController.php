@@ -153,10 +153,7 @@ class AlumnoController extends Controller
         /*
         Regresa la vista dinamica para editar un alumno 
         */
-<<<<<<< HEAD
-       
-=======
->>>>>>> Controladores1.0
+
 
         // Verificar si se encontró el alumno
         if (!$id) {

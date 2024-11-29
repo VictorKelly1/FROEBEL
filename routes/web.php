@@ -24,13 +24,7 @@ Route::controller(pruebasController::class)->group(function () {
 
 //Rutas con los controladores del alumno
 Route::controller(AlumnoController::class)->group(function () {
-<<<<<<< HEAD
-    Route::get('/Alumnos', 'index');                                    //Obtienes una lista con todos los alumnos
-    Route::get('/VistaRegistrarAlumno', 'create');                      //Te lleva a la vista para registar
-    Route::post('/Registrar', 'store')->name('RegistrarAlumno');                  //Llama la funcion para guardar el alumno
-    Route::get('/VistaEditarAlumno/{id}', 'edit');                      //Te lleva a la vista dinamica para editar  
-    Route::post('/Editar/{id}', 'update');                              //Llama a la funcion para editar los datos 
-=======
+
     Route::get('/Alumnos', 'index')->name('ListaAlumnos');
     Route::get('/VistaRegistrarAlumno', 'create')->name('VistaRegistrarAlumno');
     Route::post('/RegistrarAlumno', 'store')->name('RegistrarAlumno');
@@ -69,7 +63,7 @@ Route::controller(GruposController::class)->group(function () {
 Route::controller(GruposAlumnoController::class)->group(function () {
     Route::get('/GruposAlumnos', 'index')->name('ListaGruposAlumnos');
     Route::post('/AsignarGrupAlum/{idAlumno}/{idGrupo}', 'store')->name('AsignarGrupAlum');
->>>>>>> Controladores1.0
+
 });
 
 
