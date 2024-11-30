@@ -16,7 +16,7 @@ Route::get('/', function () {
 
 
 //ruta para Preubas
-Route::view('/prueba', 'director.ConsultasAlum')->name('prueba');
+Route::view('/prueba', 'director.RegisAlum')->name('prueba');
 //
 Route::controller(pruebasController::class)->group(function () {
     Route::get('/GA', 'index');
@@ -29,7 +29,7 @@ Route::controller(AlumnoController::class)->group(function () {
     Route::get('/VistaRegistrarAlumno', 'create')->name('VistaRegistrarAlumno');
     Route::post('/RegistrarAlumno', 'store')->name('RegistrarAlumno');
     Route::get('/VistaEditarAlumno/{id}', 'edit')->name('VistaEditarAlumno');
-    Route::post('/EditarAlumno/{id}', 'update')->name('EditarAlumno');
+    Route::post('/EditarAlumno', 'update')->name('EditarAlumno');
 });
 
 //Rutas con los controladores de Docentes

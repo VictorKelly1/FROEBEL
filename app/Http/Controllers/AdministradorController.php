@@ -55,14 +55,6 @@ class AdministradorController extends Controller
             'Correo' => 'required|unique:users,email',
             'FechaNacimiento' => 'required|date|before:today',
             'Foto' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
-            'RFC' => [
-                'required',
-                'regex:/^[A-ZÑ&]{3,4}[0-9]{6}[A-Z0-9]{3}$/i'
-            ],
-            'CURP' => [
-                'required',
-                'regex:/^[A-Z]{4}[0-9]{6}[HM][A-Z]{5}[0-9]{2}$/i'
-            ],
         ]);
 
         //Integridad -filtro de correcion de sintaxis(en el modelo)           
@@ -156,7 +148,7 @@ class AdministradorController extends Controller
         }
     }
 
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
         /* */
         $request->validate([
@@ -172,21 +164,15 @@ class AdministradorController extends Controller
             'FechaNacimiento' => 'required|date|before:today',
             'Foto' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
 
-            'RFC' => [
-                'required',
-                'regex:/^[A-ZÑ&]{3,4}[0-9]{6}[A-Z0-9]{3}$/i'
-            ],
-            'CURP' => [
-                'required',
-                'regex:/^[A-Z]{4}[0-9]{6}[HM][A-Z]{5}[0-9]{2}$/i'
-            ],
         ]);
 
         DB::beginTransaction();
 
         try {
             // Buscar por su ID
-            $Administrador = Administrador::findOrFail($id);
+            $idAd = $request->input('id');
+
+            $Administrador = Administrador::where('idAdministrador', $idAd)->firstOrFail();
 
             $Administrador->Estado = 'Activo';
             $Administrador->RFC = $request->input('RFC');
@@ -199,22 +185,23 @@ class AdministradorController extends Controller
 
             $Persona = Persona::findOrFail($idPersona);
 
-            $Persona->Nombre = $request->input('Nombre');
-            $Persona->ApellidoMaterno = $request->input('ApellidoMaterno');
-            $Persona->ApellidoPaterno = $request->input('ApellidoPaterno');
-            $Persona->CURP = $request->input('CURP');
-            $Persona->FechaNacimiento = $request->input('FechaNacimiento');
-            $Persona->Genero = $request->input('Genero');
-            $Persona->Ciudad = $request->input('Ciudad');
-            $Persona->Municipio = $request->input('Municipio');
-            $Persona->CodigoPostal = $request->input('CodigoPostal');
-            $Persona->ColFrac = $request->input('ColFrac');
-            $Persona->Calle = $request->input('Calle');
-            $Persona->NumeroExterior = $request->input('NumeroExterior');
-            $Persona->EstadoCivil = $request->input('EstadoCivil');
-            $Persona->Nacionalidad = $request->input('Nacionalidad');
-
-            $Persona->save();
+            Persona::where('idPersona', $idPersona)
+                ->update([
+                    'Nombre' => $request->input('Nombre'),
+                    'ApellidoMaterno' => $request->input('ApellidoMaterno'),
+                    'ApellidoPaterno' => $request->input('ApellidoPaterno'),
+                    'CURP' => $request->input('CURP'),
+                    'FechaNacimiento' => $request->input('FechaNacimiento'),
+                    'Genero' => $request->input('Genero'),
+                    'Ciudad' => $request->input('Ciudad'),
+                    'Municipio' => $request->input('Municipio'),
+                    'CodigoPostal' => $request->input('CodigoPostal'),
+                    'ColFrac' => $request->input('ColFrac'),
+                    'Calle' => $request->input('Calle'),
+                    'NumeroExterior' => $request->input('NumeroExterior'),
+                    'EstadoCivil' => $request->input('EstadoCivil'),
+                    'Nacionalidad' => $request->input('Nacionalidad')
+                ]);
 
             //
             DB::commit();

@@ -11,6 +11,7 @@ class Alumno extends Model
 
     // Especificar la tabla asociada (opcional si sigue la convención de nombres)
     protected $table = 'Alumnos';
+    protected $primaryKey = 'idAlumno';
 
 
     // Campos permitidos para asignación masiva
@@ -43,10 +44,8 @@ class Alumno extends Model
         $requiredFields = [
             'Matricula',
             'Estado',
-            'FechaIngreso',
             'EscuelaProcede',
-            'idPersona',
-            'idUsuario',
+
         ];
 
         foreach ($requiredFields as $field) {

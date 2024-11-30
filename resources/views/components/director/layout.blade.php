@@ -14,18 +14,18 @@
 
 
 <body>
-   <header><x-director.Header /></header>
-  
+    <header><x-director.Header /></header>
+
     <x-director.Body />
     <x-director.BarraTareas />
-   
+
 
     <main>
         {{ $slot }}
     </main>
 
     <footer>
-       
+
     </footer>
 </body>
 

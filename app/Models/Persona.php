@@ -14,90 +14,91 @@ class Persona extends Model
 
 
     // Campos permitidos para asignación masiva
-    protected $fillable = [
-        'Nombre',
-        'ApellidoMaterno',
-        'ApellidoPaterno',
-        'CURP',
-        'FechaNacimiento',
-        'Genero',
-        'Ciudad',
-        'Municipio',
-        'CodigoPostal',
-        'ColFrac',
-        'Calle',
-        'NumeroExterior',
-        'EstadoCivil',
-        'Nacionalidad',
-        'Foto',
-    ];
+    // protected $fillable = [
+    //     'Nombre',
+    //     'ApellidoMaterno',
+    //     'ApellidoPaterno',
+    //     'CURP',
+    //     'FechaNacimiento',
+    //     'Genero',
+    //     'Ciudad',
+    //     'Municipio',
+    //     'CodigoPostal',
+    //     'ColFrac',
+    //     'Calle',
+    //     'NumeroExterior',
+    //     'EstadoCivil',
+    //     'Nacionalidad',
+    //     'Foto',
+    // ];
 
-    // Reglas de validación para los atributos
-    protected static function boot()
-    {
-        parent::boot();
+    // // Reglas de validación para los atributos
+    // protected static function boot()
+    // {
+    //     parent::boot();
 
-        static::creating(function ($Persona) {
-            self::validateAttributes($Persona);
-        });
+    //     static::creating(function ($Persona) {
+    //         self::validateAttributes($Persona);
+    //     });
 
-        static::updating(function ($Persona) {
-            self::validateAttributes($Persona);
-        });
-    }
+    //     static::updating(function ($Persona) {
+    //         self::validateAttributes($Persona);
+    //     });
+    // }
 
-    // Función de validación
-    private static function validateAttributes($Persona)
-    {
-        $requiredFields = [
-            'Nombre',
-            'ApellidoPaterno',
-            'CURP',
-            'FechaNacimiento',
-            'Genero',
-            'Ciudad',
-            'Municipio',
-            'CodigoPostal',
-            'ColFrac',
-            'Calle',
-            'NumeroExterior',
-            'EstadoCivil',
-            'Nacionalidad',
-        ];
+    // // Función de validación
+    // private static function validateAttributes($Persona)
+    // {
+    //     $requiredFields = [
+    //         'Nombre',
+    //         'ApellidoMaterno',
+    //         'ApellidoPaterno',
+    //         'CURP',
+    //         'FechaNacimiento',
+    //         'Genero',
+    //         'Ciudad',
+    //         'Municipio',
+    //         'CodigoPostal',
+    //         'ColFrac',
+    //         'Calle',
+    //         'NumeroExterior',
+    //         'EstadoCivil',
+    //         'Nacionalidad',
+    //     ];
 
-        foreach ($requiredFields as $field) {
-            if (empty($Persona->{$field})) {
-                throw new \Exception("El campo {$field} es obligatorio.");
-            }
-        }
+    //     foreach ($requiredFields as $field) {
+    //         if (empty($Persona->{$field})) {
+    //             throw new \Exception("El campo {$field} es obligatorio.");
+    //         }
+    //     }
 
-        // Validar longitud del CURP
-        if (strlen($Persona->CURP) !== 18) {
-            throw new \Exception('El CURP debe tener exactamente 18 caracteres.');
-        }
-    }
+    //     // Validar longitud del CURP
+    //     if (strlen($Persona->CURP) !== 18) {
+    //         throw new \Exception('El CURP debe tener exactamente 18 caracteres.');
+    //     }
+    // }
 
-    // Lista de campos a capitalizar(capitalizar es Poner cada palabra ingresada con la primera letra mayuscula y las demas minusculas)
-    private $capitalizeFields = [
-        'Nombre',
-        'ApellidoMaterno',
-        'ApellidoPaterno',
-        'Ciudad',
-        'Municipio',
-        'ColFrac',
-        'Calle',
-        'EstadoCivil',
-        'Nacionalidad',
-    ];
+    // // Lista de campos a capitalizar(capitalizar es Poner cada palabra ingresada con la primera letra mayuscula y las demas minusculas)
+    // private $capitalizeFields = [
+    //     'Nombre',
+    //     'ApellidoMaterno',
+    //     'ApellidoPaterno',
+    //     'Ciudad',
+    //     'Municipio',
+    //     'ColFrac',
+    //     'Calle',
+    //     'EstadoCivil',
+    //     'Nacionalidad',
+    // ];
 
-    // Sobreescribir setAttribute para transformar los datos
-    public function setAttribute($key, $value)
-    {
-        if (in_array($key, $this->capitalizeFields) && is_string($value)) {
-            // Capitalizar cada palabra
-            $value = ucwords(strtolower($value));
-        }
+    // // Sobreescribir setAttribute para transformar los datos
+    // public function setAttribute($key, $value)
+    // {
+    //     if (in_array($key, $this->capitalizeFields) && is_string($value)) {
+    //         // Capitalizar cada palabra
+    //         $value = ucwords(strtolower($value));
+    //     }
 
-        return parent::setAttribute($key, $value);
-    }
+    //     return parent::setAttribute($key, $value);
+    // }
 }
