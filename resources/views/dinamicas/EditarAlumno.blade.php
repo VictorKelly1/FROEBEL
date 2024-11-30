@@ -4,7 +4,7 @@
 
     <div class="container">
        
-        <form action="{{ route('store') }}" method="POST" enctype="multipart/form-data">
+        <form action="/EditarAlumno/{{ $Alumno->idAlumno }}" method="POST" enctype="multipart/form-data">
             @csrf
            <div>
              <input type="hidden" name="id" value="{{ $Alumno->idAlumno }}">
@@ -85,7 +85,10 @@
                 <label for="Nacionalidad">Nacionalidad:</label>
                 <input type="text" name="Nacionalidad" id="Nacionalidad" class="form-control" value="{{ $Alumno->Nacionalidad }}" required>
             </div>
-
+            <div class="form-group">
+                <label for="EstadoActividad">Estado:</label>
+                <input type="text" name="EstadoActividad" id="EstadoActividad" class="form-control" value="{{ $Alumno->Estado }}" required>
+            </div>
 
             
 
@@ -103,7 +106,7 @@
             </div>
 
             <!-- Botón de envío -->
-            <button type="submit" class="btn btn-primary">Registrar Alumno</button>
+            <button type="submit" class="btn btn-primary">Editar Alumno</button>
         </form>
     </div>
 

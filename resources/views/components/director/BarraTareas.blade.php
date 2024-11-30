@@ -29,7 +29,7 @@
                 <ul
                     class="hidden group-hover:block bg-gray-700 text-white rounded-lg mt-2 ml-8 p-2 w-48 shadow-lg transition-all duration-300">
                     <li class="hover:bg-gray-600 rounded p-2">
-                        <a href="{{ route('ListaGruposAlumnos') }}" class="flex items-center gap-2">
+                        <a href="{{ route('ListaAlumnos') }}" class="flex items-center gap-2">
                             <span class="text-sm">Submenú 1</span>
                         </a>
                     </li>

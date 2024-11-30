@@ -16,7 +16,7 @@ Route::get('/', function () {
 
 
 //ruta para Preubas
-Route::view('/prueba', 'director.RegisAlum')->name('prueba');
+Route::view('/prueba', 'director.ConsultasAlum')->name('prueba');
 //
 Route::controller(pruebasController::class)->group(function () {
     Route::get('/GA', 'index');

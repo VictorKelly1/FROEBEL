@@ -64,3 +64,12 @@ left: -762px; /* lado */
         .group:hover #subMenu {
             display: block; /* Submenús visibles al hover */
         }
+
+
+        .tablaposicion{
+
+            position: relative;
+            top: 30%;
+            left: 20%;
+
+        }
