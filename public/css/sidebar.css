@@ -11,7 +11,7 @@
 .posicionsidebar{
 
 position: absolute;
-top: -699px;    /* alto */
+top: -659px;    /* alto */
 left: -762px; /* lado */
 }
 .posicionsregisalum{
@@ -20,6 +20,12 @@ left: -762px; /* lado */
     top: -500px;    /* alto */
     left: 30px; /* lado */
     }
+    .posicionseditalum{
+
+        position: absolute;
+        top: -500px;    /* alto */
+        left: 30px; /* lado */
+        }
 
     .botonesdiseño{
 
@@ -32,7 +38,11 @@ left: -762px; /* lado */
     font-size: 14px;
         }
 
-        input[type="text"] {   /* LOS CAMBIA DE MANERA GLOBAL*/
+        input[type="text"]
+        input[type="number"]
+        input[type="file"]
+        input[type="date"]
+        {   /* LOS CAMBIA DE MANERA GLOBAL*/
             width: 300px; /* Ajusta el ancho */
             padding: 10px;
             border: 2px solid #5a00c1; /* Borde púrpura */

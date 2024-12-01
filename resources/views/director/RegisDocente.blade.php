@@ -3,7 +3,7 @@
     <div class=" flex items-center led2 posicionsregisalum">
       
 
-    <form class="" action="{{ route('RegistrarTutor') }}" method="POST" enctype="multipart/form-data">
+    <form class="" action="{{ route('RegistrarDocente') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <!-- Datos de Persona -->
@@ -91,11 +91,24 @@
                 <input type="file" name="Foto" id="Foto" class="form-control">
             </div>
 
-            <!-- Datos de Usuario -->
-            <h3>Datos de Usuario</h3>
             <div class="form-group">
-                <label for="Correo">Correo Electrónico:</label>
-                <input type="email" name="Correo" id="Correo" class="form-control" required>
+                <label for="Carrera">Carrera:</label>
+                <input type="text" name="Carrera" id="Carrera" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="FechaIngreso">FechaIngreso:</label>
+                <input type="text" name="FechaIngreso" id="FechaIngreso" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="Estado">Estado:</label>
+                <input type="text" name="Estado" id="Estado" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="RFC">RFC:</label>
+                <input type="text" name="RFC" id="RFC" class="form-control" required>
             </div>
 
             <div class="form-group">
@@ -104,17 +117,13 @@
             </div>
 
             <div class="form-group">
-                <label for="RFC">RFC:</label>
-                <input type="text" name="RFC" id="RFC" class="form-control" required>
+                <label for="Sueldo">Sueldo:</label>
+                <input type="number" name="Sueldo" id="Sueldo" class="form-control" required>
             </div>
 
-            <div class="form-group">
-                <label for="LugarTrabajo">Lugar de Trabajo:</label>
-                <input type="text" name="LugarTrabajo" id="LugarTrabajo" class="form-control" required>
-            </div>
 
             <!-- Botón de envío -->
-            <button type="submit" class="btn btn-primary">Registrar Tutor</button>
+            <button type="submit" class="btn btn-primary">Registrar Docente</button>
        </form>
     </div>
 

@@ -69,7 +69,9 @@ class AlumnoController extends Controller
 
         try {
             // Objeto Persona
+
             $Persona = new Persona();
+
             $Persona->Nombre = $request->input('Nombre');
             $Persona->ApellidoMaterno = $request->input('ApellidoMaterno');
             $Persona->ApellidoPaterno = $request->input('ApellidoPaterno');
@@ -103,7 +105,7 @@ class AlumnoController extends Controller
             $Usuario->save();
 
             // Obtener IDs de las tuplas que se acaban de guardar
-            $idPersona = $Persona->id;
+            $idPersona = $Persona->idPersona;
             $idUsuario = $Usuario->id;
 
             $Alumno = new Alumno();
@@ -128,11 +130,11 @@ class AlumnoController extends Controller
             // Confirmar transacción
             DB::commit();
 
-            return view('director.RegisAlum');
+            return redirect()->route('ListaAlumnos')->with('success', 'Alumno registrado con éxito.');
         } catch (\Exception $e) {
             // Revertir transacción si hay un error
             DB::rollBack();
-
+            return 'error';
             return redirect()->back()->with('error', 'Error al registrar el Alumno: ' . $e->getMessage());
         }
     }
