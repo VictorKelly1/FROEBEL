@@ -24,12 +24,14 @@ class GruposAlumnoController extends Controller
         */
         $Alumnos = VAlumno::where('Estado', 'Activo')->get();
         $Grupos = Vgrupos::All();
-        $GrupAlum = VgruposAlumnos::getAll();
+        $GrupAlum = VgruposAlumnos::All();
         return view(
             'director.AsigGrupAlum',
-            ['Alumnos' => $Alumnos],
-            ['Grupos' => $Grupos],
-            ['GrupAlum' => $GrupAlum]
+            [
+                'Alumnos' => $Alumnos,
+                'GrupAlum' => $GrupAlum,
+                'Grupos' => $Grupos,
+            ]
         );
     }
 
@@ -96,6 +98,6 @@ class GruposAlumnoController extends Controller
         // Elimina el registro de la tabla GruposAlumnos
         $GA->delete();
         // Redirige a alguna vista o devuelve un mensaje de éxito
-        return redirect()->route('director.AsigGrupAlum')->with('success', 'Registro eliminado con correctamente.');
+        return redirect()->route('director.AsigGrupAlum')->with('success', 'Registro eliminado correctamente.');
     }
 }

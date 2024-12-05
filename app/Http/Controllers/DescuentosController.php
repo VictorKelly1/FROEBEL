@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Descuento;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DescuentosController extends Controller
 {
@@ -22,7 +23,7 @@ class DescuentosController extends Controller
      */
     public function create()
     {
-        //
+        return view('director.RegisDesc');
     }
 
     /**
@@ -30,7 +31,34 @@ class DescuentosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'Nombre' => 'required|string|max:255',
+            'Tipo' => 'required|string',
+            'Monto' => 'required|string',
+        ]);
+
+        DB::beginTransaction();
+
+        try {
+            //Objeto concepto
+            $Descuento = new Descuento();
+
+            $Descuento->Nombre = $request->input('Nombre');
+            $Descuento->Tipo = $request->input('Tipo');
+            $Descuento->Monto = $request->input('Monto');
+
+            $Descuento->save();
+
+            //confirmar transaccion
+            DB::commit();
+
+            return view('director.ConsultasDesc');
+        } catch (\Exception $e) {
+            // Revertir transacción si hay un error
+            DB::rollBack();
+
+            return redirect()->back()->with('error', 'Error al registrar el descuento: ' . $e->getMessage());
+        }
     }
 
     /**
@@ -44,9 +72,13 @@ class DescuentosController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Descuento $id)
     {
-        //
+        if (!$id) {
+            return response()->json(['error' => 'Descuento no encontrado'], 404);
+        } else {
+            return view('dinamicas.EditarDescuento', ['Descuento' => $id]);
+        }
     }
 
     /**
@@ -54,14 +86,43 @@ class DescuentosController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'Nombre' => 'required|string|max:255',
+            'Tipo' => 'required|string',
+            'Monto' => 'required|string',
+        ]);
+
+        DB::beginTransaction();
+
+        try {
+            //Objeto Descuento
+            $Descuento = Descuento::findOrFail($id);
+
+            $Descuento->Nombre = $request->input('Nombre');
+            $Descuento->Tipo = $request->input('Tipo');
+            $Descuento->Monto = $request->input('Monto');
+
+            $Descuento->save();
+
+            //confirmar transaccion
+            DB::commit();
+
+            return view('director.ConsultasDesc');
+        } catch (\Exception $e) {
+            // Revertir transacción si hay un error
+            DB::rollBack();
+
+            return redirect()->back()->with('error', 'Error al registrar el descuento: ' . $e->getMessage());
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Descuento $Descuento)
     {
-        //
+        $Descuento->delete();
+        // Redirige a alguna vista o devuelve un mensaje de éxito
+        return redirect()->route('director.ListaDesc')->with('success', 'Registro eliminado con correctamente.');
     }
 }
