@@ -98,7 +98,7 @@
 
             <div class="form-group">
                 <label for="FechaIngreso">FechaIngreso:</label>
-                <input type="text" name="FechaIngreso" id="FechaIngreso" class="form-control" required>
+                <input type="date" name="FechaIngreso" id="FechaIngreso" class="form-control" required>
             </div>
 
             <div class="form-group">

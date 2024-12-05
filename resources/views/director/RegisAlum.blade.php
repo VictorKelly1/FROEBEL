@@ -34,7 +34,7 @@
 
             <div class="form-group">
                 <label for="Genero">Género:</label>
-                <select name="Genero" id="Genero" class="form-control" required>
+                <select type="select" name="Genero" id="Genero" class="form-control" required>
                     <option value="">Seleccione</option>
                     <option value="M">M</option>
                     <option value="F">F</option>

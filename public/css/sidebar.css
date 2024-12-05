@@ -11,15 +11,21 @@
 .posicionsidebar{
 
 position: absolute;
-top: -659px;    /* alto */
+top: -678px;    /* alto */
 left: -762px; /* lado */
 }
 .posicionsregisalum{
 
     position: absolute;
-    top: -500px;    /* alto */
-    left: 30px; /* lado */
+    top: -600px;    /* alto */
+    left: -170px; /* lado */
     }
+    .posiciontablas{
+
+        position: absolute;
+        top: 35%;    /* alto */
+        left: 20%; /* lado */
+        }
     .posicionseditalum{
 
         position: absolute;
@@ -38,11 +44,14 @@ left: -762px; /* lado */
     font-size: 14px;
         }
 
-        input[type="text"]
-        input[type="number"]
-        input[type="file"]
-        input[type="date"]
-        {   /* LOS CAMBIA DE MANERA GLOBAL*/
+        input[type="text"],
+        input[type="submit"],
+        input[type="select"],
+        input[type="email"],
+        input[type="number"],
+        input[type="file"],
+        input[type="date"] {
+            /* LOS CAMBIA DE MANERA GLOBAL */
             width: 300px; /* Ajusta el ancho */
             padding: 10px;
             border: 2px solid #5a00c1; /* Borde púrpura */
@@ -51,6 +60,7 @@ left: -762px; /* lado */
             color: #ffffff; /* Texto blanco */
             font-size: 14px;
         }
+        
         input[type="text"]:focus {
             outline: none;
             border-color: #9b33ff; /* Púrpura más brillante al enfocar */
@@ -83,3 +93,107 @@ left: -762px; /* lado */
             left: 20%;
 
         }
+        .posicion1{
+
+            position: relative;
+            top: 30%;
+            left: 30%;
+
+        }
+        .posicion2{
+
+            position: relative;
+            top: 30%;
+            left: 40%;
+
+        }
+        .Buscadorposicion{
+
+            position: relative;
+            top: 30%;
+            left: 20%;
+
+        }
+
+
+        @keyframes borderAnimation {
+            0% {
+                border-color: rgb(128, 0, 128);
+            }
+            50% {
+                border-color: rgb(255, 255, 255);
+            }
+            100% {
+                border-color: rgb(128, 0, 128);
+            }
+        }
+
+        .animate-border {
+            animation: borderAnimation 5s infinite;
+        }
+
+
+
+/* Importar la fuente desde Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap');
+
+/* Aplicar fuente y estilo */
+.font-cinzel {
+    font-family: 'Cinzel', serif; /* Fuente personalizada */
+    color: white; /* Color del texto */
+    text-shadow: 2px 2px 4px rgba(108, 67, 201, 0.8); /* Efecto de luz suave */
+    letter-spacing: 0.2em; /* Espaciado entre letras */
+}
+
+
+
+
+
+
+        .tamañoletra {
+            font-size: 1.25rem;
+        }
+        
+        
+        .relative h1 {
+            color: white;
+            text-shadow: 1px 1px 5px rgba(108, 67, 201, 0.8);
+        }
+        
+        input::placeholder {
+            color: #ccc;
+            font-size: 0.875rem;
+        }
+        
+
+
+
+
+
+
+
+        .btn-primary {
+            background-color: rgb(108, 43, 191); /* Morado */
+            color: white; /* Letras blancas */
+            border: 2px solid rgb(255, 255, 255); /* Borde blanco */
+            padding: 10px 20px; /* Espaciado interno */
+            font-size: 16px; /* Tamaño de letra */
+            font-weight: bold; /* Negrita */
+            border-radius: 5px; /* Bordes redondeados */
+            cursor: pointer; /* Icono de mano */
+            transition: all 0.3s ease-in-out; /* Animación suave */
+        }
+        
+        /* Hover: Cambia el color y el borde al pasar el mouse */
+        .btn-primary:hover {
+            background-color: rgb(85, 32, 153); /* Morado más oscuro */
+            border-color: rgb(192, 192, 192); /* Borde gris claro */
+            transform: scale(1.05); /* Aumenta ligeramente el tamaño */
+        }
+        
+        /* Focus: Agrega un efecto de foco */
+        .btn-primary:focus {
+            outline: none; /* Quita el borde por defecto */
+            box-shadow: 0 0 8px rgb(108, 43, 191); /* Resplandor morado */
+        }
+        

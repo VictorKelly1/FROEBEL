@@ -1,12 +1,11 @@
 <x-director.layout>
 
 
-    <form action="" method="POST">
-    @csrf
 
 
 
-            <div class="form-group">
+
+            <div class="form-group posicion1">
                 <label for="Alumno">Alumno:</label>
                 <select name="Alumno" id="Alumno" class="form-control" required>
                     <option value="">Seleccione</option>
@@ -17,7 +16,7 @@
                 </select>
             </div>
      
-            <div class="form-group">
+            <div class="form-group posicion2">
                 <label for="Grupo">Grupo:</label>
                       <select name="Grupo" id="Grupo" class="form-control" required>
                              <option value="">Seleccione</option>
@@ -29,38 +28,43 @@
                       </select>
            </div>
 
+    <form action="/AsignarGrupAlum/{{ $Alumno->idAlumno }}/{{ $Grupo->idGrupo }}" method="POST">
+           @csrf
+           <button class="bg-purple-600 text-white px-2 py-1 rounded hover:bg-purple-700 posicion2">Asignar</button> 
+    </form>
 
-    <table class="w-full border-collapse border border-gray-300">
-        <thead>
-            <tr class="bg-gray-100">
-                <th class="border border-gray-300 p-2 text-left">#</th>
-                <th class="border border-gray-300 p-2 text-left">Matrícula</th>
-                <th class="border border-gray-300 p-2 text-left">Nombre Completo</th>
-                <th class="border border-gray-300 p-2 text-left">Grupo</th>
-                <th class="border border-gray-300 p-2 text-left">Remover</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($GruposAlum as $GruposAlum)
-            <tr>
-                <td class="border border-gray-300 p-2">{{ $GruposAlum + 1 }}</td>
-                <td class="border border-gray-300 p-2">{{ $GruposAlum->Matricula }}</td>
-                <td class="border border-gray-300 p-2">{{ $GruposAlum->Nombre }} {{ $GruposAlum->ApellidoPaterno }} {{ $GruposAlum->ApellidoMaterno }}</td>
-                <td class="border border-gray-300 p-2">{{ $GruposAlum->NombreGrado }}</td>
-                <td class="border border-gray-300 p-2">{{ $GruposAlum->Paquete }}</td>
-                <td class="border border-gray-300 p-2">{{ $GruposAlum->NivelAcademico }}</td>
-                    <input 
-                        type="checkbox" 
-                        name="seleccionados[]" 
-                        value="{{ $alumno->id }}" 
-                        class="form-checkbox h-5 w-5 text-purple-600">
-                </td>
+
+                                
+<div class="flex items-center justify-center bg-gray-900 p-2 posiciontablas borderAnimation ">                          
+    <div class="overflow-x-auto">
+        <table class=" text-xs text-left text-white">
+            <thead>
+            <tr class="bg-transparent">
+                <th class="px-2 py-1 border-b border-purple-500 animate-border">#</th>
+                <th class="px-2 py-1 border-b border-purple-500 animate-border">Matrícula</th>
+                <th class="px-2 py-1 border-b border-purple-500 animate-border">Nombre Completo</th>
+                <th class="px-2 py-1 border-b border-purple-500 animate-border">Grado</th>
+                <th class="px-2 py-1 border-b border-purple-500 animate-border">Grupo</th>
+                <th class="px-2 py-1 border-b border-purple-500 animate-border">Remover</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+            @foreach($GrupAlum as $GruposAlum)
+            <tr class="hover:bg-gray-800 bg-transparent">
+               
+            <td class="px-2 py-1 border-t border-purple-500 animate-border">{{ $GruposAlum->Matricula }}</td>
+            <td class="px-2 py-1 border-t border-purple-500 animate-border">{{ $GruposAlum->Nombre }} {{ $GruposAlum->ApellidoPaterno }} {{ $GruposAlum->ApellidoMaterno }}</td>
+            <td class="px-2 py-1 border-t border-purple-500 animate-border">{{ $GruposAlum->NombreGrado }}</td>
+            <td class="px-2 py-1 border-t border-purple-500 animate-border">{{ $GruposAlum->Paquete }}</td>
+            <td class="px-2 py-1 border-t border-purple-500 animate-border">{{ $GruposAlum->NivelAcademico }}</td>
+                   
             </tr>
             @endforeach
+          
         </tbody>
     </table>
-
-
+</div>
+</div>
 
 
 </form>
