@@ -1,8 +1,6 @@
 
-
 <x-director.layout>
-
-    <div class="container posicionsregisalum">
+    <div class="#">
 
         <form action="{{ route('EditarGrupo') }}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -10,7 +8,7 @@
                 <input type="hidden" name="id" value="{{ $Grupo->idGrupo }}">
 
             </div>
-          
+
             <h3>Datos Del Grupo</h3>
             <div class="form-group">
                 <label for="Clave">Clave:</label>
@@ -20,20 +18,19 @@
 
             <div class="form-group">
                 <label for="Paquete">Paquete:</label>
-                <input type="text" name="Paquete" id="Paquete" value="{{ $Grupo->Paquete }}"
-                    required>
+                <input type="text" name="Paquete" id="Paquete" value="{{ $Grupo->Paquete }}" required>
             </div>
 
             <div class="form-group">
                 <label for="NombreGrado">Grado:</label>
-                <input type="number" name="NombreGrado" id="NombreGrado" class="form-control" value="{{ $Grupo->NombreGrado }}" 
-                   required>
+                <input type="number" name="NombreGrado" id="NombreGrado" class="form-control"
+                    value="{{ $Grupo->NombreGrado }}" required>
             </div>
 
             <div class="form-group">
                 <label for="NivelAcademico">Nivel Academico:</label>
-                <input type="text" name="NivelAcademico" id="NivelAcademico" class="form-control" value="{{ $Grupo->NivelAcademico }}"
-                    required>
+                <input type="text" name="NivelAcademico" id="NivelAcademico" class="form-control"
+                    value="{{ $Grupo->NivelAcademico }}" required>
             </div>
 
             <div class="form-group">
@@ -44,8 +41,8 @@
 
             <div class="form-group">
                 <label for="FechaFin">Fecha de Fin:</label>
-                <input type="date" name="FechaFin" id="FechaFin" class="form-control"
-                    value="{{ $Grupo->FechaFin }}" required>
+                <input type="date" name="FechaFin" id="FechaFin" class="form-control" value="{{ $Grupo->FechaFin }}"
+                    required>
             </div>
 
             <div class="form-group">
@@ -58,7 +55,7 @@
                 </select>
             </div>
 
-          
+
 
             <!-- Botón de envío -->
             <button type="submit" class="btn btn-primary">Editar Grupo</button>

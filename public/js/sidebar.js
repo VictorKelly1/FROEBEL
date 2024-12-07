@@ -47,3 +47,33 @@ document.addEventListener("DOMContentLoaded", () => {
        
     });
 });
+
+
+
+
+
+
+// Función para filtrar la tabla en tiempo real
+function filterTable(event) {
+    const searchValue = event.target.value.toLowerCase();
+    const tableRows = document.querySelectorAll("#tabla-alumnos tbody tr");
+
+    tableRows.forEach((row) => {
+        const cellText = row.querySelector("td").textContent.toLowerCase();
+        if (cellText.includes(searchValue)) {
+            row.style.display = ""; // Muestra la fila
+        } else {
+            row.style.display = "none"; // Oculta la fila
+        }
+    });
+}
+
+// Función para imprimir la tabla
+function printTable() {
+    const printContent = document.getElementById("tabla-alumnos").outerHTML;
+    const originalContent = document.body.innerHTML;
+
+    document.body.innerHTML = printContent;
+    window.print();
+    document.body.innerHTML = originalContent;
+}

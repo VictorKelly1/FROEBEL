@@ -1,7 +1,7 @@
 <x-director.layout>
 
 
-<form class="" action="{{ route('AsignarGrupAlum') }}" method="POST" enctype="multipart/form-data">
+<form class="" action="{{ route('AsigAlumTutor') }}" method="POST" enctype="multipart/form-data">
 @csrf
 
 
@@ -17,11 +17,11 @@
         </div>
 
         <div class="form-group posicion2">
-                <label for="Grupo">Grupo:</label>
-                      <select name="idGrupo" id="Grupo" class="form-control" required>
+                <label for="Tutor">Tutor:</label>
+                      <select name="idTutor" id="Tutor" class="form-control" required>
                              <option value="">Seleccione</option>
-                    @foreach($Grupos as $Grupo)
-                            <option value="{{ $Grupo->idGrupo }}">{{ $Grupo->NombreGrado }} {{ $Grupo->NivelAcademico }} {{ $Grupo->Paquete }}</option>
+                    @foreach($Tutores as $Tutor)
+                            <option value="{{ $Tutor->idTutor }}">{{ $Tutor->Nombre }} {{ $Tutor->ApellidoPaterno }} {{ $Tutor->ApellidoMaterno }}</option>
                             
                     @endforeach
 
@@ -40,21 +40,21 @@
                         <tr class="bg-transparent">
                            
                             <th class="px-2 py-1 border-b border-purple-500 animate-border">Matrícula</th>
-                            <th class="px-2 py-1 border-b border-purple-500 animate-border">Nombre</th>
-                            <th class="px-2 py-1 border-b border-purple-500 animate-border">Grupo</th>
+                            <th class="px-2 py-1 border-b border-purple-500 animate-border">Nombre del Alumno</th>
+                            <th class="px-2 py-1 border-b border-purple-500 animate-border">Nombre del Tutor</th>
                             <th class="px-2 py-1 border-b border-purple-500 animate-border">Quitar Alumno</th>
                             </tr>
                         </thead>
                      <tbody id="tableBody">
-                        @foreach($GrupAlum as $GruposAlum)
+                        @foreach($AlumTutor as $AlumnoTutor)
                         <tr class="hover:bg-gray-800 bg-transparent">
                         
-                        <td class="px-2 py-1 border-t border-purple-500 animate-border">{{ $GruposAlum->Matricula }}</td>
-                        <td class="px-2 py-1 border-t border-purple-500 animate-border">{{ $GruposAlum->Nombre }} {{ $GruposAlum->ApellidoPaterno }} {{ $GruposAlum->ApellidoMaterno }}</td>
-                        <td class="px-2 py-1 border-t border-purple-500 animate-border">{{ $GruposAlum->NombreGrado }} {{ $GruposAlum->NivelAcademico }} {{ $GruposAlum->Paquete }}</td>
+                            <td class="px-2 py-1 border-t border-purple-500 animate-border">{{ $AlumnoTutor->Matricula }}</td>
+                            <td class="px-2 py-1 border-t border-purple-500 animate-border">{{ $AlumnoTutor->Nombre }} {{ $AlumnoTutor->ApellidoPaterno }} {{ $AlumnoTutor->ApellidoMaterno }}</td>
+                            <td class="px-2 py-1 border-t border-purple-500 animate-border">{{ $AlumnoTutor->NombreTutor }} {{ $AlumnoTutor->ApellidoPaternoTutor }} {{ $AlumnoTutor->ApellidoMaternoTutor }}</td>
 
-                        <td class="px-2 py-1 border-t border-purple-500 animate-border text-center">
-                                <form action="/GruposAlumnos/{{ $GruposAlum->idGrupoAlumno }}" method="GET">
+                            <td class="px-2 py-1 border-t border-purple-500 animate-border text-center">
+                                <form action="/AlumTutor/{{ $AlumnoTutor->idAlumnoTutor }}" method="GET">
                                     <button class="bg-purple-600 text-white px-2 py-1 rounded hover:bg-purple-700">Eliminar</button>
                                 </form>
 

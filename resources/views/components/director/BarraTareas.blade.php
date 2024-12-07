@@ -19,7 +19,7 @@
                     </span>
                 </div>
 
-                <!-- Submenú -->
+                <!-- Submenú registrar -->
                 <ul id="submenu-registrar" class="hidden bg-gray-700 text-white rounded-lg mt-2 ml-8 p-2 w-48 shadow-lg transition-all duration-300">
                     <li class="hover:bg-gray-600 rounded p-2">
                         <a href="{{ route('VistaRegistrarAlumno') }}" class="flex items-center gap-2">
@@ -36,6 +36,33 @@
                             <span class="text-sm">Registrar Docente</span>
                         </a>
                     </li>
+                    <li class="hover:bg-gray-600 rounded p-2">
+                        <a href="{{ route('VistaRegistrarTutor') }}" class="flex items-center gap-2">
+                            <span class="text-sm">Registrar Tutor</span>
+                        </a>
+                    </li>
+                    <li class="hover:bg-gray-600 rounded p-2">
+                        <a href="{{ route('VistaRegistrarMateria') }}" class="flex items-center gap-2">
+                            <span class="text-sm">Registrar Materia</span>
+                        </a>
+                    </li>
+                    <li class="hover:bg-gray-600 rounded p-2">
+                        <a href="{{ route('VistaRegistrarCoordinador') }}" class="flex items-center gap-2">
+                            <span class="text-sm">Registrar Coordinador</span>
+                        </a>
+                    </li>
+                    <li class="hover:bg-gray-600 rounded p-2">
+                        <a href="{{ route('VistaRegistrarAula') }}" class="flex items-center gap-2">
+                            <span class="text-sm">Registrar Aula</span>
+                        </a>
+                    </li>
+                    <li class="hover:bg-gray-600 rounded p-2">
+                        <a href="{{ route('VistaRegistrarAdministrador') }}" class="flex items-center gap-2">
+                            <span class="text-sm">Registrar Administrador</span>
+                        </a>
+                    </li>
+
+
                 </ul>
             </li>
 

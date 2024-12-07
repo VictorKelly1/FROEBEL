@@ -1,16 +1,16 @@
 <x-director.layout>
 
 
-<form class="" action="{{ route('AsignarGrupDocen') }}" method="POST" enctype="multipart/form-data">
+<form class="" action="{{ route('AsignarGrupMat') }}" method="POST" enctype="multipart/form-data">
 @csrf
 
 
         <div class="form-group posicion1">
-                        <label for="Docente">Docente:</label>
-                        <select name="idDocente" id="Docente" class="form-control" required>
+                        <label for="Materia">Materia:</label>
+                        <select name="idMateria" id="Materia" class="form-control" required>
                             <option value="">Seleccione</option>
-                            @foreach($Docentes as $Docente)
-                                <option value="{{ $Docente->idDocente }}">{{ $Docente->Nombre }} {{ $Docente->ApellidoPaterno }} {{ $Alumno->ApellidoMaterno }}</option>
+                            @foreach($Materias as $Materia)
+                                <option value="{{ $Materia->idMateria }}">{{ $Materia->Clave }} - {{ $Materia->NombreMateria }} {{ $Materia->Tipo }}</option>
                             @endforeach
 
                         </select>
@@ -39,22 +39,22 @@
                         <thead>
                         <tr class="bg-transparent">
                            
-                           
+                            <th class="px-2 py-1 border-b border-purple-500 animate-border">Clave</th>
                             <th class="px-2 py-1 border-b border-purple-500 animate-border">Nombre</th>
                             <th class="px-2 py-1 border-b border-purple-500 animate-border">Grupo</th>
-                            <th class="px-2 py-1 border-b border-purple-500 animate-border">Quitar Alumno</th>
+                            <th class="px-2 py-1 border-b border-purple-500 animate-border">Quitar Materia</th>
                             </tr>
                         </thead>
                      <tbody id="tableBody">
-                        @foreach($GrupDocen as $GrupDocen)
+                        @foreach($GrupMat as $GruposMat)
                         <tr class="hover:bg-gray-800 bg-transparent">
                         
-                        
-                        <td class="px-2 py-1 border-t border-purple-500 animate-border">{{ $GrupDocen->Nombre }} {{ $GrupDocen->ApellidoPaterno }} {{ $GrupDocen->ApellidoMaterno }}</td>
-                        <td class="px-2 py-1 border-t border-purple-500 animate-border">{{ $GrupDocen->NombreGrado }} {{ $GrupDocen->NivelAcademico }} {{ $GrupDocen->Paquete }}</td>
+                        <td class="px-2 py-1 border-t border-purple-500 animate-border">{{ $GruposMat->Clave }}</td>
+                        <td class="px-2 py-1 border-t border-purple-500 animate-border">{{ $GruposMat->NombreMateria }} {{ $GruposMat->Tipo }}</td>
+                        <td class="px-2 py-1 border-t border-purple-500 animate-border">{{ $GruposMat->NombreGrado }} {{ $GruposMat->NivelAcademico }} {{ $GruposMat->Paquete }}</td>
 
                         <td class="px-2 py-1 border-t border-purple-500 animate-border text-center">
-                                <form action="/GruposAlumnos/{{ $GrupDocen->idGrupoDocente }}" method="GET">
+                                <form action="/GruposMaterias/{{ $GruposMat->idGrupoMateria }}" method="GET">
                                     <button class="bg-purple-600 text-white px-2 py-1 rounded hover:bg-purple-700">Eliminar</button>
                                 </form>
 
