@@ -3,7 +3,7 @@
     <div class=" flex items-center led2 posicionsregisalum">
       
 
-    <form class="" action="{{ route('RegistrarCoordinador') }}" method="POST" enctype="multipart/form-data">
+    <form class="" action="{{ route('RegistrarCoordi') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <!-- Datos de Persona -->

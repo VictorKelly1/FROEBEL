@@ -25,7 +25,7 @@ class CoordinadoresController extends Controller
     public function create()
     {
         //
-        return view('director.RegisCoordinador');
+        return view('director.RegisCoordi');
     }
 
     public function store(Request $request)

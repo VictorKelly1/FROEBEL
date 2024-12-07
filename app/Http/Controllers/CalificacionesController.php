@@ -49,7 +49,7 @@ class CalificacionesController extends Controller
     {
         //se obtiene la tupla de la tabla calificaciones donde la id alumno es igual a $Alumno(id del alumno seleccionado)
         $Calificaciones = Vcalificaciones::where('idAlumno', $Alumno)->get();
-        return view('dinamicas.MostrarCalificaciones', ['Calificaciones' => $Calificaciones]);
+        return view('dinamicas.VistaCalificaciones', ['Calificaciones' => $Calificaciones]);
     }
 
     /**

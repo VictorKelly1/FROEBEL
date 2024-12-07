@@ -65,9 +65,9 @@ Route::controller(DocenteController::class)->group(function () {
 Route::controller(TutoresController::class)->group(function () {
     Route::get('/Tutores', 'index')->name('ListaTutores');
     Route::get('/VistaRegistrarTutor', 'create')->name('VistaRegistrarTutor');
-    Route::post('/RegistrarTutor/{id}', 'store')->name('RegistrarTutor');
+    Route::post('/RegistrarTutor', 'store')->name('RegistrarTutor');
     Route::get('/VistaEditarTutor/{id}', 'edit')->name('VistaEditarTutor');
-    Route::post('/EditarTutor/{id}', 'update')->name('EditarTutor');
+    Route::post('/EditarTutor', 'update')->name('EditarTutor');
 });
 
 //Rutas con los controladores de coordinadores

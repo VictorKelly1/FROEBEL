@@ -47,17 +47,13 @@
                         </a>
                     </li>
                     <li class="hover:bg-gray-600 rounded p-2">
-                        <a href="{{ route('VistaRegistrarCoordinador') }}" class="flex items-center gap-2">
+                        <a href="{{ route('VistaRegistrarCoordi') }}" class="flex items-center gap-2">
                             <span class="text-sm">Registrar Coordinador</span>
                         </a>
                     </li>
+                   
                     <li class="hover:bg-gray-600 rounded p-2">
-                        <a href="{{ route('VistaRegistrarAula') }}" class="flex items-center gap-2">
-                            <span class="text-sm">Registrar Aula</span>
-                        </a>
-                    </li>
-                    <li class="hover:bg-gray-600 rounded p-2">
-                        <a href="{{ route('VistaRegistrarAdministrador') }}" class="flex items-center gap-2">
+                        <a href="{{ route('VistaRegistrarAdmin') }}" class="flex items-center gap-2">
                             <span class="text-sm">Registrar Administrador</span>
                         </a>
                     </li>

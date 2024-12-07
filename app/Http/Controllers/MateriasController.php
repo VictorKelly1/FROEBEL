@@ -23,7 +23,7 @@ class MateriasController extends Controller
     */
     public function create()
     {
-        return view('director.RegisMateria');
+        return view('director.RegisMat');
     }
 
     /*Almacena una materia en la base de datos */

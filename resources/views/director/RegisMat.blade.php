@@ -2,9 +2,8 @@
 
     <div class=" flex items-center led2 posicionsregisalum">
       
-        <form>
-            @csrf
-
+    <form class="" action="{{ route('RegistrarMateria') }}" method="POST" enctype="multipart/form-data">
+    @csrf
             <!-- Datos de Materia -->
             <h3>Datos</h3>
 

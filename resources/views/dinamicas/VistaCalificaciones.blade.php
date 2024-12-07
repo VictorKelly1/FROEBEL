@@ -21,7 +21,7 @@
                         <thead>
                         <tr class="bg-transparent">
                            
-                            <th class="px-2 py-1 border-b border-purple-500 animate-border">Materias</th>
+                            <th class="px-2 py-1 border-b border-purple-500 animate-border">Materia</th>
                             <th class="px-2 py-1 border-b border-purple-500 animate-border">Parcial 1</th>
                             <th class="px-2 py-1 border-b border-purple-500 animate-border">Parcial 2</th>
                             <th class="px-2 py-1 border-b border-purple-500 animate-border">Parcial 3</th>
@@ -30,23 +30,16 @@
                             </tr>
                         </thead>
                      <tbody id="tableBody">
-                        @foreach($VistaCalif as $VistaCalificaciones)
+                        @foreach($Calificaciones as $Calificacion)
                         <tr class="hover:bg-gray-800 bg-transparent">
 
                         
-                        <td class="px-2 py-1 border-t border-purple-500 animate-border">{{ $VistaCalificaciones->idMateria }}</td>
-                        <td class="px-2 py-1 border-t border-purple-500 animate-border">{{ $VistaCalificaciones->Parcial1 }}</td>
-                        <td class="px-2 py-1 border-t border-purple-500 animate-border">{{ $VistaCalificaciones->Parcial2 }}</td>
-                        <td class="px-2 py-1 border-t border-purple-500 animate-border">{{ $VistaCalificaciones->Parcial3 }}</td>
-                        <td class="px-2 py-1 border-t border-purple-500 animate-border">{{ $VistaCalificaciones->Parcial4 }}</td>
-                        <td class="px-2 py-1 border-t border-purple-500 animate-border">{{ $VistaCalificaciones->Parcial5 }}</td>
-
-
-
-                        <td class="px-2 py-1 border-t border-purple-500 animate-border text-center">
-                                <form action="/VistaCalificaciones/{{ $VistaCalif->idVistaCalif }}" method="GET">
-                                    <button class="bg-purple-600 text-white px-2 py-1 rounded hover:bg-purple-700">Eliminar</button>
-                                </form>
+                        <td class="px-2 py-1 border-t border-purple-500 animate-border">{{ $Calificacion->idMateria }}</td>
+                        <td class="px-2 py-1 border-t border-purple-500 animate-border">{{ $Calificacion->Parcial1 }}</td>
+                        <td class="px-2 py-1 border-t border-purple-500 animate-border">{{ $Calificacion->Parcial2 }}</td>
+                        <td class="px-2 py-1 border-t border-purple-500 animate-border">{{ $Calificacion->Parcial3 }}</td>
+                        <td class="px-2 py-1 border-t border-purple-500 animate-border">{{ $Calificacion->Parcial4 }}</td>
+                        <td class="px-2 py-1 border-t border-purple-500 animate-border">{{ $Calificacion->Parcial5 }}</td>
 
                         </tr>
                         @endforeach

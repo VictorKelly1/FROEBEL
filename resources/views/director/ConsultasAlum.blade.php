@@ -52,7 +52,7 @@
                             <td class="px-2 py-1 border-t border-purple-500 animate-border">{{ $alumno->Matricula }}</td>
                             <td class="px-2 py-1 border-t border-purple-500 animate-border">{{ $alumno->EscuelaProcede }}</td>
                             <td class="px-2 py-1 border-t border-purple-500 animate-border text-center">
-                                <form action="/VistaEditarCalificaciones/{{ $alumno->idAlumno }}" method="GET">
+                                <form action="/CalificacionAlumno/{{ $alumno->idAlumno }}" method="GET">
                                     @csrf
                                     <button class="bg-purple-600 text-white px-2 py-1 rounded hover:bg-purple-700">Calificaciones</button>
                                 </form>
