@@ -29,16 +29,28 @@ class MateriasController extends Controller
     /*Almacena una materia en la base de datos */
     public function store(Request $request)
     {
+        $request->validate([
+            'Clave' => 'required|string',
+            'Nombre' => 'required|string',
+            'Tipo' => 'required|string',
+        ]);
 
         DB::beginTransaction();
 
         try {
+            //
+            $Materia = new Materia();
 
+            $Materia->Descripcion = $request->input('Clave');
+            $Materia->NombreMateria = $request->input('Nombre');
+            $Materia->Tipo = $request->input('Tipo');
+
+            $Materia->save();
 
             // Confirmar transacción
             DB::commit();
 
-            return view('director.RegisMateria');
+            return redirect()->route('ListaMaterias')->with('success', 'Materia registrado con éxito.');
         } catch (\Exception $e) {
             // Revertir transacción si hay un error
             DB::rollBack();
@@ -67,10 +79,37 @@ class MateriasController extends Controller
     /*
     Regresa la vista dinamica para editar un alumno 
     */
-    public function update(Request $request)
+    public function update(Request $request, string $id)
     {
         //
+        $request->validate([
+            'Clave' => 'required|string',
+            'Nombre' => 'required|string',
+            'Tipo' => 'required|string',
+        ]);
 
+        DB::beginTransaction();
+
+        try {
+            //Objeto concepto
+            $Materia = Materia::findOrFail($id);
+
+            $Materia->Descripcion = $request->input('Clave');
+            $Materia->NombreMateria = $request->input('Nombre');
+            $Materia->Tipo = $request->input('Tipo');
+
+            $Materia->save();
+
+            //confirmar transaccion
+            DB::commit();
+
+            return view('director.RegisConcep');
+        } catch (\Exception $e) {
+            // Revertir transacción si hay un error
+            DB::rollBack();
+
+            return redirect()->back()->with('error', 'Error al registrar el concepto: ' . $e->getMessage());
+        }
     }
 
 
