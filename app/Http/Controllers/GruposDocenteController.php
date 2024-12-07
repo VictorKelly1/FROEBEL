@@ -3,57 +3,55 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-
-use App\Models\Alumno;
-use App\Models\Grupo;
-use App\Models\GruposAlumno;
-use App\Models\VAlumno;
+use App\Models\GruposDocente;
+use App\Models\VDocente;
 use App\Models\Vgrupos;
-use App\Models\VgruposAlumnos;
-
+use App\Models\VgruposDocentes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class GruposAlumnoController extends Controller
+class GruposDocenteController extends Controller
 {
-
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
-        /* 
-        Se obtiene una lista con todos los alumnos activos
-        */
-        $Alumnos = VAlumno::where('Estado', 'Activo')->get();
+        $Docentes = VDocente::All();
         $Grupos = Vgrupos::All();
-        $GrupAlum = VgruposAlumnos::All();
+        $GrupDocentes = VgruposDocentes::All();
         return view(
             'director.AsigGrupAlum',
             [
-                'Alumnos' => $Alumnos,
-                'GrupAlum' => $GrupAlum,
+                'Alumnos' => $Docentes,
+                'GrupDocentes' => $GrupDocentes,
                 'Grupos' => $Grupos,
             ]
         );
     }
 
-
+    /**
+     * Show the form for creating a new resource.
+     */
     public function create()
     {
         //
     }
 
-
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(Request $request)
     {
-        //
         DB::beginTransaction();
         try {
 
-            $GrupAlum = new GruposAlumno();
+            $GrupDocen = new GruposDocente();
 
-            $GrupAlum->idAlumno = $request->input('idAlumno');
-            $GrupAlum->idGrupo = $request->input('idGrupo');
+            $GrupDocen->idDocente = $request->input('idDocente');
+            $GrupDocen->idGrupo = $request->input('idGrupo');
 
-            $GrupAlum->save();
+            $GrupDocen->save();
 
             // Confirmar transacción
             DB::commit();
@@ -66,29 +64,37 @@ class GruposAlumnoController extends Controller
         }
     }
 
-
+    /**
+     * Display the specified resource.
+     */
     public function show(string $id)
     {
         //
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     */
     public function edit(string $id)
     {
         //
     }
 
-
+    /**
+     * Update the specified resource in storage.
+     */
     public function update(Request $request, string $id)
     {
-        //No se usara esta funcion porque seria mas practico eliminar y registrar de nuevo
+        //
     }
 
-
-    public function destroy(GruposAlumno $GA)
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(GruposDocente $GD)
     {
-        // Elimina el registro de la tabla GruposAlumnos
-        $GA->delete();
+        $GD->delete();
         // Redirige a alguna vista o devuelve un mensaje de éxito
-        return redirect()->route('ListaGruposAlumnos')->with('success', 'Registro eliminado correctamente.');
+        return redirect()->route('ListaGruposDocentes')->with('success', 'Registro eliminado correctamente.');
     }
 }

@@ -83,9 +83,7 @@ class GruposController extends Controller
             //Objeto Grupo
             $Grupo = new Grupo();
 
-            $Grupo->CantidadAlum = DB::table('GruposAlumnos')
-                ->where('id_grupo', $Grupo->idGrupo)
-                ->count();
+            $Grupo->CantidadAlum = 0;
             $Grupo->Paquete = $request->input('Paquete');
             $Grupo->idGrado = $idGrado;
             $Grupo->idPeriodo = $idPeriodo;

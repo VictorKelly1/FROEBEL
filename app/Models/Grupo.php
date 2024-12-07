@@ -11,7 +11,7 @@ class Grupo extends Model
 
     // Especificar la tabla asociada (opcional si sigue la convención de nombres)
     protected $table = 'Grupos';
-
+    protected $primaryKey = 'idGrupo';
 
     // Campos permitidos para asignación masiva
     protected $fillable = [
@@ -39,7 +39,6 @@ class Grupo extends Model
     private static function validateAttributes($Grupos)
     {
         $requiredFields = [
-            'CantidadAlum',
             'Paquete',
             'idGrado',
             'idPeriodo',

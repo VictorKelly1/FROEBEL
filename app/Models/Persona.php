@@ -13,25 +13,6 @@ class Persona extends Model
     protected $table = 'Personas';
     protected $primaryKey = 'idPersona';
 
-    // Campos permitidos para asignación masiva
-    // protected $fillable = [
-    //     'Nombre',
-    //     'ApellidoMaterno',
-    //     'ApellidoPaterno',
-    //     'CURP',
-    //     'FechaNacimiento',
-    //     'Genero',
-    //     'Ciudad',
-    //     'Municipio',
-    //     'CodigoPostal',
-    //     'ColFrac',
-    //     'Calle',
-    //     'NumeroExterior',
-    //     'EstadoCivil',
-    //     'Nacionalidad',
-    //     'Foto',
-    // ];
-
     protected $fillable = [
         'Nombre',
         'ApellidoMaterno',

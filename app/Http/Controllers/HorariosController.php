@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Aula;
 use App\Models\Grupo;
+use App\Models\Horario;
 use App\Models\Materia;
-use App\Models\Vgrupos;
 use App\Models\VgruposMaterias;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -17,15 +18,13 @@ class HorariosController extends Controller
      */
     public function index()
     {
-        $Materias = Materia::All();
-        $Grupos = Vgrupos::All();
+        $Aulas = Aula::All();
         $GrupMat = VgruposMaterias::All();
         return view(
-            'director.AsigGrupAlum',
+            'director.Horario',
             [
-                'Materias' => $Materias,
+                'Aulas' => $Aulas,
                 'GrupMat' => $GrupMat,
-                'Grupos' => $Grupos,
             ]
         );
     }
@@ -41,36 +40,43 @@ class HorariosController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, Materia $Materia, Grupo $Grupo)
+    public function store(Request $request)
     {
         //
+        $request->validate([
+            'idAula' => 'required',
+            'idGrupoMat' => 'required',
+            'HoraL' => 'required',
+            'HoraM' => 'required',
+            'HoraMi' => 'required',
+            'HoraJ' => 'required',
+            'HoraV' => 'required',
+        ]);
+
         DB::beginTransaction();
         try {
-            // $idMateria = Materia::where('Matricula', $Materia->Matricula)->value('id');
+            //
+            $Horario = new Horario();
 
-            // // Obtener el ID del grupo donde los valores coincidan
-            // $idGrupo = Vgrupos::where([
-            //     ['NombreGrado', $Grupo->NombreGrado],
-            //     ['NivelAcademico', $Grupo->NivelAcademico],
-            //     ['Paquete', $Grupo->Paquete],
-            // ])->value('id');
+            $Horario->idAula = $request->input('idAula');
+            $Horario->idMateria = $request->input('idGrupoMat'); //no es idMateria es idGrupoMateria(hay un error en la base de datos en el nombre de una columna)
+            $Horario->idAula = $request->input('HoraL');
+            $Horario->idAula = $request->input('HoraM');
+            $Horario->idAula = $request->input('HoraMi');
+            $Horario->idAula = $request->input('HoraJ');
+            $Horario->idAula = $request->input('HoraV');
 
-            // $GrupAlum = new GruposMateria();
+            $Horario->save();
 
-            // $GrupAlum->idAlumno = $idAlumno();
-            // $GrupAlum->idGrupo = $idGrupo();
-
-            // $GrupAlum->save();
-
-            // Confirmar transacción
+            //
             DB::commit();
 
-            return back()->with('success', 'La materia se asignó al grupo correctamente.');
+            return back()->with('success', 'El horario se establecio correctamente.');
         } catch (\Exception $e) {
             // Revertir transacción si hay un error
             DB::rollBack();
 
-            return redirect()->back()->with('error', 'Error al asignar la materia: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Error al establecer el horario: ' . $e->getMessage());
         }
     }
 
@@ -101,8 +107,11 @@ class HorariosController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Horario $H)
     {
-        //
+        // Elimina el registro de la tabla GruposMaterias
+        $H->delete();
+        // Redirige a alguna vista o devuelve un mensaje de éxito
+        return redirect()->route('ListaHorario')->with('success', 'Registro eliminado correctamente.');
     }
 }
