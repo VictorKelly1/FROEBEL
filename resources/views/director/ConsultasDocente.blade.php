@@ -28,7 +28,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($Docentes as $Docente)
+                @foreach ($Docentes as $Docente)
                     <tr>
                         <td>{{ $Docente->Nombre }}</td>
                         <td>{{ $Docente->ApellidoPaterno }}</td>
@@ -51,10 +51,10 @@
                         <td>{{ $Docente->RFC }}</td>
                         <td>{{ $Docente->NoINE }}</td>
                         <td>{{ $Docente->Sueldo }}</td>
-                        <td>                      
-                            <form action="/VistaEditarDocente/{{ $Docente->$idDocente }}" method="GET">
-                              @csrf
-                            <button type="submit" class="btn btn-primary">Edición</button>
+                        <td>
+                            <form action="/VistaEditarDocente/{{ $Docente->idDocente }}" method="GET">
+                                @csrf
+                                <button type="submit" class="btn btn-primary">Edición</button>
                             </form>
                         </td>
                     </tr>

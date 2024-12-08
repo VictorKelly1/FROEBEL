@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class GruposMateria extends Model
 {
-    protected $table = 'GruposMat';
+    protected $table = 'GruposMaterias';
     protected $primaryKey = 'idGrupoMateria';
     protected $fillable = ['idMateria', 'idGrupo'];
 }

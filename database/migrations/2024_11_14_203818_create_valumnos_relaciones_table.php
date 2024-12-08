@@ -24,6 +24,7 @@ return new class extends Migration
                 vt.ApellidoMaterno AS ApellidoMatT,
                 ar.idAlumno,
                 va.Nombre AS NombreAlum,
+                va.Matricula,
                 va.ApellidoPaterno AS ApellidoPatA,
                 va.ApellidoMaterno AS ApellidoMatA
             FROM 

@@ -1,9 +1,9 @@
 <x-director.layout>
 
     <div class=" flex items-center led2 posicionsregisalum">
-      
 
-    <form class="" action="{{ route('RegistrarTutor') }}" method="POST" enctype="multipart/form-data">
+
+        <form class="" action="{{ route('RegistrarTutor') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <!-- Datos de Persona -->
@@ -91,13 +91,6 @@
                 <input type="file" name="Foto" id="Foto" class="form-control">
             </div>
 
-            <!-- Datos de Usuario -->
-            <h3>Datos de Usuario</h3>
-            <div class="form-group">
-                <label for="Correo">Correo Electrónico:</label>
-                <input type="email" name="Correo" id="Correo" class="form-control" required>
-            </div>
-
             <div class="form-group">
                 <label for="NoINE">NoINE:</label>
                 <input type="number" name="NoINE" id="NoINE" class="form-control" required>
@@ -115,7 +108,7 @@
 
             <!-- Botón de envío -->
             <button type="submit" class="btn btn-primary">Registrar Tutor</button>
-       </form>
+        </form>
     </div>
 
 </x-director.layout>

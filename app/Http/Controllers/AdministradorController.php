@@ -50,9 +50,6 @@ class AdministradorController extends Controller
             'Calle' => 'required|string',
             'EstadoCivil' => 'required|string',
             'Nacionalidad' => 'required|string',
-            'Matricula' => 'required|string',
-            'EscuelaProcede' => 'required|string',
-            'Correo' => 'required|unique:users,email',
             'FechaNacimiento' => 'required|date|before:today',
             'Foto' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
         ]);
@@ -99,7 +96,7 @@ class AdministradorController extends Controller
             $Usuario->save();
 
             // Obtener IDs de las tuplas que se acaban de guardar
-            $idPersona = $Persona->id;
+            $idPersona = $Persona->idPersona;
             $idUsuario = $Usuario->id;
 
             $Administrador = new Administrador();

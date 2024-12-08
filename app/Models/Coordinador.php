@@ -8,7 +8,7 @@ class Coordinador extends Model
 {
     //
     protected $table = 'Coordinadores';
-
+    protected $primaryKey = 'idCoordinador';
 
     // Campos permitidos para asignación masiva
     protected $fillable = [
@@ -35,21 +35,5 @@ class Coordinador extends Model
     }
 
     // Función de validación
-    private static function validateAttributes($Coordinador)
-    {
-        $requiredFields = [
-            'Estado',
-            'Sueldo',
-            'NoINE',
-            'RFC',
-            'idPersona',
-            'idUsuario',
-        ];
 
-        foreach ($requiredFields as $field) {
-            if (empty($Coordinador->{$field})) {
-                throw new \Exception("El campo {$field} es obligatorio.");
-            }
-        }
-    }
 }

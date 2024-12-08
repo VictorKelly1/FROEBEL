@@ -21,10 +21,10 @@ class GruposDocenteController extends Controller
         $Grupos = Vgrupos::All();
         $GrupDocentes = VgruposDocentes::All();
         return view(
-            'director.AsigGrupAlum',
+            'director.AsigGrupDocen',
             [
-                'Alumnos' => $Docentes,
-                'GrupDocentes' => $GrupDocentes,
+                'Docentes' => $Docentes,
+                'GrupDocen' => $GrupDocentes,
                 'Grupos' => $Grupos,
             ]
         );

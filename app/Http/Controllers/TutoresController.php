@@ -3,12 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\AlumnosRelacion;
 use App\Models\Persona;
 use App\Models\Tutor;
 use App\Models\VAlumno;
-use App\Models\Vgrupos;
-use App\Models\VgruposAlumnos;
 use App\Models\VTutor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -54,9 +51,6 @@ class TutoresController extends Controller
             'Calle' => 'required|string',
             'EstadoCivil' => 'required|string',
             'Nacionalidad' => 'required|string',
-            'Matricula' => 'required|string',
-            'EscuelaProcede' => 'required|string',
-            'Correo' => 'required|unique:users,email',
             'FechaNacimiento' => 'required|date|before:today',
             'Foto' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
 
@@ -96,31 +90,30 @@ class TutoresController extends Controller
             $Persona->save();
 
             // Obtener IDs de las tuplas que se acaban de guardar
-            $idPersona = $Persona->id;
+            $idPersona = $Persona->idPersona;
 
 
             $Tutor = new Tutor();
 
             $Tutor->RFC = $request->input('RFC');
             $Tutor->NoINE = $request->input('NoINE');
-            $Tutor->Sueldo = $request->input('LugarTrabajo');
+            $Tutor->LugarTrabajo = $request->input('LugarTrabajo');
             $Tutor->idPersona = $idPersona;
 
             $Tutor->save();
 
-            //Obtener id del tutor recien registrado
-            $idTutor = $Tutor->id;
-
-            //Se guarda la relacion del tutor creado con el alumno que tutorea
-            $Relacion = new AlumnosRelacion();
-
-            $Relacion->idAlumno = $request->input('Tutoreado');
-            $Relacion->idTutor = $idTutor;
             // Confirmar transacción
             DB::commit();
 
             $Alumnos = VAlumno::all();
-            return view('director.RegisTutor', ['Alumnos' => $Alumnos]);
+            $Tutores = VTutor::all();
+            return view(
+                'director.AsigAlumTutor',
+                [
+                    'Alumnos' => $Alumnos,
+                    'Tutores' => $Tutores,
+                ]
+            );
         } catch (\Exception $e) {
             // Revertir transacción si hay un error
             DB::rollBack();

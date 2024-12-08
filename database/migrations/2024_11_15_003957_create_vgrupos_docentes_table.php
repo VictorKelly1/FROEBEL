@@ -23,6 +23,7 @@ return new class extends Migration
                 d.Estado AS Estado,
                 gd.idGrupo,
                 g.NombreGrado,
+                g.Paquete,
                 g.NivelAcademico
             FROM 
                 GruposDocente gd

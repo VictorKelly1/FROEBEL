@@ -15,7 +15,7 @@ class MateriasController extends Controller
     public function index()
     {
         $Materias = Materia::All();
-        return view('director.ConsultasMaterias', ['Materias' => $Materias]);
+        return view('director.ConsultasMat', ['Materias' => $Materias]);
     }
 
     /*
@@ -29,10 +29,11 @@ class MateriasController extends Controller
     /*Almacena una materia en la base de datos */
     public function store(Request $request)
     {
+
         $request->validate([
-            'Clave' => 'required|string',
-            'Nombre' => 'required|string',
-            'Tipo' => 'required|string',
+            'Clave' => 'required',
+            'NombreMateria' => 'required|string',
+            'Tipo' => 'required',
         ]);
 
         DB::beginTransaction();
@@ -41,8 +42,8 @@ class MateriasController extends Controller
             //
             $Materia = new Materia();
 
-            $Materia->Descripcion = $request->input('Clave');
-            $Materia->NombreMateria = $request->input('Nombre');
+            $Materia->Clave = $request->input('Clave');
+            $Materia->NombreMateria = $request->input('NombreMateria');
             $Materia->Tipo = $request->input('Tipo');
 
             $Materia->save();
@@ -54,7 +55,7 @@ class MateriasController extends Controller
         } catch (\Exception $e) {
             // Revertir transacción si hay un error
             DB::rollBack();
-
+            return 'error';
             return redirect()->back()->with('error', 'Error al registrar la materia: ' . $e->getMessage());
         }
     }

@@ -18,8 +18,8 @@ class CoordinadoresController extends Controller
         /* 
         Se obtiene una lista con todos los alumnos activos
         */
-        $Coordinador = VCoordinador::where('Estado', 'Activo')->get();
-        return response()->json($Coordinador);
+        $Coordinadores = VCoordinador::where('Estado', 'Activo')->get();
+        return view('director.ConsultasCoordi', ['Coordinadores' => $Coordinadores]);
     }
 
     public function create()
@@ -31,9 +31,10 @@ class CoordinadoresController extends Controller
     public function store(Request $request)
     {
         /* 
-        Funcion para registrar un docente en la base de datos guardando los datos en las respectivas
+        Funcion para registrar un coordinador en la base de datos guardando los datos en las respectivas
         tablas y asignandole un correo al momento de su creacion para que tenga acceso al sistema
         */
+
         $request->validate([
             'Nombre' => 'required|string',
             'ApellidoMaterno' => 'required|string',
@@ -44,6 +45,7 @@ class CoordinadoresController extends Controller
             'Calle' => 'required|string',
             'EstadoCivil' => 'required|string',
             'Nacionalidad' => 'required|string',
+
             'FechaNacimiento' => 'required|date|before:today',
             'Foto' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
 
@@ -89,7 +91,7 @@ class CoordinadoresController extends Controller
 
             // Objeto Coordinador
             // Obtener IDs de las tuplas que se acaban de guardar
-            $idPersona = $Persona->id;
+            $idPersona = $Persona->idPersona;
             $idUsuario = $Usuario->id;
 
             $Coordinador = new Coordinador();
@@ -131,7 +133,7 @@ class CoordinadoresController extends Controller
         if (!$id) {
             return response()->json(['error' => 'Coordinador no encontrado'], 404);
         } else {
-            return view('dinamicas.EditarCoordinador', ['Coordinador' => $id]);
+            return view('dinamicas.EditarCoordi', ['Coordinador' => $id]);
         }
     }
 

@@ -26,7 +26,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($Coordinadores as $Coordinador)
+                @foreach ($Coordinadores as $Coordinador)
                     <tr>
                         <td>{{ $Coordinador->Nombre }}</td>
                         <td>{{ $Coordinador->ApellidoPaterno }}</td>
@@ -47,10 +47,10 @@
                         <td>{{ $Coordinador->RFC }}</td>
                         <td>{{ $Coordinador->NoINE }}</td>
                         <td>{{ $Coordinador->Sueldo }}</td>
-                        <td>                      
-                            <form action="/VistaEditarCoordi/{{ $Coordinador->$idCoordinador }}" method="GET">
-                              @csrf
-                            <button type="submit" class="btn btn-primary">Edición</button>
+                        <td>
+                            <form action="/VistaEditarCoordi/{{ $Coordinador->idCoordinador }}" method="GET">
+                                @csrf
+                                <button type="submit" class="btn btn-primary">Edición</button>
                             </form>
                         </td>
                     </tr>

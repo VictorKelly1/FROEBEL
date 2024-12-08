@@ -25,7 +25,7 @@ class AlumnosRelacionesController extends Controller
             'director.AsigAlumTutor',
             [
                 'Alumnos' => $Alumnos,
-                'AlumnosRalciones' => $AlumnosRalciones,
+                'AlumTutor' => $AlumnosRalciones,
                 'Tutores' => $Tutores,
             ]
         );

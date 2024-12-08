@@ -18,9 +18,11 @@ return new class extends Migration
                 gm.IdGrupoMateria,
                 gm.idMateria,
                 m.NombreMateria,
+                m.Clave,
                 m.Tipo AS TipoMateria,
                 gm.idGrupo,
                 g.NombreGrado,
+                g.Paquete,
                 g.NivelAcademico
             FROM 
                 GruposMaterias gm

@@ -8,7 +8,7 @@ class Docente extends Model
 {
     //
     protected $table = 'Docentes';
-
+    protected $primaryKey = 'idDocente';
 
     // Campos permitidos para asignación masiva
     protected $fillable = [
@@ -42,12 +42,6 @@ class Docente extends Model
         $requiredFields = [
             'Carrera',
             'Estado',
-            'FechaIngreso',
-            'Sueldo',
-            'NoINE',
-            'RFC',
-            'idPersona',
-            'idUsuario',
         ];
 
         foreach ($requiredFields as $field) {

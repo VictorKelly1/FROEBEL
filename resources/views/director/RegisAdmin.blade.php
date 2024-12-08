@@ -1,9 +1,9 @@
 <x-director.layout>
 
     <div class=" flex items-center led2 posicionsregisalum">
-      
 
-    <form class="" action="{{ route('RegistrarAdmin') }}" method="POST" enctype="multipart/form-data">
+
+        <form class="" action="{{ route('RegistrarAdmin') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <!-- Datos de Persona -->
@@ -92,8 +92,8 @@
             </div>
 
             <div class="form-group">
-                <label for="Estado">Estado:</label>
-                <input type="text" name="Estado" id="Estado" class="form-control" required>
+                <label for="Correo">Correo Electrónico:</label>
+                <input type="email" name="Correo" id="Correo" class="form-control" required>
             </div>
 
             <div class="form-group">
@@ -113,7 +113,7 @@
 
             <!-- Botón de envío -->
             <button type="submit" class="btn btn-primary">Registrar Administrador</button>
-       </form>
+        </form>
     </div>
 
 </x-director.layout>

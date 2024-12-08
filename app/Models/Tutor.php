@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Tutor extends Model
 {
     protected $table = 'Tutores';
+    protected $primaryKey = 'idTutor';
 
 
     // Campos permitidos para asignación masiva
@@ -36,10 +37,6 @@ class Tutor extends Model
     {
         $requiredFields = [
             'LugarTrabajo',
-            'NoINE',
-            'RFC',
-            'idPersona',
-
         ];
 
         foreach ($requiredFields as $field) {

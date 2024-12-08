@@ -32,6 +32,15 @@ Route::get('/', function () {
 //Middlewares para las rutas 
 //Autenticaciones en las interfaces
 //Validaciones en algunos modelos
+//guardar contacto de correo al registrar todos los usuarios con correo
+/*sidebar-
+Registros: academicos, financieros, inventario.
+Asignaciones: Academicas, inventarios.
+Consultas: Academicas, financieros, inventario.
+Comunicados: enviar,
+Configuracion.
+Ayuda.
+*/
 
 
 //ruta para Preubas
@@ -58,7 +67,7 @@ Route::controller(DocenteController::class)->group(function () {
     Route::get('/VistaRegistrarDocente', 'create')->name('VistaRegistrarDocente');
     Route::post('/RegistrarDocente', 'store')->name('RegistrarDocente');
     Route::get('/VistaEditarDocente/{id}', 'edit')->name('VistaEditarDocente');
-    Route::post('/EditarDocente/{id}', 'update')->name('EditarDocente');
+    Route::post('/EditarDocente', 'update')->name('EditarDocente');
 });
 
 //Rutas con los controladores de tutores

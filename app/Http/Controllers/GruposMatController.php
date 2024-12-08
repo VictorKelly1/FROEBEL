@@ -21,7 +21,7 @@ class GruposMatController extends Controller
         $Grupos = Vgrupos::All();
         $GrupMat = VgruposMaterias::All();
         return view(
-            'director.AsigGrupMateria',
+            'director.AsigGrupMat',
             [
                 'Materias' => $Materias,
                 'GrupMat' => $GrupMat,
@@ -60,6 +60,7 @@ class GruposMatController extends Controller
         } catch (\Exception $e) {
             // Revertir transacción si hay un error
             DB::rollBack();
+            return 'error';
             return redirect()->back()->with('error', 'Error al asignar la materia: ' . $e->getMessage());
         }
     }

@@ -17,7 +17,7 @@ class DocenteController extends Controller
     {
         //
         $Docentes = VDocente::where('Estado', 'Activo')->get();
-        return response()->json($Docentes);
+        return view('director.ConsultasDocente', ['Docentes' => $Docentes]);
     }
 
     public function create()
@@ -32,6 +32,7 @@ class DocenteController extends Controller
         Funcion para registrar un docente en la base de datos guardando los datos en las respectivas
         tablas y asignandole un correo al momento de su creacion para que tenga acceso al sistema
         */
+
         $request->validate([
             'Nombre' => 'required|string',
             'ApellidoMaterno' => 'required|string',
@@ -42,19 +43,10 @@ class DocenteController extends Controller
             'Calle' => 'required|string',
             'EstadoCivil' => 'required|string',
             'Nacionalidad' => 'required|string',
-            'Matricula' => 'required|string',
-            'EscuelaProcede' => 'required|string',
             'Correo' => 'required|unique:users,email',
             'FechaNacimiento' => 'required|date|before:today',
             'Foto' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
-            'RFC' => [
-                'required',
-                'regex:/^[A-ZÑ&]{3,4}[0-9]{6}[A-Z0-9]{3}$/i'
-            ],
-            'CURP' => [
-                'required',
-                'regex:/^[A-Z]{4}[0-9]{6}[HM][A-Z]{5}[0-9]{2}$/i'
-            ],
+
         ]);
 
         DB::beginTransaction();
@@ -97,7 +89,7 @@ class DocenteController extends Controller
 
             // Objeto Docente
             // Obtener IDs de las tuplas que se acaban de guardar
-            $idPersona = $Persona->id;
+            $idPersona = $Persona->idPersona;
             $idUsuario = $Usuario->id;
 
             $Docente = new Docente();
