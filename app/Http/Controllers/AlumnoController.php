@@ -134,7 +134,7 @@ class AlumnoController extends Controller
         } catch (\Exception $e) {
             // Revertir transacción si hay un error
             DB::rollBack();
-            return 'error';
+
             return redirect()->back()->with('error', 'Error al registrar el Alumno: ' . $e->getMessage());
         }
     }

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('idConcepto');
             $table->string('Nombre');
             $table->text('Descripcion');
+            $table->string('Para');
             $table->timestamps();
 
             $table->unique('Nombre'); // Llave única para evitar duplicados de conceptos con el mismo nombre

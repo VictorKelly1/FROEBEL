@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Grado;
 use App\Models\Grupo;
+use App\Models\GruposAlumno;
 use App\Models\Periodo;
 use App\Models\Vgrupos;
 use Illuminate\Http\Request;
@@ -12,14 +13,13 @@ use Illuminate\Support\Facades\DB;
 
 class GruposController extends Controller
 {
-
+    /* 
+    Se obtiene una lista con todos los Grupos
+    */
     public function index()
     {
-        /* 
-        Se obtiene una lista con todos los Grupos
-        */
-        $Grupos = Vgrupos::All();
-        return view('director.ConsultasGrup', ['Grupos' => $Grupos]);
+        $VGrupos = Vgrupos::All();
+        return view('director.ConsultasGrup', ['Grupos' => $VGrupos]);
     }
 
     public function create()
@@ -115,7 +115,7 @@ class GruposController extends Controller
         if (!$id) {
             return response()->json(['error' => 'Grupo no encontrado'], 404);
         } else {
-            return view('dinamicas.EditarGrupo', ['Grupos' => $id]);
+            return view('dinamicas.EditarGrupo', ['Grupo' => $id]);
         }
     }
 

@@ -5,6 +5,7 @@ use App\Http\Controllers\AlumnoController;
 use App\Http\Controllers\AlumnosRelacionesController;
 use App\Http\Controllers\Api\pruebasController;
 use App\Http\Controllers\CalificacionesController;
+use App\Http\Controllers\ColegiaturasController;
 use App\Http\Controllers\ConceptosController;
 use App\Http\Controllers\CoordinadoresController;
 use App\Http\Controllers\DescuentosController;
@@ -26,28 +27,20 @@ Route::get('/', function () {
 });
 
 //Actualizar sin recargar pagina 
-//Cantidad de alumnos en los grupos  con observer
-//Pagos corrientes de alumnos 
-//Actualizacion automatica de periodos 
+//Pagos corrientes de alumnos  
 //Middlewares para las rutas 
 //Autenticaciones en las interfaces
-//Validaciones en algunos modelos
-//guardar contacto de correo al registrar todos los usuarios con correo
-/*sidebar-
-Registros: academicos, financieros, inventario.
-Asignaciones: Academicas, inventarios.
-Consultas: Academicas, financieros, inventario.
-Comunicados: enviar,
-Configuracion.
-Ayuda.
-*/
+//cambios a conceptos y desc en controladores y vistas
+
+
+
 
 
 //ruta para Preubas
 Route::view('/prueba', 'director.AsigGrupAlum')->name('prueba');
 //
-Route::controller(pruebasController::class)->group(function () {
-    Route::get('/GA', 'index');
+Route::controller(ColegiaturasController::class)->group(function () {
+    Route::get('/Colegiaturas', 'create');
 });
 
 //------------------------------------------------------------------------------------------------------------
@@ -135,7 +128,7 @@ Route::controller(GruposController::class)->group(function () {
     Route::get('/VistaRegistrarGrupo', 'create')->name('VistaRegistrarGrupo');
     Route::post('/RegistrarGrupo', 'store')->name('RegistrarGrupo');
     Route::get('/VistaEditarGrupo/{id}', 'edit')->name('VistaEditarGrupo');
-    Route::post('/EditarGrupo/{id}', 'update')->name('EditarGrupo');
+    Route::post('/EditarGrupo', 'update')->name('EditarGrupo');
 });
 
 //Rutas con los controladores de Materias

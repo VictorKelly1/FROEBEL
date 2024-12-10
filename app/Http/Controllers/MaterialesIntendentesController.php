@@ -3,29 +3,29 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\GruposDocente;
-use App\Models\VDocente;
-use App\Models\Vgrupos;
-use App\Models\VgruposDocentes;
+use App\Models\Material;
+use App\Models\MaterialesIntendentes as ModelsMaterialesIntendentes;
+use App\Models\VIntendente;
+use App\Models\VmaterialesIntendentes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class GruposDocenteController extends Controller
+class MaterialesIntendentesController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $Docentes = VDocente::All();
-        $Grupos = Vgrupos::All();
-        $GrupDocentes = VgruposDocentes::where('Estado', 'Activo')->get();
+        $Intendentes = VIntendente::All();
+        $Materiales = Material::All();
+        $DocentesIntendentes = VmaterialesIntendentes::All();
         return view(
-            'director.AsigGrupDocen',
+            'director.AsigMaterialInten',
             [
-                'Docentes' => $Docentes,
-                'GrupDocen' => $GrupDocentes,
-                'Grupos' => $Grupos,
+                'Intendentes' => $Intendentes,
+                'DocentesIntendentes' => $DocentesIntendentes,
+                'Materiales' => $Materiales,
             ]
         );
     }
@@ -46,21 +46,21 @@ class GruposDocenteController extends Controller
         DB::beginTransaction();
         try {
 
-            $GrupDocen = new GruposDocente();
+            $MaterialDocen = new ModelsMaterialesIntendentes();
 
-            $GrupDocen->idDocente = $request->input('idDocente');
-            $GrupDocen->idGrupo = $request->input('idGrupo');
+            $MaterialDocen->idIntendentes = $request->input('idIntendentes');
+            $MaterialDocen->idMaterial = $request->input('idMaterial');
 
-            $GrupDocen->save();
+            $MaterialDocen->save();
 
             // Confirmar transacción
             DB::commit();
 
-            return back()->with('success', 'El docente se asignó al grupo correctamente.');
+            return back()->with('success', 'El material se asignó al docente correctamente.');
         } catch (\Exception $e) {
             // Revertir transacción si hay un error
             DB::rollBack();
-            return redirect()->back()->with('error', 'Error al asignar el Alumno: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Error al asignar el Material: ' . $e->getMessage());
         }
     }
 
@@ -91,10 +91,10 @@ class GruposDocenteController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(GruposDocente $GD)
+    public function destroy(ModelsMaterialesIntendentes $MI)
     {
-        $GD->delete();
+        $MI->delete();
         // Redirige a alguna vista o devuelve un mensaje de éxito
-        return redirect()->route('ListaGruposDocentes')->with('success', 'Registro eliminado correctamente.');
+        return redirect()->route('ListaMaterialesDocentes')->with('success', 'Registro eliminado correctamente.');
     }
 }

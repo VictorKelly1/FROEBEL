@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('Descuentos', function (Blueprint $table) {
             $table->id('idDescuento');
             $table->string('Nombre');
+            $table->string('Para');
             $table->string('Tipo'); // Tipo de descuento, por ejemplo, porcentaje o cantidad fija
             $table->decimal('Monto', 8, 2); // Usamos decimal para valores monetarios
             $table->timestamps();

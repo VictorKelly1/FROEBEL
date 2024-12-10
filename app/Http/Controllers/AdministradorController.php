@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Administrador;
+use App\Models\Contacto;
 use App\Models\Persona;
 use App\Models\User;
 use App\Models\VAdministrador;
@@ -108,6 +109,15 @@ class AdministradorController extends Controller
             $Administrador->idPersona = $idPersona;
 
             $Administrador->save();
+
+            //Poner un contacto al alumno a partir del correo recien asignado
+            $Contacto = new Contacto();
+
+            $Contacto->TipoContacto = "Email";
+            $Contacto->ValorContacto = $request->input('Correo');
+            $Contacto->idReceptor = $idPersona;
+
+            $Contacto->save();
 
             // Confirmar transacción
             DB::commit();

@@ -33,7 +33,4 @@ class Coordinador extends Model
             self::validateAttributes($Coordinador);
         });
     }
-
-    // Función de validación
-
 }

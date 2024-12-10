@@ -24,7 +24,7 @@ class GruposAlumnoController extends Controller
         */
         $Alumnos = VAlumno::where('Estado', 'Activo')->get();
         $Grupos = Vgrupos::All();
-        $GrupAlum = VgruposAlumnos::All();
+        $GrupAlum = VgruposAlumnos::where('Estado', 'Activo')->get();
         return view(
             'director.AsigGrupAlum',
             [

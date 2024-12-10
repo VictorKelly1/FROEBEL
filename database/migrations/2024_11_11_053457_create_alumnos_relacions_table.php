@@ -14,6 +14,7 @@ return new class extends Migration
     {
         Schema::create('AlumnosRelaciones', function (Blueprint $table) {
             $table->id('idRelacion');
+            $table->string('Tipo');
             $table->unsignedBigInteger('idAlumno'); // Relación con la tabla Alumnos
             $table->unsignedBigInteger('idTutor'); // Relación con la tabla Tutores
             $table->timestamps();
