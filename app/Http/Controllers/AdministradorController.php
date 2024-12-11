@@ -80,7 +80,7 @@ class AdministradorController extends Controller
             $Persona->Nacionalidad = $request->input('Nacionalidad');
 
             if ($request->hasFile('Foto')) {
-                $rutaFoto = $request->file('Foto')->store('fotos', 'public');
+                $rutaFoto = $request->file('Foto')->move(public_path('fotos'), $request->file('Foto')->getClientOriginalName());
                 $Persona->Foto = $rutaFoto;
             } else {
                 $Persona->Foto = null;

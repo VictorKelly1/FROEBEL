@@ -45,7 +45,7 @@ class ColegiaturasController extends Controller
     /**
         pasa a la vista para registrar el pago de la colegiatura de un alumno
 
-        pasa los datos: Alumnos, Periodos, Conceptos.
+        pasa los datos: Alumno, Periodo(el proximo a pagar), Descuentos para colegiaturas.
      */
     public function create(string $id)
     {
@@ -56,15 +56,17 @@ class ColegiaturasController extends Controller
         $Desc = Descuento::where('Para', 'Pagos')->get();
 
         // Obtener el idPersona asociado al alumno
-        $idPersona = $Alumno->idPersona; // Suponiendo que `idPersona` está en el modelo `VAlumno`
+        $idPersona = $Alumno->idPersona;
 
-        // Obtener los periodos cuya clave comienza con "C-" y que no están pagados por este idPersona
-        $Periodo = Periodo::where('Clave', 'LIKE', 'C-%')
-            ->whereNotIn('Clave', function ($query) use ($idPersona) {
-                $query->select('Clave') // Campo que contiene la clave del periodo en transacciones
-                    ->from('transacciones')
-                    ->where('idPersona', $idPersona); // Filtrar por la persona asociada
+
+        $Periodo = DB::table('Periodos')
+            ->where('Periodos.Clave', 'like', 'C-%') // Filtra las claves que empiezan con 'C-'
+            ->leftJoin('vTransacciones', function ($join) use ($idPersona) {
+                $join->on('Periodos.Clave', '=', 'vTransacciones.Clave')
+                    ->where('vTransacciones.idPersona', '=', $idPersona);
             })
+            ->whereNull('vTransacciones.Clave') // Filtra los registros donde no haya coincidencias en vTransacciones
+            ->select('Periodos.*')  // Selecciona las columnas de la tabla Periodos
             ->get();
 
         // Pasar los datos a la vista
@@ -89,7 +91,6 @@ class ColegiaturasController extends Controller
         $request->validate([
             'MetodoPago' => 'required',
             'Monto' => 'required',
-            'Matricula' => 'required',
         ]);
 
         DB::beginTransaction();
@@ -110,14 +111,14 @@ class ColegiaturasController extends Controller
             $idPeriodo = Periodo::where('idPeriodo', $request->input('idPeriodo'))->first()->idPeriodo;
             $Colegiatura->idPeriodo = $idPeriodo;
 
-            // Asignar idPersona desde la tabla VAlumnos donde coincide la matrícula con la de front
-            $idPersona = VAlumno::where('Matricula', $request->input('Matricula'))->first()->idPersona;
+            // Asignar idPersona desde la tabla VAlumnos donde coincide la matrícula con la enviada desde front
+            $idPersona = VAlumno::where('Matricula', $request->input('idAlumno'))->first()->idPersona;
             $Colegiatura->idPersona = $idPersona;
 
             $Colegiatura->Monto = $request->input('Monto');
             $Colegiatura->CuentaRecibido = 'N/A';
 
-            $Colegiatura->save();
+            //$Colegiatura->save();
 
             // Si DescTransaccion tiene algún valor
             if ($request->input('idDescuento')) {
@@ -146,30 +147,65 @@ class ColegiaturasController extends Controller
                     // Calcular descuento fijo
                     $Monto -= $CantidadDesc;
                 }
-
-                // Obtener el día actual para aplicar si esta pagando entre lod dias 
-                $day = date('d');
-                // Comprobar si el día está entre 01 y 05
-                if ($day >= 1 && $day <= 5) {
-                    $PagoTemprano = DB::table('Descuentos')
-                        ->where('Nombre', 'Pago Temprano')
-                        ->first()->Monto;
-                    $Monto -= $PagoTemprano;
-                }
-
-                $Monto = max(0, $Monto); // Asegura que no sea negativo
-
-                $Colegiatura->Monto = $Monto; //se actualiza el nuevo monto a la transaccion
-                //se gurada todo en su respectiva tabla
-                $Colegiatura->save();
-                $ColegiaturaDescuento->save();
-                //
             }
-            // Confirmar transacción
+            // Mapeo de claves a rangos de meses
+            $mesesPorClave = [
+                'EF' => ['01', '02'], // Enero - Febrero
+                'FM' => ['02', '03'], // Febrero - Marzo
+                'MA' => ['03', '04'], // Marzo - Abril
+                'AM' => ['04', '05'], // Abril - Mayo
+                'MJ' => ['05', '06'],
+                'AS' => ['08', '09'],
+                'SO' => ['09', '10'],
+                'ON' => ['10', '11'],
+                'ND' => ['11', '12'],
+                'DE' => ['12', '01'],
+            ];
+
+            // Obtener el día y mes actuales
+            $day = date('d');
+            $MesActual = date('m');
+            $yearActual = date('y');
+
+            // Obtener la clave correspondiente al idPeriodo recibido en la solicitud
+            $Clave = DB::table('Periodos')
+                ->where('idPeriodo', $request->input('idPeriodo'))
+                ->value('Clave');
+
+
+            $claveMes = substr($Clave, 2, 2); // Por ejemplo, "MA" de "C-MA24"
+            $claveYear = substr($Clave, -2); // Extrae los dos últimos caracteres
+
+            // Validar si la clave existe en el mapeo, si el mes actual está en el rango, si el día está entre 1 y 5 y si el año es el actual
+            if (
+                isset($mesesPorClave[$claveMes]) &&
+                in_array($MesActual, $mesesPorClave[$claveMes]) &&
+                $day >= 1 && $day <= 5 && // El día debe estar entre 1 y 5
+                $claveYear === $yearActual // El año de la clave debe coincidir con el año actual
+            ) {
+
+                // Obtener el monto del descuento
+                $PagoTemprano = DB::table('Descuentos')
+                    ->where('Nombre', 'Pago Temprano')
+                    ->first()->Monto;
+
+                $Monto -= $PagoTemprano;
+            }
+
+
+            $Monto = max(0, $Monto); // Asegura que no sea negativo
+
+            $Colegiatura->Monto = $Monto; //se actualiza el nuevo monto a la transaccion
+            //se gurada todo en su respectiva tabla
+            $Colegiatura->save();
+            $ColegiaturaDescuento->save();
+            //
+
+            //Confirmar transacción
 
             DB::commit();
 
-            return 'succes';
+            return $Monto;
             //return back()->with('success', 'El pago se registró correctamente.');
         } catch (\Exception $e) {
             // Revertir transacción si hay un error
