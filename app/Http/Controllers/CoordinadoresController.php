@@ -73,10 +73,13 @@ class CoordinadoresController extends Controller
             $Persona->Nacionalidad = $request->input('Nacionalidad');
 
             if ($request->hasFile('Foto')) {
-                $rutaFoto = $request->file('Foto')->move(public_path('fotos'), $request->file('Foto')->getClientOriginalName());
-                $Persona->Foto = $rutaFoto;
+                $nombreArchivo = $request->file('Foto')->getClientOriginalName();
+
+                $request->file('Foto')->move(public_path('fotos'), $nombreArchivo);
+
+                $Persona->Foto = $nombreArchivo;
             } else {
-                $Persona->Foto = null;
+                $Persona->Foto = 'default';
             }
 
             $Persona->save();
