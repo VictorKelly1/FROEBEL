@@ -196,6 +196,26 @@ Route::controller(CalificacionesController::class)->group(function () {
 
 //------------------------------------------------------------------------------------------------------------
 
+Route::controller(ColegiaturasController::class)->group(function () {
+    Route::get('/Colegiaturas', 'index')->name('ListaColegiaturas');
+    Route::get('/VistaRegistrarColegiatura/{id}', 'create')->name('VistaRegistrarColegiatura');
+    Route::post('/RegistrarColegiatura', 'store')->name('RegistrarColegiatura');
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//------------------------------------------------------------------------------------------------------------
 //Rutas autorizacion
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

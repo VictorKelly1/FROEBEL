@@ -47,31 +47,37 @@ class ColegiaturasController extends Controller
 
         pasa los datos: Alumnos, Periodos, Conceptos.
      */
-    public function create()
+    public function create(string $id)
     {
-        // Obtener los alumnos activos
-        $Alumnos = VAlumno::where('Estado', 'Activo')->get();
+        // Obtener el alumno activo
+        $Alumno = VAlumno::where('idAlumno', $id)->first();
 
-        //Descuentos
+        // Obtener los descuentos
         $Desc = Descuento::where('Para', 'Pagos')->get();
 
-        // Obtener los periodos que no han sido pagados
-        $Periodos = Periodo::where('Clave', 'LIKE', 'C-%')
-            ->whereNotIn('Clave', function ($query) {
-                $query->select('Clave') // Campo de la vista vTransacciones que contiene la clave del periodo
-                    ->from('vTransacciones');
+        // Obtener el idPersona asociado al alumno
+        $idPersona = $Alumno->idPersona; // Suponiendo que `idPersona` está en el modelo `VAlumno`
+
+        // Obtener los periodos cuya clave comienza con "C-" y que no están pagados por este idPersona
+        $Periodo = Periodo::where('Clave', 'LIKE', 'C-%')
+            ->whereNotIn('Clave', function ($query) use ($idPersona) {
+                $query->select('Clave') // Campo que contiene la clave del periodo en transacciones
+                    ->from('transacciones')
+                    ->where('idPersona', $idPersona); // Filtrar por la persona asociada
             })
             ->get();
+
         // Pasar los datos a la vista
         return view(
-            'director.RegistrarColegiatura',
+            'director.RegisColegiatura',
             [
-                'Alumnos' => $Alumnos,
-                'Periodos' => $Periodos,
+                'Alumnos' => $Alumno,
+                'Periodos' => $Periodo,
                 'Descuentos' => $Desc,
             ]
         );
     }
+
 
     /**
       registra una transaccion de tipo pago con concepto colegiatura 
@@ -81,12 +87,9 @@ class ColegiaturasController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'MetodoPago' => 'required|string|max:255',
+            'MetodoPago' => 'required',
             'Monto' => 'required',
-            'CuentaRecibido' => 'required|string',
-            'idConcepto' => 'required',
-            'idPeriodo' => 'required',
-            'idPersona' => 'required',
+            'Matricula' => 'required',
         ]);
 
         DB::beginTransaction();
@@ -100,11 +103,11 @@ class ColegiaturasController extends Controller
             $Colegiatura->MetodoPago = $request->input('MetodoPago');
 
             // Asignar idConcepto desde la tabla Conceptos donde coincide idConcepto elegido en front
-            $idConcepto = Concepto::find($request->input('idConcepto'))->idConcepto;
+            $idConcepto = Concepto::where('Nombre', 'Colegiatura')->first()->idConcepto;
             $Colegiatura->idConcepto = $idConcepto;
 
             // Asignar idPeriodo desde la tabla Periodos donde coincide Clave elegida en front
-            $idPeriodo = Periodo::where('Clave', $request->input('Clave'))->first()->idPeriodo;
+            $idPeriodo = Periodo::where('idPeriodo', $request->input('idPeriodo'))->first()->idPeriodo;
             $Colegiatura->idPeriodo = $idPeriodo;
 
             // Asignar idPersona desde la tabla VAlumnos donde coincide la matrícula con la de front
@@ -112,27 +115,62 @@ class ColegiaturasController extends Controller
             $Colegiatura->idPersona = $idPersona;
 
             $Colegiatura->Monto = $request->input('Monto');
-            $Colegiatura->CuentaRecibido = $request->input('CuentaRecibido');
+            $Colegiatura->CuentaRecibido = 'N/A';
 
             $Colegiatura->save();
 
             // Si DescTransaccion tiene algún valor
-            if ($request->input('Descuento')) {
+            if ($request->input('idDescuento')) {
                 //
+
                 $ColegiaturaDescuento = new DescTransaccion();
 
-                $ColegiaturaDescuento->idDescuento = $request->input('Descuento');
+                $ColegiaturaDescuento->idDescuento = $request->input('idDescuento');
                 //id de la transaccion recien registrada
                 $idColegiatura = $Colegiatura->idTransaccion;
                 $ColegiaturaDescuento->idTransaccion = $idColegiatura;
+                //
 
+
+                //calculo del nuevo monto
+                $Monto = $request->input('Monto');
+                //
+                $Descuento = DB::table('Descuentos')->where('idDescuento', $ColegiaturaDescuento->idDescuento)->first();
+                $TipoDesc = $Descuento->Tipo;
+                $CantidadDesc = $Descuento->Monto;
+
+                if ($TipoDesc == 'Porcentual') {
+                    // Calcular descuento porcentual
+                    $Monto -= ($Monto * ($CantidadDesc / 100));
+                } else if ($TipoDesc == 'Fijo') {
+                    // Calcular descuento fijo
+                    $Monto -= $CantidadDesc;
+                }
+
+                // Obtener el día actual para aplicar si esta pagando entre lod dias 
+                $day = date('d');
+                // Comprobar si el día está entre 01 y 05
+                if ($day >= 1 && $day <= 5) {
+                    $PagoTemprano = DB::table('Descuentos')
+                        ->where('Nombre', 'Pago Temprano')
+                        ->first()->Monto;
+                    $Monto -= $PagoTemprano;
+                }
+
+                $Monto = max(0, $Monto); // Asegura que no sea negativo
+
+                $Colegiatura->Monto = $Monto; //se actualiza el nuevo monto a la transaccion
+                //se gurada todo en su respectiva tabla
+                $Colegiatura->save();
                 $ColegiaturaDescuento->save();
+                //
             }
-
             // Confirmar transacción
+
             DB::commit();
 
-            return back()->with('success', 'El pago se registró correctamente.');
+            return 'succes';
+            //return back()->with('success', 'El pago se registró correctamente.');
         } catch (\Exception $e) {
             // Revertir transacción si hay un error
             DB::rollBack();
@@ -143,7 +181,7 @@ class ColegiaturasController extends Controller
 
 
     /**
-      imprimira un recivo de la transaccion deseada
+      llevara a la vista que imprimira un recivo de la transaccion deseada
      */
     public function show(string $id)
     {
