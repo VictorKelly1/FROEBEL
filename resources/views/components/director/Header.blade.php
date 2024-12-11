@@ -3,7 +3,7 @@
     <div class="flex items-center space-x-4">
         <!-- Icono de Usuario -->
         <div class="relative">
-            <img src="{{ asset('images/user-icon.png') }}" alt="Usuario" class="w-10 h-10 rounded-full">
+            <img src="{{ asset('images/b1.png') }}" alt="Usuario" class="w-10 h-10 rounded-full">
             <!-- Indicador de estado -->
             <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 rounded-full"></span>
         </div>

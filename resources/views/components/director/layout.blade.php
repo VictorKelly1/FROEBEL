@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="{{ asset('js/sidebar.js') }}"></script>
+   
 
 </head>
 
