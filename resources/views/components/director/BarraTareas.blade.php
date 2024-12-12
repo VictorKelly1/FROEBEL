@@ -91,6 +91,11 @@
                             <span class="text-sm">Consultar Grupos</span>
                         </a>
                     </li>
+                    <li class="hover:bg-gray-600 rounded p-2">
+                        <a href="{{ route('ListaColegiaturas') }}" class="flex items-center gap-2">
+                            <span class="text-sm">Consultar Colegiaturas</span>
+                        </a>
+                    </li>
                 </ul>
             </li>
 
