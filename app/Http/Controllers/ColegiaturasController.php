@@ -26,18 +26,18 @@ class ColegiaturasController extends Controller
     public function index()
     {
         //
-        $Pagos = Vtransacciones::where('Tipo', 'Pagos')
-            ->where('Concepto', 'Colegiatura')
+        $Pagos = vTransacciones::where('TipoTransaccion', 'Pagos')
+            ->where('NombreConcepto', 'Colegiatura')
             ->get();
-        $PagosDesc = VdescTransacciones::where('Tipo', 'Pagos')
-            ->where('Concepto', 'Colegiatura')
+        $PagosDesc = VdescTransacciones::where('TipoTransaccion', 'Pagos')
+            ->where('NombreConcepto', 'Colegiatura')
             ->get();
         //logica pendiente (pasar solo los pagos que no estan en pagosDesc)
         return view(
-            'director.CosultasColegiaturas',
+            'director.ConsultasColeg',
             [
-                'Pagos' => $Pagos,
-                'PagosDesc' => $PagosDesc,
+                'Colegiaturas' => $Pagos,
+                'ColegiaturaDesc' => $PagosDesc,
             ]
         );
     }
