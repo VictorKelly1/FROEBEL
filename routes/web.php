@@ -200,6 +200,7 @@ Route::controller(ColegiaturasController::class)->group(function () {
     Route::get('/Colegiaturas', 'index')->name('ListaColegiaturas');
     Route::get('/VistaRegistrarColegiatura/{id}', 'create')->name('VistaRegistrarColegiatura');
     Route::post('/RegistrarColegiatura', 'store')->name('RegistrarColegiatura');
+    Route::get('/VistaImprimirRecibo/{id}', 'show')->name('VistaImprimirRecivo');
 });
 
 

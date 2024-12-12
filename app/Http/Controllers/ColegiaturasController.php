@@ -25,19 +25,26 @@ class ColegiaturasController extends Controller
      */
     public function index()
     {
+        //pagos que no se les aplico descuento
+        $Pagos = vTransacciones::leftJoin('VdescTransacciones', function ($join) {
+            $join->on('vTransacciones.idTransaccion', '=', 'VdescTransacciones.idTransaccion');
+        })
+            ->where('vTransacciones.TipoTransaccion', 'Pagos')
+            ->where('vTransacciones.NombreConcepto', 'Colegiatura')
+            ->whereNull('VdescTransacciones.idTransaccion')
+            ->select('vTransacciones.*')
+            ->get();
+        //pagos que se les aplico descuento
+        $PagosDesc = VdescTransacciones::where('TipoTransaccion', 'Pagos')
+            ->where('NombreConcepto', 'Colegiatura')
+            ->get();
         //
-        $Pagos = Vtransacciones::where('Tipo', 'Pagos')
-            ->where('Concepto', 'Colegiatura')
-            ->get();
-        $PagosDesc = VdescTransacciones::where('Tipo', 'Pagos')
-            ->where('Concepto', 'Colegiatura')
-            ->get();
-        //logica pendiente (pasar solo los pagos que no estan en pagosDesc)
+
         return view(
-            'director.CosultasColegiaturas',
+            'director.ConsultasColeg',
             [
-                'Pagos' => $Pagos,
-                'PagosDesc' => $PagosDesc,
+                'Colegiaturas' => $Pagos,
+                'ColegiaturaDesc' => $PagosDesc,
             ]
         );
     }
@@ -51,6 +58,8 @@ class ColegiaturasController extends Controller
     {
         // Obtener el alumno activo
         $Alumno = VAlumno::where('idAlumno', $id)->first();
+        //
+        $FechaIngreso = $Alumno->FechaIngreso;
 
         // Obtener los descuentos
         $Desc = Descuento::where('Para', 'Pagos')->get();
@@ -58,20 +67,22 @@ class ColegiaturasController extends Controller
         // Obtener el idPersona asociado al alumno
         $idPersona = $Alumno->idPersona;
 
-
+        //esto deveulve los peridos pendientes por pargar de un alumno
         $Periodo = DB::table('Periodos')
-            ->where('Periodos.Clave', 'like', 'C-%') // Filtra las claves que empiezan con 'C-'
+            ->where('Periodos.Clave', 'like', 'C-%')
             ->leftJoin('vTransacciones', function ($join) use ($idPersona) {
                 $join->on('Periodos.Clave', '=', 'vTransacciones.Clave')
                     ->where('vTransacciones.idPersona', '=', $idPersona);
             })
-            ->whereNull('vTransacciones.Clave') // Filtra los registros donde no haya coincidencias en vTransacciones
-            ->select('Periodos.*')  // Selecciona las columnas de la tabla Periodos
+            ->whereNull('vTransacciones.Clave')
+            ->where('Periodos.FechaInicio', '>', $FechaIngreso)
+            ->select('Periodos.*')
             ->get();
+
 
         // Pasar los datos a la vista
         return view(
-            'director.RegisColegiatura',
+            'dinamicas.RegisColegiatura',
             [
                 'Alumnos' => $Alumno,
                 'Periodos' => $Periodo,
@@ -204,6 +215,8 @@ class ColegiaturasController extends Controller
             //Confirmar transacción
 
             DB::commit();
+
+            //falta implementar Enviar un email de confirmacion
 
             return $Monto;
             //return back()->with('success', 'El pago se registró correctamente.');
