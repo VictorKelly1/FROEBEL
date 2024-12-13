@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\MailConfirmacion;
+//
 use App\Models\Concepto;
 use App\Models\DescTransaccion;
 use App\Models\Descuento;
@@ -79,6 +81,10 @@ class ColegiaturasController extends Controller
             ->select('Periodos.*')
             ->get();
 
+        $HistorialColegiaturas = VTransacciones::where('idPersona', $idPersona)
+            ->where('NombreConcepto', 'Colegiatura')  // Columna NombreConcepto es Colegiatura
+            ->where('TipoTransaccion', 'Pago')         // Columna TipoTransaccion es Pago
+            ->get();
 
         // Pasar los datos a la vista
         return view(
@@ -87,6 +93,7 @@ class ColegiaturasController extends Controller
                 'Alumnos' => $Alumno,
                 'Periodos' => $Periodo,
                 'Descuentos' => $Desc,
+                'Historial' => $HistorialColegiaturas,
             ]
         );
     }
@@ -127,10 +134,10 @@ class ColegiaturasController extends Controller
             $Colegiatura->idPersona = $idPersona;
 
             $Colegiatura->Monto = $request->input('Monto');
+
             $Colegiatura->CuentaRecibido = 'N/A';
 
-            //$Colegiatura->save();
-
+            $Colegiatura->save();
             // Si DescTransaccion tiene algún valor
             if ($request->input('idDescuento')) {
                 //
@@ -142,7 +149,6 @@ class ColegiaturasController extends Controller
                 $idColegiatura = $Colegiatura->idTransaccion;
                 $ColegiaturaDescuento->idTransaccion = $idColegiatura;
                 //
-
 
                 //calculo del nuevo monto
                 $Monto = $request->input('Monto');
@@ -158,7 +164,13 @@ class ColegiaturasController extends Controller
                     // Calcular descuento fijo
                     $Monto -= $CantidadDesc;
                 }
+                $ColegiaturaDescuento->save();
+                $Colegiatura->Monto = $Monto; //se actualiza el nuevo monto a la transaccion
+                //se gurada todo en su respectiva tabla
+
+                $Colegiatura->save();
             }
+
             // Mapeo de claves a rangos de meses
             $mesesPorClave = [
                 'EF' => ['01', '02'], // Enero - Febrero
@@ -166,6 +178,8 @@ class ColegiaturasController extends Controller
                 'MA' => ['03', '04'], // Marzo - Abril
                 'AM' => ['04', '05'], // Abril - Mayo
                 'MJ' => ['05', '06'],
+                'JJ' => ['06', '07'],
+                'JA' => ['07', '08'],
                 'AS' => ['08', '09'],
                 'SO' => ['09', '10'],
                 'ON' => ['10', '11'],
@@ -184,7 +198,7 @@ class ColegiaturasController extends Controller
                 ->value('Clave');
 
 
-            $claveMes = substr($Clave, 2, 2); // Por ejemplo, "MA" de "C-MA24"
+            $claveMes = substr($Clave, 2, 2);
             $claveYear = substr($Clave, -2); // Extrae los dos últimos caracteres
 
             // Validar si la clave existe en el mapeo, si el mes actual está en el rango, si el día está entre 1 y 5 y si el año es el actual
@@ -194,32 +208,31 @@ class ColegiaturasController extends Controller
                 $day >= 1 && $day <= 5 && // El día debe estar entre 1 y 5
                 $claveYear === $yearActual // El año de la clave debe coincidir con el año actual
             ) {
-
                 // Obtener el monto del descuento
                 $PagoTemprano = DB::table('Descuentos')
                     ->where('Nombre', 'Pago Temprano')
                     ->first()->Monto;
 
                 $Monto -= $PagoTemprano;
+                $Monto = max(0, $Monto);
+                //
+
+                $Colegiatura->Monto = $Monto; //se actualiza el nuevo monto a la transaccion
+                //se gurada todo en su respectiva tabla
+                $Colegiatura->save();
             }
 
-
-            $Monto = max(0, $Monto); // Asegura que no sea negativo
-
-            $Colegiatura->Monto = $Monto; //se actualiza el nuevo monto a la transaccion
-            //se gurada todo en su respectiva tabla
-            $Colegiatura->save();
-            $ColegiaturaDescuento->save();
-            //
-
             //Confirmar transacción
-
             DB::commit();
 
-            //falta implementar Enviar un email de confirmacion
+            //obtener el correo de la persona
+            $InfoMail = Vtransacciones::where('idTransaccion', $Colegiatura->idTransaccion)->get();
 
-            return $Monto;
-            //return back()->with('success', 'El pago se registró correctamente.');
+            //manda el procesos de mail a segundo plano
+            MailConfirmacion::dispatch($InfoMail);
+
+            return back()->with('success', 'El pago se registró correctamente, el monto a cobrar es.'
+                . $Colegiatura->Monto);
         } catch (\Exception $e) {
             // Revertir transacción si hay un error
             DB::rollBack();
@@ -237,25 +250,19 @@ class ColegiaturasController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(string $id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(Request $request, string $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(string $id)
     {
         //

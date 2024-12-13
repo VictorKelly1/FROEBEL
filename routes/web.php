@@ -18,6 +18,7 @@ use App\Http\Controllers\GruposMatController;
 use App\Http\Controllers\HorariosController;
 use App\Http\Controllers\MaterialesController;
 use App\Http\Controllers\MateriasController;
+use App\Http\Controllers\PagosController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TutoresController;
 use Illuminate\Support\Facades\Route;
@@ -203,13 +204,12 @@ Route::controller(ColegiaturasController::class)->group(function () {
     Route::get('/VistaImprimirRecibo/{id}', 'show')->name('VistaImprimirRecivo');
 });
 
-
-
-
-
-
-
-
+Route::controller(PagosController::class)->group(function () {
+    Route::get('/PagosDeAlumno', 'index')->name('ListaPagos');
+    Route::get('/VistaRegistrarPago', 'create')->name('VistaRegistrarPago');
+    Route::post('/RegistrarPago', 'store')->name('RegistrarPago');
+    Route::get('/VistaImprimirRecibo/{id}', 'show')->name('VistaImprimirRecivo');
+});
 
 
 
