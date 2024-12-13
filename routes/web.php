@@ -27,11 +27,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Actualizar sin recargar pagina 
-//Pagos corrientes de alumnos  
+//Actualizar sin recargar pagina   
 //Middlewares para las rutas 
 //Autenticaciones en las interfaces
-//cambios a conceptos y desc en controladores y vistas
+//pasarela de pagos
+//impresion de recivos, constancias, calificaciones
+//Nominas
 
 
 
@@ -210,6 +211,8 @@ Route::controller(PagosController::class)->group(function () {
     Route::post('/RegistrarPago', 'store')->name('RegistrarPago');
     Route::get('/VistaImprimirRecibo/{id}', 'show')->name('VistaImprimirRecivo');
 });
+
+//------------------
 
 
 

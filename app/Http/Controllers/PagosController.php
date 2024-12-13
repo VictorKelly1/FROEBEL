@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Jobs\MailConfirmacion;
-use App\Mail\PagoConfirmacion;
+//
 use App\Models\Concepto;
 use App\Models\DescTransaccion;
 use App\Models\Descuento;
@@ -26,16 +26,11 @@ class PagosController extends Controller
     public function index()
     {
         //pagos que no se les aplico descuento
-        $Pagos = vTransacciones::leftJoin('VdescTransacciones', function ($join) {
-            $join->on('vTransacciones.idTransaccion', '=', 'VdescTransacciones.idTransaccion');
-        })
-            ->where('vTransacciones.TipoTransaccion', 'Pagos')
+        $Pagos = VTransacciones::where('TipoTransaccion', 'Pago')
             ->where('TipoTransaccion', '!=', 'Colegiatura')
-            ->whereNull('VdescTransacciones.idTransaccion')
-            ->select('vTransacciones.*')
             ->get();
         //pagos que se les aplico descuento
-        $PagosDesc = VdescTransacciones::where('TipoTransaccion', 'Pagos')
+        $PagosDesc = VdescTransacciones::where('TipoTransaccion', 'Pago')
             ->get();
         //
 
@@ -54,7 +49,7 @@ class PagosController extends Controller
     public function create()
     {
         // Obtener el alumno activo
-        $Alumnos = VAlumno::All();
+        $Alumnos = VAlumno::where('Estado', 'Activo')->get();
 
         // Obtener los descuentos
         $Desc = Descuento::where('Para', 'Pagos')->get();
@@ -113,9 +108,6 @@ class PagosController extends Controller
 
             //si el valor de $request->input('CuentaRecibido') es null. Si lo es, asigna 'N/A'.
             $Pago->CuentaRecibido = $request->input('CuentaRecibido') ?? 'N/A'; //
-
-            $Pago->save();
-            $Pago->CuentaRecibido = 'N/A';
 
             $Pago->save();
             // Si DescTransaccion tiene algún valor

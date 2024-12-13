@@ -4,7 +4,7 @@
     @foreach ($InfoMail as $info)
 
         <head>
-            <title>Confirmación de pago de {{ $info->NombreConcepto }}</title>
+            <title>Confirmación de compra de {{ $info->NombreConcepto }}</title>
         </head>
 
         <body>

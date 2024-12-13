@@ -27,17 +27,12 @@ class ColegiaturasController extends Controller
      */
     public function index()
     {
-        //pagos que no se les aplico descuento
-        $Pagos = vTransacciones::leftJoin('VdescTransacciones', function ($join) {
-            $join->on('vTransacciones.idTransaccion', '=', 'VdescTransacciones.idTransaccion');
-        })
-            ->where('vTransacciones.TipoTransaccion', 'Pagos')
+        $Pagos = VTransacciones::where('TipoTransaccion', 'Pago')
+            ->where('vTransacciones.TipoTransaccion', 'Pago')
             ->where('vTransacciones.NombreConcepto', 'Colegiatura')
-            ->whereNull('VdescTransacciones.idTransaccion')
-            ->select('vTransacciones.*')
             ->get();
         //pagos que se les aplico descuento
-        $PagosDesc = VdescTransacciones::where('TipoTransaccion', 'Pagos')
+        $PagosDesc = VdescTransacciones::where('TipoTransaccion', 'Pago')
             ->where('NombreConcepto', 'Colegiatura')
             ->get();
         //
@@ -114,6 +109,7 @@ class ColegiaturasController extends Controller
         DB::beginTransaction();
 
         try {
+
             // Objeto Colegiatura
             $Colegiatura = new Transaccion();
 
@@ -135,7 +131,7 @@ class ColegiaturasController extends Controller
 
             $Colegiatura->Monto = $request->input('Monto');
 
-            $Colegiatura->CuentaRecibido = 'N/A';
+            $Colegiatura->CuentaRecibido = $request->input('CuentaRecibido') ?? 'N/A'; //
 
             $Colegiatura->save();
             // Si DescTransaccion tiene algún valor
@@ -234,6 +230,7 @@ class ColegiaturasController extends Controller
             return back()->with('success', 'El pago se registró correctamente, el monto a cobrar es.'
                 . $Colegiatura->Monto);
         } catch (\Exception $e) {
+            pcntl_alarm(0);
             // Revertir transacción si hay un error
             DB::rollBack();
 
