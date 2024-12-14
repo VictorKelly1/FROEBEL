@@ -49,6 +49,7 @@ class AlumnosRelacionesController extends Controller
 
             $AlumRel = new AlumnosRelacion();
 
+            $AlumRel->Tipo = $request->input('Tipo');
             $AlumRel->idAlumno = $request->input('idAlumno');
             $AlumRel->idTutor = $request->input('idTutor');
 

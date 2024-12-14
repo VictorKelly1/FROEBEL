@@ -230,7 +230,7 @@ class ColegiaturasController extends Controller
             return back()->with('success', 'El pago se registró correctamente, el monto a cobrar es.'
                 . $Colegiatura->Monto);
         } catch (\Exception $e) {
-            pcntl_alarm(0);
+
             // Revertir transacción si hay un error
             DB::rollBack();
 

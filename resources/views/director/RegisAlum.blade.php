@@ -1,7 +1,7 @@
 <x-director.layout>
 
     <div class=" flex items-center led2 posicionsregisalum">
-      
+
         <form class="" action="{{ route('RegistrarAlumno') }}" method="POST" enctype="multipart/form-data">
             @csrf
 

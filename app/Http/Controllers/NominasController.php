@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Vtransacciones;
 use Illuminate\Http\Request;
 
 class NominasController extends Controller
@@ -12,7 +13,17 @@ class NominasController extends Controller
      */
     public function index()
     {
-        //
+        $Nominas = Vtransacciones::where('TipoTransaccion', 'Nomina')
+            ->where('NombreConcepto', 'Nomina')
+            ->get();
+
+
+        return view(
+            'director.ConsultasNominas',
+            [
+                'Nominas' => $Nominas,
+            ]
+        );
     }
 
     /**

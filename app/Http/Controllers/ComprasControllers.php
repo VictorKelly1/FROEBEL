@@ -9,6 +9,7 @@ use App\Models\Periodo;
 use App\Models\VdescTransacciones;
 use App\Models\Vtransacciones;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ComprasControllers extends Controller
 {
@@ -60,11 +61,55 @@ class ComprasControllers extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created resource in storage. Froebelpass1
      */
     public function store(Request $request)
     {
-        //
+        //     $request->validate([
+        //         'MetodoPago' => 'required',
+        //         'Monto' => 'required',
+        //     ]);
+
+        //     DB::beginTransaction();
+
+        //     try {
+        //         // Objeto Pago
+        //         $Pago = new Transaccion();
+
+        //         $Pago->Cantidad = 1;
+        //         $Pago->Tipo = 'Pago';
+        //         $Pago->MetodoPago = $request->input('MetodoPago');
+
+        //         // Asignar idConcepto desde la tabla Conceptos donde coincide idConcepto elegido en front
+        //         $Pago->idConcepto = $request->input('idConcepto');
+
+        //         // Asignar idPeriodo desde la tabla Periodos donde coincide Clave elegida en front
+        //         $idPeriodo = Periodo::where('idPeriodo', $request->input('idPeriodo'))->first()->idPeriodo;
+        //         $Pago->idPeriodo = $idPeriodo;
+
+        //         // Asignar idPersona desde la tabla VAlumnos donde coincide la matrícula con la enviada desde front
+        //         $idPersona = VAlumno::where('Matricula', $request->input('idAlumno'))->first()->idPersona;
+        //         $Pago->idPersona = $idPersona;
+
+        //         $Pago->Monto = $request->input('Monto');
+
+        //         //si el valor de $request->input('CuentaRecibido') es null. Si lo es, asigna 'N/A'.
+        //         $Pago->CuentaRecibido = $request->input('CuentaRecibido') ?? 'N/A'; //
+
+        //         $Pago->save();
+        //         // Si DescTransaccion tiene algún valor
+
+        //         //Confirmar transacción
+        //         DB::commit();
+
+        //         return back()->with('success', 'El pago se registró correctamente, el monto a cobrar es.'
+        //             . $Pago->Monto);
+        //     } catch (\Exception $e) {
+        //         // Revertir transacción si hay un error
+        //         DB::rollBack();
+
+        //         return redirect()->back()->with('error', 'Error al registrar el pago: ' . $e->getMessage());
+        // }
     }
 
     /**

@@ -9,7 +9,6 @@ use App\Models\Concepto;
 use App\Models\DescTransaccion;
 use App\Models\Descuento;
 use App\Models\Periodo;
-use App\Models\Persona;
 use App\Models\Transaccion;
 use App\Models\VdescTransacciones;
 use App\Models\Vtransacciones;
@@ -47,8 +46,6 @@ class VentasControllers extends Controller
     public function create()
     {
         //
-        $Personas = Persona::All();
-        //
         $Conceptos = Concepto::where('Para', 'Ventas')->get();
         //
         $Periodos = Periodo::where('Tipo', '!=', 'Colegiatura')
@@ -62,7 +59,6 @@ class VentasControllers extends Controller
         return view(
             'dinamicas.RegisPago',
             [
-                'Personas' => $Personas,
                 'Periodos' => $Periodos,
                 'Conceptos' => $Conceptos,
                 'Descuentos' => $Desc,
@@ -98,7 +94,7 @@ class VentasControllers extends Controller
             $idPeriodo = Periodo::where('idPeriodo', $request->input('idPeriodo'))->first()->idPeriodo;
             $Venta->idPeriodo = $idPeriodo;
 
-            $Venta->idPersona = $request->input('idPersona');
+            $Venta->idPersona = ""; //id persona de sesion
 
             $Venta->Monto = $request->input('Monto') * $request->input('Cantidad');
 

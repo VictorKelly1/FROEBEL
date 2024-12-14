@@ -3,6 +3,10 @@
         <input type="text" id="searchInput" class="px-4 py-2 text-white rounded" placeholder="Buscar Alumno...">
     </div>
 
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+
     <div class="flex items-center justify-center bg-gray-900 p-2 posiciontablas borderAnimation overflow-x-hidden">
         <div class="overflow-x-auto w-full max-w-full">
             <table class="text-sm text-left text-white w-full table-auto">

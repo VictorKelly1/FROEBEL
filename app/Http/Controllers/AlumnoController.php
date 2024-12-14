@@ -95,7 +95,7 @@ class AlumnoController extends Controller
 
                 $Persona->Foto = $nombreArchivo;
             } else {
-                $Persona->Foto = 'default';
+                $Persona->Foto = null;
             }
 
             $Persona->save();
