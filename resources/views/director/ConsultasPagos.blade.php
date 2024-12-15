@@ -15,7 +15,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($Inscripciones as $Inscripcion)
+                    @foreach ($Pagos as $Inscripcion)
                         <tr class="hover:bg-gray-800 bg-transparent">
                             <td class="px-2 py-1 border-t border-purple-500 animate-border">
                                  {{ $Inscripcion->Nombre }}
@@ -40,7 +40,7 @@
         </div>
 
 
-     <div class="flex items-center justify-center bg-gray-900 p-2 posiciontablas borderAnimation">
+     <div class="flex items-center justify-center bg-gray-900 p-2 posiciontablasderecha borderAnimation">
         <div class="overflow-x-auto">
             <table class=" text-xs text-left text-white">
                 <thead>
@@ -58,7 +58,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($Inscripciones as $Inscripcion)
+                    @foreach ($PagosDesc as $Inscripcion)
                         <tr class="hover:bg-gray-800 bg-transparent">
                             <td class="px-2 py-1 border-t border-purple-500 animate-border">
                                  {{ $Inscripcion->Nombre }}

@@ -11,7 +11,7 @@
                         <th class="px-2 py-1 border-b border-purple-500 animate-border">Metodo de Pago</th>
                         <th class="px-2 py-1 border-b border-purple-500 animate-border">Cuenta Recibido</th>
                         <th class="px-2 py-1 border-b border-purple-500 animate-border">Monto Total</th>
-        
+                        <th class="px-2 py-1 border-b border-purple-500 animate-border">Ver mas</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,7 +32,12 @@
                             <td class="px-2 py-1 border-t border-purple-500 animate-border">{{ $Colegiatura->CuentaRecibido }}</td>
                             <td class="px-2 py-1 border-t border-purple-500 animate-border">{{ $Colegiatura->Monto }}
                             </td>
-                           
+                            <td class="px-4 py-2 border-t border-purple-500 animate-border text-center">
+                            <form action="" method="GET">
+                                @csrf
+                                <button class="bg-orange-600 text-white px-4 py-3 rounded-lg transition-all duration-500 hover:bg-purple-600 hover:-translate-y-2 hover:shadow-2xl">Imprimir</button>
+                            </form>
+                        </td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -40,7 +45,7 @@
         </div>
 
 
-     <div class="flex items-center justify-center bg-gray-900 p-2 posiciontablas borderAnimation">
+     <div class="flex items-center justify-center bg-gray-900 p-2 posiciontablasderecha borderAnimation">
         <div class="overflow-x-auto">
             <table class=" text-xs text-left text-white">
                 <thead>
@@ -54,7 +59,7 @@
                         <th class="px-2 py-1 border-b border-purple-500 animate-border">Nombre Descuento</th>
                         <th class="px-2 py-1 border-b border-purple-500 animate-border">Monto Descuento</th>
                         <th class="px-2 py-1 border-b border-purple-500 animate-border">Monto Total</th>
-        
+                        <th class="px-2 py-1 border-b border-purple-500 animate-border">Ver mas</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -80,7 +85,12 @@
                             </td>
                             <td class="px-2 py-1 border-t border-purple-500 animate-border">{{ $Colegiatura->Monto }}
                             </td>
-                           
+                            <td class="px-4 py-2 border-t border-purple-500 animate-border text-center">
+                            <form action="" method="GET">
+                                @csrf
+                                <button class="bg-orange-600 text-white px-4 py-3 rounded-lg transition-all duration-500 hover:bg-purple-600 hover:-translate-y-2 hover:shadow-2xl">Imprimir</button>
+                            </form>
+                        </td>
                         </tr>
                     @endforeach
                 </tbody>

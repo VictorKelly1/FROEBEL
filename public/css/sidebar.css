@@ -26,6 +26,12 @@ left: -762px; /* lado */
         top: 35%;    /* alto */
         left: 20%; /* lado */
         }
+        .posiciontablasderecha{
+
+            position: absolute;
+            top: 15%;    /* alto */
+            left: 120%; /* lado */
+            }
     .posicionseditalum{
 
         position: absolute;
