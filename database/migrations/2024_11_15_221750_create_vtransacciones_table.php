@@ -31,6 +31,7 @@ return new class extends Migration
                 c.Nombre AS NombreConcepto,
                 t.MetodoPago,
                 t.Monto,
+                t.created_at,
                 t.CuentaRecibido
             FROM 
                 Transacciones t

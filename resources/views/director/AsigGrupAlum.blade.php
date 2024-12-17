@@ -62,7 +62,7 @@
                             <td class="px-2 py-1 border-t border-purple-500 animate-border text-center">
                                 <form action="/GruposAlumnos/{{ $GruposAlum->idGrupoAlumno }}" method="GET">
                                     <button
-                                        class="bg-purple-600 text-white px-2 py-1 rounded hover:bg-purple-700">Elimniar</button>
+                                        class="bg-purple-600 text-white px-2 py-1 rounded hover:bg-purple-700">Eliminar</button>
                                 </form>
 
                         </tr>

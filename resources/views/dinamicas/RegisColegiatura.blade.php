@@ -47,7 +47,7 @@
 
             <div class="form-group posicion2">
                 <label for="Descuento">Descuento:</label>
-                <select name="idDescuento" id="Descuento" class="form-control" required>
+                <select name="idDescuento" id="Descuento" class="form-control">
                     <option value="">Seleccione</option>
                     @foreach ($Descuentos as $Descuento)
                         <option value="{{ $Descuento->idDescuento }}">

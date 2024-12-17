@@ -2,7 +2,7 @@
 
     <div class=" flex items-center led2 posicionsregisalum">
 
-        <form class="" action="{{ route('RegistrarPagos') }}" method="POST" enctype="multipart/form-data">
+        <form class="" action="{{ route('RegistrarPago') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <!-- Datos -->
             <h3>Datos</h3>

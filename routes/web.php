@@ -3,10 +3,13 @@
 use App\Http\Controllers\AdministradorController;
 use App\Http\Controllers\AlumnoController;
 use App\Http\Controllers\AlumnosRelacionesController;
-use App\Http\Controllers\Api\pruebasController;
+use App\Http\Controllers\AulasController;
 use App\Http\Controllers\CalificacionesController;
 use App\Http\Controllers\ColegiaturasController;
+use App\Http\Controllers\ComprasControllers;
+use App\Http\Controllers\ComunicadosController;
 use App\Http\Controllers\ConceptosController;
+use App\Http\Controllers\ContactosController;
 use App\Http\Controllers\CoordinadoresController;
 use App\Http\Controllers\DescuentosController;
 use App\Http\Controllers\DocenteController;
@@ -16,23 +19,36 @@ use App\Http\Controllers\GruposController;
 use App\Http\Controllers\GruposDocenteController;
 use App\Http\Controllers\GruposMatController;
 use App\Http\Controllers\HorariosController;
+use App\Http\Controllers\InasistenciasController;
 use App\Http\Controllers\MaterialesController;
 use App\Http\Controllers\MateriasController;
+use App\Http\Controllers\NominasController;
+use App\Http\Controllers\PagosController;
+use App\Http\Controllers\PlaneacionesController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RetardosController;
 use App\Http\Controllers\TutoresController;
+use App\Http\Controllers\VentasControllers;
+use App\Http\Controllers\VestimentaController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-//Actualizar sin recargar pagina 
-//Pagos corrientes de alumnos  
+//registrar nominas, compras, calificaciones y eventos 
+
+//Actualizar sin recargar pagina   
 //Middlewares para las rutas 
 //Autenticaciones en las interfaces
-//cambios a conceptos y desc en controladores y vistas
+//pasarela de pagos
+//impresion de recivos, constancias, calificaciones
 
-
+//patrones de diseño
+//patrones de resiliencia
+//procesos en segundo plano
+//envio de emails
+//Integracion de APIs
 
 
 
@@ -187,6 +203,15 @@ Route::controller(HorariosController::class)->group(function () {
     Route::get('/Horario/{H}', 'destroy')->name('EliminarHorario');
 });
 
+//Rutas con los controladores de horarios
+Route::controller(AulasController::class)->group(function () {
+    Route::get('/Aulas', 'index')->name('ListaAulas');
+    Route::get('/VistaRegistrarAula', 'create')->name('VistaRegistrarAula');
+    Route::post('/RegistrarAula', 'store')->name('RegistrarAula');
+    Route::get('/VistaEditarAula/{id}', 'edit')->name('VistaEditarAula');
+    Route::post('/EditarAula', 'update')->name('EditarAula');
+});
+
 //------------------------------------------------------------------------------------------------------------
 
 //Rutas con los controladores de calificaciones
@@ -200,11 +225,73 @@ Route::controller(ColegiaturasController::class)->group(function () {
     Route::get('/Colegiaturas', 'index')->name('ListaColegiaturas');
     Route::get('/VistaRegistrarColegiatura/{id}', 'create')->name('VistaRegistrarColegiatura');
     Route::post('/RegistrarColegiatura', 'store')->name('RegistrarColegiatura');
-    Route::get('/VistaImprimirRecibo/{id}', 'show')->name('VistaImprimirRecivo');
+    Route::get('/ColegiaturaImprimirRecibo/{id}', 'show')->name('ColegiaturaImprimirRecibo');
 });
 
+Route::controller(PagosController::class)->group(function () {
+    Route::get('/PagosDeAlumno', 'index')->name('ListaPagos');
+    Route::get('/VistaRegistrarPago', 'create')->name('VistaRegistrarPago');
+    Route::post('/RegistrarPago', 'store')->name('RegistrarPago');
+    Route::get('/PagoImprimirRecibo/{id}', 'show')->name('PagoImprimirRecibo');
+});
 
+//----------
 
+Route::controller(VentasControllers::class)->group(function () {
+    Route::get('/Ventas', 'index')->name('ListaVentas');
+    Route::get('/VistaRegistrarVenta', 'create')->name('VistaRegistrarVenta');
+    Route::post('/RegistrarVenta', 'store')->name('RegistrarVenta');
+    Route::get('/VentaImprimirRecibo/{id}', 'show')->name('VentaImprimirRecibo');
+});
+
+//----------
+
+Route::controller(ComprasControllers::class)->group(function () {
+    Route::get('/Compras', 'index')->name('ListaCompras');
+    Route::get('/VistaRegistrarCompra', 'create')->name('VistaRegistrarCompra');
+    Route::post('/RegistrarCompra', 'store')->name('RegistrarCompra');
+    Route::get('/CompraImprimirRecibo/{id}', 'show')->name('CompraImprimirRecibo');
+});
+
+//----------
+
+Route::controller(NominasController::class)->group(function () {
+    Route::get('/Nominas', 'index')->name('ListaNominas');
+});
+
+//------------------------------------------------------------------------------------------------------------
+
+Route::controller(ContactosController::class)->group(function () {
+    Route::get('/Contactos', 'index')->name('ListaContactos');
+    Route::get('/RegistrarAsignarContacto', 'index')->name('ListaContactos');
+});
+
+Route::controller(ComunicadosController::class)->group(function () {
+    Route::get('/Comunicados', 'index')->name('ListaComunicados');
+    Route::get('/Comunicados/{IDs}', 'EnviarComunicado')->name('ListaComunicados');
+});
+
+//----------
+
+Route::controller(InasistenciasController::class)->group(function () {
+    Route::get('/Inasistencias', 'index')->name('ListaInasistencias');
+});
+
+Route::controller(RetardosController::class)->group(function () {
+    Route::get('/Retardos', 'index')->name('ListaRetardos');
+});
+
+Route::controller(RetardosController::class)->group(function () {
+    Route::get('/Retardos', 'index')->name('ListaRetardos');
+});
+
+Route::controller(VestimentaController::class)->group(function () {
+    Route::get('/Vestimentas', 'index')->name('ListaVestimentas');
+});
+
+Route::controller(PlaneacionesController::class)->group(function () {
+    Route::get('/Planeaciones', 'index')->name('ListaPlaneaciones');
+});
 
 
 

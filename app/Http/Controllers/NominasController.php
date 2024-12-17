@@ -3,37 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\VdescTransacciones;
 use App\Models\Vtransacciones;
 use Illuminate\Http\Request;
 
-class InscripcionesController extends Controller
+class NominasController extends Controller
 {
     /**
-
+     * Display a listing of the resource.
      */
     public function index()
     {
-        //pagos que no se les aplico descuento
-        $Pagos = vTransacciones::leftJoin('VdescTransacciones', function ($join) {
-            $join->on('vTransacciones.idTransaccion', '=', 'VdescTransacciones.idTransaccion');
-        })
-            ->where('vTransacciones.TipoTransaccion', 'Pagos')
-            ->where('vTransacciones.NombreConcepto', 'Inscripcion')
-            ->whereNull('VdescTransacciones.idTransaccion')
-            ->select('vTransacciones.*')
+        $Nominas = Vtransacciones::where('TipoTransaccion', 'Nomina')
+            ->where('NombreConcepto', 'Nomina')
             ->get();
-        //pagos que se les aplico descuento
-        $PagosDesc = VdescTransacciones::where('TipoTransaccion', 'Pagos')
-            ->where('NombreConcepto', 'Inscripcion')
-            ->get();
-        //
+
 
         return view(
-            'director.ConsultasColeg',
+            'director.ConsultasNominas',
             [
-                'Inscripciones' => $Pagos,
-                'InscripcionDesc' => $PagosDesc,
+                'Nominas' => $Nominas,
             ]
         );
     }

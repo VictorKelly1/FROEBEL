@@ -1,7 +1,7 @@
 <x-director.layout>
 
 
-    <form class="" action="{{ route('AsignarTutoresAlum') }}" method="POST" enctype="multipart/form-data">
+    <form class="" action="{{ route('AsignarContactoAlum') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
 
@@ -18,21 +18,23 @@
         </div>
 
         <div class="form-group posicion2">
-            <label for="Tutor">Tutor:</label>
-            <select name="idTutor" id="Tutor" class="form-control" required>
+            <label for="Contacto">Contacto:</label>
+            <select name="idContacto" id="Contacto" class="form-control" required>
                 <option value="">Seleccione</option>
-                @foreach ($Tutores as $Tutor)
-                    <option value="{{ $Tutor->idTutor }}">{{ $Tutor->Nombre }} {{ $Tutor->ApellidoPaterno }}
-                        {{ $Tutor->ApellidoMaterno }}</option>
+                @foreach ($Contactos as $Contacto)
+                    <option value="{{ $Contactos->idContacto }}">{{ $Contacto->Nombre }} {{ $Contacto->ApellidoPaterno }}
+                        {{ $Contacto->ApellidoMaterno }}</option>
                 @endforeach
 
             </select>
         </div>
+         <!-- Cambiar regis -->
 
-        <div class="form-group">
-                <label for="Tipo">Parentesco:</label>
-                <input type="text" name="Tipo" id="Tipo" class="form-control" required>
-            </div>
+
+
+
+
+
         <!-- Botón de envío -->
         <button type="submit" class="btn btn-primary posicion2">Asignar</button>
 
@@ -46,27 +48,24 @@
                         <th class="px-2 py-1 border-b border-purple-500 animate-border">Matrícula</th>
                         <th class="px-2 py-1 border-b border-purple-500 animate-border">Nombre del Alumno</th>
                         <th class="px-2 py-1 border-b border-purple-500 animate-border">Nombre del Tutor</th>
-                        <th class="px-2 py-1 border-b border-purple-500 animate-border">Parentesco</th>
                         <th class="px-2 py-1 border-b border-purple-500 animate-border">Desasignacion</th>
                     </tr>
                 </thead>
                 <tbody id="tableBody">
-                    @foreach ($AlumTutor as $AlumnoTutor)
+                    @foreach ($AlumContacto as $AlumnoContacto)
                         <tr class="hover:bg-gray-800 bg-transparent">
 
                             <td class="px-2 py-1 border-t border-purple-500 animate-border">
-                                {{ $AlumnoTutor->Matricula }}</td>
+                                {{ $AlumnoContacto->Matricula }}</td>
                             <td class="px-2 py-1 border-t border-purple-500 animate-border">
-                                {{ $AlumnoTutor->NombreAlum }}
-                                {{ $AlumnoTutor->ApellidoPatA }} {{ $AlumnoTutor->ApellidoMatA }}</td>
+                                {{ $AlumnoContacto->NombreAlum }}
+                                {{ $AlumnoContacto->ApellidoPatA }} {{ $AlumnoContacto->ApellidoMatA }}</td>
                             <td class="px-2 py-1 border-t border-purple-500 animate-border">
-                                {{ $AlumnoTutor->NombreTutor }} {{ $AlumnoTutor->ApellidoPaternoT }}
-                                {{ $AlumnoTutor->ApellidoMatT }}</td>
-                                <td class="px-2 py-1 border-t border-purple-500 animate-border">
-                                {{ $AlumnoTutor->Tipo }} </td>
+                                {{ $AlumnoContacto->NombreContacto }} {{ $AlumnoContacto->ApellidoPaternoC }}
+                                {{ $AlumnoContacto->ApellidoMatC }}</td>
 
                             <td class="px-2 py-1 border-t border-purple-500 animate-border text-center">
-                                <form action="/AlumTutor/{{ $AlumnoTutor->idAlumnoTutor }}" method="GET">
+                                <form action="/AlumContacto/{{ $AlumnoContacto->idAlumnoContacto }}" method="GET">
                                     <button
                                         class="bg-purple-600 text-white px-2 py-1 rounded hover:bg-purple-700">Desasignar</button>
                                 </form>

@@ -3,62 +3,68 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Mail\VentaConfirmacion;
+use App\Jobs\MailConfirmacion;
 //
 use App\Models\Concepto;
 use App\Models\DescTransaccion;
 use App\Models\Descuento;
 use App\Models\Periodo;
 use App\Models\Transaccion;
+use App\Models\VAlumno;
 use App\Models\VdescTransacciones;
 use App\Models\Vtransacciones;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
-class VentasControllers extends Controller
+class PagosController extends Controller
 {
     /**
-      vista con las ventas realizadas para la interfaz ConsultasVentas
+        regresa la vista consultas pagos con los datos de las transacciones que son de tipo pago 
+        excepto las de concepto colegiatura (ya se ven en una vista particular)
      */
     public function index()
     {
-        //
-        //Ventas que no se les aplico descuento
-        $Ventas = VTransacciones::where('TipoTransaccion', 'Venta')
+        //pagos que no se les aplico descuento
+        $Pagos = VTransacciones::where('TipoTransaccion', 'Pago')
+            ->where('TipoTransaccion', '!=', 'Colegiatura')
             ->get();
         //pagos que se les aplico descuento
-        $VentasDesc = VdescTransacciones::where('TipoTransaccion', 'Venta')
+        $PagosDesc = VdescTransacciones::where('TipoTransaccion', 'Pago')
             ->get();
         //
 
         return view(
-            'director.ConsultasVentas',
+            'director.ConsultasPagos',
             [
-                'Ventas' => $Ventas,
-                'VentasDesc' => $VentasDesc,
+                'Pagos' => $Pagos,
+                'PagosDesc' => $PagosDesc,
             ]
         );
     }
 
     /**
-     
+     regresa la vista para registrar un pago con todos los datos nesesarios
      */
     public function create()
     {
-        //
-        $Conceptos = Concepto::where('Para', 'Ventas')->get();
-        //
-        $Periodos = Periodo::where('Tipo', '!=', 'Colegiatura')
-            ->where('Tipo', '!=', 'Inscripción')
-            ->where('Tipo', '!=', 'Verano')
-            ->where('Tipo', '!=', 'Extraescolar')
-            ->get();
-        //
-        $Desc = Descuento::where('Para', 'Ventas')->get();
-        //
+        // Obtener el alumno activo
+        $Alumnos = VAlumno::where('Estado', 'Activo')->get();
+
+        // Obtener los descuentos
+        $Desc = Descuento::where('Para', 'Pagos')->get();
+
+        $Conceptos = Concepto::where('Para', 'Pagos')->get();
+
+        //esto deveulve los peridos pendientes por pargar de un alumno
+        $Periodos = Periodo::where('Tipo', '!=', 'Colegiatura')->get();
+
+
+        // Pasar los datos a la vista
         return view(
             'dinamicas.RegisPago',
             [
+                'Alumnos' => $Alumnos,
                 'Periodos' => $Periodos,
                 'Conceptos' => $Conceptos,
                 'Descuentos' => $Desc,
@@ -67,57 +73,59 @@ class VentasControllers extends Controller
     }
 
     /**
-        Guarda la transaccion de tipo venta y envia un email de confirmacion
+     * Store a newly created resource in storage.
+
      */
     public function store(Request $request)
     {
         $request->validate([
             'MetodoPago' => 'required',
             'Monto' => 'required',
-            'Cantidad' => 'required',
         ]);
 
         DB::beginTransaction();
 
         try {
-            // Objeto Venta
-            $Venta = new Transaccion();
+            // Objeto Pago
+            $Pago = new Transaccion();
 
-            $Venta->Cantidad = $request->input('Cantidad');
-            $Venta->Tipo = 'Venta';
-            $Venta->MetodoPago = $request->input('MetodoPago');
+            $Pago->Cantidad = 1;
+            $Pago->Tipo = 'Pago';
+            $Pago->MetodoPago = $request->input('MetodoPago');
 
             // Asignar idConcepto desde la tabla Conceptos donde coincide idConcepto elegido en front
-            $Venta->idConcepto = $request->input('idConcepto');
+            $Pago->idConcepto = $request->input('idConcepto');
 
             // Asignar idPeriodo desde la tabla Periodos donde coincide Clave elegida en front
             $idPeriodo = Periodo::where('idPeriodo', $request->input('idPeriodo'))->first()->idPeriodo;
-            $Venta->idPeriodo = $idPeriodo;
+            $Pago->idPeriodo = $idPeriodo;
 
-            $Venta->idPersona = ""; //id persona de sesion
+            // Asignar idPersona desde la tabla VAlumnos donde coincide la matrícula con la enviada desde front
+            $idPersona = VAlumno::where('Matricula', $request->input('idAlumno'))->first()->idPersona;
+            $Pago->idPersona = $idPersona;
 
-            $Venta->Monto = $request->input('Monto') * $request->input('Cantidad');
+            $Pago->Monto = $request->input('Monto');
 
             //si el valor de $request->input('CuentaRecibido') es null. Si lo es, asigna 'N/A'.
-            $Venta->CuentaRecibido = $request->input('CuentaRecibido') ?? 'N/A'; //
+            $Pago->CuentaRecibido = $request->input('CuentaRecibido') ?? 'N/A'; //
 
-            $Venta->save();
+            $Pago->save();
             // Si DescTransaccion tiene algún valor
             if ($request->input('idDescuento')) {
                 //
 
-                $VentaDescuento = new DescTransaccion();
+                $PagoDescuento = new DescTransaccion();
 
-                $VentaDescuento->idDescuento = $request->input('idDescuento');
+                $PagoDescuento->idDescuento = $request->input('idDescuento');
                 //id de la transaccion recien registrada
-                $idVenta = $Venta->idTransaccion;
-                $VentaDescuento->idTransaccion = $idVenta;
+                $idPago = $Pago->idTransaccion;
+                $PagoDescuento->idTransaccion = $idPago;
                 //
 
                 //calculo del nuevo monto
                 $Monto = $request->input('Monto');
                 //
-                $Descuento = DB::table('Descuentos')->where('idDescuento', $VentaDescuento->idDescuento)->first();
+                $Descuento = DB::table('Descuentos')->where('idDescuento', $PagoDescuento->idDescuento)->first();
                 $TipoDesc = $Descuento->Tipo;
                 $CantidadDesc = $Descuento->Monto;
 
@@ -128,24 +136,26 @@ class VentasControllers extends Controller
                     // Calcular descuento fijo
                     $Monto -= $CantidadDesc;
                 }
-                $VentaDescuento->save();
-                $Venta->Monto = $Monto; //se actualiza el nuevo monto a la transaccion
+                $PagoDescuento->save();
+                $Pago->Monto = $Monto; //se actualiza el nuevo monto a la transaccion
                 //se gurada todo en su respectiva tabla
 
-                $Venta->save();
+                $Pago->save();
             }
 
             //Confirmar transacción
 
             DB::commit();
 
-            $InfoMail = Vtransacciones::where('idTransaccion', $Venta->idTransaccion)->get();
+            $InfoMail = Vtransacciones::where('idTransaccion', $Pago->idTransaccion)->get();
             //envia un email de confirmacion
             //manda el procesos de mail a segundo plano
-            VentaConfirmacion::dispatch($InfoMail);
+            MailConfirmacion::dispatch($InfoMail);
+
+            //falta implementar Enviar un email de confirmacion
 
             return back()->with('success', 'El pago se registró correctamente, el monto a cobrar es.'
-                . $Venta->Monto);
+                . $Pago->Monto);
         } catch (\Exception $e) {
             // Revertir transacción si hay un error
             DB::rollBack();
