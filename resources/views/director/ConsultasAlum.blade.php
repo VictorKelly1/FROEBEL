@@ -80,7 +80,7 @@
                                 <form action="/VistaComunicadoPersonal/{{ $alumno->idAlumno }}" method="GET">
                                     @csrf
                                     <button
-                                        class="bg-blue-600 text-white px-4 py-3 rounded-lg transition-all duration-500 hover:bg-purple-600 hover:-translate-y-2 hover:shadow-2xl">
+                                        class="bg-blue-900 text-white px-4 py-3 rounded-lg transition-all duration-500 hover:bg-purple-600 hover:-translate-y-2 hover:shadow-2xl">
                                         Comunicado
                                     </button>
 
