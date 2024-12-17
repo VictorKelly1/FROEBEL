@@ -51,7 +51,7 @@ class ComprasControllers extends Controller
 
         // Pasar los datos a la vista
         return view(
-            'dinamicas.RegisPago',
+            'director.RegisCompras',
             [
                 'Periodos' => $Periodos,
                 'Conceptos' => $Conceptos,

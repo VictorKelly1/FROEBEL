@@ -11,9 +11,10 @@
                 <label for="Alumno">Alumno:</label>
                 <select name="idAlumno" id="Alumno" class="form-control" required>
                     <option value="">Seleccione</option>
-                    <option value="{{ $Alumnos->idAlumno }}">{{ $Alumnos->Matricula }} - {{ $Alumnos->Nombre }}
-                        {{ $Alumnos->ApellidoPaterno }} {{ $Alumnos->ApellidoMaterno }}</option>
-
+                    @foreach ($Alumnos as $Alumno)
+                        <option value="{{ $Alumno->idAlumno }}">{{ $Alumno->Matricula }} - {{ $Alumno->Nombre }}
+                            {{ $Alumno->ApellidoPaterno }} {{ $Alumno->ApellidoMaterno }}</option>
+                    @endforeach
 
 
                 </select>
@@ -36,7 +37,7 @@
                     @foreach ($Conceptos as $Concepto)
                         <option value="{{ $Concepto->idConcepto }}">
                             {{ $Concepto->Nombre }}
-                            
+
                         </option>
                     @endforeach
 
@@ -51,8 +52,8 @@
                     @foreach ($Periodos as $Periodo)
                         <option value="{{ $Periodo->idPeriodo }}">
                             {{ $Periodo->Clave }}
-                             {{ $Periodo->FechaInicio }}
-                             {{ $Periodo->FechaFin }}
+                            {{ $Periodo->FechaInicio }}
+                            {{ $Periodo->FechaFin }}
                         </option>
                     @endforeach
 
@@ -67,7 +68,7 @@
 
             <div class="form-group posicion2">
                 <label for="Descuento">Descuento:</label>
-                <select name="idDescuento" id="Descuento" class="form-control" required>
+                <select name="idDescuento" id="Descuento" class="form-control">
                     <option value="">Seleccione</option>
                     @foreach ($Descuentos as $Descuento)
                         <option value="{{ $Descuento->idDescuento }}">

@@ -4,11 +4,13 @@
     @foreach ($InfoMail as $info)
 
         <head>
-            <title>Confirmación de pago de {{ $info->NombreConcepto }}</title>
+            <title>Confirmación de pago</title>
         </head>
 
         <body>
-            <h1>Detalles de la Transacción</h1>
+            <h1>Confirmación de pago de {{ $info->NombreConcepto }}</h1>
+
+            <h2>Detalles de la Transacción</h2>
 
             <p>NO. Recibo: {{ $info->idTransaccion }}</p>
             <p>Monto Pagado: {{ $info->Monto }} en {{ $info->MetodoPago }}</p>

@@ -20,7 +20,7 @@ class AdministradorController extends Controller
         Se obtiene una lista con todos los administradores activos
         */
         $Administradores = VAdministrador::where('Estado', 'Activo')->get();
-        return view('director.ConsultasAlum', ['Administrador' => $Administradores]);
+        return view('director.ConsultasAdmin', ['Administradores' => $Administradores]);
     }
 
 

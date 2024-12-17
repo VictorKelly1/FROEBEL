@@ -24,7 +24,7 @@ class ConceptosController extends Controller
     */
     public function create()
     {
-        return view('director.RegisConcep');
+        return view('director.RegisConceptos');
     }
 
     /*Almacena un concepto */

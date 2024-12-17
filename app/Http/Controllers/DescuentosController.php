@@ -23,7 +23,7 @@ class DescuentosController extends Controller
      */
     public function create()
     {
-        return view('director.RegisDesc');
+        return view('director.RegisDescuentos');
     }
 
     /**

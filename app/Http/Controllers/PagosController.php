@@ -27,7 +27,7 @@ class PagosController extends Controller
     {
         //pagos que no se les aplico descuento
         $Pagos = VTransacciones::where('TipoTransaccion', 'Pago')
-            ->where('TipoTransaccion', '!=', 'Colegiatura')
+            ->where('NombreConcepto', '!=', 'Colegiatura')
             ->get();
         //pagos que se les aplico descuento
         $PagosDesc = VdescTransacciones::where('TipoTransaccion', 'Pago')
@@ -54,15 +54,21 @@ class PagosController extends Controller
         // Obtener los descuentos
         $Desc = Descuento::where('Para', 'Pagos')->get();
 
-        $Conceptos = Concepto::where('Para', 'Pagos')->get();
+        $Conceptos = Concepto::where('Para', 'Pagos')
+            ->where('Nombre', '!=', 'Colegiatura')
+            ->get();
 
         //esto deveulve los peridos pendientes por pargar de un alumno
-        $Periodos = Periodo::where('Tipo', '!=', 'Colegiatura')->get();
+        $Periodos = Periodo::where('Tipo', '!=', 'Colegiatura')
+            ->where('Tipo', '!=', 'Regular')
+            ->where('Tipo', '!=', 'Extraescolar')
+            ->where('Tipo', '!=', 'Verano')
+            ->get();
 
 
         // Pasar los datos a la vista
         return view(
-            'dinamicas.RegisPago',
+            'director.RegisPago',
             [
                 'Alumnos' => $Alumnos,
                 'Periodos' => $Periodos,
@@ -101,7 +107,7 @@ class PagosController extends Controller
             $Pago->idPeriodo = $idPeriodo;
 
             // Asignar idPersona desde la tabla VAlumnos donde coincide la matrícula con la enviada desde front
-            $idPersona = VAlumno::where('Matricula', $request->input('idAlumno'))->first()->idPersona;
+            $idPersona = VAlumno::where('idAlumno', $request->input('idAlumno'))->first()->idPersona;
             $Pago->idPersona = $idPersona;
 
             $Pago->Monto = $request->input('Monto');
@@ -159,7 +165,7 @@ class PagosController extends Controller
         } catch (\Exception $e) {
             // Revertir transacción si hay un error
             DB::rollBack();
-
+            return 'error';
             return redirect()->back()->with('error', 'Error al registrar el pago: ' . $e->getMessage());
         }
     }

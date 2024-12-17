@@ -14,6 +14,6 @@ class VestimentaController extends Controller
     public function index()
     {
         $Vestimentas = Vvestimenta::All();
-        return view('director.ConsultasInasist', ['Vestimentas' => $Vestimentas]);
+        return view('director.ConsultasVestim', ['Vestimentas' => $Vestimentas]);
     }
 }

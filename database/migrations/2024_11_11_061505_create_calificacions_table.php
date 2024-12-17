@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id('idCalificacion');
             $table->unsignedBigInteger('idAlumno'); // Relación con la tabla Alumnos
             $table->unsignedBigInteger('idGruposMaterias'); // Relación con la tabla GruposMaterias
-            $table->integer('parcial1')->nullable(); // Calificación para el parcial 
-            $table->integer('parcial2')->nullable();
-            $table->integer('parcial3')->nullable();
-            $table->integer('parcial4')->nullable();
-            $table->integer('parcial5')->nullable();
-            $table->integer('parcial6')->nullable();
+            $table->String('parcial1')->nullable(); // Calificación para el parcial 
+            $table->String('parcial2')->nullable();
+            $table->String('parcial3')->nullable();
+            $table->String('parcial4')->nullable();
+            $table->String('parcial5')->nullable();
+            $table->String('parcial6')->nullable();
             $table->timestamps();
 
             // Llave foráneas

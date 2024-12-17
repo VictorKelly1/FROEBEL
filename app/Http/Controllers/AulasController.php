@@ -51,9 +51,9 @@ class AulasController extends Controller
 
             $Aula->Nombre = $request->input('Nombre');
             $Aula->Capacidad = $request->input('Capacidad');
-            $Aula->Nombre = $request->input('Edificio');
-            $Aula->Nombre = $request->input('Piso');
-            $Aula->Nombre = $request->input('Tipo');
+            $Aula->Edificio = $request->input('Edificio');
+            $Aula->Piso = $request->input('Piso');
+            $Aula->Tipo = $request->input('Tipo');
 
             $Aula->save();
 
@@ -64,7 +64,7 @@ class AulasController extends Controller
         } catch (\Exception $e) {
             // Revertir transacción si hay un error
             DB::rollBack();
-
+            return 'error';
             return redirect()->back()->with('error', 'Error al registrar el Aula: ' . $e->getMessage());
         }
     }
@@ -100,15 +100,15 @@ class AulasController extends Controller
 
         //Validacion del request -Existen
         $request->validate([
-            'Nombre' => 'required|string',
+            'Nombre' => 'required',
             'Capacidad' => 'required',
-            'Edificio' => 'required|string',
-            'Piso' => 'required|string',
-            'Tipo' => 'required|string',
+            'Edificio' => 'required',
+            'Piso' => 'required',
+            'Tipo' => 'required',
         ]);
 
         DB::beginTransaction();
-
+        return 'Aqui';
         try {
 
             //
@@ -129,7 +129,7 @@ class AulasController extends Controller
         } catch (\Exception $e) {
             // Revertir transacción si hay un error
             DB::rollBack();
-
+            return 'error';
             return redirect()->back()->with('error', 'Error al actualizar el Aula: ' . $e->getMessage());
         }
     }
