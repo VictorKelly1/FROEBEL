@@ -269,6 +269,9 @@ Route::controller(ContactosController::class)->group(function () {
 Route::controller(ComunicadosController::class)->group(function () {
     Route::get('/Comunicados', 'index')->name('ListaComunicados');
     Route::get('/Comunicados/{IDs}', 'EnviarComunicado')->name('ListaComunicados');
+
+    Route::get('/VistaComunicadoPersonal/{id}', 'show')->name('VistaComunicadoPersonal');
+    Route::post('/ComunicadoPersonal', 'ComunicadoPerso')->name('ComunicadoPersonal');
 });
 
 //----------

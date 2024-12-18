@@ -4,13 +4,15 @@ namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Address;
+use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+//
+use Illuminate\Support\Facades\Session;
 
-class VentaConfirmacion extends Mailable
+class ComunicadoPersonal extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -27,9 +29,11 @@ class VentaConfirmacion extends Mailable
      */
     public function envelope(): Envelope
     {
+        $CorreoSesion = Session::get('Correo', 'ColegioFroebel@froebel.edu.mx');
+
         return new Envelope(
-            from: new Address('ColegioFroebel@froebel.edu.mx', 'Dep. Administracion'),
-            subject: 'Confirmacion de pago de tu compra',
+            from: new Address('$ColegioFroebel@froebel.edu.mx', 'Colegio Froebel.'),
+            subject: 'Comunicado directo',
         );
     }
 
@@ -39,7 +43,7 @@ class VentaConfirmacion extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.VentaConfirmacion',
+            view: 'emails.Comunicado',
         );
     }
 
