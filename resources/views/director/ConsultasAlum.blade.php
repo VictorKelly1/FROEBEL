@@ -1,5 +1,5 @@
 <x-director.layout>
-    <div class="mb-4 Buscadorposicion">
+    <div class="mb-4 Buscadorposicion z-40">
         <input type="text" id="searchInput" class="px-4 py-2 text-white rounded" placeholder="Buscar Alumno...">
     </div>
 
@@ -7,9 +7,9 @@
         {{ session('success') }}
     </div>
 
-    <div class="flex items-center justify-center bg-gray-900 p-2 posiciontablas borderAnimation overflow-x-hidden">
-        <div class="overflow-x-auto w-full max-w-full">
-            <table class="text-sm text-left text-white w-full table-auto">
+    <div class="flex items-center justify-center bg-gray-900 p-2 posiciontablas borderAnimation overflow-x-hidden z-40">
+        <div class="overflow-x-auto w-full max-w-full z-40">
+            <table class="text-sm text-left text-white w-full table-auto z-40">
                 <thead>
                     <tr class="bg-transparent">
                         <th class="px-4 py-2 text-lg border-b border-purple-500 animate-border text-center">Foto del

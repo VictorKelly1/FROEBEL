@@ -1,0 +1,61 @@
+/* El menú de navegación lateral (Sidebar) */
+.sidebar {
+    margin: 0; /* Elimina márgenes alrededor del sidebar */
+    padding: 0; /* Elimina relleno dentro del sidebar */
+    width: 200px; /* Establece el ancho del sidebar */
+    background-color: #000000; /* Fondo del sidebar en color gris claro */
+    position: fixed; /* Fija el sidebar en su lugar, sin que se desplace al hacer scroll */
+    height: 100%; /* Hace que el sidebar ocupe toda la altura de la pantalla */
+    overflow: auto; /* Permite el desplazamiento interno si el contenido es más grande que el contenedor */
+  }
+  
+  /* Estilo para los enlaces dentro del sidebar */
+  .sidebar a {
+    display: block; /* Hace que los enlaces se comporten como bloques, ocupando toda la línea */
+    color: rgb(255, 255, 255); /* Establece el color del texto de los enlaces en negro */
+    padding: 16px; /* Añade relleno alrededor del texto de los enlaces */
+    text-decoration: none; /* Elimina el subrayado predeterminado de los enlaces */
+  }
+  
+  /* Estilo para el enlace activo o seleccionado */
+  .sidebar a.active {
+    background-color: #04AA6D; /* Establece un fondo verde para el enlace activo */
+    color: white; /* Cambia el color del texto a blanco en el enlace activo */
+  }
+  
+  /* Estilo de los enlaces cuando el mouse pasa sobre ellos (hover), excepto los activos */
+  .sidebar a:hover:not(.active) {
+    background-color: #b000dd; /* Cambia el fondo a morado oscuro cuando el mouse pasa sobre el enlace */
+    color: white; /* Cambia el color del texto a blanco */
+  }
+  
+  /* Estilo para el contenido principal de la página */
+  div.content {
+    margin-left: 200px; /* Deja espacio para el sidebar a la izquierda */
+    padding: 1px 16px; /* Añade un pequeño relleno dentro del contenido */
+    height: 1000px; /* Establece una altura para el contenido (puede ajustarse según el contenido real) */
+  }
+  
+  /* En pantallas más pequeñas, donde el ancho es menor a 700px, convierte el sidebar en una barra superior */
+  @media screen and (max-width: 700px) {
+    .sidebar {
+      width: 100%; /* El sidebar ocupa el 100% del ancho de la pantalla */
+      height: auto; /* El sidebar ya no ocupa toda la altura de la pantalla */
+      position: relative; /* Cambia la posición a relativa, para que fluya con el contenido */
+    }
+    .sidebar a { 
+      float: left; /* Hace que los enlaces se alineen horizontalmente */
+    }
+    div.content {
+      margin-left: 0; /* Elimina el margen izquierdo, ya que el sidebar ahora está en la parte superior */
+    }
+  }
+  
+  /* En pantallas muy pequeñas, donde el ancho es menor a 400px, cambia la disposición de los enlaces */
+  @media screen and (max-width: 400px) {
+    .sidebar a {
+      text-align: center; /* Centra el texto de los enlaces */
+      float: none; /* Elimina el flotado de los enlaces */
+    }
+  }
+  

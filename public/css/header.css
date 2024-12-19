@@ -2,3 +2,29 @@
    
    font-size: 100%;
 }
+
+
+footer {
+   background-color: #333;
+   color: white;
+   text-align: center;
+   padding: 1px 0; /* Reduce el espaciado superior e inferior */
+   position: fixed;
+   bottom: 0;
+   width: 100%;
+   margin: 0;
+   flex: 1;
+}
+
+.posicionsidebar {
+   position: sticky;  /* Hace que el header se "pegue" al tope */
+   top: 0;            /* Se asegura de que esté en la parte superior */
+   z-index: 1000;     /* Coloca el header por encima de otros elementos */
+   width: 100vw;      /* Extiende el header al ancho total de la ventana */
+   height: auto;      /* Ajusta la altura según el contenido */
+   background-color: #333; /* Color de fondo */
+   color: white;           /* Color de texto */
+   text-align: center;     /* Centra el texto */
+   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Sombra para mejor apariencia */
+   overflow-x: auto;       /* Asegura que el header pueda manejar contenido muy ancho */
+}

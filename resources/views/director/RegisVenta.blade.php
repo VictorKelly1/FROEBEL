@@ -41,13 +41,24 @@
                 <input type="text" name="MetodoPago" id="MetodoPago" class="form-control" required>
             </div>
 
-           
+            <div class="form-group posicion2">
+                <label for="Descuento">Descuento:</label>
+                <select name="idDescuento" id="Descuento" class="form-control">
+                    <option value="">Seleccione</option>
+                    @foreach ($Descuentos as $Descuento)
+                        <option value="{{ $Descuentos->idDescuento }}">
+                            {{ $Descuento->Nombre }}
+                        </option>
+                    @endforeach
+
+                </select>
+            </div>
 
            
 
 
             <!-- Botón de envío -->
-            <button type="submit" class="btn btn-primary">Registrar Compra</button>
+            <button type="submit" class="btn btn-primary">Registrar Venta</button>
         </form>
     </div>
 

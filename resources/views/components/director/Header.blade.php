@@ -1,4 +1,6 @@
-<header class="led bg-gray-900 text-white flex items-center justify-between p-4 tamañoletra">
+<header class="led bg-gray-900 text-white flex items-center justify-between p-4 tamañoletra fixed top-0 left-0 w-[100vw] z-50">
+  
+
     <!-- Sección Izquierda -->
     <div class="flex items-center space-x-4">
         <!-- Icono de Usuario -->
