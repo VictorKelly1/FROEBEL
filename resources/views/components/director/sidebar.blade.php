@@ -149,6 +149,7 @@
               </div>
               <div x-show="open" class="pl-6">
                 <a class="block text-black py-1 px-2 rounded hover:bg-gray-200" href="{{ route('ListaColegiaturas') }}">Colegiaturas</a>
+                <a class="block text-black py-1 px-2 rounded hover:bg-gray-200" href="{{ route('ListaColegiaturasPendientes') }}">ColegiaturasPendientes</a>
                 <a class="block text-black py-1 px-2 rounded hover:bg-gray-200" href="{{ route('ListaPagos') }}">Pagos</a>
                 <a class="block text-black py-1 px-2 rounded hover:bg-gray-200" href="{{ route('ListaCompras') }}">Compras</a>
                 <a class="block text-black py-1 px-2 rounded hover:bg-gray-200" href="{{ route('ListaVentas') }}">Ventas</a>

@@ -238,7 +238,11 @@
                         </a>
                     </li>
 
-
+                    <li class="hover:bg-gray-600 rounded p-2">
+                        <a href="{{ route('ListaColegiaturasPendientes') }}" class="flex items-center gap-2">
+                            <span class="text-sm">Pagos Pendientes</span>
+                        </a>
+                    </li>
 
                     <li class="hover:bg-gray-600 rounded p-2">
                         <a href="{{ route('ListaPagos') }}" class="flex items-center gap-2">
