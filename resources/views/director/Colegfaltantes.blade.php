@@ -1,5 +1,5 @@
 <x-director.layout>
-   
+
 
     <div class="alert alert-success">
         {{ session('success') }}
@@ -11,18 +11,23 @@
             <table class="text-sm text-left text-white w-full table-auto z-40">
                 <thead>
 
-                <form class="" action="{{ route('BuscarColegiaturaFaltante') }}" method="POST" enctype="multipart/form-data">
-                @csrf
+                    <form class="" action="{{ route('BuscarColegiaturaFaltante') }}" method="POST"
+                        enctype="multipart/form-data">
+                        @csrf
 
-                <div class="mb-4 posicion1">
-                <input type="text" id="searchInput" class="px-4 py-2 text-white rounded" placeholder="Buscar Colegiatura/Inscripcion por la clave...">
-               </div>
+                        <div class="mb-4 posicion1">
+                            <label for="Formato">La clave debe comenzar con 'C-', 'E-' o 'I-', seguida de dos letras
+                                mayúsculas y dos números (ejemplo: C-AB12 o I-CD34).</label>
+                            <input type="text" name="Clave" id="searchInput" class="px-4 py-2 text-white rounded"
+                                placeholder="Buscar Colegiatura/Inscripcion por la clave..."
+                                pattern="^(C-|I-|E-)[A-Z]{2}\d{2}$" maxlength="6" required>
+                        </div>
 
-               <button
-               class="bg-red-600 text-white px-4 py-3 rounded-lg transition-all duration-500 hover:bg-purple-600 hover:-translate-y-2 hover:shadow-2xl">Buscar
-              </button>
+                        <button
+                            class="bg-red-600 text-white px-4 py-3 rounded-lg transition-all duration-500 hover:bg-purple-600 hover:-translate-y-2 hover:shadow-2xl">Buscar
+                        </button>
 
-               </form>
+                    </form>
 
 
                     <tr class="bg-transparent">
@@ -37,7 +42,7 @@
                             Fecha Ingreso</th>
                         <th class="px-4 py-2 text-lg border-b border-purple-500 animate-border text-center">Estado
                         </th>
-                        
+
                 </thead>
                 <tbody id="tableBody">
                     @foreach ($Faltantes as $Faltante)
@@ -45,7 +50,7 @@
                             <!-- Foto -->
                             <td class="px-6 py-4 border-t border-purple-500 animate-border text-center">
                                 @if ($Faltante->Foto)
-                                    <img src="{{ asset('fotos/' . $alumno->Foto) }}" alt="Usuario"
+                                    <img src="{{ asset('fotos/' . $Faltante->Foto) }}" alt="Usuario"
                                         class="w-28 h-28 rounded-full">
                                 @else
                                     <span class="text-gray-500">Sin foto</span>
@@ -53,22 +58,25 @@
                             </td>
 
                             <!-- Matrícula -->
-                            <td class="px-4 py-2 border-t border-purple-500 animate-border">{{ $Faltante->Matricula }}</td>
+                            <td class="px-4 py-2 border-t border-purple-500 animate-border">{{ $Faltante->Matricula }}
+                            </td>
 
                             <!-- Nombre -->
                             <td class="custom-cell px-4 py-2 border-t border-purple-500 animate-border text-center">
-                                {{ $Faltante->Nombre }} {{ $Faltante->ApellidoPaterno }} {{ $Faltante->ApellidoMaterno }}</td>
+                                {{ $Faltante->Nombre }} {{ $Faltante->ApellidoPaterno }}
+                                {{ $Faltante->ApellidoMaterno }}</td>
 
                             <!-- CURP -->
                             <td class="px-4 py-2 border-t border-purple-500 animate-border">{{ $Faltante->CURP }}</td>
 
                             <!-- FechaInicio -->
-                            <td class="px-4 py-2 border-t border-purple-500 animate-border">{{ $Faltante->FechaIngreso }}</td>
+                            <td class="px-4 py-2 border-t border-purple-500 animate-border">
+                                {{ $Faltante->FechaIngreso }}</td>
 
 
                             <!-- Estado -->
                             <td class="px-4 py-2 border-t border-purple-500 animate-border">{{ $Faltante->Estado }}</td>
-                    
+
 
                         </tr>
                     @endforeach
@@ -77,24 +85,6 @@
         </div>
     </div>
 
-
-
-
-    <script>
-        document.getElementById("searchInput").addEventListener("input", function() {
-            var filter = this.value.toLowerCase();
-            var rows = document.getElementById("tableBody").getElementsByTagName("tr");
-
-            Array.from(rows).forEach(function(row) {
-                var text = row.textContent.toLowerCase();
-                if (text.includes(filter)) {
-                    row.style.display = "";
-                } else {
-                    row.style.display = "none";
-                }
-            });
-        });
-    </script>
 
     <style>
         .custom-cell {

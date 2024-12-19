@@ -241,10 +241,19 @@ class ColegiaturasController extends Controller
 
     public function FaltantesPagos(Request $request)
     {
-        // Obtener la clave ingresada por el usuario
+
         $Clave = $request->input('Clave');
 
-        // Consulta para obtener los alumnos que no han pagado la colegiatura con la clave proporcionada
+        // Verifica si la clave existe en la tabla Periodos para que no regrese consultas a claves que no existen
+        $existeClave = DB::table('Periodos')->where('Clave', $Clave)->exists();
+
+        if (!$existeClave) {
+            // Si la clave no existe, devolver la vista con $Faltantes vacío
+            $Faltantes = [];
+            return view('director.Colegfaltantes', ['Faltantes' => $Faltantes]);
+        }
+
+        // Consulta para obtener los alumnos que no han pagado la colegiatura con la clave buscada
         $Faltantes = DB::table('vAlumnos')
             ->leftJoin('vTransacciones', function ($join) use ($Clave) {
                 $join->on('vAlumnos.idPersona', '=', 'vTransacciones.idPersona')
@@ -255,8 +264,7 @@ class ColegiaturasController extends Controller
             ->whereNull('vTransacciones.idTransaccion')
             ->select('vAlumnos.*')
             ->get();
-        dd($Faltantes);
-        // Retornar la vista con los resultados
+
         return view(
             'director.Colegfaltantes',
             [
