@@ -258,7 +258,7 @@ class ColegiaturasController extends Controller
         dd($Faltantes);
         // Retornar la vista con los resultados
         return view(
-            'director.ColegiaturasFaltantes',
+            'director.Colegfaltantes',
             [
                 'Faltantes' => $Faltantes,
             ]

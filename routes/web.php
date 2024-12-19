@@ -228,7 +228,13 @@ Route::controller(ColegiaturasController::class)->group(function () {
     Route::get('/VistaRegistrarColegiatura/{id}', 'create')->name('VistaRegistrarColegiatura');
     Route::post('/RegistrarColegiatura', 'store')->name('RegistrarColegiatura');
     Route::get('/ColegiaturaImprimirRecibo/{id}', 'show')->name('ColegiaturaImprimirRecibo');
-    Route::post('/ColegiaturasFaltantes', 'FaltantesPagos')->name('ColegiaturasFaltantes');
+    //
+    Route::get('/ListaColegiaturasFaltantes', function () {
+        $Faltantes = [];
+        return view('director.Colegfaltantes', ['Faltantes' => $Faltantes]);
+    })->name('ListaColegiaturasFaltantes');
+    //
+    Route::post('/BuscarColegiaturaFaltante', 'FaltantesPagos')->name('BuscarColegiaturaFaltante');
 });
 
 Route::controller(PagosController::class)->group(function () {
