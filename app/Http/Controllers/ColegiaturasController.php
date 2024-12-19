@@ -239,29 +239,29 @@ class ColegiaturasController extends Controller
     }
 
 
-    /**
-      llevara a la vista que imprimira un recivo de la transaccion deseada
-     */
-    public function show(string $id)
+    public function FaltantesPagos(Request $request)
     {
-        //
-    }
+        // Obtener la clave ingresada por el usuario
+        $Clave = $request->input('Clave');
 
-
-    public function edit(string $id)
-    {
-        //
-    }
-
-
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-
-    public function destroy(string $id)
-    {
-        //
+        // Consulta para obtener los alumnos que no han pagado la colegiatura con la clave proporcionada
+        $Faltantes = DB::table('vAlumnos')
+            ->leftJoin('vTransacciones', function ($join) use ($Clave) {
+                $join->on('vAlumnos.idPersona', '=', 'vTransacciones.idPersona')
+                    ->where('vTransacciones.Clave', '=', $Clave)
+                    ->where('vTransacciones.NombreConcepto', '=', 'Colegiatura')
+                    ->where('vTransacciones.TipoTransaccion', '=', 'pago');
+            })
+            ->whereNull('vTransacciones.idTransaccion')
+            ->select('vAlumnos.*')
+            ->get();
+        dd($Faltantes);
+        // Retornar la vista con los resultados
+        return view(
+            'director.ColegiaturasFaltantes',
+            [
+                'Faltantes' => $Faltantes,
+            ]
+        );
     }
 }

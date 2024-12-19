@@ -36,14 +36,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//registrar nominas, compras, calificaciones, Horarios, colegiaturas remotas y eventos 
-//administracion de bajas, hiatorial calificaciones, y periodos de pagos, ventas y compras
+//registrar nominas, compras, calificaciones, colegiaturas remotas y eventos 
+//administracion de bajas, hiatorial calificaciones y grupos, y pensar de periodos de pagos, ventas y compras
 
 //Actualizar sin recargar pagina   
 //Middlewares para las rutas 
 //Autenticaciones en las interfaces
 //pasarela de pagos
 //impresion de recivos, constancias, calificaciones
+//consultas faltantes de pagos
 
 //patrones de diseño
 //patrones de resiliencia
@@ -57,7 +58,7 @@ Route::get('/', function () {
 Route::view('/prueba', 'director.AsigGrupAlum')->name('prueba');
 //
 Route::controller(ColegiaturasController::class)->group(function () {
-    Route::get('/Colegiaturas', 'create');
+    //
 });
 
 //------------------------------------------------------------------------------------------------------------
@@ -227,6 +228,7 @@ Route::controller(ColegiaturasController::class)->group(function () {
     Route::get('/VistaRegistrarColegiatura/{id}', 'create')->name('VistaRegistrarColegiatura');
     Route::post('/RegistrarColegiatura', 'store')->name('RegistrarColegiatura');
     Route::get('/ColegiaturaImprimirRecibo/{id}', 'show')->name('ColegiaturaImprimirRecibo');
+    Route::post('/ColegiaturasFaltantes', 'FaltantesPagos')->name('ColegiaturasFaltantes');
 });
 
 Route::controller(PagosController::class)->group(function () {
