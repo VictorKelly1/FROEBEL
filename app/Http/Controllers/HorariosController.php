@@ -4,10 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Aula;
-use App\Models\Grupo;
 use App\Models\Horario;
-use App\Models\Materia;
 use App\Models\VgruposMaterias;
+use App\Models\Vhorarios;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -20,11 +19,13 @@ class HorariosController extends Controller
     {
         $Aulas = Aula::All();
         $GrupMat = VgruposMaterias::All();
+        $Horarios = Vhorarios::All();
         return view(
             'director.Horario',
             [
                 'Aulas' => $Aulas,
                 'GrupMat' => $GrupMat,
+                'Horarios' => $Horarios,
             ]
         );
     }
@@ -59,15 +60,14 @@ class HorariosController extends Controller
             $Horario = new Horario();
 
             $Horario->idAula = $request->input('idAula');
-            $Horario->idMateria = $request->input('idGrupoMat'); //no es idMateria es idGrupoMateria(hay un error en la base de datos en el nombre de una columna)
-            $Horario->idAula = $request->input('HoraL');
-            $Horario->idAula = $request->input('HoraM');
-            $Horario->idAula = $request->input('HoraMi');
-            $Horario->idAula = $request->input('HoraJ');
-            $Horario->idAula = $request->input('HoraV');
+            $Horario->idGrupoMateria = $request->input('idGrupoMat'); //no es idMateria es idGrupoMateria(hay un error en la base de datos en el nombre de una columna)
+            $Horario->HoraL = $request->input('HoraL');
+            $Horario->HoraM = $request->input('HoraM');
+            $Horario->HoraMi = $request->input('HoraMi');
+            $Horario->HoraJ = $request->input('HoraJ');
+            $Horario->HoraV = $request->input('HoraV');
 
             $Horario->save();
-
             //
             DB::commit();
 
@@ -112,6 +112,6 @@ class HorariosController extends Controller
         // Elimina el registro de la tabla GruposMaterias
         $H->delete();
         // Redirige a alguna vista o devuelve un mensaje de éxito
-        return redirect()->route('ListaHorario')->with('success', 'Registro eliminado correctamente.');
+        return back()->with('success', 'La materia se retiro del horario correctamente.');
     }
 }

@@ -310,7 +310,7 @@
 
 
                     <li class="hover:bg-gray-600 rounded p-2">
-                        <a href="" class="flex items-center gap-2">
+                        <a href="{{ route('VistaAsignarContacto') }}" class="flex items-center gap-2">
                             <span class="text-sm">Contactos</span>
                         </a>
                     </li>

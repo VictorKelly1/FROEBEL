@@ -32,7 +32,7 @@ class ComunicadoPersonal extends Mailable
         $CorreoSesion = Session::get('Correo', 'ColegioFroebel@froebel.edu.mx');
 
         return new Envelope(
-            from: new Address('$ColegioFroebel@froebel.edu.mx', 'Colegio Froebel.'),
+            from: new Address('ColegioFroebel@froebel.edu.mx', 'Colegio Froebel.'),
             subject: 'Comunicado directo',
         );
     }

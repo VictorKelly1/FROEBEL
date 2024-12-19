@@ -37,6 +37,7 @@ Route::get('/', function () {
 });
 
 //registrar nominas, compras, calificaciones, Horarios, colegiaturas remotas y eventos 
+//administracion de bajas, hiatorial calificaciones, y periodos de pagos, ventas y compras
 
 //Actualizar sin recargar pagina   
 //Middlewares para las rutas 
@@ -171,35 +172,35 @@ Route::controller(MaterialesController::class)->group(function () {
 //Rutas con los controladores de alumnos grupos
 Route::controller(GruposAlumnoController::class)->group(function () {
     Route::get('/GruposAlumnos', 'index')->name('ListaGruposAlumnos');
-    Route::get('/AsignarGrupAlum', 'store')->name('AsignarGrupAlum');
+    Route::post('/AsignarGrupAlum', 'store')->name('AsignarGrupAlum');
     Route::get('/GruposAlumnos/{GA}', 'destroy')->name('EliminarGrupAlum');
 });
 
 //Rutas con los controladores de grupos docentes
 Route::controller(GruposDocenteController::class)->group(function () {
     Route::get('/GruposDocentes', 'index')->name('ListaGruposDocentes');
-    Route::get('/AsignarGrupDocente', 'store')->name('AsignarGrupDocente');
+    Route::post('/AsignarGrupDocente', 'store')->name('AsignarGrupDocente');
     Route::get('/GruposDocente/{GD}', 'destroy')->name('EliminarGrupDocente');
 });
 
 //Rutas con los controladores de grupos materias
 Route::controller(GruposMatController::class)->group(function () {
     Route::get('/GruposMaterias', 'index')->name('ListaGruposMaterias');
-    Route::get('/AsignarGrupMateria', 'store')->name('AsignarGrupMateria');
+    Route::post('/AsignarGrupMateria', 'store')->name('AsignarGrupMateria');
     Route::get('/GruposMateria/{GM}', 'destroy')->name('EliminarGrupMateria');
 });
 
 //Rutas con los controladores de alumnos relaciones
 Route::controller(AlumnosRelacionesController::class)->group(function () {
     Route::get('/TutoresAlumnos', 'index')->name('ListaTutoresAlumnos');
-    Route::get('/AsignarTutorAlum', 'store')->name('AsignarTutoresAlum');
+    Route::post('/AsignarTutorAlum', 'store')->name('AsignarTutoresAlum');
     Route::get('/TutoresAlumnos/{TA}', 'destroy')->name('EliminarTutoresAlum');
 });
 
 //Rutas con los controladores de horarios
 Route::controller(HorariosController::class)->group(function () {
     Route::get('/Horarios', 'index')->name('ListaHorarios');
-    Route::get('/AsignarHorario', 'store')->name('AsignarHorario');
+    Route::post('/AsignarHorario', 'store')->name('AsignarHorario');
     Route::get('/Horario/{H}', 'destroy')->name('EliminarHorario');
 });
 
@@ -262,8 +263,8 @@ Route::controller(NominasController::class)->group(function () {
 //------------------------------------------------------------------------------------------------------------
 
 Route::controller(ContactosController::class)->group(function () {
-    Route::get('/Contactos', 'index')->name('ListaContactos');
-    Route::get('/RegistrarAsignarContacto', 'index')->name('ListaContactos');
+    Route::get('/VistaAsignarContacto', 'index')->name('VistaAsignarContacto');
+    Route::post('/AsignarContacto', 'store')->name('AsignarContacto');
 });
 
 Route::controller(ComunicadosController::class)->group(function () {

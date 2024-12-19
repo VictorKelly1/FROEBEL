@@ -14,20 +14,20 @@ return new class extends Migration
         Schema::create('Horarios', function (Blueprint $table) {
             $table->id('idHorario');
             $table->unsignedBigInteger('idAula'); // Relación con la tabla Aulas
-            $table->unsignedBigInteger('idMateria'); // Relación con la tabla Materias
-            $table->time('HoraL')->nullable(); // Hora para el lunes
-            $table->time('HoraM')->nullable(); // Hora para el martes
-            $table->time('HoraMi')->nullable(); // Hora para el miércoles
-            $table->time('HoraJ')->nullable(); // Hora para el jueves
-            $table->time('HoraV')->nullable(); // Hora para el viernes
+            $table->unsignedBigInteger('idGrupoMateria'); // Relación con la tabla GruposMaterias
+            $table->string('HoraL')->nullable(); // Hora para el lunes
+            $table->string('HoraM')->nullable();
+            $table->string('HoraMi')->nullable();
+            $table->string('HoraJ')->nullable();
+            $table->string('HoraV')->nullable();
             $table->timestamps();
 
             // Llave foráneas
             $table->foreign('idAula')->references('idAula')->on('Aulas');
-            $table->foreign('idMateria')->references('idMateria')->on('Materias');
+            $table->foreign('idGrupoMateria')->references('idGrupoMateria')->on('GruposMaterias');
 
             // Llave única
-            $table->unique(['idAula', 'idMateria', 'HoraL', 'HoraM', 'HoraMi', 'HoraJ', 'HoraV']);
+            $table->unique(['idAula', 'idGrupoMateria', 'HoraL', 'HoraM', 'HoraMi', 'HoraJ', 'HoraV']);
         });
     }
 

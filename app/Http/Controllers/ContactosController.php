@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Contacto;
+use App\Models\Persona;
+use App\Models\VContactos;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ContactosController extends Controller
 {
@@ -13,6 +17,15 @@ class ContactosController extends Controller
     public function index()
     {
         //
+        $Personas = Persona::All();
+        $Contactos = VContactos::All();
+        return view(
+            'director.Contacto',
+            [
+                'Personas' => $Personas,
+                'Contactos' => $Contactos,
+            ]
+        );
     }
 
     /**
@@ -29,6 +42,26 @@ class ContactosController extends Controller
     public function store(Request $request)
     {
         //
+        DB::beginTransaction();
+        try {
+
+            $Contacto = new Contacto();
+
+            $Contacto->TipoContacto = $request->input('TipoContacto');
+            $Contacto->ValorContacto = $request->input('ValorContacto');
+            $Contacto->idReceptor = $request->input('idPersona');
+
+            $Contacto->save();
+
+            // Confirmar transacción
+            DB::commit();
+
+            return back()->with('success', 'Contacto asigando correctamente.');
+        } catch (\Exception $e) {
+            // Revertir transacción si hay un error
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Error al asignar el contacto: ' . $e->getMessage());
+        }
     }
 
     /**
