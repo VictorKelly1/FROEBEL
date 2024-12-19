@@ -7,11 +7,24 @@
 
     <div class="flex items-center justify-center bg-gray-900 p-2 posiciontablas borderAnimation overflow-x-hidden z-40">
         <div class="overflow-x-auto w-full max-w-full z-40">
+
             <table class="text-sm text-left text-white w-full table-auto z-40">
                 <thead>
+
+                <form class="" action="{{ route('BuscarColegiaturaFaltante') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+
                 <div class="mb-4 posicion1">
-                <input type="text" id="searchInput" class="px-4 py-2 text-white rounded" placeholder="Buscar Alumno...">
+                <input type="text" id="searchInput" class="px-4 py-2 text-white rounded" placeholder="Buscar Colegiatura/Inscripcion por la clave...">
                </div>
+
+               <button
+               class="bg-red-600 text-white px-4 py-3 rounded-lg transition-all duration-500 hover:bg-purple-600 hover:-translate-y-2 hover:shadow-2xl">Buscar
+              </button>
+
+               </form>
+
+
                     <tr class="bg-transparent">
                         <th class="px-4 py-2 text-lg border-b border-purple-500 animate-border text-center">Foto del
                             Alumno</th>
@@ -21,7 +34,7 @@
                             Nombre</th>
                         <th class="px-4 py-2 text-lg border-b border-purple-500 animate-border text-center">CURP</th>
                         <th class="px-4 py-2 text-lg border-b border-purple-500 animate-border text-center">
-                            Calificaciones</th>
+                            Fecha Ingreso</th>
                         <th class="px-4 py-2 text-lg border-b border-purple-500 animate-border text-center">Estado
                         </th>
                         
@@ -48,6 +61,10 @@
 
                             <!-- CURP -->
                             <td class="px-4 py-2 border-t border-purple-500 animate-border">{{ $Faltante->CURP }}</td>
+
+                            <!-- FechaInicio -->
+                            <td class="px-4 py-2 border-t border-purple-500 animate-border">{{ $Faltante->FechaIngreso }}</td>
+
 
                             <!-- Estado -->
                             <td class="px-4 py-2 border-t border-purple-500 animate-border">{{ $Faltante->Estado }}</td>
