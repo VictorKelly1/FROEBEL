@@ -25,7 +25,7 @@
   
   /* Estilo de los enlaces cuando el mouse pasa sobre ellos (hover), excepto los activos */
   .sidebar a:hover:not(.active) {
-    background-color: #b000dd; /* Cambia el fondo a morado oscuro cuando el mouse pasa sobre el enlace */
+    background-color: #0023c1; /* Cambia el fondo a morado oscuro cuando el mouse pasa sobre el enlace */
     color: white; /* Cambia el color del texto a blanco */
   }
   
@@ -59,3 +59,79 @@
     }
   }
   
+
+
+  .sidebar {
+    overflow-y: auto; /* Activa el scroll vertical */
+    max-height: 100vh; /* Limita la altura al 100% de la pantalla */
+    scrollbar-width: thin; /* Scroll más delgado (Firefox) */
+    scrollbar-color: #0023c1 #1f2937; /* Color del scroll */
+}
+
+/* Personalización del scroll para Chrome y navegadores basados en Webkit */
+.sidebar::-webkit-scrollbar {
+    width: 6px; /* Ancho del scroll */
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: #1f2937; /* Color de fondo del scroll */
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: #0023c1; /* Color del "pulgar" del scroll */
+    border-radius: 6px; /* Bordes redondeados */
+}
+
+
+.custom-icon {
+  font-size: 1.6rem; /* Ajusta el tamaño en rem, px, %, etc. */
+}
+
+
+
+/* Animación de fondo LED */
+@keyframes ledBackground {
+  0% {
+      background-color: #0023c1;
+      box-shadow: 0 0 10px #0d1e69;
+  }
+  50% {
+      background-color: #0023c1;
+      box-shadow: 0 0 15px #0c1e70;
+  }
+  100% {
+      background-color: #0023c1;
+      box-shadow: 0 0 10px #102272;
+  }
+}
+
+/* Clase para la animación */
+.animate-led-bg {
+  animation: ledBackground 1.5s infinite alternate;
+}
+
+/* Botón de colapsar */
+.sidebar button {
+  transition: right 0.5s ease-in-out, background-color 1.5s ease-in-out;
+}
+
+/* Botón de colapsar */
+.sidebar button {
+  transition: right 0.5s ease-in-out, background-color 1.5s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ajuste cuando la sidebar está colapsada */
+.sidebar.w-20 button {
+  right: -20px; /* Asegura que el botón quede visible */
+  width: 48px; /* Tamaño cuadrado */
+  height: 48px; /* Tamaño cuadrado */
+}
+
+/* Icono centrado */
+.sidebar button svg {
+  margin: 0 auto;
+}
+

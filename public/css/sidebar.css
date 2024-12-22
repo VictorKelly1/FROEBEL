@@ -1,6 +1,6 @@
 .led {
    
-    box-shadow: 0 0 20px rgb(132, 42, 157); /* Sombra luminosa */
+    box-shadow: 0 0 20px rgb(7, 44, 255); /* Sombra luminosa */
 }
 
 .led2 {
@@ -43,9 +43,9 @@ left: -762px; /* lado */
 
     .botonesdiseño{
 
-        width: 300px; /* Ajusta el ancho */
+        width: 400px; /* Ajusta el ancho */
     padding: 10px;
-    border: 2px solid #5a00c1; /* Borde púrpura */
+    border: 2px solid #0023c1; /* Borde púrpura */
     border-radius: 10px; /* Bordes redondeados */
     background-color: #1e1e1e; /* Fondo oscuro */
     color: #ffffff; /* Texto blanco */
@@ -60,24 +60,29 @@ left: -762px; /* lado */
         input[type="file"],
         input[type="date"] {
             /* LOS CAMBIA DE MANERA GLOBAL */
-            width: 300px; /* Ajusta el ancho */
+            width: 500px; /* Ajusta el ancho */
             padding: 10px;
-            border: 2px solid #5a00c1; /* Borde púrpura */
+            border: 2px solid #0023c1; /* Borde púrpura */
             border-radius: 10px; /* Bordes redondeados */
             background-color: #1e1e1e; /* Fondo oscuro */
             color: #ffffff; /* Texto blanco */
             font-size: 14px;
+             appearance: none; /* Quita estilos predeterminados del navegador */
+             
         }
         
+
+      
+
         input[type="text"]:focus {
             outline: none;
-            border-color: #9b33ff; /* Púrpura más brillante al enfocar */
-            box-shadow: 0 0 8px #9b33ff; /* Efecto de brillo */
+            border-color: #0331ff; /* Púrpura más brillante al enfocar */
+            box-shadow: 0 0 8px #6984ff; /* Efecto de brillo */
         }
         input[type="date"]:focus {
             outline: none;
-            border-color: #9b33ff; /* Púrpura más brillante al enfocar */
-            box-shadow: 0 0 8px #9b33ff; /* Efecto de brillo */
+            border-color: rgb(49, 9, 225); /* Púrpura más brillante al enfocar */
+            box-shadow: 0 0 8px #2f4cd1; /* Efecto de brillo */
         }
 
         label {
@@ -92,6 +97,27 @@ left: -762px; /* lado */
         .group:hover #subMenu {
             display: block; /* Submenús visibles al hover */
         }
+
+/* Estilos globales para select */
+/* Estilos para select */
+select {
+    width: 500px;
+    padding: 10px;
+    border: 2px solid #0023c1;
+    border-radius: 10px;
+    background-color: #1e1e1e; /* Fondo oscuro */
+    color: #ffffff !important; /* Texto blanco con prioridad */
+    font-size: 14px;
+    appearance: none; /* Quita estilos predeterminados del navegador */
+}
+
+/* Estilo para las opciones dentro del select */
+select option {
+    background-color: #1e1e1e; /* Fondo oscuro */
+    color: #ffffff; /* Texto blanco */
+}
+
+
 
 
         .tablaposicion{
@@ -126,13 +152,13 @@ left: -762px; /* lado */
 
         @keyframes borderAnimation {
             0% {
-                border-color: rgb(128, 0, 128);
+                border-color: rgb(4, 29, 255);
             }
             50% {
                 border-color: rgb(255, 255, 255);
             }
             100% {
-                border-color: rgb(128, 0, 128);
+                border-color: rgb(30, 5, 255);
             }
         }
 
@@ -181,7 +207,7 @@ left: -762px; /* lado */
 
 
         .btn-primary {
-            background-color: rgb(108, 43, 191); /* Morado */
+            background-color: rgb(26, 19, 230); /* Morado */
             color: white; /* Letras blancas */
             border: 2px solid rgb(255, 255, 255); /* Borde blanco */
             padding: 10px 20px; /* Espaciado interno */
@@ -194,7 +220,7 @@ left: -762px; /* lado */
         
         /* Hover: Cambia el color y el borde al pasar el mouse */
         .btn-primary:hover {
-            background-color: rgb(85, 32, 153); /* Morado más oscuro */
+            background-color: rgb(41, 9, 248); /* Morado más oscuro */
             border-color: rgb(192, 192, 192); /* Borde gris claro */
             transform: scale(1.05); /* Aumenta ligeramente el tamaño */
         }
@@ -202,6 +228,6 @@ left: -762px; /* lado */
         /* Focus: Agrega un efecto de foco */
         .btn-primary:focus {
             outline: none; /* Quita el borde por defecto */
-            box-shadow: 0 0 8px rgb(108, 43, 191); /* Resplandor morado */
+            box-shadow: 0 0 8px rgb(16, 32, 254); /* Resplandor morado */
         }
         

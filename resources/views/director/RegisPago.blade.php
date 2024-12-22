@@ -7,7 +7,7 @@
             <!-- Datos -->
             <h3>Datos</h3>
 
-            <div class="form-group posicion1">
+            <div class="form-group ">
                 <label for="Alumno">Alumno:</label>
                 <select name="idAlumno" id="Alumno" class="form-control" required>
                     <option value="">Seleccione</option>
@@ -30,7 +30,7 @@
                 <input type="text" name="CuentaRecibido" id="CuentaRecibido" class="form-control" required>
             </div>
 
-            <div class="form-group posicion2">
+            <div class="form-group ">
                 <label for="Concepto">Concepto:</label>
                 <select name="idConcepto" id="Concepto" class="form-control" required>
                     <option value="">Seleccione</option>
@@ -45,7 +45,7 @@
             </div>
 
 
-            <div class="form-group posicion2">
+            <div class="form-group ">
                 <label for="Periodo">Periodo:</label>
                 <select name="idPeriodo" id="Periodo" class="form-control" required>
                     <option value="">Seleccione</option>
@@ -66,7 +66,7 @@
             </div>
 
 
-            <div class="form-group posicion2">
+            <div class="form-group ">
                 <label for="Descuento">Descuento:</label>
                 <select name="idDescuento" id="Descuento" class="form-control">
                     <option value="">Seleccione</option>

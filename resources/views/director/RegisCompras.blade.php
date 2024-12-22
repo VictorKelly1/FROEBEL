@@ -23,7 +23,7 @@
                 <input type="text" name="Monto" id="Monto" class="form-control" required>
             </div>
 
-            <div class="form-group posicion2">
+            <div class="form-group ">
                 <label for="Concepto">Concepto:</label>
                 <select name="idConcepto" id="Concepto" class="form-control" required>
                     <option value="">Seleccione</option>

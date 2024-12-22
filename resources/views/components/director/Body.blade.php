@@ -1,3 +1,4 @@
-<body class="bg-[url('/images/fondo.jpg')] bg-cover bg-center bg-fixed">
+<body class="bg-[url('/images/fondonegro.png')] bg-cover bg-center bg-fixed">
+
 
 
