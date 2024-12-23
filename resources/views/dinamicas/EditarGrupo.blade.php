@@ -1,6 +1,5 @@
-
 <x-director.layout>
-    <div class="#">
+    <div class="posiciontablas">
 
         <form action="{{ route('EditarGrupo') }}" method="POST" enctype="multipart/form-data">
             @csrf

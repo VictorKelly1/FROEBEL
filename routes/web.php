@@ -36,17 +36,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//registrar nominas, compras, calificaciones, colegiaturas remotas y eventos 
-//administracion de bajas, hiatorial calificaciones y grupos, y pensar de periodos de pagos, ventas y compras
+//registrar nominas, calificaciones y eventos 
+/*administracion de bajas, hiatorial calificaciones y grupos, y validar 
+aparicion de periodos en pagos, ventas y compras*/
 
 //Actualizar sin recargar pagina   
 //Middlewares para las rutas 
 //Autenticaciones en las interfaces
 //pasarela de pagos
 //impresion de recivos, constancias, calificaciones
-//consultas faltantes de pagos
 
 //patrones de diseño
+//Middlewares
 //patrones de resiliencia
 //procesos en segundo plano
 //envio de emails
@@ -56,10 +57,6 @@ Route::get('/', function () {
 
 //ruta para Preubas
 Route::view('/prueba', 'director.AsigGrupAlum')->name('prueba');
-//
-Route::controller(ColegiaturasController::class)->group(function () {
-    //
-});
 
 //------------------------------------------------------------------------------------------------------------
 
@@ -305,11 +302,7 @@ Route::controller(PlaneacionesController::class)->group(function () {
     Route::get('/Planeaciones', 'index')->name('ListaPlaneaciones');
 });
 
-
-
-
-
-
+//------------------------------------------------------------------------------------------------------------
 
 
 
