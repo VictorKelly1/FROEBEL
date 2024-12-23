@@ -1,15 +1,15 @@
 <x-director.layout>
 
-    <div class=" flex items-center led2 posicionsregisalum">
+    
 
 
-        <form class="" action="{{ route('AsignarContacto') }}" method="POST" enctype="multipart/form-data">
+        <form class="posiciontablas" action="{{ route('AsignarContacto') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <!-- Datos de Persona -->
             <h3>Datos Personales</h3>
 
-            <div class="form-group posicion1">
+            <div class="form-group ">
                 <label for="Persona">Persona:</label>
                 <select name="idPersona" id="Persona" class="form-control" required>
                     <option value="">Seleccione</option>
@@ -21,7 +21,7 @@
                 </select>
             </div>
 
-            <div class="form-group posicion1">
+            <div class="form-group ">
                 <label for="TipoContacto">Tipo de Contacto:</label>
                 <select name="TipoContacto" id="TipoContacto" class="form-control" required>
                     <option value="">Seleccione</option>
@@ -38,9 +38,9 @@
             <!-- Botón de envío -->
             <button type="submit" class="btn btn-primary">Asignar Contacto </button>
         </form>
-    </div>
+  
 
-    <div class="flex items-center justify-center bg-gray-900 p-2 posiciontablas borderAnimation">
+    <div class="flex items-center justify-center bg-gray-900 p-2 posiciontablasasig borderAnimation">
         <div class="overflow-x-auto">
             <table class=" text-xs text-left text-white">
                 <thead>

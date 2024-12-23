@@ -1,11 +1,9 @@
 <x-director.layout>
 
 
-    <form class="" action="{{ route('AsignarTutoresAlum') }}" method="POST" enctype="multipart/form-data">
+    <form class="posiciontablas" action="{{ route('AsignarTutoresAlum') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
-
-        <div class="form-group posicion1">
             <label for="Alumno">Alumno:</label>
             <select name="idAlumno" id="Alumno" class="form-control" required>
                 <option value="">Seleccione</option>
@@ -15,9 +13,9 @@
                 @endforeach
 
             </select>
-        </div>
+        
 
-        <div class="form-group posicion2">
+ 
             <label for="Tutor">Tutor:</label>
             <select name="idTutor" id="Tutor" class="form-control" required>
                 <option value="">Seleccione</option>
@@ -27,17 +25,17 @@
                 @endforeach
 
             </select>
-        </div>
+        
 
-        <div class="form-group">
+    
                 <label for="Tipo">Parentesco:</label>
                 <input type="text" name="Tipo" id="Tipo" class="form-control" required>
-            </div>
-        <!-- Botón de envío -->
-        <button type="submit" class="btn btn-primary posicion2">Asignar</button>
+           
+             <!-- Botón de envío -->
+              <button type="submit" class="btn btn-primary ">Asignar</button>
+   </form>     
 
-    </form>
-    <div class="flex items-center justify-center bg-gray-900 p-2 posiciontablas borderAnimation ">
+<div class="flex items-center justify-center bg-gray-900 p-2 posiciontablasasig borderAnimation ">
         <div class="overflow-x-auto">
             <table class=" text-xs text-left text-white">
                 <thead>
@@ -78,5 +76,14 @@
             </table>
         </div>
     </div>
+
+
+
+
+
+
+
+
+
 
 </x-director.layout>
