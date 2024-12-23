@@ -26,13 +26,21 @@ left: -762px; /* lado */
         position: absolute;
         top: 35%;    /* alto */
         left: 20%; /* lado */
-        overflow: auto; /* Permite el desplazamiento interno si el contenido es más grande que el contenedor */
+        /* Permite el desplazamiento interno si el contenido es más grande que el contenedor */
         }
+        .posiciontablasasig{
+
+            position: absolute;
+            top: 35%;    /* alto */
+            left: 60%; /* lado */
+            /* Permite el desplazamiento interno si el contenido es más grande que el contenedor */
+            }
         .posiciontablasderecha{
 
             position: absolute;
             top: 15%;    /* alto */
             left: 120%; /* lado */
+            overflow: auto;
             }
     .posicionseditalum{
 

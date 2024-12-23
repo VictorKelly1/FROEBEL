@@ -1,10 +1,10 @@
 <x-director.layout>
 
-    <form class="" action="{{ route('AsignarGrupAlum') }}" method="POST" enctype="multipart/form-data">
+    <form  class="posiciontablas" action="{{ route('AsignarGrupAlum') }}" method="POST" enctype="multipart/form-data">
         @csrf
+       
 
-
-        <div class="form-group posicion1">
+        <div class="form-group ">
             <label for="Alumno">Alumno:</label>
             <select name="idAlumno" id="Alumno" class="form-control" required>
                 <option value="">Seleccione</option>
@@ -16,7 +16,7 @@
             </select>
         </div>
 
-        <div class="form-group posicion2">
+        <div class="form-group ">
             <label for="Grupo">Grupo:</label>
             <select name="idGrupo" id="Grupo" class="form-control" required>
                 <option value="">Seleccione</option>
@@ -33,10 +33,15 @@
         </div>
 
         <button type="submit" class="btn btn-primary posicion2">Asignar</button>
-
-    </form>
-    <div class="flex items-center justify-center bg-gray-900 p-2 posiciontablas borderAnimation ">
+        </form>
+   
+    <div class="flex items-center justify-center bg-gray-900 p-2 posiciontablasasig borderAnimation ">
         <div class="overflow-x-auto">
+
+        <div class="mb-4 posicion1 ">
+        <input style="width: 190px;" type="text" id="searchInput" class="px-4 py-2 text-white rounded" placeholder="Buscar...">
+       </div>
+
             <table class=" text-xs text-left text-white">
                 <thead>
                     <tr class="bg-transparent">
@@ -70,8 +75,26 @@
                     {{ $GrupAlum->links() }}
                 </tbody>
             </table>
+
+
+            <script>
+        document.getElementById("searchInput").addEventListener("input", function() {
+            var filter = this.value.toLowerCase();
+            var rows = document.getElementById("tableBody").getElementsByTagName("tr");
+
+            Array.from(rows).forEach(function(row) {
+                var text = row.textContent.toLowerCase();
+                if (text.includes(filter)) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        });
+    </script>
+
         </div>
     </div>
-
+   
 
 </x-director.layout>

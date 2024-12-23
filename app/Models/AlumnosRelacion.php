@@ -8,5 +8,5 @@ class AlumnosRelacion extends Model
 {
     protected $table = 'AlumnosRelaciones';
     protected $primaryKey = 'idRelacion';
-    protected $fillable = ['idAlumno', 'idTutor'];
+    protected $fillable = ['idAlumno', 'idTutor', 'Tipo'];
 }

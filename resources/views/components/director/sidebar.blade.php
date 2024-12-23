@@ -8,7 +8,7 @@
     <p>" "</p>
 
     <div class="relative tamañobuscadorsidebar" x-show="!collapsed">
-            <input
+            <input  style="width: 230px;"
                 type="text"
                 class="bg-white text-gray-900 rounded-full px-4 py-1 text-sm"
                 placeholder="Buscar...">
@@ -208,7 +208,8 @@
         <div x-show="open" class="pl-6 ">
             <a class="block text-black py-1 px-2 rounded hover:bg-gray-200"
                 href="{{ route('ListaTutoresAlumnos') }}">Tutores-Alumnos</a>
-            <a class="block text-black py-1 px-2 rounded hover:bg-gray-200" href="">Contactos</a>
+            <a class="block text-black py-1 px-2 rounded hover:bg-gray-200"
+                href="{{ route('VistaAsignarContacto') }}">Contactos</a>
             <a class="block text-black py-1 px-2 rounded hover:bg-gray-200"
                 href="{{ route('ListaGruposAlumnos') }}">Grupo-Alumnos</a>
             <a class="block text-black py-1 px-2 rounded hover:bg-gray-200"

@@ -1,40 +1,49 @@
 <x-director.layout>
 
 
-    <form class="" action="{{ route('AsignarTutoresAlum') }}" method="POST" enctype="multipart/form-data">
+    <form class="posiciontablas" action="{{ route('AsignarTutoresAlum') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
+        <label for="Alumno">Alumno:</label>
+        <select name="idAlumno" id="Alumno" class="form-control" required>
+            <option value="">Seleccione</option>
+            @foreach ($Alumnos as $Alumno)
+                <option value="{{ $Alumno->idAlumno }}">{{ $Alumno->Matricula }} - {{ $Alumno->Nombre }}
+                    {{ $Alumno->ApellidoPaterno }} {{ $Alumno->ApellidoMaterno }}</option>
+            @endforeach
 
-        <div class="form-group posicion1">
-            <label for="Alumno">Alumno:</label>
-            <select name="idAlumno" id="Alumno" class="form-control" required>
-                <option value="">Seleccione</option>
-                @foreach ($Alumnos as $Alumno)
-                    <option value="{{ $Alumno->idAlumno }}">{{ $Alumno->Matricula }} - {{ $Alumno->Nombre }}
-                        {{ $Alumno->ApellidoPaterno }} {{ $Alumno->ApellidoMaterno }}</option>
-                @endforeach
+        </select>
 
-            </select>
-        </div>
 
-        <div class="form-group posicion2">
-            <label for="Tutor">Tutor:</label>
-            <select name="idTutor" id="Tutor" class="form-control" required>
-                <option value="">Seleccione</option>
-                @foreach ($Tutores as $Tutor)
-                    <option value="{{ $Tutor->idTutor }}">{{ $Tutor->Nombre }} {{ $Tutor->ApellidoPaterno }}
-                        {{ $Tutor->ApellidoMaterno }}</option>
-                @endforeach
 
-            </select>
-        </div>
+        <label for="Tutor">Tutor:</label>
+        <select name="idTutor" id="Tutor" class="form-control" required>
+            <option value="">Seleccione</option>
+            @foreach ($Tutores as $Tutor)
+                <option value="{{ $Tutor->idTutor }}">{{ $Tutor->Nombre }} {{ $Tutor->ApellidoPaterno }}
+                    {{ $Tutor->ApellidoMaterno }}</option>
+            @endforeach
 
-        <div class="form-group">
-            <label for="Tipo">Parentesco:</label>
-            <input type="text" name="Tipo" id="Tipo" class="form-control" required>
-        </div>
+        </select>
+
+
+
+        <label for="Tipo">Parentesco:</label>
+        <input type="text" name="Tipo" id="Tipo" class="form-control" required>
+
         <!-- Botón de envío -->
-        <button type="submit" class="btn btn-primary posicion2">Asignar</button>
+        <button type="submit" class="btn btn-primary ">Asignar</button>
+    </form>
+
+    <div class="flex items-center justify-center bg-gray-900 p-2 posiciontablasasig borderAnimation ">
+    </div>
+
+    <div class="form-group">
+        <label for="Tipo">Parentesco:</label>
+        <input type="text" name="Tipo" id="Tipo" class="form-control" required>
+    </div>
+    <!-- Botón de envío -->
+    <button type="submit" class="btn btn-primary posicion2">Asignar</button>
 
     </form>
     <div class="flex items-center justify-center bg-gray-900 p-2 posiciontablas borderAnimation ">
@@ -78,5 +87,14 @@
             </table>
         </div>
     </div>
+
+
+
+
+
+
+
+
+
 
 </x-director.layout>
