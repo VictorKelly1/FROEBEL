@@ -14,7 +14,7 @@ class AulasController extends Controller
     */
     public function index()
     {
-        $Aulas = Aula::All();
+        $Aulas = Aula::paginate(50);
         return view('director.ConsultasAulas', ['Aulas' => $Aulas]);
     }
 

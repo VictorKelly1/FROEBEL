@@ -20,7 +20,7 @@ class AlumnosRelacionesController extends Controller
     {
         $Alumnos = VAlumno::where('Estado', 'Activo')->get();
         $Tutores = VTutor::All();
-        $AlumnosRalciones = ValumnosRelaciones::All();
+        $AlumnosRalciones = ValumnosRelaciones::paginate(50);
         return view(
             'director.AsigAlumTutor',
             [

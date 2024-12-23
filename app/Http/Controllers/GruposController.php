@@ -18,7 +18,7 @@ class GruposController extends Controller
     */
     public function index()
     {
-        $VGrupos = Vgrupos::All();
+        $VGrupos = Vgrupos::paginate(50);
         return view('director.ConsultasGrup', ['Grupos' => $VGrupos]);
     }
 

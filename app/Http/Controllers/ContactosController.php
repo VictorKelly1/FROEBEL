@@ -18,7 +18,7 @@ class ContactosController extends Controller
     {
         //
         $Personas = Persona::All();
-        $Contactos = VContactos::All();
+        $Contactos = VContactos::paginate(50);
         return view(
             'director.Contacto',
             [

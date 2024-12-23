@@ -20,10 +20,10 @@ class ComprasControllers extends Controller
     {
         //Compras que no se les aplico descuento
         $Compras = VTransacciones::where('TipoTransaccion', 'Compra')
-            ->get();
+            ->paginate(50);
         //pagos que se les aplico descuento
         $ComprasDesc = VdescTransacciones::where('TipoTransaccion', 'Compra')
-            ->get();
+            ->paginate(50);
         //
 
         return view(

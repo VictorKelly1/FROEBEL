@@ -14,7 +14,7 @@ class FijosController extends Controller
     */
     public function index()
     {
-        $Fijos = Fijo::All();
+        $Fijos = Fijo::paginate(50);
         return view('director.ConsultasFijos', ['Fijos' => $Fijos]);
     }
 

@@ -13,8 +13,7 @@ class PlaneacionesController extends Controller
     */
     public function index()
     {
-
-        $Planeaciones = Vplaneaciones::All();
+        $Planeaciones = Vplaneaciones::paginate(50);
         return view('director.ConsultasInasist', ['Planeaciones' => $Planeaciones]);
     }
 }

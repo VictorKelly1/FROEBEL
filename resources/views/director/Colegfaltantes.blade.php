@@ -93,6 +93,7 @@
 
                         </tr>
                     @endforeach
+                    {{ $Faltantes->links() }}
                 </tbody>
             </table>
         </div>

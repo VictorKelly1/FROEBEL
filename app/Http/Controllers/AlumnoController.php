@@ -21,7 +21,8 @@ class AlumnoController extends Controller
         /* 
         Se obtiene una lista con todos los alumnos activos
         */
-        $Alumnos = VAlumno::where('Estado', 'Activo')->get();
+        $Alumnos = VAlumno::where('Estado', 'Activo') //->get()
+            ->paginate(50);
         return view('director.ConsultasAlum', ['Alumnos' => $Alumnos]);
     }
 

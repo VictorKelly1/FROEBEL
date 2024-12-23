@@ -15,30 +15,31 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($Pagos as $Inscripcion)
+                    @foreach ($Pagos as $pago)
                         <tr class="hover:bg-gray-800 bg-transparent">
                             <td class="px-2 py-1 border-t border-purple-500 animate-border">
-                                {{ $Inscripcion->Nombre }}
-                                {{ $Inscripcion->ApellidoPaterno }}
-                                {{ $Inscripcion->ApellidoMaterno }}
+                                {{ $pago->Nombre }}
+                                {{ $pago->ApellidoPaterno }}
+                                {{ $pago->ApellidoMaterno }}
                             </td>
                             <td class="px-2 py-1 border-t border-purple-500 animate-border">
-                                {{ $Inscripcion->Clave }}
+                                {{ $pago->Clave }}
                             </td>
                             <td class="px-2 py-1 border-t border-purple-500 animate-border">
-                                {{ $Inscripcion->FechaInicio }}</td>
-                            <td class="px-2 py-1 border-t border-purple-500 animate-border">{{ $Inscripcion->FechaFin }}
+                                {{ $pago->FechaInicio }}</td>
+                            <td class="px-2 py-1 border-t border-purple-500 animate-border">{{ $pago->FechaFin }}
                             </td>
                             <td class="px-2 py-1 border-t border-purple-500 animate-border">
-                                {{ $Inscripcion->MetodoPago }}
+                                {{ $pago->MetodoPago }}
                             </td>
                             <td class="px-2 py-1 border-t border-purple-500 animate-border">
-                                {{ $Inscripcion->CuentaRecibido }}</td>
-                            <td class="px-2 py-1 border-t border-purple-500 animate-border">{{ $Inscripcion->Monto }}
+                                {{ $pago->CuentaRecibido }}</td>
+                            <td class="px-2 py-1 border-t border-purple-500 animate-border">{{ $pago->Monto }}
                             </td>
 
                         </tr>
                     @endforeach
+                    {{ $Pagos->links() }}
                 </tbody>
             </table>
         </div>

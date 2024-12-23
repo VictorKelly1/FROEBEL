@@ -14,7 +14,7 @@ class InasistenciasController extends Controller
     public function index()
     {
 
-        $Inasistencias = VInasistencias::All();
+        $Inasistencias = VInasistencias::paginate(50);
         return view('director.ConsultasInasist', ['Inasistencias' => $Inasistencias]);
     }
 }

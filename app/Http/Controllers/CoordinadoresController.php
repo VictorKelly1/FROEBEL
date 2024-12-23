@@ -19,7 +19,7 @@ class CoordinadoresController extends Controller
         /* 
         Se obtiene una lista con todos los alumnos activos
         */
-        $Coordinadores = VCoordinador::where('Estado', 'Activo')->get();
+        $Coordinadores = VCoordinador::where('Estado', 'Activo')->paginate(50);
         return view('director.ConsultasCoordi', ['Coordinadores' => $Coordinadores]);
     }
 

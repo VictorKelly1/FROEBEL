@@ -19,7 +19,7 @@ class MaterialesIntendentesController extends Controller
     {
         $Intendentes = VIntendente::All();
         $Materiales = Material::All();
-        $DocentesIntendentes = VmaterialesIntendentes::All();
+        $DocentesIntendentes = VmaterialesIntendentes::paginate(50);
         return view(
             'director.AsigMaterialInten',
             [

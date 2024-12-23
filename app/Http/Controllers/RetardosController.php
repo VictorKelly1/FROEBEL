@@ -13,7 +13,7 @@ class RetardosController extends Controller
     */
     public function index()
     {
-        $Retardos = Vretardos::All();
+        $Retardos = Vretardos::paginate(50);
         return view('director.ConsultasInasist', ['Retardos' => $Retardos]);
     }
 }

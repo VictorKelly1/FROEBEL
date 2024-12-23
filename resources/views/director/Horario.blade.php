@@ -105,7 +105,7 @@
 
                         </tr>
                     @endforeach
-
+                    {{ $Horarios->links() }}
                 </tbody>
             </table>
         </div>

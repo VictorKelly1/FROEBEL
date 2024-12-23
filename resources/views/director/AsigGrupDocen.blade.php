@@ -66,7 +66,7 @@
 
                         </tr>
                     @endforeach
-
+                    {{ $GrupDocen->links() }}
                 </tbody>
             </table>
         </div>

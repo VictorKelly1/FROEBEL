@@ -67,7 +67,7 @@
 
                         </tr>
                     @endforeach
-
+                    {{ $GrupAlum->links() }}
                 </tbody>
             </table>
         </div>

@@ -6,7 +6,7 @@
                     <tr class="bg-transparent">
                         <th class="px-2 py-1 border-b border-purple-500 animate-border">Fecha</th>
                         <th class="px-2 py-1 border-b border-purple-500 animate-border">Motivo</th>
-                      
+
                     </tr>
                 </thead>
                 <tbody>
@@ -16,11 +16,12 @@
                             </td>
                             <td class="px-2 py-1 border-t border-purple-500 animate-border">{{ $Vestimenta->Motivo }}
                             </td>
-                                </form>
+                            </form>
                             </td>
 
                         </tr>
                     @endforeach
+                    {{ $Vestimentas->links() }}
                 </tbody>
             </table>
         </div>

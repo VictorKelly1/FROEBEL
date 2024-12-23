@@ -15,7 +15,7 @@ class ConceptosController extends Controller
     public function index()
     {
 
-        $Conceptos = Concepto::All();
+        $Conceptos = Concepto::paginate(50);
         return view('director.ConsultasAlum', ['Conceptos' => $Conceptos]);
     }
 

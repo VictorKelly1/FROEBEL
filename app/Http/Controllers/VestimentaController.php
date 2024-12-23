@@ -13,7 +13,7 @@ class VestimentaController extends Controller
     */
     public function index()
     {
-        $Vestimentas = Vvestimenta::All();
+        $Vestimentas = Vvestimenta::paginate(50);
         return view('director.ConsultasVestim', ['Vestimentas' => $Vestimentas]);
     }
 }

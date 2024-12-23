@@ -18,7 +18,7 @@ class TutoresController extends Controller
         /* 
         Se obtiene una lista con todos los Tutores
         */
-        $Tutores = VTutor::all();
+        $Tutores = VTutor::paginate(50);
         return view('director.ConsultasTutores', ['Tutores' => $Tutores]);
     }
 

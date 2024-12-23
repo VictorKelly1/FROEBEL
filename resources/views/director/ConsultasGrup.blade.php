@@ -42,6 +42,7 @@
 
                         </tr>
                     @endforeach
+                    {{ $Grupos->links() }}
                 </tbody>
             </table>
         </div>

@@ -17,7 +17,7 @@ class DocenteController extends Controller
     public function index()
     {
         //
-        $Docentes = VDocente::where('Estado', 'Activo')->get();
+        $Docentes = VDocente::where('Estado', 'Activo')->paginate(50);
         return view('director.ConsultasDocente', ['Docentes' => $Docentes]);
     }
 

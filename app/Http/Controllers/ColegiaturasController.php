@@ -30,11 +30,11 @@ class ColegiaturasController extends Controller
         $Pagos = VTransacciones::where('TipoTransaccion', 'Pago')
             ->where('vTransacciones.TipoTransaccion', 'Pago')
             ->where('vTransacciones.NombreConcepto', 'Colegiatura')
-            ->get();
+            ->paginate(50);
         //pagos que se les aplico descuento
         $PagosDesc = VdescTransacciones::where('TipoTransaccion', 'Pago')
             ->where('NombreConcepto', 'Colegiatura')
-            ->get();
+            ->paginate(50);
         //
 
         return view(
@@ -263,7 +263,7 @@ class ColegiaturasController extends Controller
             })
             ->whereNull('vTransacciones.idTransaccion')
             ->select('vAlumnos.*')
-            ->get();
+            ->paginate(50);
 
         return view(
             'director.Colegfaltantes',

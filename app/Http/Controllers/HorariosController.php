@@ -19,7 +19,7 @@ class HorariosController extends Controller
     {
         $Aulas = Aula::All();
         $GrupMat = VgruposMaterias::All();
-        $Horarios = Vhorarios::All();
+        $Horarios = Vhorarios::paginate(50);
         return view(
             'director.Horario',
             [

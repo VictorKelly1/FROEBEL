@@ -66,7 +66,7 @@
 
                         </tr>
                     @endforeach
-
+                    {{ $GrupMat->links() }}
                 </tbody>
             </table>
         </div>

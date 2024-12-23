@@ -19,7 +19,7 @@ class GruposMatController extends Controller
     {
         $Materias = Materia::All();
         $Grupos = Vgrupos::All();
-        $GrupMat = VgruposMaterias::All();
+        $GrupMat = VgruposMaterias::paginate(50);
         return view(
             'director.AsigGrupMat',
             [

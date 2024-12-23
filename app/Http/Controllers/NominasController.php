@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\VDocente;
 use App\Models\Vtransacciones;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class NominasController extends Controller
     {
         $Nominas = Vtransacciones::where('TipoTransaccion', 'Nomina')
             ->where('NombreConcepto', 'Nomina')
-            ->get();
+            ->paginate(50);
 
 
         return view(
@@ -31,7 +32,16 @@ class NominasController extends Controller
      */
     public function create()
     {
-        //
+        // Obtener el alumno activo
+        $Docentes = VDocente::where('Estado', 'Activo')->get();
+
+        // Pasar los datos a la vista
+        return view(
+            'dinamicas.RegisNominas',
+            [
+                'Docentes' => $Docentes,
+            ]
+        );
     }
 
     /**

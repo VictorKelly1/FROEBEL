@@ -30,9 +30,9 @@
         </div>
 
         <div class="form-group">
-                <label for="Tipo">Parentesco:</label>
-                <input type="text" name="Tipo" id="Tipo" class="form-control" required>
-            </div>
+            <label for="Tipo">Parentesco:</label>
+            <input type="text" name="Tipo" id="Tipo" class="form-control" required>
+        </div>
         <!-- Botón de envío -->
         <button type="submit" class="btn btn-primary posicion2">Asignar</button>
 
@@ -62,7 +62,7 @@
                             <td class="px-2 py-1 border-t border-purple-500 animate-border">
                                 {{ $AlumnoTutor->NombreTutor }} {{ $AlumnoTutor->ApellidoPaternoT }}
                                 {{ $AlumnoTutor->ApellidoMatT }}</td>
-                                <td class="px-2 py-1 border-t border-purple-500 animate-border">
+                            <td class="px-2 py-1 border-t border-purple-500 animate-border">
                                 {{ $AlumnoTutor->Tipo }} </td>
 
                             <td class="px-2 py-1 border-t border-purple-500 animate-border text-center">
@@ -73,7 +73,7 @@
 
                         </tr>
                     @endforeach
-
+                    {{ $AlumTutor->links() }}
                 </tbody>
             </table>
         </div>

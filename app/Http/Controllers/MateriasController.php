@@ -14,7 +14,7 @@ class MateriasController extends Controller
     */
     public function index()
     {
-        $Materias = Materia::All();
+        $Materias = Materia::paginate(50);
         return view('director.ConsultasMat', ['Materias' => $Materias]);
     }
 

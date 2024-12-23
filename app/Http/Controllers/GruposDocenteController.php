@@ -19,7 +19,7 @@ class GruposDocenteController extends Controller
     {
         $Docentes = VDocente::All();
         $Grupos = Vgrupos::All();
-        $GrupDocentes = VgruposDocentes::where('Estado', 'Activo')->get();
+        $GrupDocentes = VgruposDocentes::where('Estado', 'Activo')->paginate(50);
         return view(
             'director.AsigGrupDocen',
             [

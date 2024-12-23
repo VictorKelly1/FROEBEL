@@ -14,7 +14,7 @@ class DescuentosController extends Controller
      */
     public function index()
     {
-        $Descuentos = Descuento::All();
+        $Descuentos = Descuento::paginate(50);
         return view('director.ConsultasDesc', ['Descuentos' => $Descuentos]);
     }
 

@@ -66,6 +66,7 @@
 
                         </tr>
                     @endforeach
+                    {{ $Contactos->links() }}
                 </tbody>
             </table>
         </div>

@@ -17,7 +17,7 @@ class IntendentesController extends Controller
         /* 
         Se obtiene una lista con todos los Intendentes activos
         */
-        $Intendentes = VIntendente::where('Estado', 'Activo')->get();
+        $Intendentes = VIntendente::where('Estado', 'Activo')->paginate(50);
         return view('director.ConsultasInten', ['Intendentes' => $Intendentes]);
     }
 

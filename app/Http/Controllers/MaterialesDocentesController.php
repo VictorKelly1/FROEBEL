@@ -19,7 +19,7 @@ class MaterialesDocentesController extends Controller
     {
         $Docentes = VDocente::All();
         $Materiales = Material::All();
-        $DocentesMateriales = VmaterialesDocentes::All();
+        $DocentesMateriales = VmaterialesDocentes::paginate(50);
         return view(
             'director.AsigMaterialDocen',
             [
