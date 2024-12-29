@@ -1,12 +1,11 @@
 <x-director.layout>
 
-    <div class=" flex items-center led2 posicionsregisalum">
+    <div class=" flex items-center posiciontablas ">
 
-        <form class="" action="{{ route('RegistrarAlumno') }}" method="POST" enctype="multipart/form-data">
+        <form class="formulario" action="{{ route('RegistrarAlumno') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <!-- Datos de Persona -->
-            <h3>Datos Personales</h3>
             <div class="form-group">
                 <label for="Nombre">Nombre:</label>
                 <input type="text" name="Nombre" id="Nombre" class="form-control" required>
@@ -87,14 +86,14 @@
             </div>
 
             <!-- Datos de Usuario -->
-            <h3>Datos de Usuario</h3>
+  
             <div class="form-group">
                 <label for="Correo">Correo Electrónico:</label>
                 <input type="email" name="Correo" id="Correo" class="form-control" required>
             </div>
 
             <!-- Datos de Alumno -->
-            <h3>Datos Académicos</h3>
+      
             <div class="form-group">
                 <label for="Matricula">Matrícula:</label>
                 <input type="text" name="Matricula" id="Matricula" class="form-control" required>

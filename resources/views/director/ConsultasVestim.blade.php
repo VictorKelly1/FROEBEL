@@ -1,6 +1,16 @@
 <x-director.layout>
     <div class="flex items-center justify-center bg-gray-900 p-2 posiciontablas borderAnimation">
         <div class="overflow-x-auto">
+
+        <div class="overflow-x-auto w-full max-w-full z-30">
+            <table class="text-sm text-left text-white w-full table-auto z-30">
+                <thead>
+                <div class="relative tamañobuscadorsidebar">
+    <div class="buscador-contenedor">
+        <input type="search" id="searchInput" 
+            placeholder="Buscar Alumno..." class="buscador-input">
+    </div>
+
             <table class=" text-xs text-left text-white">
                 <thead>
                     <tr class="bg-transparent">
@@ -25,4 +35,33 @@
                 </tbody>
             </table>
         </div>
+
+
+
+
+
+
+
+        <script>
+        document.getElementById("searchInput").addEventListener("input", function() {
+            var filter = this.value.toLowerCase();
+            var rows = document.getElementById("tableBody").getElementsByTagName("tr");
+
+            Array.from(rows).forEach(function(row) {
+                var text = row.textContent.toLowerCase();
+                if (text.includes(filter)) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        });
+    </script>
+
+
+
+
+
+
+
 </x-director.layout>

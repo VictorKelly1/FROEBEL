@@ -1,163 +1,216 @@
-.led {
-   
-    box-shadow: 0 0 20px rgb(7, 44, 255); /* Sombra luminosa */
-}
+@media (min-width: 368px) and (max-width: 4991px) {
 
-.led2 {
-    margin: 760px;
- /*   outline: 2px solid red;      margen color*/
-}
+        .led {
+        
+            box-shadow: 0 0 20px rgb(7, 44, 255); /* Sombra luminosa */
+        }
 
-.posicionsidebar{
+        .led2 {
+            margin: 760px;
+        /*   outline: 2px solid red;      margen color*/
+        }
 
-position: absolute;
-top: -678px;    /* alto */
-left: -762px; /* lado */
-}
-.posicionsregisalum{
-
-    position: absolute;
-    top: -600px;    /* alto */
-    left: -170px; /* lado */
-    overflow: auto; /* Permite el desplazamiento interno si el contenido es más grande que el contenedor */
-    }
-    .posiciontablas{
+        .posicionsidebar{
 
         position: absolute;
-        top: 35%;    /* alto */
-        left: 20%; /* lado */
-        /* Permite el desplazamiento interno si el contenido es más grande que el contenedor */
+        top: -678px;    /* alto */
+        left: -762px; /* lado */
         }
-        .posiciontablasasig{
+        .posicionsregisalum{
 
             position: absolute;
-            top: 35%;    /* alto */
-            left: 60%; /* lado */
-            /* Permite el desplazamiento interno si el contenido es más grande que el contenedor */
-            }
-        .posiciontablasderecha{
-
-            position: absolute;
-            top: 15%;    /* alto */
-            left: 120%; /* lado */
-            overflow: auto;
-            }
-    .posicionseditalum{
-
-        position: absolute;
-        top: -500px;    /* alto */
-        left: 30px; /* lado */
+            top: -600px;    /* alto */
+            left: -170px; /* lado */
+            overflow: auto; /* Permite el desplazamiento interno si el contenido es más grande que el contenedor */
+        width: 40%;
         }
 
-    .botonesdiseño{
 
-        width: 400px; /* Ajusta el ancho */
-    padding: 10px;
-    border: 2px solid #0023c1; /* Borde púrpura */
-    border-radius: 10px; /* Bordes redondeados */
-    background-color: #1e1e1e; /* Fondo oscuro */
-    color: #ffffff; /* Texto blanco */
-    font-size: 14px;
+
+            .posiciontablas{
+
+                position: absolute;
+                top: 15%;    /* alto */
+                left: 25%; /* lado */
+                width: 75%;
+            
+                /* Permite el desplazamiento interno si el contenido es más grande que el contenedor */
+                }
+
+
+
+                .posiciontablasasig{
+
+                    position: absolute;
+                    top: 35%;    /* alto */
+                    left: 60%; /* lado */
+                    /* Permite el desplazamiento interno si el contenido es más grande que el contenedor */
+                    }
+                .posiciontablasderecha{
+
+                    position: absolute;
+                    top: 15%;    /* alto */
+                    left: 120%; /* lado */
+                    overflow: auto;
+                    }
+            .posicionseditalum{
+
+                position: absolute;
+                top: -500px;    /* alto */
+                left: 30px; /* lado */
+                }
+
+
+
+
+
+
+        /* Botones de Diseño */
+        .botonesdiseño {
+            width: 50%; /* Ancho relativo */
+            padding: 15px; /* Espaciado relativo */
+            border: 2px solid #0023c1;
+            border-radius: 100px;
+            background-color: #1e1e1e;
+            color: #ffffff;
+            font-size: 1vw; /* Ajuste relativo al viewport */
         }
-
+    
+        /* Estilos Globales para Inputs */
         input[type="text"],
         input[type="submit"],
         input[type="select"],
         input[type="email"],
         input[type="number"],
         input[type="file"],
+        input[type="search"],
         input[type="date"] {
-            /* LOS CAMBIA DE MANERA GLOBAL */
-            width: 500px; /* Ajusta el ancho */
-            padding: 10px;
-            border: 2px solid #0023c1; /* Borde púrpura */
-            border-radius: 10px; /* Bordes redondeados */
-            background-color: #1e1e1e; /* Fondo oscuro */
-            color: #ffffff; /* Texto blanco */
-            font-size: 14px;
-             appearance: none; /* Quita estilos predeterminados del navegador */
-             
+            width: 100%; /* Ancho relativo al contenedor padre */
+            padding: 5%;
+            border: 2px solid #0023c1;
+            border-radius: 10px;
+            background-color: #1e1e1e;
+            color: #ffffff;
+            font-size: 1vw;
+            appearance: none;
         }
-        
-
-      
-
-        input[type="text"]:focus {
-            outline: none;
-            border-color: #0331ff; /* Púrpura más brillante al enfocar */
-            box-shadow: 0 0 8px #6984ff; /* Efecto de brillo */
-        }
+    
+        input[type="text"]:focus,
         input[type="date"]:focus {
             outline: none;
-            border-color: rgb(49, 9, 225); /* Púrpura más brillante al enfocar */
-            box-shadow: 0 0 8px #2f4cd1; /* Efecto de brillo */
+            border-color: #0331ff;
+            box-shadow: 0 0 0.5vw #6984ff;
+        }
+    
+        .buscadorpersonal {
+       
+       
+           
+            color: #000000;
+            font-size: 1vw;
+            appearance: none;
+  
         }
 
+
+
+        /* Etiquetas */
         label {
-            color: #ffffff; /* Texto blanco */
-            font-family: Arial, sans-serif; /* Fuente básica */
-        
+            color: #ffffff;
+            font-family: Arial, sans-serif;
             display: block;
-            margin-bottom: 5px;
-            font-size: 18px;
-          
+            margin-bottom: 0.5%;
+            font-size: 1.2vw;
         }
+    
+        /* Submenús */
         .group:hover #subMenu {
-            display: block; /* Submenús visibles al hover */
+            display: block;
         }
-
-/* Estilos globales para select */
-/* Estilos para select */
-select {
-    width: 500px;
-    padding: 10px;
-    border: 2px solid #0023c1;
-    border-radius: 10px;
-    background-color: #1e1e1e; /* Fondo oscuro */
-    color: #ffffff !important; /* Texto blanco con prioridad */
-    font-size: 14px;
-    appearance: none; /* Quita estilos predeterminados del navegador */
+    
+        /* Select */
+        select {
+            width: 50%;
+            padding: 1%;
+            border: 2px solid #0023c1;
+            border-radius: 10px;
+            background-color: #1e1e1e;
+            color: #ffffff !important;
+            font-size: 1vw;
+            appearance: none;
+        }
+    
+        select option {
+            background-color: #1e1e1e;
+            color: #ffffff;
+        }
+    
+        /* Posiciones relativas */
+        .tablaposicion {
+            position: relative;
+            top: 5vh;
+            left: 5vw;
+        }
+    
+        .posicion1 {
+            position: relative;
+            top: 2vh;
+            left: 5vw;
+            overflow-x: auto;
+            overflow-y: auto;
+        }
+    
+        .posicion2 {
+            position: relative;
+            top: 5vh;
+            left: 10vw;
+        }
+    
+        .Buscadorposicion {
+            position: relative;
+            top: 5vh;
+            left: 5vw;
+        }
+    
+/* Ajusta el contenedor principal del buscador */
+.tamañobuscadorsidebar {
+    position: relative;
+    max-width: 400px; /* Define un límite para el tamaño */
+    margin: 0 auto; /* Centra el buscador */
 }
 
-/* Estilo para las opciones dentro del select */
-select option {
-    background-color: #1e1e1e; /* Fondo oscuro */
-    color: #ffffff; /* Texto blanco */
+/* Contenedor interno del buscador */
+.buscador-contenedor {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%; /* Ocupará todo el ancho disponible del contenedor padre */
+    padding: 0.5rem;
+}
+
+/* Estilos específicos del input */
+.buscador-input {
+    width: 100%; /* Se adapta al contenedor */
+    padding: 0.5rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+/* Efecto al enfocar */
+.buscador-input:focus {
+    outline: none;
+    border-color: #6984ff;
+    box-shadow: 0 0 5px #6984ff;
 }
 
 
 
 
-        .tablaposicion{
 
-            position: relative;
-            top: 30%;
-            left: 20%;
-
-        }
-        .posicion1{
-
-            position: relative;
-            top: 10%;
-            left: 10%;
-
-        }
-        .posicion2{
-
-            position: relative;
-            top: 30%;
-            left: 40%;
-
-        }
-        .Buscadorposicion{
-
-            position: relative;
-            top: 30%;
-            left: 20%;
-
-        }
-
-
+        /* Animación de Borde */
         @keyframes borderAnimation {
             0% {
                 border-color: rgb(4, 29, 255);
@@ -169,73 +222,70 @@ select option {
                 border-color: rgb(30, 5, 255);
             }
         }
-
+    
         .animate-border {
             animation: borderAnimation 5s infinite;
         }
-
-
-
-/* Importar la fuente desde Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap');
-
-/* Aplicar fuente y estilo */
-.font-cinzel {
-    font-family: 'Cinzel', serif; /* Fuente personalizada */
-    color: white; /* Color del texto */
-    text-shadow: 2px 2px 4px rgba(108, 67, 201, 0.8); /* Efecto de luz suave */
-    letter-spacing: 0.2em; /* Espaciado entre letras */
-}
-
-
-
-
-
-
-        .tamañoletra {
-            font-size: 1.25rem;
+    
+        /* Fuente personalizada */
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap');
+    
+        .font-cinzel {
+            font-family: 'Cinzel', serif;
+            color: white;
+            text-shadow: 0.2vw 0.2vw 0.4vw rgba(108, 67, 201, 0.8);
+            letter-spacing: 0.1vw;
         }
-        
-        
+    
+        /* Tamaño de Letra */
+        .tamañoletra {
+            font-size: 1.5vw;
+        }
+    
         .relative h1 {
             color: white;
-            text-shadow: 1px 1px 5px rgba(108, 67, 201, 0.8);
+            text-shadow: 0.1vw 0.1vw 0.5vw rgba(108, 67, 201, 0.8);
         }
-        
+    
         input::placeholder {
             color: #ccc;
-            font-size: 0.875rem;
+            font-size: 1vw;
         }
-        
-
-
-
-
-
-
-
+    
+        /* Botón Primario */
         .btn-primary {
-            background-color: rgb(26, 19, 230); /* Morado */
-            color: white; /* Letras blancas */
-            border: 2px solid rgb(255, 255, 255); /* Borde blanco */
-            padding: 10px 20px; /* Espaciado interno */
-            font-size: 16px; /* Tamaño de letra */
-            font-weight: bold; /* Negrita */
-            border-radius: 5px; /* Bordes redondeados */
-            cursor: pointer; /* Icono de mano */
-            transition: all 0.3s ease-in-out; /* Animación suave */
+            background-color: rgb(26, 19, 230);
+            color: white;
+            border: 2px solid rgb(255, 255, 255);
+            padding: 5% 5%;
+            font-size: 1vw;
+            font-weight: bold;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            margin-top: 5%;
+            justify-content: center;
         }
-        
-        /* Hover: Cambia el color y el borde al pasar el mouse */
+    
         .btn-primary:hover {
-            background-color: rgb(41, 9, 248); /* Morado más oscuro */
-            border-color: rgb(192, 192, 192); /* Borde gris claro */
-            transform: scale(1.05); /* Aumenta ligeramente el tamaño */
+            background-color: rgb(41, 9, 248);
+            border-color: rgb(192, 192, 192);
+            transform: scale(1.05);
         }
-        
-        /* Focus: Agrega un efecto de foco */
+    
         .btn-primary:focus {
-            outline: none; /* Quita el borde por defecto */
-            box-shadow: 0 0 8px rgb(16, 32, 254); /* Resplandor morado */
+            outline: none;
+            box-shadow: 0 0 0.5vw rgb(16, 32, 254);
+        }
+    }
+    
+
+    .formulario {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Dos columnas iguales */
+        grid-gap: 5%; /* Espacio entre celdas */
         }
         
+        .formulario > * {
+        grid-column: auto; /* Asigna cada elemento a una celda */
+        }

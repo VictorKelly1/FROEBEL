@@ -1,13 +1,13 @@
 <x-director.layout>
 
-    <div class=" flex items-center led2 posicionsregisalum">
+    <div class=" flex items-center posiciontablas">
 
 
-        <form class="" action="{{ route('RegistrarTutor') }}" method="POST" enctype="multipart/form-data">
+        <form class="formulario" action="{{ route('RegistrarTutor') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <!-- Datos de Persona -->
-            <h3>Datos Personales</h3>
+          
             <div class="form-group">
                 <label for="Nombre">Nombre:</label>
                 <input type="text" name="Nombre" id="Nombre" class="form-control" required>

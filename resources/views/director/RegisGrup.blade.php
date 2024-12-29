@@ -1,12 +1,12 @@
 <x-director.layout>
 
-    <div class=" flex items-center led2 posicionsregisalum">
+    <div class=" flex items-center posiciontablas">
       
-        <form class="" action="{{ route('RegistrarGrupo') }}" method="POST" enctype="multipart/form-data">
+        <form class="formulario" action="{{ route('RegistrarGrupo') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <!-- Datos de Persona -->
-            <h3>Datos</h3>
+         
 
             <div class="form-group">
                 <label for="Clave">Clave:</label>

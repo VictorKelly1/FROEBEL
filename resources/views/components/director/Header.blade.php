@@ -4,10 +4,13 @@
     <!-- Sección Izquierda -->
     <div class="flex items-center space-x-4">
         <!-- Icono de Usuario -->
-        <h1 class="relative tamañoletra font-bold text-4xl tracking-widest font-cinzel">
-        COLEGIO FROEBEL
-    </h1>
+        <h1>
+    <img src="{{ asset('images/logo.png') }}" alt="Header Image" class="imagen-header">
+</h1>
 
+<h1>
+    <img src="{{ asset('images/letralogo.png') }}" alt="Header Image" class="imagen-header2">
+</h1>
 
 
 
@@ -36,13 +39,62 @@
         <div>
             <span class="text-sm font-semibold uppercase">MARIO DE LA CRUZ FLORES</span>
         </div>
-        <div class="relative">
-            <img src="{{ asset('images/b1.png') }}" alt="Usuario" class="w-10 h-10 rounded-full">
+        <button  class="dropdown-btn">
+            <img src="{{ asset('images/b1.png') }}" alt="Perfil" class="img-perfil">
             <!-- Indicador de estado -->
             <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 rounded-full"></span>
+        </button>
+            
+            <!-- Menú desplegable -->
+        <div class="dropdown-content">
+            <a href="#">Cambiar cuenta</a>
+            <a href="#">Configuración</a>
+            <a href="#">Cambiar Tema</a>
+            <a href="#">Cerrar sesión</a>
+
         </div>
-       
-      
 
     </div>
+
+<style>
+.imagen-header {
+    width: 100%;  /* La imagen ocupará el 100% del ancho del contenedor */
+    max-width: 30%; /* Limita el tamaño máximo de la imagen al 100% */
+    height: auto; /* Mantiene la proporción de la imagen */
+}
+
+/* Si deseas que la imagen no sea más alta que el encabezado */
+header {
+    height: 12%; /* Ajusta la altura del header según sea necesario */
+}
+
+
+.imagen-header2 {
+    position: relative;
+    width: 100%;  /* La imagen ocupará el 100% del ancho del contenedor */
+    max-width: 150%; /* Limita el tamaño máximo de la imagen al 100% */
+    height: auto; /* Mantiene la proporción de la imagen */
+    margin-left: -150px;
+}
+
+
+.imagen-header2 {
+    height: 100%; /* Ajusta la altura de la imagen al 100% del contenedor */
+    width: auto; /* Mantiene la proporción de la imagen */
+}
+
+
+
+</style>
+
+<script>
+
+document.querySelector('.dropdown-btn').addEventListener('click', function() {
+    var dropdownContent = document.querySelector('.dropdown-content');
+    dropdownContent.style.display = (dropdownContent.style.display === 'block') ? 'none' : 'block';
+});
+
+
+</script>
+
 </header>

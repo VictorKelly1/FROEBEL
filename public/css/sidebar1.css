@@ -1,137 +1,123 @@
-/* El menú de navegación lateral (Sidebar) */
-.sidebar {
-    margin: 0; /* Elimina márgenes alrededor del sidebar */
-    padding: 0; /* Elimina relleno dentro del sidebar */
-    width: 200px; /* Establece el ancho del sidebar */
-    background-color: #000000; /* Fondo del sidebar en color gris claro */
-    position: fixed; /* Fija el sidebar en su lugar, sin que se desplace al hacer scroll */
-    height: 100%; /* Hace que el sidebar ocupe toda la altura de la pantalla */
-    overflow: auto; /* Permite el desplazamiento interno si el contenido es más grande que el contenedor */
-  }
-  
-  /* Estilo para los enlaces dentro del sidebar */
-  .sidebar a {
-    display: block; /* Hace que los enlaces se comporten como bloques, ocupando toda la línea */
-    color: rgb(255, 255, 255); /* Establece el color del texto de los enlaces en negro */
-    padding: 16px; /* Añade relleno alrededor del texto de los enlaces */
-    text-decoration: none; /* Elimina el subrayado predeterminado de los enlaces */
-  }
-  
-  /* Estilo para el enlace activo o seleccionado */
-  .sidebar a.active {
-    background-color: #04AA6D; /* Establece un fondo verde para el enlace activo */
-    color: white; /* Cambia el color del texto a blanco en el enlace activo */
-  }
-  
-  /* Estilo de los enlaces cuando el mouse pasa sobre ellos (hover), excepto los activos */
-  .sidebar a:hover:not(.active) {
-    background-color: #0023c1; /* Cambia el fondo a morado oscuro cuando el mouse pasa sobre el enlace */
-    color: white; /* Cambia el color del texto a blanco */
-  }
-  
-  /* Estilo para el contenido principal de la página */
-  div.content {
-    margin-left: 200px; /* Deja espacio para el sidebar a la izquierda */
-    padding: 1px 16px; /* Añade un pequeño relleno dentro del contenido */
-    height: 1000px; /* Establece una altura para el contenido (puede ajustarse según el contenido real) */
-  }
-  
-  /* En pantallas más pequeñas, donde el ancho es menor a 700px, convierte el sidebar en una barra superior */
-  @media screen and (max-width: 700px) {
-    .sidebar {
-      width: 100%; /* El sidebar ocupa el 100% del ancho de la pantalla */
-      height: auto; /* El sidebar ya no ocupa toda la altura de la pantalla */
-      position: relative; /* Cambia la posición a relativa, para que fluya con el contenido */
-    }
-    .sidebar a { 
-      float: left; /* Hace que los enlaces se alineen horizontalmente */
-    }
-    div.content {
-      margin-left: 0; /* Elimina el margen izquierdo, ya que el sidebar ahora está en la parte superior */
-    }
-  }
-  
-  /* En pantallas muy pequeñas, donde el ancho es menor a 400px, cambia la disposición de los enlaces */
-  @media screen and (max-width: 400px) {
-    .sidebar a {
-      text-align: center; /* Centra el texto de los enlaces */
-      float: none; /* Elimina el flotado de los enlaces */
-    }
-  }
-  
-
-
+/* Estilos para pantallas entre 768px y 4991px */
+@media (min-width: 768px) and (max-width: 4991px) {
+  /* Sidebar */
   .sidebar {
-    overflow-y: auto; /* Activa el scroll vertical */
-    max-height: 100vh; /* Limita la altura al 100% de la pantalla */
-    scrollbar-width: thin; /* Scroll más delgado (Firefox) */
-    scrollbar-color: #0023c1 #1f2937; /* Color del scroll */
-}
-
-/* Personalización del scroll para Chrome y navegadores basados en Webkit */
-.sidebar::-webkit-scrollbar {
-    width: 6px; /* Ancho del scroll */
-}
-
-.sidebar::-webkit-scrollbar-track {
-    background: #1f2937; /* Color de fondo del scroll */
-}
-
-.sidebar::-webkit-scrollbar-thumb {
-    background-color: #0023c1; /* Color del "pulgar" del scroll */
-    border-radius: 6px; /* Bordes redondeados */
-}
-
-
-.custom-icon {
-  font-size: 1.6rem; /* Ajusta el tamaño en rem, px, %, etc. */
-}
-
-
-
-/* Animación de fondo LED */
-@keyframes ledBackground {
-  0% {
-      background-color: #0023c1;
-      box-shadow: 0 0 10px #0d1e69;
+      margin: 0;
+      padding: 0;
+      width: 20%; /* Sidebar ocupa el 20% del ancho de la pantalla */
+      background-color: #000000;
+      position: fixed;
+      height: 100vh; /* Altura completa de la ventana */
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: #0023c1 #1f2937;
   }
-  50% {
-      background-color: #0023c1;
-      box-shadow: 0 0 15px #0c1e70;
+
+  .sidebar a {
+      display: block;
+      color: rgb(255, 255, 255);
+      padding: 2%; /* Espaciado adaptable */
+      text-decoration: none;
+      font-size: 1rem; /* Tamaño de fuente relativo */
   }
-  100% {
+
+  .sidebar a.active {
+      background-color: #04AA6D;
+      color: white;
+  }
+
+  .sidebar a:hover:not(.active) {
       background-color: #0023c1;
-      box-shadow: 0 0 10px #102272;
+      color: white;
+  }
+
+  /* Contenido principal */
+  div.content {
+      margin-left: 20%; /* Espacio dejado por el sidebar */
+      padding: 2% 3%; /* Espaciado adaptable */
+      height: auto; /* Altura dinámica */
+  }
+
+  /* Iconos personalizados */
+  .custom-icon {
+      font-size: 1.6rem;
+  }
+
+  /* Botón de colapsar */
+  .sidebar button {
+      transition: right 0.5s ease-in-out, background-color 1.5s ease-in-out;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 10%; /* Adaptable al sidebar */
+      height: 5vh; /* Altura en relación con la ventana */
+  }
+
+  .sidebar.w-20 button {
+      right: 12%; /* Se asegura de que quede visible */
+      width: 3vw; /* Botón adaptable al ancho de la ventana */
+      height: 3vw;
+  }
+
+  .sidebar button svg {
+      margin: 0 auto;
+  }
+
+  /* Scrollbar personalizado */
+  .sidebar::-webkit-scrollbar {
+      width: 0.5vw;
+  }
+
+  .sidebar::-webkit-scrollbar-track {
+      background: #1f2937;
+  }
+
+  .sidebar::-webkit-scrollbar-thumb {
+      background-color: #0023c1;
+      border-radius: 6px;
+  }
+
+  /* Animación LED */
+  @keyframes ledBackground {
+      0% {
+          background-color: #0023c1;
+          box-shadow: 0 0 1vw #0d1e69;
+      }
+      50% {
+          background-color: #0023c1;
+          box-shadow: 0 0 1.5vw #0c1e70;
+      }
+      100% {
+          background-color: #0023c1;
+          box-shadow: 0 0 1vw #102272;
+      }
+  }
+
+  .animate-led-bg {
+      animation: ledBackground 1.5s infinite alternate;
   }
 }
 
-/* Clase para la animación */
-.animate-led-bg {
-  animation: ledBackground 1.5s infinite alternate;
+/* Adaptación para pantallas pequeñas (<=700px) */
+@media screen and (max-width: 700px) {
+  .sidebar {
+      width: 100%;
+      height: auto;
+      position: relative;
+  }
+
+  .sidebar a {
+      float: left;
+      font-size: 0.9rem; /* Fuente más pequeña */
+  }
+
+  div.content {
+      margin-left: 0;
+  }
 }
 
-/* Botón de colapsar */
-.sidebar button {
-  transition: right 0.5s ease-in-out, background-color 1.5s ease-in-out;
+/* Scroll siempre optimizado */
+.sidebar {
+  overflow-y: auto;
+  max-height: 100vh;
 }
-
-/* Botón de colapsar */
-.sidebar button {
-  transition: right 0.5s ease-in-out, background-color 1.5s ease-in-out;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Ajuste cuando la sidebar está colapsada */
-.sidebar.w-20 button {
-  right: -20px; /* Asegura que el botón quede visible */
-  width: 48px; /* Tamaño cuadrado */
-  height: 48px; /* Tamaño cuadrado */
-}
-
-/* Icono centrado */
-.sidebar button svg {
-  margin: 0 auto;
-}
-

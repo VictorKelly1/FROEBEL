@@ -1,0 +1,37 @@
+.resolucion{
+
+width: 99%;
+}
+
+
+
+    /* CELULAR */
+@media(max-width: 767px){
+    .desktop{
+    display: none;
+    }
+    .tablet{
+        display: none;
+    }
+}
+    /* TABLET */
+@media(min-width: 768px) and (max-width: 991px){
+    .desktop{
+        display: none;
+    }
+
+    .movil{
+        display: none;
+    }
+}
+
+    /* COMPUTADORA */
+ @media(min-width: 992px){
+    .tablet{
+        display: none;
+    }
+
+    .movil{
+        display: none;
+    }
+ }

@@ -1,14 +1,22 @@
 <x-director.layout>
-    <div class=" flex items-center justify-center bg-gray-900 p-2 posiciontablas borderAnimation overflow-x-hidden z-20">
-        <div class="overflow-x-auto w-full max-w-full z-20">
-            <table class="text-sm text-left text-white w-full table-auto z-20">
+<div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+
+    <div class=" flex items-center justify-center bg-gray-900 p-2 posiciontablas borderAnimation overflow-x-hidden z-30">
+        <div class="overflow-x-auto w-full max-w-full z-30">
+            <table class="text-sm text-left text-white w-full table-auto z-30">
                 <thead>
+                <div class="relative tamañobuscadorsidebar">
+    <div class="buscador-contenedor">
+        <input type="search" id="searchInput" 
+            placeholder="Buscar Alumno..." class="buscador-input">
+    </div>
+</div>
+
                     <tr class="bg-transparent">
                         <th class="px-4 py-2 text-lg border-b border-purple-500 animate-border text-center">Nombre</th>
-                        <th class="px-4 py-2 text-lg border-b border-purple-500 animate-border text-center">Apellido
-                            Paterno</th>
-                        <th class="px-4 py-2 text-lg border-b border-purple-500 animate-border text-center">Apellido
-                            Materno</th>
+                
                         <th class="px-4 py-2 text-lg border-b border-purple-500 animate-border text-center">CURP</th>
                         <th class="px-4 py-2 text-lg border-b border-purple-500 animate-border text-center">Fecha de
                             Nacimiento</th>
@@ -42,11 +50,7 @@
                     @foreach ($Docentes as $Docente)
                         <tr class="hover:bg-gray-800 bg-transparent">
                             <td class="px-6 py-4 border-t border-purple-500 animate-border text-center">
-                                {{ $Docente->Nombre }}</td>
-                            <td class="px-6 py-4 border-t border-purple-500 animate-border text-center">
-                                {{ $Docente->ApellidoPaterno }}</td>
-                            <td class="px-6 py-4 border-t border-purple-500 animate-border text-center">
-                                {{ $Docente->ApellidoMaterno }}</td>
+                                {{ $Docente->Nombre }}  {{ $Docente->ApellidoPaterno }}  {{ $Docente->ApellidoMaterno }}</td>
                             <td class="px-6 py-4 border-t border-purple-500 animate-border text-center">
                                 {{ $Docente->CURP }}</td>
                             <td class="px-6 py-4 border-t border-purple-500 animate-border text-center">
@@ -100,24 +104,21 @@
 
 
 
-        <style>
-            .custom-cell {
-                min-width: 230px;
-            }
+        <script>
+        document.getElementById("searchInput").addEventListener("input", function() {
+            var filter = this.value.toLowerCase();
+            var rows = document.getElementById("tableBody").getElementsByTagName("tr");
 
-            .rounded-full {
-                border-radius: 50%;
-            }
-
-            .object-cover {
-                object-fit: cover;
-            }
-
-            body {
-                margin: 0;
-                padding: 0;
-            }
-        </style>
+            Array.from(rows).forEach(function(row) {
+                var text = row.textContent.toLowerCase();
+                if (text.includes(filter)) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        });
+    </script>
 
 
 

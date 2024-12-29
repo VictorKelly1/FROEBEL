@@ -39,7 +39,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
         </div>
-        <div x-show="open && !collapsed" class="pl-6 text-center">
+        <div x-show="open && !collapsed" class="pl-6">
             <a href="{{ route('VistaRegistrarPago') }}" class="block text-black py-1 px-2 rounded hover:bg-gray-200">Pagos</a>
             <a href="{{ route('VistaRegistrarDescuento') }}" class="block text-black py-1 px-2 rounded hover:bg-gray-200">Descuento</a>
             <a href="{{ route('VistaRegistrarConcepto') }}" class="block text-black py-1 px-2 rounded hover:bg-gray-200">Concepto</a>
@@ -59,7 +59,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
             </div>
-        <div x-show="open" class="pl-6 text-center">
+        <div x-show="open" class="pl-6">
             <a class="block text-black py-1 px-2 rounded hover:bg-gray-200"
                 href="{{ route('VistaRegistrarAlumno') }}">Alumno</a>
             <a class="block text-black py-1 px-2 rounded hover:bg-gray-200"
@@ -94,7 +94,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
         </div>
-        <div x-show="open" class="pl-6 text-center">
+        <div x-show="open" class="pl-6">
             <a class="block text-black py-1 px-2 rounded hover:bg-gray-200" href="">#</a>
             <a class="block text-black py-1 px-2 rounded hover:bg-gray-200" href="">#</a>
 
@@ -117,7 +117,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
         </div>
-        <div x-show="open" class="pl-6 text-center">
+        <div x-show="open" class="pl-6">
             <a class="block text-black py-1 px-2 rounded hover:bg-gray-200"
                 href="{{ route('ListaVestimentas') }}">Uniforme</a>
             <a class="block text-black py-1 px-2 rounded hover:bg-gray-200"
@@ -153,7 +153,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
             </div>
-        <div x-show="open" class="pl-6 text-center">
+        <div x-show="open" class="pl-6">
             <a class="block text-black py-1 px-2 rounded hover:bg-gray-200"
                 href="{{ route('ListaColegiaturas') }}">Colegiaturas</a>
             <a class="block text-black py-1 px-2 rounded hover:bg-gray-200"
@@ -183,7 +183,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
             </div>
-        <div x-show="open" class="pl-6 text-center">
+        <div x-show="open" class="pl-6">
             <a class="block text-black py-1 px-2 rounded hover:bg-gray-200" href="">#</a>
             <a class="block text-black py-1 px-2 rounded hover:bg-gray-200" href="">#</a>
 
@@ -219,9 +219,6 @@
 
         </div>
     </div>
-
-
-
 
 
 
