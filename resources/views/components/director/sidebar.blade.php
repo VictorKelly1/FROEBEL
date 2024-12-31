@@ -5,7 +5,7 @@
 
      <p>" "</p>
     <p>" "</p>
-    <p>" "</p>
+    <p>&nbsp;</p>
 
     <div class="relative tamañobuscadorsidebar" x-show="!collapsed">
             <input  style="width: 230px;"
@@ -241,7 +241,7 @@
    <!-- Botón para colapsar/expandir -->
 <button @click="collapsed = !collapsed" 
         class="absolute bottom-12 left-1/2 transform -translate-x-1/2 bg-purple-600 text-white p-3 shadow-md transition-all duration-300 rounded-full animate-led-bg">
-    <svg :class="collapsed ? 'rotate-90' : 'rotate-0'" 
+    <svg :class="collapsed ? 'rotate-180' : 'rotate-0'" 
          class="w-6 h-6 transition-transform duration-300" 
          fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>

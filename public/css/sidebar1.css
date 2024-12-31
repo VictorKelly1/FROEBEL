@@ -16,7 +16,7 @@
   .sidebar a {
       display: block;
       color: rgb(255, 255, 255);
-      padding: 2%; /* Espaciado adaptable */
+      padding: 6%; /* Espaciado adaptable */
       text-decoration: none;
       font-size: 1rem; /* Tamaño de fuente relativo */
   }
@@ -35,7 +35,7 @@
   div.content {
       margin-left: 20%; /* Espacio dejado por el sidebar */
       padding: 2% 3%; /* Espaciado adaptable */
-      height: auto; /* Altura dinámica */
+      height: 10%; /* Altura dinámica */
   }
 
   /* Iconos personalizados */
@@ -49,12 +49,12 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 10%; /* Adaptable al sidebar */
-      height: 5vh; /* Altura en relación con la ventana */
+      width: 18%; /* Adaptable al sidebar */
+      height: 6vh; /* Altura en relación con la ventana */
   }
 
   .sidebar.w-20 button {
-      right: 12%; /* Se asegura de que quede visible */
+      right: 2%; /* Se asegura de que quede visible */
       width: 3vw; /* Botón adaptable al ancho de la ventana */
       height: 3vw;
   }
@@ -96,28 +96,4 @@
   .animate-led-bg {
       animation: ledBackground 1.5s infinite alternate;
   }
-}
-
-/* Adaptación para pantallas pequeñas (<=700px) */
-@media screen and (max-width: 700px) {
-  .sidebar {
-      width: 100%;
-      height: auto;
-      position: relative;
-  }
-
-  .sidebar a {
-      float: left;
-      font-size: 0.9rem; /* Fuente más pequeña */
-  }
-
-  div.content {
-      margin-left: 0;
-  }
-}
-
-/* Scroll siempre optimizado */
-.sidebar {
-  overflow-y: auto;
-  max-height: 100vh;
 }

@@ -85,8 +85,8 @@
         input[type="file"],
         input[type="search"],
         input[type="date"] {
-            width: 100%; /* Ancho relativo al contenedor padre */
-            padding: 5%;
+            width: 70%; /* Ancho relativo al contenedor padre */
+            padding: 4%;
             border: 2px solid #0023c1;
             border-radius: 10px;
             background-color: #1e1e1e;
@@ -130,8 +130,8 @@
     
         /* Select */
         select {
-            width: 50%;
-            padding: 1%;
+            width: 70%; /* Ancho relativo al contenedor padre */
+            padding: 4%;
             border: 2px solid #0023c1;
             border-radius: 10px;
             background-color: #1e1e1e;
@@ -283,7 +283,7 @@
     .formulario {
         display: grid;
         grid-template-columns: 1fr 1fr; /* Dos columnas iguales */
-        grid-gap: 5%; /* Espacio entre celdas */
+        grid-gap: 2%; /* Espacio entre celdas */
         }
         
         .formulario > * {

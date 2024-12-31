@@ -67,7 +67,7 @@
 
 
 
-         
+
 /* Estilo para el contenedor del botón */
 .dropdown-btn {
    background: none;
@@ -78,7 +78,7 @@
 .img-perfil {
    width: 40px;
    height: 40px;
-   border-radius: 50%;
+   border-radius: 80%;
 }
 
 /* Estilo para el menú desplegable */
