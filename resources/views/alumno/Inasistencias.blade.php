@@ -2,55 +2,38 @@
 
     <div id="app posicion1">
         <!-- Botón para imprimir la tabla -->
-        <button class="posicion2" id="btn-imprimir" onclick="printTable()">🖨️ IMPRIMIR</button>
+        <button class= "posicion2" id="btn-imprimir" onclick="printTable()">🖨️ IMPRIMIR</button>
 
         <div class="flex items-center justify-center bg-gray-900 p-2 posiciontablas borderAnimation ">
 
             <div class="overflow-x-auto">
-                <h3>
-                    {{ $Calificaciones->NombreAlumno }}
-                    {{ $Calificaciones->ApellidoPaterno }}
-                    {{ $Calificaciones->ApellidoMaterno }}
-                </h3>
+               
                 <table class=" text-xs text-left text-white">
                     <thead>
                         <tr class="bg-transparent">
 
-                            <th class="px-2 py-1 border-b border-purple-500 animate-border">Materia</th>
-                            <th class="px-2 py-1 border-b border-purple-500 animate-border">Grupo</th>
-                            <th class="px-2 py-1 border-b border-purple-500 animate-border">Parcial 1</th>
-                            <th class="px-2 py-1 border-b border-purple-500 animate-border">Parcial 2</th>
-                            <th class="px-2 py-1 border-b border-purple-500 animate-border">Parcial 3</th>
-                            <th class="px-2 py-1 border-b border-purple-500 animate-border">Parcial 4</th>
-                            <th class="px-2 py-1 border-b border-purple-500 animate-border">Parcial 5</th>
-                            <th class="px-2 py-1 border-b border-purple-500 animate-border">Parcial 6</th>
+                            <th class="px-2 py-1 border-b border-purple-500 animate-border">Foto</th>
+                            <th class="px-2 py-1 border-b border-purple-500 animate-border">Nombre</th>
+                            <th class="px-2 py-1 border-b border-purple-500 animate-border">Fecha</th>
+                            <th class="px-2 py-1 border-b border-purple-500 animate-border">Motivo</th>
                         </tr>
                     </thead>
                     <tbody id="tableBody">
-                        @foreach ($Calificaciones as $Calificacion)
+                        @foreach ($Inasistencias as $Inasistencia)
                             <tr class="hover:bg-gray-800 bg-transparent">
 
 
                                 <td class="px-2 py-1 border-t border-purple-500 animate-border">
-                                    {{ $Calificacion->NombreMateria }}</td>
+                                    {{ $Inasistencia->Foto }}</td>
                                 <td class="px-2 py-1 border-t border-purple-500 animate-border">
-                                    {{ $Calificacion->NombreGrado }}
-                                    {{ $Calificacion->NivelAcademico }}
-                                    {{ $Calificacion->Paquete }}
+                                    {{ $Inasistencia->Nombre }}
+                                    {{ $Inasistencia->ApellidoPaterno }}
+                                    {{ $Inasistencia->ApellidoMaterno }}
                                 </td>
                                 <td class="px-2 py-1 border-t border-purple-500 animate-border">
-                                    {{ $Calificacion->Parcial1 }}</td>
+                                    {{ $Inasistencia->Fecha }}</td>
                                 <td class="px-2 py-1 border-t border-purple-500 animate-border">
-                                    {{ $Calificacion->Parcial2 }}</td>
-                                <td class="px-2 py-1 border-t border-purple-500 animate-border">
-                                    {{ $Calificacion->Parcial3 }}</td>
-                                <td class="px-2 py-1 border-t border-purple-500 animate-border">
-                                    {{ $Calificacion->Parcial4 }}</td>
-                                <td class="px-2 py-1 border-t border-purple-500 animate-border">
-                                    {{ $Calificacion->Parcial5 }}</td>
-                                <td class="px-2 py-1 border-t border-purple-500 animate-border">
-                                    {{ $Calificacion->Parcial6 }}</td>
-
+                                    {{ $Inasistencia->Motivo }}</td>
                             </tr>
                         @endforeach
 
