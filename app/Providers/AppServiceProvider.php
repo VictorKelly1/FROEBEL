@@ -7,6 +7,8 @@ use Illuminate\Support\ServiceProvider;
 //
 use App\Models\GruposAlumno;
 use App\Observers\GruposAlumnoObserver;
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,5 +28,7 @@ class AppServiceProvider extends ServiceProvider
         Vite::prefetch(concurrency: 3);
         //Actualiza la cantidad de alumnos por grupo cada vez que hay una insercion en la tabla GruposAlumnos
         GruposAlumno::observe(GruposAlumnoObserver::class);
+        //
+
     }
 }

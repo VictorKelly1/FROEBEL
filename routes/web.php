@@ -31,10 +31,39 @@ use App\Http\Controllers\TutoresController;
 use App\Http\Controllers\VentasControllers;
 use App\Http\Controllers\VestimentaController;
 use Illuminate\Support\Facades\Route;
+//
+use Laravel\Socialite\Facades\Socialite;
+//
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+
+//
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+//Rutas SSO Google
+Route::get('/google_auth/redirect', function () {
+    return Socialite::driver('google')->redirect();
+});
+
+Route::get('/google_auth/callback', function () {
+    $user_google = Socialite::driver('google')->user();
+
+    $user = User::updateOrCreate([
+        'idGoogle' => $user_google->id,
+    ], [
+        'name' => $user_google->name,
+        'email' => $user_google->email,
+        'idGoogle' => $user_google->id,
+    ]);
+
+    //Auth::login($user);
+
+    dd($user_google->id);
+});
+
 
 //registrar nominas, calificaciones y eventos 
 /*administracion de bajas, hiatorial calificaciones y grupos, y validar 
