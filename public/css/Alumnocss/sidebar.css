@@ -1,0 +1,147 @@
+/* Estilos para pantallas entre 768px y 4991px */
+@media (min-width: 768px) and (max-width: 4991px) {
+  /* Sidebar */
+  .sidebar {
+      margin: 0;
+      padding: 0;
+      width: 20%; /* Sidebar ocupa el 20% del ancho de la pantalla */
+      background-color: #000000;
+      position: fixed;
+      height: 100vh; /* Altura completa de la ventana */
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: #0023c1 #1f2937;
+  }
+
+  .sidebar a {
+      display: block;
+      color: rgb(255, 255, 255);
+      padding: 6%; /* Espaciado adaptable */
+      text-decoration: none;
+      font-size: 1rem; /* Tamaño de fuente relativo */
+  }
+
+
+
+  /* Contenido principal */
+  div.content {
+      margin-left: 20%; /* Espacio dejado por el sidebar */
+      padding: 2% 3%; /* Espaciado adaptable */
+      height: 10%; /* Altura dinámica */
+  }
+
+
+
+
+
+  .sidebar.w-20 button {
+      right: 2%; /* Se asegura de que quede visible */
+      width: 3vw; /* Botón adaptable al ancho de la ventana */
+      height: 3vw;
+  }
+
+
+
+/* Estilos para opciones del Sidebar con línea LED */
+.sidebar a {
+    display: block;
+    color: rgb(255, 255, 255);
+    padding: 6%; /* Espaciado adaptable */
+    text-decoration: none;
+    font-size: 1rem; /* Tamaño de fuente relativo */
+    position: relative; /* Necesario para posicionar la línea */
+    overflow: hidden;
+}
+
+/* Línea LED debajo de cada opción */
+.sidebar a::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0; /* Empieza invisible */
+    height: 2px; /* Grosor de la línea */
+    background: linear-gradient(90deg, #ff8c00, #ff4500); /* Degradado naranja */
+    transition: width 0.5s ease-in-out; /* Animación fluida */
+}
+
+/* Efecto al pasar el mouse */
+.sidebar a:hover::after {
+    width: 100%; /* La línea se extiende completamente */
+}
+
+
+
+
+
+
+ 
+
+  /* Scrollbar personalizado */
+  .sidebar::-webkit-scrollbar {
+      width: 0.5vw;
+  }
+
+  .sidebar::-webkit-scrollbar-track {
+      background: #1f2937;
+  }
+
+  .sidebar::-webkit-scrollbar-thumb {
+      background-color: #0023c1;
+      border-radius: 6px;/* Estilos para pantallas entre 768px y 4991px */
+@media (min-width: 768px) and (max-width: 4991px) {
+  /* Sidebar */
+  .sidebar {
+      margin: 0;
+      padding: 0;
+      width: 20%; /* Sidebar ocupa el 20% del ancho de la pantalla */
+      background-color: #000000;
+      position: fixed;
+      top: 60px; /* Ajusta esta altura al tamaño de tu header */
+      height: calc(100vh - 60px); /* Altura completa menos la altura del header */
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: #0023c1 #1f2937;
+      z-index: 1000; /* Asegura que esté sobre otros elementos */
+  }
+
+  .sidebar a {
+      display: block;
+      color: rgb(255, 255, 255);
+      padding: 6%; /* Espaciado adaptable */
+      text-decoration: none;
+      font-size: 1rem; /* Tamaño de fuente relativo */
+  }
+
+  /* Contenido principal */
+  div.content {
+      margin-left: 20%; /* Espacio dejado por el sidebar */
+      padding: 2% 3%; /* Espaciado adaptable */
+      margin-top: 60px; /* Ajusta para que no se solape con el header */
+  }
+
+  /* Botón del sidebar */
+  .sidebar.w-20 button {
+      right: 2%; /* Se asegura de que quede visible */
+      width: 3vw; /* Botón adaptable al ancho de la ventana */
+      height: 3vw;
+  }
+
+  /* Scrollbar personalizado */
+  .sidebar::-webkit-scrollbar {
+      width: 0.5vw;
+  }
+
+  .sidebar::-webkit-scrollbar-track {
+      background: #1f2937;
+  }
+
+  .sidebar::-webkit-scrollbar-thumb {
+      background-color: #0023c1;
+      border-radius: 6px;
+  }
+}
+
+  }
+
+}
