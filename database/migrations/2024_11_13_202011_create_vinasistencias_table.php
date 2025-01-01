@@ -18,6 +18,7 @@ return new class extends Migration
             i.idInasistencia,
             i.Fecha,
             i.Motivo,
+            i.idPersona,
             p.Nombre,
             p.ApellidoPaterno,
             p.ApellidoMaterno,

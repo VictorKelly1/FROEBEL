@@ -29,34 +29,29 @@ class ModuloAlumnoController extends Controller
             ->where('idAlumno', $idAlumno)
             ->get();
 
-        return view('Alumno.Calificaciones', ['Calificaciones' => $Calificaciones]);
+        return view('alumno.Calificaciones', ['Calificaciones' => $Calificaciones]);
     }
 
     public function horario()
     {
-        return view('alumno.Horario');
+        $Horario = [];
+        return view('alumno.Horario', ['Horarios' => $Horario]);
     }
 
     public function inasistencias()
     {
-        $idAlumno = session('idAlumno');
-
-        if (!$idAlumno) {
-            return response()->json(['error' => 'El idAlumno no está definido en la sesión'], 400);
-        }
-
         // Consultar las Inasistencias correspondientes al Alumno
-        $Inasistencias = DB::table('vCalificaciones')
-            ->where('idAlumno', $idAlumno)
+        $Inasistencias = DB::table('vInasistencias')
+            ->where('idPersona', session('idPersona'))
             ->get();
 
-        return view('Alumno.Inasistencias', ['Inasistencias' => $Inasistencias]);
+        return view('alumno.Inasistencias', ['Inasistencias' => $Inasistencias]);
     }
 
     public function vistaColegiaturas()
     {
         $Colegiaturas = [];
-        return view('Alumno.Colegiaturas', ['Colegiaturas' => $Colegiaturas]);
+        return view('alumno.Colegiaturas', ['Colegiaturas' => $Colegiaturas]);
     }
 
     public function pagoColegiatura()

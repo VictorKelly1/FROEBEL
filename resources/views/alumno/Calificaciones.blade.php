@@ -8,9 +8,9 @@
 
             <div class="overflow-x-auto">
                 <h3>
-                    {{ $Calificaciones->NombreAlumno }}
-                    {{ $Calificaciones->ApellidoPaterno }}
-                    {{ $Calificaciones->ApellidoMaterno }}
+                    {{ $Calificaciones->first()->NombreAlumno }}
+                    {{ $Calificaciones->first()->ApellidoPaterno }}
+                    {{ $Calificaciones->first()->ApellidoMaterno }}
                 </h3>
                 <table class=" text-xs text-left text-white">
                     <thead>
@@ -66,54 +66,54 @@
 
 
 
-<script>
+        <script>
+            function printTable() {
+                const tabla = document.getElementById('miTabla').outerHTML; // Captura la tabla completa
 
-function printTable() {
-    const tabla = document.getElementById('miTabla').outerHTML; // Captura la tabla completa
-    
-    const ventanaImpresion = window.open('', '_blank'); // Abre una nueva ventana para impresión
-    ventanaImpresion.document.write(`
-        <html>
-            <head>
-                <title>Imprimir Tabla</title>
-                <style>
-                    table {
-                        width: 100%;
-                        border-collapse: collapse;
-                        margin: 20px 0;
-                    }
-                    th, td {
-                        border: 1px solid #000;
-                        padding: 8px;
-                        text-align: left;
-                    }
-                    th {
-                        background-color:rgb(255, 98, 0);
-                    }
-                    @media print {
-                        button {
-                            display: none;
-                        }
-                    }
-                </style>
-            </head>
-            <body>
-                ${tabla}
-                <script>
-                    window.onload = function() {
-                        window.print();
-                        window.close();
-                    }
-                </script>
-            </body>
+                const ventanaImpresion = window.open('', '_blank'); // Abre una nueva ventana para impresión
+                ventanaImpresion.document.write(`
+                                <html>
+                                    <head>
+                                        <title>Imprimir Tabla</title>
+                                        <style>
+                                            table {
+                                                width: 100%;
+                                                border-collapse: collapse;
+                                                margin: 20px 0;
+                                            }
+                                            th, td {
+                                                border: 1px solid #000;
+                                                padding: 8px;
+                                                text-align: left;
+                                            }
+                                            th {
+                                                background-color:rgb(255, 98, 0);
+                                            }
+                                            @media print {
+                                                button {
+                                                    display: none;
+                                                }
+                                            }
+                                        </style>
+                                    </head>
+                                    <body>
+                                        ${tabla}
+                                        <script>
+                                            window.onload = function() {
+                                                window.print();
+                                                window.close();
+                                            }
+        </script>
+        </body>
+
         </html>
-    `);
-    ventanaImpresion.document.close();
-}
+        `);
+        ventanaImpresion.document.close();
+        }
 
 
 
-</script>
+        </script>
 
 
 
