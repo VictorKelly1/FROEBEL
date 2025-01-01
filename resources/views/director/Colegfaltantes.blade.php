@@ -93,7 +93,7 @@
 
                         </tr>
                     @endforeach
-                    {{ $Faltantes->links() }}
+                    {{-- {{ $Faltantes->links() }} --}}
                 </tbody>
             </table>
         </div>

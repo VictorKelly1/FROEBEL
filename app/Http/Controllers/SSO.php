@@ -73,7 +73,8 @@ class SSO extends Controller
                     Session::put('idAlumno', $idAlumno);
                 }
 
-                return view($role['view']);
+                //return view($role['view']);
+                return redirect()->route('Menu' . $permiso);
             }
         }
 

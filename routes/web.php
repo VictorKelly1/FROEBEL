@@ -328,12 +328,18 @@ Route::middleware('AlumnoPermisos')->group(function () {
     Route::get('/MisCalificaciones', [ModuloAlumnoController::class, 'calificaciones'])->name('MisCalificaciones');
     Route::get('/MiHorario', [ModuloAlumnoController::class, 'horario'])->name('MiHorario');
     Route::get('/MisInasistencias', [ModuloAlumnoController::class, 'inasistencias'])->name('MisInasistencias');
-    Route::get('/MisColegiaturas', [ModuloAlumnoController::class, 'vistaColegiauras'])->name('MisColegiaturas');
-    Route::post('/PagarColegiatura', [ModuloAlumnoController::class, 'pagoColegiatura'])->name('PagarColegiatura');
+    Route::get('/MisColegiaturas', [ModuloAlumnoController::class, 'vistaColegiaturas'])->name('MisColegiaturas');
+    Route::get('/PagarColegiatura', [ModuloAlumnoController::class, 'pagoColegiatura'])->name('PagarColegiatura');
+    //
+    Route::get('/success', function () {
+        return view('alumno.Colegiaturas'); // Mostrar vista de éxito
+    });
+    Route::get('/cancel', function () {
+        return view('alumno.Colegiaturas'); // Mostrar vista de cancelación
+    });
 });
 
 //------------------------------------------------------------------------------------------------------------
-
 
 
 

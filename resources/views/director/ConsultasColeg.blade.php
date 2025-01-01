@@ -11,6 +11,7 @@
                         <th class="px-2 py-1 border-b border-purple-500 animate-border">Metodo de Pago</th>
                         <th class="px-2 py-1 border-b border-purple-500 animate-border">Cuenta Recibido</th>
                         <th class="px-2 py-1 border-b border-purple-500 animate-border">Monto Total</th>
+                        <th class="px-2 py-1 border-b border-purple-500 animate-border">Dia que se realizo</th>
                         <th class="px-2 py-1 border-b border-purple-500 animate-border">Ver mas</th>
                     </tr>
                 </thead>
@@ -34,6 +35,9 @@
                             <td class="px-2 py-1 border-t border-purple-500 animate-border">
                                 {{ $Colegiatura->CuentaRecibido }}</td>
                             <td class="px-2 py-1 border-t border-purple-500 animate-border">{{ $Colegiatura->Monto }}
+                            </td>
+                            <td class="px-2 py-1 border-t border-purple-500 animate-border">
+                                {{ $Colegiatura->created_at }}
                             </td>
                             <td class="px-4 py-2 border-t border-purple-500 animate-border text-center">
                                 <form action="" method="GET">

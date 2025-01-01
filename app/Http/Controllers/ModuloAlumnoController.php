@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+//
+use Stripe\Stripe;
+use Stripe\Checkout\Session;
+
+
 
 class ModuloAlumnoController extends Controller
 {
@@ -54,8 +59,35 @@ class ModuloAlumnoController extends Controller
         return view('alumno.Colegiaturas', ['Colegiaturas' => $Colegiaturas]);
     }
 
+
     public function pagoColegiatura()
     {
-        //
+        // Configura la clave API de Stripe
+        Stripe::setApiKey(config('services.stripe.secret'));
+
+        try {
+            // Crear una sesión de checkout
+            $session = Session::create([
+                'payment_method_types' => ['card'],
+                'line_items' => [[
+                    'price_data' => [
+                        'currency' => 'mxn',
+                        'product_data' => [
+                            'name' => 'Colegiatura: ',
+                        ],
+                        'unit_amount' => 20000, // Precio en centavos
+                    ],
+                    'quantity' => 1,
+                ]],
+                'mode' => 'payment',
+                'success_url' => url('/success'),
+                'cancel_url' => url('/cancel'),
+            ]);
+
+            return redirect($session->url);
+        } catch (\Exception $e) {
+            // Manejo de errores
+            return back()->with('error', $e->getMessage());
+        }
     }
 }
