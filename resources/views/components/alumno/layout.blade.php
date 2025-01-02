@@ -11,8 +11,7 @@
     <link rel="stylesheet" href="{{ asset('css/Alumnocss/General.css') }}">
     <link rel="stylesheet" href="{{ asset('css/Alumnocss/sidebar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/Alumnocss/header.css') }}">
-    
-
+    <link rel="stylesheet" href="{{ asset('css/Alumnocss/Colegiatura.css') }}">
 
 
     
