@@ -348,6 +348,7 @@ Route::middleware('AlumnoPermisos')->group(function () {
 
 
 
+
 //registrar nominas, calificaciones y eventos 
 /*administracion de bajas, hiatorial calificaciones y grupos, y validar 
 aparicion de periodos en pagos, ventas y compras*/
