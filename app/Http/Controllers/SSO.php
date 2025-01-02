@@ -30,13 +30,14 @@ class SSO extends Controller
     {
         $user_google = Socialite::driver('google')->user();
 
-        $user = User::updateOrCreate([
-            'idGoogle' => $user_google->id,
-        ], [
-            'name' => $user_google->name,
-            'email' => $user_google->email,
-            'idGoogle' => $user_google->id,
-        ]);
+        $user = User::updateOrCreate(
+            ['email' => $user_google->email], // Condición para buscar el usuario
+            [
+                'idGoogle' => $user_google->id,
+                'name' => $user_google->name,
+                'email' => $user_google->email,
+            ]
+        );
 
         //variables de usuario
         Auth::login($user);
@@ -62,7 +63,7 @@ class SSO extends Controller
 
                 Session::put('Foto', $persona->Foto);
 
-                // si es alumno se obtiene la id del alumno
+                // si es alumno se obtiene la id del alumno 
                 Session::put('CURP', $persona->CURP);
                 if ($permiso === 'Alumno') {
                     //

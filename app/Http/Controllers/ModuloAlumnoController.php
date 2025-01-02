@@ -60,10 +60,12 @@ class ModuloAlumnoController extends Controller
     }
 
 
-    public function pagoColegiatura()
+    public function pagoColegiatura(Request $request)
     {
-        // Configura la clave API de Stripe
         Stripe::setApiKey(config('services.stripe.secret'));
+
+        $Monto = $request->input('Monto');;
+        $Clave = $request->input('Clave');
 
         try {
             // Crear una sesión de checkout
@@ -73,9 +75,9 @@ class ModuloAlumnoController extends Controller
                     'price_data' => [
                         'currency' => 'mxn',
                         'product_data' => [
-                            'name' => 'Colegiatura: ',
+                            'name' => 'Colegiatura: ' . $Clave,
                         ],
-                        'unit_amount' => 20000, // Precio en centavos
+                        'unit_amount' => $Monto,
                     ],
                     'quantity' => 1,
                 ]],
@@ -89,5 +91,10 @@ class ModuloAlumnoController extends Controller
             // Manejo de errores
             return back()->with('error', $e->getMessage());
         }
+    }
+
+    public function guardarColegiatura()
+    {
+        //
     }
 }

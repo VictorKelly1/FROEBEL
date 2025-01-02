@@ -330,10 +330,9 @@ Route::middleware('AlumnoPermisos')->group(function () {
     Route::get('/MisInasistencias', [ModuloAlumnoController::class, 'inasistencias'])->name('MisInasistencias');
     Route::get('/MisColegiaturas', [ModuloAlumnoController::class, 'vistaColegiaturas'])->name('MisColegiaturas');
     Route::get('/PagarColegiatura', [ModuloAlumnoController::class, 'pagoColegiatura'])->name('PagarColegiatura');
+    Route::get('/guardarColegiatura', [ModuloAlumnoController::class, 'guardarColegiatura'])->name('guardarColegiatura');
     //
-    Route::get('/success', function () {
-        return view('alumno.Colegiaturas'); // Mostrar vista de éxito
-    });
+    Route::get('/success', [ModuloAlumnoController::class, 'guardarColegiatura'])->name('GuardarColegiaturas');
     Route::get('/cancel', function () {
         return view('alumno.Colegiaturas'); // Mostrar vista de cancelación
     });
@@ -343,17 +342,10 @@ Route::middleware('AlumnoPermisos')->group(function () {
 
 
 
-
-
-
-
-
-
-//registrar nominas, calificaciones y eventos 
+//registrar nominas, calificaciones, pago remoto y eventos 
 /*administracion de bajas, hiatorial calificaciones y grupos, y validar 
 aparicion de periodos en pagos, ventas y compras*/
 
-//pasarela de pagos
 //impresion de recivos, constancias, calificaciones
 
 //patrones de diseño -Observador -Fachada -Estrategia
