@@ -12,7 +12,7 @@
     <!-- Opciones del Sidebar -->
     <nav class="flex-1 space-y-2">
         <!-- Opción Home -->
-    <a href="{{ route('MenuAlumno') }}" class="flex items-center text-white font-bold py-2 px-4 rounded hover:bg-gray-300 transition-all duration-200">
+    <a href="{{ route('MenuAlumno') }}" class="flex items-center text-white font-bold py-2 px-4 rounded hover:bg-blue-300 transition-all duration-200">
     <div class="flex items-center justify-center"  style="font-size: 20px;">
     <span x-show="!collapsed" class="transition-all duration-200">INICIO</span>
 </div>
@@ -20,25 +20,25 @@
     </a>
 
         <!-- Botón CALIFICACIONES -->
-        <a href="{{ route('MisCalificaciones') }}" class="flex items-center text-white font-bold py-2 px-4 rounded hover:bg-gray-300 hover:text-black hover:border-l-4 hover:border-purple-500 transition-all duration-200">
+        <a href="{{ route('MisCalificaciones') }}" class="flex items-center text-white font-bold py-2 px-4 rounded hover:bg-blue-300 hover:text-black hover:border-l-4 hover:border-blue-500 transition-all duration-200">
             <i class="fas fa-graduation-cap text-xl" style="font-size: 30px;"></i>
             <span x-show="!collapsed" class="ml-3 transition-all duration-200">CALIFICACIONES</span>
         </a>
 
         <!-- Botón INASISTENCIAS -->
-        <a href="{{ route('MisInasistencias') }}" class="flex items-center text-white font-bold py-2 px-4 rounded hover:bg-gray-300 hover:text-black hover:border-l-4 hover:border-purple-500 transition-all duration-200">
+        <a href="{{ route('MisInasistencias') }}" class="flex items-center text-white font-bold py-2 px-4 rounded hover:bg-blue-300 hover:text-black hover:border-l-4 hover:border-blue-500 transition-all duration-200">
             <i class="fas fa-user-times text-xl" style="font-size: 30px;"></i>
             <span x-show="!collapsed" class="ml-3 transition-all duration-200">INASISTENCIAS</span>
         </a>
 
         <!-- Botón HORARIO -->
-        <a href="{{ route('MiHorario') }}" class="flex items-center text-white font-bold py-2 px-4 rounded hover:bg-gray-300 hover:text-black hover:border-l-4 hover:border-purple-500 transition-all duration-200">
+        <a href="{{ route('MiHorario') }}" class="flex items-center text-white font-bold py-2 px-4 rounded hover:bg-blue-300 hover:text-black hover:border-l-4 hover:border-blue-500 transition-all duration-200">
             <i class="fas fa-clock text-xl" style="font-size: 30px;"></i>
             <span x-show="!collapsed" class="ml-3 transition-all duration-200">HORARIO</span>
         </a>
 
         <!-- Botón PAGOS -->
-        <a href="{{ route('MisColegiaturas') }}" class="flex items-center text-white font-bold py-2 px-4 rounded hover:bg-gray-300 hover:text-black hover:border-l-4 hover:border-purple-500 transition-all duration-200">
+        <a href="{{ route('MisColegiaturas') }}" class="flex items-center text-white font-bold py-2 px-4 rounded hover:bg-blue-300 hover:text-black hover:border-l-4 hover:border-blue-500 transition-all duration-200">
             <i class="fas fa-wallet text-xl" style="font-size: 30px;"></i>
             <span x-show="!collapsed" class="ml-3 transition-all duration-200">PAGOS</span>
         </a>
@@ -47,7 +47,7 @@
    
     <!-- Botón para colapsar/expandir -->
     <button @click="collapsed = !collapsed" 
-            class="bg-orange-600 text-white p-3 shadow-md rounded-full transition-all duration-300 self-center mb-4">
+            class="bg-blue-600 text-white p-3 shadow-md rounded-full transition-all duration-300 self-center mb-4">
         <svg :class="collapsed ? 'rotate-180' : 'rotate-0'" 
              class="w-6 h-6 transition-transform duration-300" 
              fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

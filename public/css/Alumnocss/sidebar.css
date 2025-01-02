@@ -61,7 +61,7 @@
     left: 0;
     width: 0; /* Empieza invisible */
     height: 2px; /* Grosor de la línea */
-    background: linear-gradient(90deg, #ff8c00, #ff4500); /* Degradado naranja */
+    background: linear-gradient(90deg, #1100ff, #1100ff); /* Degradado naranja */
     transition: width 0.5s ease-in-out; /* Animación fluida */
 }
 
