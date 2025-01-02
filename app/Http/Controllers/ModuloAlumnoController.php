@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session as FacadesSession;
 //
 use Stripe\Stripe;
 use Stripe\Checkout\Session;
@@ -55,8 +56,28 @@ class ModuloAlumnoController extends Controller
 
     public function vistaColegiaturas()
     {
-        $Colegiaturas = [];
-        return view('alumno.Colegiaturas', ['Colegiaturas' => $Colegiaturas]);
+        $idPersona = FacadesSession::get('idPersona');
+
+        $Periodos = DB::table('periodos')
+            ->whereNotIn('Clave', function ($query) use ($idPersona) {
+                $query->select('Clave')
+                    ->from('vTransacciones')
+                    ->where('idPersona', $idPersona);
+            })
+            ->select('*')
+            ->get();
+
+        $Costo = 20000;
+        $Descuento = '';
+        //
+        return view(
+            'alumno.Colegiaturas',
+            [
+                'periodos' => $Periodos,
+                'Costo' => $Costo,
+                'Descuento' => $Descuento
+            ]
+        );
     }
 
 
@@ -64,7 +85,7 @@ class ModuloAlumnoController extends Controller
     {
         Stripe::setApiKey(config('services.stripe.secret'));
 
-        $Monto = $request->input('Monto');;
+        $Costo = $request->input('Costo');
         $Clave = $request->input('Clave');
 
         try {
@@ -77,7 +98,7 @@ class ModuloAlumnoController extends Controller
                         'product_data' => [
                             'name' => 'Colegiatura: ' . $Clave,
                         ],
-                        'unit_amount' => $Monto,
+                        'unit_amount' => $Costo,
                     ],
                     'quantity' => 1,
                 ]],

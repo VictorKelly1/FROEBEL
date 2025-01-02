@@ -329,7 +329,7 @@ Route::middleware('AlumnoPermisos')->group(function () {
     Route::get('/MiHorario', [ModuloAlumnoController::class, 'horario'])->name('MiHorario');
     Route::get('/MisInasistencias', [ModuloAlumnoController::class, 'inasistencias'])->name('MisInasistencias');
     Route::get('/MisColegiaturas', [ModuloAlumnoController::class, 'vistaColegiaturas'])->name('MisColegiaturas');
-    Route::get('/PagarColegiatura', [ModuloAlumnoController::class, 'pagoColegiatura'])->name('PagarColegiatura');
+    Route::post('/PagarColegiatura', [ModuloAlumnoController::class, 'pagoColegiatura'])->name('PagarColegiatura');
     Route::get('/guardarColegiatura', [ModuloAlumnoController::class, 'guardarColegiatura'])->name('guardarColegiatura');
     //
     Route::get('/success', [ModuloAlumnoController::class, 'guardarColegiatura'])->name('GuardarColegiaturas');
