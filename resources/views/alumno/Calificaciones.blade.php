@@ -6,12 +6,25 @@
 
         <div class="flex items-center justify-center bg-gray-900 p-2 posiciontablas borderAnimation ">
 
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+            @if (session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
+
             <div class="overflow-x-auto">
-                <h3>
-                    {{ $Calificaciones->first()->NombreAlumno }}
-                    {{ $Calificaciones->first()->ApellidoPaterno }}
-                    {{ $Calificaciones->first()->ApellidoMaterno }}
-                </h3>
+                @if (!empty($Calificaciones) && $Calificaciones->count() > 0)
+                    <h3>{{ $Calificaciones->first()->NombreAlumno }}</h3>
+                    <h3>{{ $Calificaciones->first()->ApellidoPaterno }}</h3>
+                    <h3>{{ $Calificaciones->first()->ApellidoMaterno }}</h3>
+                @else
+                    <h3>Aun no tienes Calificaciones.</h3>
+                @endif
                 <table class=" text-xs text-left text-white">
                     <thead>
                         <tr class="bg-transparent">
@@ -72,37 +85,37 @@
 
                 const ventanaImpresion = window.open('', '_blank'); // Abre una nueva ventana para impresión
                 ventanaImpresion.document.write(`
-                                <html>
-                                    <head>
-                                        <title>Imprimir Tabla</title>
-                                        <style>
-                                            table {
-                                                width: 100%;
-                                                border-collapse: collapse;
-                                                margin: 20px 0;
-                                            }
-                                            th, td {
-                                                border: 1px solid #000;
-                                                padding: 8px;
-                                                text-align: left;
-                                            }
-                                            th {
-                                                background-color:rgb(255, 98, 0);
-                                            }
-                                            @media print {
-                                                button {
-                                                    display: none;
-                                                }
-                                            }
-                                        </style>
-                                    </head>
-                                    <body>
-                                        ${tabla}
-                                        <script>
-                                            window.onload = function() {
-                                                window.print();
-                                                window.close();
-                                            }
+                                                                <html>
+                                                                    <head>
+                                                                        <title>Imprimir Tabla</title>
+                                                                        <style>
+                                                                            table {
+                                                                                width: 100%;
+                                                                                border-collapse: collapse;
+                                                                                margin: 20px 0;
+                                                                            }
+                                                                            th, td {
+                                                                                border: 1px solid #000;
+                                                                                padding: 8px;
+                                                                                text-align: left;
+                                                                            }
+                                                                            th {
+                                                                                background-color:rgb(255, 98, 0);
+                                                                            }
+                                                                            @media print {
+                                                                                button {
+                                                                                    display: none;
+                                                                                }
+                                                                            }
+                                                                        </style>
+                                                                    </head>
+                                                                    <body>
+                                                                        ${tabla}
+                                                                        <script>
+                                                                            window.onload = function() {
+                                                                                window.print();
+                                                                                window.close();
+                                                                            }
         </script>
         </body>
 

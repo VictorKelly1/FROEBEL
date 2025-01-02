@@ -3,18 +3,22 @@
         /* Contenedor principal */
         .posiciontablasasig {
             display: flex;
-            flex-wrap: nowrap; /* Evita el salto de línea */
+            flex-wrap: nowrap;
+            /* Evita el salto de línea */
             gap: 1rem;
-            overflow-x: auto; /* Desplazamiento horizontal */
+            overflow-x: auto;
+            /* Desplazamiento horizontal */
             padding: 1rem;
-            background: #121212; /* Fondo oscuro */
+            background: #121212;
+            /* Fondo oscuro */
             scrollbar-width: thin;
             scrollbar-color: #007bff #1e1e1e;
         }
 
         /* Tarjeta de formulario */
         .formulario {
-            flex: 0 0 30%; /* Cada tarjeta ocupa el 30% del contenedor */
+            flex: 0 0 30%;
+            /* Cada tarjeta ocupa el 30% del contenedor */
             max-width: 30%;
             min-height: 400px;
             border-radius: 15px;
@@ -47,16 +51,19 @@
             0% {
                 background-position: 0% 50%;
             }
+
             50% {
                 background-position: 100% 50%;
             }
+
             100% {
                 background-position: 0% 50%;
             }
         }
 
         .card {
-            background: #1e1e1e; /* Fondo de la tarjeta */
+            background: #1e1e1e;
+            /* Fondo de la tarjeta */
             border-radius: 15px;
             color: #fff;
             text-align: center;
@@ -128,7 +135,7 @@
                         <h5 class="card-title">{{ $periodo->Tipo }}</h5>
                         <p class="card-text">Fecha: {{ $periodo->FechaInicio }} - {{ $periodo->FechaFin }}</p>
                         <p class="card-text">Clave: {{ $periodo->Clave }}</p>
-                        <p class="card-text">Costo: {{ $Costo }}</p>
+                        <p class="card-text">Costo: ${{ $Costo }}</p>
                         <input type="hidden" name="Clave" value="{{ $periodo->Clave }}">
                         <input type="hidden" name="Costo" value="{{ $Costo }}">
                         <button type="submit" class="btn btn-primary">Pagar</button>
