@@ -1,0 +1,291 @@
+@media (min-width: 368px) and (max-width: 4991px) {
+
+        .led {
+        
+            box-shadow: 0 0 20px rgb(7, 44, 255); /* Sombra luminosa */
+        }
+
+        .led2 {
+            margin: 760px;
+        /*   outline: 2px solid red;      margen color*/
+        }
+
+        .posicionsidebar{
+
+        position: absolute;
+        top: -678px;    /* alto */
+        left: -762px; /* lado */
+        }
+        .posicionsregisalum{
+
+            position: absolute;
+            top: -600px;    /* alto */
+            left: -170px; /* lado */
+            overflow: auto; /* Permite el desplazamiento interno si el contenido es más grande que el contenedor */
+        width: 40%;
+        }
+
+
+
+            .posiciontablas{
+
+                position: absolute;
+                top: 15%;    /* alto */
+                left: 25%; /* lado */
+                width: 75%;
+            
+                /* Permite el desplazamiento interno si el contenido es más grande que el contenedor */
+                }
+
+
+
+                .posiciontablasasig{
+
+                    position: absolute;
+                    top: 35%;    /* alto */
+                    left: 60%; /* lado */
+                    /* Permite el desplazamiento interno si el contenido es más grande que el contenedor */
+                    }
+                .posiciontablasderecha{
+
+                    position: absolute;
+                    top: 15%;    /* alto */
+                    left: 120%; /* lado */
+                    overflow: auto;
+                    }
+            .posicionseditalum{
+
+                position: absolute;
+                top: -500px;    /* alto */
+                left: 30px; /* lado */
+                }
+
+
+
+
+
+
+        /* Botones de Diseño */
+        .botonesdiseño {
+            width: 50%; /* Ancho relativo */
+            padding: 15px; /* Espaciado relativo */
+            border: 2px solid #0023c1;
+            border-radius: 100px;
+            background-color: #1e1e1e;
+            color: #ffffff;
+            font-size: 1vw; /* Ajuste relativo al viewport */
+        }
+    
+        /* Estilos Globales para Inputs */
+        input[type="text"],
+        input[type="submit"],
+        input[type="select"],
+        input[type="email"],
+        input[type="number"],
+        input[type="file"],
+        input[type="search"],
+        input[type="date"] {
+            width: 70%; /* Ancho relativo al contenedor padre */
+            padding: 4%;
+            border: 2px solid #0023c1;
+            border-radius: 10px;
+            background-color: #1e1e1e;
+            color: #ffffff;
+            font-size: 1vw;
+            appearance: none;
+        }
+    
+        input[type="text"]:focus,
+        input[type="date"]:focus {
+            outline: none;
+            border-color: #0331ff;
+            box-shadow: 0 0 0.5vw #6984ff;
+        }
+    
+        .buscadorpersonal {
+       
+       
+           
+            color: #000000;
+            font-size: 1vw;
+            appearance: none;
+  
+        }
+
+
+
+        /* Etiquetas */
+        label {
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            display: block;
+            margin-bottom: 0.5%;
+            font-size: 1.2vw;
+        }
+    
+        /* Submenús */
+        .group:hover #subMenu {
+            display: block;
+        }
+    
+        /* Select */
+        select {
+            width: 70%; /* Ancho relativo al contenedor padre */
+            padding: 4%;
+            border: 2px solid #0023c1;
+            border-radius: 10px;
+            background-color: #1e1e1e;
+            color: #ffffff !important;
+            font-size: 1vw;
+            appearance: none;
+        }
+    
+        select option {
+            background-color: #1e1e1e;
+            color: #ffffff;
+        }
+    
+        /* Posiciones relativas */
+        .tablaposicion {
+            position: relative;
+            top: 5vh;
+            left: 5vw;
+        }
+    
+        .posicion1 {
+            position: relative;
+            top: 2vh;
+            left: 5vw;
+            overflow-x: auto;
+            overflow-y: auto;
+        }
+    
+        .posicion2 {
+            position: relative;
+            top: 5vh;
+            left: 10vw;
+        }
+    
+        .Buscadorposicion {
+            position: relative;
+            top: 5vh;
+            left: 5vw;
+        }
+    
+/* Ajusta el contenedor principal del buscador */
+.tamañobuscadorsidebar {
+    position: relative;
+    max-width: 400px; /* Define un límite para el tamaño */
+    margin: 0 auto; /* Centra el buscador */
+}
+
+/* Contenedor interno del buscador */
+.buscador-contenedor {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%; /* Ocupará todo el ancho disponible del contenedor padre */
+    padding: 0.5rem;
+}
+
+/* Estilos específicos del input */
+.buscador-input {
+    width: 100%; /* Se adapta al contenedor */
+    padding: 0.5rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+/* Efecto al enfocar */
+.buscador-input:focus {
+    outline: none;
+    border-color: #6984ff;
+    box-shadow: 0 0 5px #6984ff;
+}
+
+
+
+
+
+        /* Animación de Borde */
+        @keyframes borderAnimation {
+            0% {
+                border-color: rgb(4, 29, 255);
+            }
+            50% {
+                border-color: rgb(255, 255, 255);
+            }
+            100% {
+                border-color: rgb(30, 5, 255);
+            }
+        }
+    
+        .animate-border {
+            animation: borderAnimation 5s infinite;
+        }
+    
+        /* Fuente personalizada */
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap');
+    
+        .font-cinzel {
+            font-family: 'Cinzel', serif;
+            color: white;
+            text-shadow: 0.2vw 0.2vw 0.4vw rgba(108, 67, 201, 0.8);
+            letter-spacing: 0.1vw;
+        }
+    
+        /* Tamaño de Letra */
+        .tamañoletra {
+            font-size: 1.5vw;
+        }
+    
+        .relative h1 {
+            color: white;
+            text-shadow: 0.1vw 0.1vw 0.5vw rgba(108, 67, 201, 0.8);
+        }
+    
+        input::placeholder {
+            color: #ccc;
+            font-size: 1vw;
+        }
+    
+        /* Botón Primario */
+        .btn-primary {
+            background-color: rgb(26, 19, 230);
+            color: white;
+            border: 2px solid rgb(255, 255, 255);
+            padding: 5% 5%;
+            font-size: 1vw;
+            font-weight: bold;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            margin-top: 5%;
+            justify-content: center;
+        }
+    
+        .btn-primary:hover {
+            background-color: rgb(41, 9, 248);
+            border-color: rgb(192, 192, 192);
+            transform: scale(1.05);
+        }
+    
+        .btn-primary:focus {
+            outline: none;
+            box-shadow: 0 0 0.5vw rgb(16, 32, 254);
+        }
+    }
+    
+
+    .formulario {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Dos columnas iguales */
+        grid-gap: 2%; /* Espacio entre celdas */
+        }
+        
+        .formulario > * {
+        grid-column: auto; /* Asigna cada elemento a una celda */
+        }

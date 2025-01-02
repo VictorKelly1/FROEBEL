@@ -37,7 +37,7 @@
             <i class="fas fa-globe"></i>
         </button>
         <div>
-            <span class="text-sm font-semibold uppercase">MARIO DE LA CRUZ FLORES</span>
+            <span class="text-sm font-semibold uppercase">{{ Session::get('Nombre') }}.</span>
         </div>
         <button  class="dropdown-btn">
             <img src="{{ asset('images/b1.png') }}" alt="Perfil" class="img-perfil">

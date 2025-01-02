@@ -342,7 +342,9 @@ Route::middleware('AlumnoPermisos')->group(function () {
 //------------------------------------------------------------------------------------------------------------
 
 
-
+Route::get('/MiMenu', function () {
+    return view('docente.Menu');
+})->name('MenuDocente');
 
 
 

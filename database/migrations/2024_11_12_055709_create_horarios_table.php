@@ -27,7 +27,7 @@ return new class extends Migration
             $table->foreign('idGrupoMateria')->references('idGrupoMateria')->on('GruposMaterias');
 
             // Llave única
-            $table->unique(['idAula', 'idGrupoMateria', 'HoraL', 'HoraM', 'HoraMi', 'HoraJ', 'HoraV']);
+            $table->unique(['idAula', 'idGrupoMateria']);
         });
     }
 
