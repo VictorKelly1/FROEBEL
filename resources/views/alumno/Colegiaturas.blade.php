@@ -8,8 +8,8 @@
         }
 
         .formulario {
-            flex: 0 0 10%; /* Cada contenedor ocupa el 10% de la pantalla */
-            max-width: 10%;
+            flex: 0 0 20%; /* Cada contenedor ocupa el 20% de la pantalla */
+            max-width: 20%;
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
         }
 
@@ -36,13 +36,13 @@
         }
 
         .card-title {
-            font-size: 1rem;
+            font-size: 1.2rem;
             font-weight: bold;
             margin-bottom: 0.5rem;
         }
 
         .card-text {
-            font-size: 0.9rem;
+            font-size: 1rem;
             color: #555;
             margin-bottom: 0.5rem;
         }
@@ -51,12 +51,28 @@
             background-color: #6a11cb;
             border: none;
             border-radius: 20px;
-            padding: 0.4rem 1rem;
+            padding: 0.4rem 1.2rem;
+            font-size: 0.9rem;
             transition: background-color 0.3s ease;
         }
 
         .btn-primary:hover {
             background-color: #2575fc;
+        }
+
+        /* Diseño responsivo */
+        @media (max-width: 768px) {
+            .formulario {
+                flex: 0 0 45%; /* En pantallas medianas, 2 tarjetas por fila */
+                max-width: 45%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .formulario {
+                flex: 0 0 90%; /* En pantallas pequeñas, 1 tarjeta por fila */
+                max-width: 90%;
+            }
         }
     </style>
 
