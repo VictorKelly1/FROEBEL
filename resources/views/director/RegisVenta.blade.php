@@ -1,17 +1,12 @@
 <x-director.layout>
 
     <div class=" flex items-center led2 posicionsregisalum">
-      
-        <form>
+
+        <form class="formulario" action="{{ route('RegistrarVenta') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
-            <!-- Datos de Aula -->
+            <!-- Datos de venta -->
             <h3>Datos</h3>
-
-            <div class="form-group">
-                <label for="Clave">Clave:</label>
-                <input type="text" name="Clave" id="Clave" class="form-control" required>
-            </div>
 
             <div class="form-group">
                 <label for="Cantidad">Cantidad:</label>
@@ -19,7 +14,7 @@
             </div>
 
             <div class="form-group">
-                <label for="Monto">Monto:</label>
+                <label for="Monto">Monto (Por unidad):</label>
                 <input type="text" name="Monto" id="Monto" class="form-control" required>
             </div>
 
@@ -28,14 +23,14 @@
                 <select name="idConcepto" id="Concepto" class="form-control" required>
                     <option value="">Seleccione</option>
                     @foreach ($Conceptos as $Concepto)
-                        <option value="{{ $Conceptos->idConcepto }}">
+                        <option value="{{ $Concepto->idConcepto }}">
                             {{ $Concepto->Nombre }}
                         </option>
                     @endforeach
 
                 </select>
             </div>
-           
+
             <div class="form-group">
                 <label for="MetodoPago">MetodoPago:</label>
                 <input type="text" name="MetodoPago" id="MetodoPago" class="form-control" required>
@@ -46,16 +41,13 @@
                 <select name="idDescuento" id="Descuento" class="form-control">
                     <option value="">Seleccione</option>
                     @foreach ($Descuentos as $Descuento)
-                        <option value="{{ $Descuentos->idDescuento }}">
+                        <option value="{{ $Descuento->idDescuento }}">
                             {{ $Descuento->Nombre }}
                         </option>
                     @endforeach
 
                 </select>
             </div>
-
-           
-
 
             <!-- Botón de envío -->
             <button type="submit" class="btn btn-primary">Registrar Venta</button>

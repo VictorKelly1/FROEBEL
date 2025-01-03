@@ -6,10 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\Concepto;
 use App\Models\Descuento;
 use App\Models\Periodo;
+use App\Models\Transaccion;
 use App\Models\VdescTransacciones;
 use App\Models\Vtransacciones;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class ComprasControllers extends Controller
 {
@@ -43,7 +45,7 @@ class ComprasControllers extends Controller
         // Obtener los descuentos
         $Desc = Descuento::where('Para', 'Compra')->get();
 
-        $Conceptos = Concepto::where('Para', 'Compra')->get();
+        $Conceptos = Concepto::where('Para', 'Compras')->get();
 
         //esto deveulve los peridos pendientes por pargar de un alumno
         $Periodos = Periodo::where('Tipo', 'Compra')->get();
@@ -65,51 +67,56 @@ class ComprasControllers extends Controller
      */
     public function store(Request $request)
     {
-        //     $request->validate([
-        //         'MetodoPago' => 'required',
-        //         'Monto' => 'required',
-        //     ]);
+        $request->validate([
+            'MetodoPago' => 'required',
+            'Monto' => 'required',
+            'Cantidad' => 'required',
+        ]);
 
-        //     DB::beginTransaction();
+        DB::beginTransaction();
 
-        //     try {
-        //         // Objeto Pago
-        //         $Pago = new Transaccion();
+        try {
+            // Objeto Venta
+            $Compra = new Transaccion();
 
-        //         $Pago->Cantidad = 1;
-        //         $Pago->Tipo = 'Pago';
-        //         $Pago->MetodoPago = $request->input('MetodoPago');
+            $Compra->Cantidad = $request->input('Cantidad');
+            $Compra->Tipo = 'Venta';
+            $Compra->MetodoPago = $request->input('MetodoPago');
 
-        //         // Asignar idConcepto desde la tabla Conceptos donde coincide idConcepto elegido en front
-        //         $Pago->idConcepto = $request->input('idConcepto');
+            // Asignar idConcepto desde la tabla Conceptos donde coincide idConcepto elegido en front
+            $Compra->idConcepto = $request->input('idConcepto');
 
-        //         // Asignar idPeriodo desde la tabla Periodos donde coincide Clave elegida en front
-        //         $idPeriodo = Periodo::where('idPeriodo', $request->input('idPeriodo'))->first()->idPeriodo;
-        //         $Pago->idPeriodo = $idPeriodo;
+            $Periodo = new Periodo();
 
-        //         // Asignar idPersona desde la tabla VAlumnos donde coincide la matrícula con la enviada desde front
-        //         $idPersona = VAlumno::where('Matricula', $request->input('idAlumno'))->first()->idPersona;
-        //         $Pago->idPersona = $idPersona;
+            $Periodo->Clave = 'Compra-' . now()->format('YmdHis');
+            $Periodo->FechaInicio = now()->format('Ymd');
+            $Periodo->FechaFin = now()->format('Ymd');
+            $Periodo->Tipo = 'Compra';
 
-        //         $Pago->Monto = $request->input('Monto');
+            $Periodo->save();
 
-        //         //si el valor de $request->input('CuentaRecibido') es null. Si lo es, asigna 'N/A'.
-        //         $Pago->CuentaRecibido = $request->input('CuentaRecibido') ?? 'N/A'; //
+            $Compra->idPeriodo = $Periodo->id;
 
-        //         $Pago->save();
-        //         // Si DescTransaccion tiene algún valor
+            $Compra->idPersona = Session::get('idPersona'); //id persona de sesion
 
-        //         //Confirmar transacción
-        //         DB::commit();
+            $Compra->Monto = $request->input('Monto') * $request->input('Cantidad');
 
-        //         return back()->with('success', 'El pago se registró correctamente, el monto a cobrar es.'
-        //             . $Pago->Monto);
-        //     } catch (\Exception $e) {
-        //         // Revertir transacción si hay un error
-        //         DB::rollBack();
+            //si el valor de $request->input('CuentaRecibido') es null. Si lo es, asigna 'N/A'.
+            $Compra->CuentaRecibido = $request->input('CuentaRecibido') ?? 'N/A'; //
 
-        //         return redirect()->back()->with('error', 'Error al registrar el pago: ' . $e->getMessage());
-        // }
+            $Compra->save();
+
+            //Confirmar transacción
+            DB::commit();
+
+            return back()->with('success', 'La compra se registró correctamente, el monto a cobrar es.'
+                . $Compra->Monto);
+        } catch (\Exception $e) {
+            // Revertir transacción si hay un error
+            DB::rollBack();
+
+            return redirect()->back()->with('error', 'Error al registrar la compra: ' . $e->getMessage());
+        }
     }
 
     /**

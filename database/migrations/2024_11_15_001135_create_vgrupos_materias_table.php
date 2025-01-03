@@ -21,6 +21,8 @@ return new class extends Migration
                 m.Clave,
                 m.Tipo AS TipoMateria,
                 gm.idGrupo,
+                g.ClavePeriodo,
+                g.TipoPeriodo,
                 g.NombreGrado,
                 g.Paquete,
                 g.NivelAcademico

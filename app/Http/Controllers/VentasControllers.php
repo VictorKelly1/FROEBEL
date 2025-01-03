@@ -14,6 +14,7 @@ use App\Models\VdescTransacciones;
 use App\Models\Vtransacciones;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class VentasControllers extends Controller
 {
@@ -57,7 +58,7 @@ class VentasControllers extends Controller
         $Desc = Descuento::where('Para', 'Ventas')->get();
         //
         return view(
-            'dinamicas.RegisPago',
+            'director.RegisVenta',
             [
                 'Periodos' => $Periodos,
                 'Conceptos' => $Conceptos,
@@ -71,6 +72,7 @@ class VentasControllers extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'MetodoPago' => 'required',
             'Monto' => 'required',
@@ -90,11 +92,18 @@ class VentasControllers extends Controller
             // Asignar idConcepto desde la tabla Conceptos donde coincide idConcepto elegido en front
             $Venta->idConcepto = $request->input('idConcepto');
 
-            // Asignar idPeriodo desde la tabla Periodos donde coincide Clave elegida en front
-            $idPeriodo = Periodo::where('idPeriodo', $request->input('idPeriodo'))->first()->idPeriodo;
-            $Venta->idPeriodo = $idPeriodo;
+            $Periodo = new Periodo();
 
-            $Venta->idPersona = ""; //id persona de sesion
+            $Periodo->Clave = 'Venta-' . now()->format('YmdHis');
+            $Periodo->FechaInicio = now()->format('Ymd');
+            $Periodo->FechaFin = now()->format('Ymd');
+            $Periodo->Tipo = 'Venta';
+
+            $Periodo->save();
+
+            $Venta->idPeriodo = $Periodo->id;
+
+            $Venta->idPersona = Session::get('idPersona'); //id persona de sesion
 
             $Venta->Monto = $request->input('Monto') * $request->input('Cantidad');
 
@@ -102,6 +111,7 @@ class VentasControllers extends Controller
             $Venta->CuentaRecibido = $request->input('CuentaRecibido') ?? 'N/A'; //
 
             $Venta->save();
+
             // Si DescTransaccion tiene algún valor
             if ($request->input('idDescuento')) {
                 //
@@ -115,7 +125,7 @@ class VentasControllers extends Controller
                 //
 
                 //calculo del nuevo monto
-                $Monto = $request->input('Monto');
+                $Monto = $request->input('Monto') * $request->input('Cantidad');
                 //
                 $Descuento = DB::table('Descuentos')->where('idDescuento', $VentaDescuento->idDescuento)->first();
                 $TipoDesc = $Descuento->Tipo;
@@ -136,15 +146,9 @@ class VentasControllers extends Controller
             }
 
             //Confirmar transacción
-
             DB::commit();
 
-            $InfoMail = Vtransacciones::where('idTransaccion', $Venta->idTransaccion)->get();
-            //envia un email de confirmacion
-            //manda el procesos de mail a segundo plano
-            VentaConfirmacion::dispatch($InfoMail);
-
-            return back()->with('success', 'El pago se registró correctamente, el monto a cobrar es.'
+            return back()->with('success', 'La venta se registró correctamente, el monto a cobrar es.'
                 . $Venta->Monto);
         } catch (\Exception $e) {
             // Revertir transacción si hay un error
@@ -154,34 +158,8 @@ class VentasControllers extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
     {
         //
     }

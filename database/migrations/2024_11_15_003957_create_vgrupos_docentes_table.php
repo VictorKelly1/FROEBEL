@@ -22,6 +22,8 @@ return new class extends Migration
                 d.ApellidoMaterno AS ApellidoMaternoDocente,
                 d.Estado AS Estado,
                 gd.idGrupo,
+                g.ClavePeriodo,
+                g.TipoPeriodo,
                 g.NombreGrado,
                 g.Paquete,
                 g.NivelAcademico

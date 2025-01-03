@@ -11,8 +11,8 @@
             <h3>Datos Del Grupo</h3>
             <div class="form-group">
                 <label for="Clave">Clave:</label>
-                <input type="text" name="Clave" id="Clave" class="form-control" value="{{ $Grupo->Clave }}"
-                    required>
+                <input type="text" name="Clave" id="Clave" class="form-control"
+                    value="{{ $Grupo->ClavePeriodo }}" required>
             </div>
 
             <div class="form-group">
@@ -47,7 +47,7 @@
             <div class="form-group">
                 <label for="Tipo">Tipo:</label>
                 <select name="Tipo" id="Tipo" class="form-control" required>
-                    <option value="{{ $Grupo->Tipo }}">{{ $Grupo->Tipo }}"</option>
+                    <option value="{{ $Grupo->TipoPeriodo }}">{{ $Grupo->TipoPeriodo }}"</option>
                     <option value="Regular">Regular</option>
                     <option value="Extraescolar">Extraescolar</option>
                     <option value="Verano">Verano</option>

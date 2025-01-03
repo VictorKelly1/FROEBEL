@@ -17,9 +17,29 @@ class GruposDocenteController extends Controller
      */
     public function index()
     {
-        $Docentes = VDocente::All();
-        $Grupos = Vgrupos::All();
-        $GrupDocentes = VgruposDocentes::where('Estado', 'Activo')->paginate(50);
+        $Docentes = VDocente::where('Estado', 'Activo')->get();
+        $Grupos = Vgrupos::where('ClavePeriodo', 'LIKE', '%')
+            ->get()
+            ->filter(function ($grupo) {
+                // Extraemos los primeros 4 dígitos y creamos el año académico
+                $year = substr($grupo->ClavePeriodo, 0, 4);
+                $startYear = substr($year, 0, 2);
+                $endYear = substr($year, 2, 2);
+                return '20' . $startYear . '20' . $endYear; // Convertimos a formato completo (ej: 20232024)
+            })
+            ->sortByDesc(function ($grupo) {
+                $year = substr($grupo->ClavePeriodo, 0, 4);
+                $startYear = substr($year, 0, 2);
+                $endYear = substr($year, 2, 2);
+                return '20' . $startYear . '20' . $endYear;
+            })
+            ->groupBy(function ($grupo) {
+                return substr($grupo->ClavePeriodo, 0, 4);
+            })
+            ->first();
+        $GrupDocentes = VgruposDocentes::where('Estado', 'Activo')
+            ->orderByRaw('SUBSTRING(ClavePeriodo, 1, 4) DESC')
+            ->paginate(50);
         return view(
             'director.AsigGrupDocen',
             [

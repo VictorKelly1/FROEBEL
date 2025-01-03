@@ -23,6 +23,8 @@ return new class extends Migration
             a.Matricula AS Matricula,
             a.Estado AS Estado,
             ga.idGrupo,
+            g.ClavePeriodo,
+            g.TipoPeriodo,
             g.Paquete,
             g.NombreGrado,
             g.NivelAcademico

@@ -10,13 +10,11 @@ use Illuminate\Support\Facades\DB;
 class ConceptosController extends Controller
 {
     /* 
-    Se obtiene una lista con todos los Conceptos 
+    
     */
     public function index()
     {
-
-        $Conceptos = Concepto::paginate(50);
-        return view('director.ConsultasAlum', ['Conceptos' => $Conceptos]);
+        //
     }
 
     /*
@@ -24,7 +22,8 @@ class ConceptosController extends Controller
     */
     public function create()
     {
-        return view('director.RegisConceptos');
+        $Conceptos = Concepto::paginate(50);
+        return view('director.RegisConceptos', ['Conceptos' => $Conceptos]);
     }
 
     /*Almacena un concepto */
@@ -44,13 +43,14 @@ class ConceptosController extends Controller
 
             $Concepto->Nombre = $request->input('Nombre');
             $Concepto->Descripcion = $request->input('Descripcion');
+            $Concepto->Para = $request->input('Para');
 
             $Concepto->save();
 
             //confirmar transaccion
             DB::commit();
 
-            return view('director.RegisConcep');
+            return back()->with('success', 'El concepto se registró correctamente.');
         } catch (\Exception $e) {
             // Revertir transacción si hay un error
             DB::rollBack();

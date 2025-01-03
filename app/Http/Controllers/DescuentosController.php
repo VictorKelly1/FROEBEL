@@ -14,8 +14,7 @@ class DescuentosController extends Controller
      */
     public function index()
     {
-        $Descuentos = Descuento::paginate(50);
-        return view('director.ConsultasDesc', ['Descuentos' => $Descuentos]);
+        //
     }
 
     /**
@@ -23,7 +22,8 @@ class DescuentosController extends Controller
      */
     public function create()
     {
-        return view('director.RegisDescuentos');
+        $Descuentos = Descuento::paginate(50);
+        return view('director.RegisDescuentos', ['Descuentos' => $Descuentos]);
     }
 
     /**
@@ -45,6 +45,7 @@ class DescuentosController extends Controller
 
             $Descuento->Nombre = $request->input('Nombre');
             $Descuento->Tipo = $request->input('Tipo');
+            $Descuento->Para = $request->input('Para');
             $Descuento->Monto = $request->input('Monto');
 
             $Descuento->save();

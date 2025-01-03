@@ -18,7 +18,8 @@ class GruposController extends Controller
     */
     public function index()
     {
-        $VGrupos = Vgrupos::paginate(50);
+        $VGrupos = Vgrupos::orderByRaw('SUBSTRING(ClavePeriodo, 1, 4) DESC')
+            ->paginate(50);
         return view('director.ConsultasGrup', ['Grupos' => $VGrupos]);
     }
 
@@ -57,13 +58,22 @@ class GruposController extends Controller
         DB::beginTransaction();
 
         try {
-            // Objeto Grado
-            $Grado = new Grado();
+            // Verificar si el grado ya existe
+            $gradoExistente = Grado::where('NombreGrado', $request->input('NombreGrado'))
+                ->where('NivelAcademico', $request->input('NivelAcademico'))
+                ->first();
 
-            $Grado->NombreGrado = $request->input('NombreGrado');
-            $Grado->NivelAcademico = $request->input('NivelAcademico');
+            if ($gradoExistente) {
+                $idGrado = $gradoExistente->idGrado;
+            } else {
 
-            $Grado->save();
+                $Grado = new Grado();
+                $Grado->NombreGrado = $request->input('NombreGrado');
+                $Grado->NivelAcademico = $request->input('NivelAcademico');
+                $Grado->save();
+
+                $idGrado = $Grado->id;
+            }
 
             //Objeto Periodo
             $Periodo = new Periodo();
@@ -77,7 +87,11 @@ class GruposController extends Controller
 
 
             // Obtener IDs de las tuplas que se acaban de guardar
-            $idGrado = $Grado->id;
+            if (!empty($Grado)) {
+                $idGrado = $Grado->id;
+            } else {
+                $idGrado = $gradoExistente->idGrado;
+            }
             $idPeriodo = $Periodo->id;
 
             //Objeto Grupo

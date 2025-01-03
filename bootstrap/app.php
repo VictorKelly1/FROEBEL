@@ -20,7 +20,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'DirectorPermisos' => \App\Http\Middleware\DirectorMiddleware::class,
             'AlumnoPermisos' => \App\Http\Middleware\AlumnoMiddleware::class,
-            'DocentePermisos' => \App\Http\Middleware\AlumnoMiddleware::class,
+            'DocentePermisos' => \App\Http\Middleware\DocenteMiddleware::class,
         ]);
         //
     })

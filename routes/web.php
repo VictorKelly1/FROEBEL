@@ -352,8 +352,8 @@ Route::middleware('DocentePermisos')->group(function () {
     Route::get('/MisHorarios', [ModuloDocenteController::class, 'vistaHorario'])->name('MisHorarios');
     Route::get('/InasistenciasDocente', [ModuloDocenteController::class, 'vistaInasistencias'])->name('InasistenciasDocente');
     Route::get('/VistaRegistrarCalificacion', [ModuloDocenteController::class, 'vistaCalificacion'])->name('VistaRegistrarCalificacion');
-    Route::get('/RegistrarCalificacion/{id}', [ModuloDocenteController::class, 'registrarCalificacion'])->name('RegistrarCalificacion');
-    Route::get('/listaRegistrarInasistencia', [ModuloDocenteController::class, 'listaRegistrarInasistencia'])->name('listaRegistrarInasistencia');
+    Route::post('/RegistrarCalificacion/{id}', [ModuloDocenteController::class, 'registrarCalificacion'])->name('RegistrarCalificacion');
+    Route::post('/listaRegistrarInasistencia', [ModuloDocenteController::class, 'listaRegistrarInasistencia'])->name('listaRegistrarInasistencia');
 });
 
 //------------------------------------------------------------------------------------------------------------
@@ -361,8 +361,9 @@ Route::middleware('DocentePermisos')->group(function () {
 
 
 //registrar nominas, calificaciones y eventos 
-/*administracion de bajas, hiatorial calificaciones y grupos, y validar 
-aparicion de periodos en pagos, ventas y compras*/
+//modulo docente
+/*hiatorial calificaciones*/
+
 //impresion de recivos, constancias, calificaciones
 
 

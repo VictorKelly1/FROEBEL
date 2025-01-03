@@ -57,14 +57,16 @@ class SSO extends Controller
                 //
                 $persona = $role['model']::where('idUsuario', $user->id)->first();
                 $nombre = $persona->Nombre . ' ' . $persona->ApellidoPaterno . ' ' . $persona->ApellidoMaterno;
+                //
                 Session::put('Nombre', $nombre);
 
                 Session::put('idPersona', $persona->idPersona);
 
                 Session::put('Foto', $persona->Foto);
 
-                // si es alumno se obtiene la id del alumno 
                 Session::put('CURP', $persona->CURP);
+
+                //si es alumno se obtiene la id del alumno 
                 if ($permiso === 'Alumno') {
                     //
                     $idAlumno = DB::table('Alumnos')
@@ -74,7 +76,24 @@ class SSO extends Controller
                     Session::put('idAlumno', $idAlumno);
                 }
 
-                //return view($role['view']);
+                //si es alumno se obtiene la id del alumno y sus grupos asociados
+                if ($permiso === 'Docente') {
+                    //
+                    $idDocente = DB::table('Docentes')
+                        ->where('idPersona', $persona->idPersona)
+                        ->value('idDocente');
+
+                    Session::put('idDocente', $idDocente);
+                    //
+
+                    $Grupos = DB::table('vGruposDocentes')
+                        ->select('idGrupoDocente', 'idGrupo', 'NombreGrado', 'Paquete', 'NivelAcademico')
+                        ->where('idDocente', $idDocente)
+                        ->get();
+
+                    Session::put('Grupos', $Grupos);
+                }
+                //
                 return redirect()->route('Menu' . $permiso);
             }
         }

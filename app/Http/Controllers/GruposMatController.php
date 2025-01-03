@@ -18,8 +18,28 @@ class GruposMatController extends Controller
     public function index()
     {
         $Materias = Materia::All();
-        $Grupos = Vgrupos::All();
-        $GrupMat = VgruposMaterias::paginate(50);
+        $Grupos = Vgrupos::where('ClavePeriodo', 'LIKE', '%')
+            ->get()
+            ->filter(function ($grupo) {
+                // Extraemos los primeros 4 dígitos y creamos el año académico
+                $year = substr($grupo->ClavePeriodo, 0, 4);
+                $startYear = substr($year, 0, 2);
+                $endYear = substr($year, 2, 2);
+                return '20' . $startYear . '20' . $endYear; // Convertimos a formato completo (ej: 20232024)
+            })
+            ->sortByDesc(function ($grupo) {
+                $year = substr($grupo->ClavePeriodo, 0, 4);
+                $startYear = substr($year, 0, 2);
+                $endYear = substr($year, 2, 2);
+                return '20' . $startYear . '20' . $endYear;
+            })
+            ->groupBy(function ($grupo) {
+                return substr($grupo->ClavePeriodo, 0, 4);
+            })
+            ->first();
+        //
+        $GrupMat = VgruposMaterias::orderByRaw('SUBSTRING(ClavePeriodo, 1, 4) DESC')
+            ->paginate(50);
         return view(
             'director.AsigGrupMat',
             [
