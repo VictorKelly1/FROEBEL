@@ -73,6 +73,11 @@ class SSO extends Controller
                         ->where('idPersona', $persona->idPersona)
                         ->value('idAlumno');
 
+                    $Estado =  DB::table('Alumnos')
+                        ->where('idPersona', $persona->idPersona)
+                        ->value('Estado');
+
+                    Session::put('Estado', $Estado);
                     Session::put('idAlumno', $idAlumno);
                 }
 
@@ -83,11 +88,16 @@ class SSO extends Controller
                         ->where('idPersona', $persona->idPersona)
                         ->value('idDocente');
 
+                    $Estado =  DB::table('Docentes')
+                        ->where('idPersona', $persona->idPersona)
+                        ->value('Estado');
+
+                    Session::put('Estado', $Estado);
                     Session::put('idDocente', $idDocente);
                     //
 
                     $Grupos = DB::table('vGruposDocentes')
-                        ->select('idGrupoDocente', 'idGrupo', 'NombreGrado', 'Paquete', 'NivelAcademico')
+                        ->select('idGrupoDocente', 'idGrupo', 'NombreGrado', 'ClavePeriodo', 'Paquete', 'NivelAcademico')
                         ->where('idDocente', $idDocente)
                         ->get();
 
@@ -98,6 +108,6 @@ class SSO extends Controller
             }
         }
 
-        return redirect()->route('Raiz')->with('error', 'Usuario no encontrado intentalo de nuevo.');
+        return redirect()->route('log')->with('error', 'Usuario no encontrado intentalo de nuevo.');
     }
 }

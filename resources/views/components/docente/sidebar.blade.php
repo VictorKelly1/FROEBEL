@@ -20,29 +20,28 @@
         </a>
 
         <!-- Opción Calificaciones -->
-<!-- Opción Principal con Submenú -->
-<div x-data="{ open: false }">
-    <a href="#"
-        @click="open = !open"
-        class="flex items-center text-white font-bold py-2 px-4 rounded hover:bg-gray-300 hover:text-black hover:border-l-4 hover:border-red-500 transition-all duration-200">
-        <i class="fas fa-file-alt text-xl"></i>
-        <span x-show="!collapsed" class="ml-3 transition-all duration-200">GRUPOS</span>
-        <i class="fas fa-chevron-down ml-auto" :class="{'rotate-180': open}"></i>
-    </a>
-    <!-- Submenú -->
-    <div x-show="open" x-collapse class="pl-8 mt-1">
-        @if (Session::has('Grupos'))
-            @foreach (Session::get('Grupos') as $grupo)
-                <a href="{{ route('grupo.detalle', ['id' => $grupo['id']]) }}" 
-                   class="block text-white py-1 px-2 hover:bg-gray-300 hover:text-black transition-all duration-200">
-                    {{ $grupo['nombre'] }}
-                </a>
-            @endforeach
-        @else
-            <p class="text-gray-400 text-sm">No hay grupos disponibles.</p>
-        @endif
-    </div>
-</div>
+        <!-- Opción Principal con Submenú -->
+        <div x-data="{ open: false }">
+            <a href="#" @click="open = !open"
+                class="flex items-center text-white font-bold py-2 px-4 rounded hover:bg-gray-300 hover:text-black hover:border-l-4 hover:border-red-500 transition-all duration-200">
+                <i class="fas fa-file-alt text-xl"></i>
+                <span x-show="!collapsed" class="ml-3 transition-all duration-200">GRUPOS</span>
+                <i class="fas fa-chevron-down ml-auto" :class="{ 'rotate-180': open }"></i>
+            </a>
+            <!-- Submenú -->
+            <div x-show="open" x-collapse class="pl-8 mt-1">
+                @if (Session::has('Grupos'))
+                    @foreach (Session::get('Grupos') as $grupo)
+                        <a href="#"
+                            class="block text-white py-1 px-2 hover:bg-gray-300 hover:text-black transition-all duration-200">
+                            {{ $grupo->NombreGrado }} {{ $grupo->NivelAcademico }} {{ $grupo->Paquete }}
+                        </a>
+                    @endforeach
+                @else
+                    <p class="text-gray-400 text-sm">No hay grupos disponibles.</p>
+                @endif
+            </div>
+        </div>
 
 
 

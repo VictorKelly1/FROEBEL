@@ -16,7 +16,7 @@ class AlumnoMiddleware
         Log::info('Permiso actual:', ['permiso' => Session::get('Permiso')]);
 
         // Si no es director, redirigir a login
-        if (Session::get('Permiso') !== 'Alumno') {
+        if (Session::get('Permiso') !== 'Alumno' && Session::get('Estado') == 'Activo') {
             // Evitar bucle de redirección
             if ($request->routeIs('log')) {
                 return $next($request);

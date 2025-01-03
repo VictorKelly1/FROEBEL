@@ -58,7 +58,7 @@ class PagosController extends Controller
             ->where('Nombre', '!=', 'Colegiatura')
             ->get();
 
-        //esto deveulve los peridos pendientes por pargar de un alumno
+        //esto deveulve los periodos de inscripciones
         $Periodos = Periodo::where('Tipo', '!=', 'Colegiatura')
             ->where('Tipo', '!=', 'Regular')
             ->where('Tipo', '!=', 'Extraescolar')
@@ -68,7 +68,7 @@ class PagosController extends Controller
 
         // Pasar los datos a la vista
         return view(
-            'director.RegisPago',
+            'dinamicas.RegisPago',
             [
                 'Alumnos' => $Alumnos,
                 'Periodos' => $Periodos,

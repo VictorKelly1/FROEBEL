@@ -30,6 +30,15 @@ class ModuloDocenteController extends Controller
         return view('docente.Horarios');
     }
 
+    public function verGrupo(String $id)
+    {
+        $AlumnosDelGrupo = DB::table('vGruposAlumnos')
+            ->where('idGrupo', $id)
+            ->get();
+
+        return view('dinamicas.GrupoDocente', ['AlumnosDelGrupo' => $AlumnosDelGrupo]);
+    }
+
     public function vistaInasistencias()
     {
         $id = Session::get('idPersona');

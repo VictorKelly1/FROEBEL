@@ -22,6 +22,7 @@ return new class extends Migration
                 gm.NombreGrado,
                 gm.Paquete,
                 gm.NivelAcademico,
+                gm.ClavePeriodo,
                 c.idAlumno,
                 a.Nombre AS NombreAlumno,
                 a.ApellidoPaterno,
