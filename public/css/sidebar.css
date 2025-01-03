@@ -49,7 +49,7 @@
 
                 position: absolute;
                 top: 15%;    /* alto */
-                left: 25%; /* lado */
+                left: 20%; /* lado */
                 width: 75%;
             
                 /* Permite el desplazamiento interno si el contenido es más grande que el contenedor */

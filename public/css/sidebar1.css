@@ -27,7 +27,7 @@
     /* Efecto hover en las opciones */
     .sidebar a:hover {
         background-color: #1f1f1f; /* Fondo oscuro al pasar el mouse */
-        color: #000dff; /* Texto azul al pasar el mouse */
+        color: #fafafa; /* Texto azul al pasar el mouse */
     }
   
     /* Línea LED debajo de cada opción */
