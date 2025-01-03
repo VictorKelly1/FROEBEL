@@ -36,7 +36,8 @@
                                 {{ $Colegiatura->ApellidoPaterno }}
                                 {{ $Colegiatura->ApellidoMaterno }}
                             </td>
-                            <td class="px-2 py-1 border-t border-purple-500 animate-border">{{ $Colegiatura->Clave }}
+                            <td class="px-2 py-1 border-t border-purple-500 animate-border clave">
+                                {{ $Colegiatura->Clave }}
                             </td>
                             <td class="px-2 py-1 border-t border-purple-500 animate-border">
                                 {{ $Colegiatura->FechaInicio }}</td>
@@ -74,23 +75,23 @@
 
 
     <script>
-        document.getElementById("searchInput").addEventListener("input", function() {
-            let filter = this.value.toLowerCase();
-            let rows = document.querySelectorAll("#miTabla tbody tr");
+    document.getElementById("searchInput").addEventListener("input", function() {
+        let filter = this.value.toLowerCase();
+        let rows = document.querySelectorAll("tbody tr");
 
-            rows.forEach(function(row) {
-                let claveCell = row.querySelector(".clave");
-                if (claveCell) {
-                    let claveText = claveCell.textContent.toLowerCase();
-                    if (claveText.includes(filter)) {
-                        row.style.display = ""; // Mostrar fila si coincide
-                    } else {
-                        row.style.display = "none"; // Ocultar fila si no coincide
-                    }
+        rows.forEach(function(row) {
+            let claveCell = row.querySelector(".clave");
+            if (claveCell) {
+                let claveText = claveCell.textContent.toLowerCase();
+                if (claveText.includes(filter)) {
+                    row.style.display = ""; // Mostrar fila si coincide
+                } else {
+                    row.style.display = "none"; // Ocultar fila si no coincide
                 }
-            });
+            }
         });
-    </script>
+    });
+</script>
 
 
 
