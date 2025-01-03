@@ -1,16 +1,15 @@
 <x-director.layout>
-<div class="posiciontablas relative mb-4"> 
-    <div class="absolute top-0 right-0 p-2">
-        <input type="search" id="searchInput" placeholder="Buscar por Clave..." 
-            class="buscador-input"
-            style="width: 550px; height: 50px; padding: 8px; background-color: #2d2d2d; color: white; border-radius: 5px;">
+    <div class="posiciontablas relative mb-4">
+        <div class="absolute top-0 right-0 p-2">
+            <input type="search" id="searchInput" placeholder="Buscar por Clave..." class="buscador-input"
+                style="width: 550px; height: 50px; padding: 8px; background-color: #2d2d2d; color: white; border-radius: 5px;">
+        </div>
     </div>
-</div>
 
 
     <div class="flex items-center justify-center bg-gray-900 p-2 posiciontablas borderAnimation">
 
-  
+
 
 
 
@@ -74,28 +73,24 @@
 
 
 
-<script>
+    <script>
+        document.getElementById("searchInput").addEventListener("input", function() {
+            let filter = this.value.toLowerCase();
+            let rows = document.querySelectorAll("#miTabla tbody tr");
 
-document.getElementById("searchInput").addEventListener("input", function() {
-    let filter = this.value.toLowerCase();
-    let rows = document.querySelectorAll("#miTabla tbody tr");
-
-    rows.forEach(function(row) {
-        let claveCell = row.querySelector(".clave");
-        if (claveCell) {
-            let claveText = claveCell.textContent.toLowerCase();
-            if (claveText.includes(filter)) {
-                row.style.display = ""; // Mostrar fila si coincide
-            } else {
-                row.style.display = "none"; // Ocultar fila si no coincide
-            }
-        }
-    });
-});
-
-
-
-</script>
+            rows.forEach(function(row) {
+                let claveCell = row.querySelector(".clave");
+                if (claveCell) {
+                    let claveText = claveCell.textContent.toLowerCase();
+                    if (claveText.includes(filter)) {
+                        row.style.display = ""; // Mostrar fila si coincide
+                    } else {
+                        row.style.display = "none"; // Ocultar fila si no coincide
+                    }
+                }
+            });
+        });
+    </script>
 
 
 

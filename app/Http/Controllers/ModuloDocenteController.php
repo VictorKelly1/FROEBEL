@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\VInasistencias;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class ModuloDocenteController extends Controller
 {
@@ -18,6 +20,11 @@ class ModuloDocenteController extends Controller
         return view('docente.Comunicado');
     }
 
+    public function vistaComunicadoParticular(String $id)
+    {
+        return view('docenteDinamicas.Comunicado');
+    }
+
     public function vistaHorario()
     {
         return view('docente.Horarios');
@@ -25,12 +32,14 @@ class ModuloDocenteController extends Controller
 
     public function vistaInasistencias()
     {
-        return view('docente.MisInasist');
+        $id = Session::get('idPersona');
+        $Inasist = VInasistencias::where('idPersona', $id);
+        return view('docente.MisInasist', ['Inasistencias' => $Inasist]);
     }
 
-    public function vistaCalificacion()
+    public function vistaCalificacion(String $id)
     {
-        return view('docente.RegisCalif');
+        return view('docenteDinamicas.RegisCalif');
     }
 
     public function registrarCalificacion(String $id)
