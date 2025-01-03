@@ -10,6 +10,7 @@ use App\Http\Controllers\ComprasControllers;
 use App\Http\Controllers\ComunicadosController;
 use App\Http\Controllers\ConceptosController;
 use App\Http\Controllers\ContactosController;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\CoordinadoresController;
 use App\Http\Controllers\DescuentosController;
 use App\Http\Controllers\DocenteController;
@@ -23,6 +24,7 @@ use App\Http\Controllers\InasistenciasController;
 use App\Http\Controllers\MaterialesController;
 use App\Http\Controllers\MateriasController;
 use App\Http\Controllers\ModuloAlumnoController;
+use App\Http\Controllers\ModuloDocenteController;
 use App\Http\Controllers\NominasController;
 use App\Http\Controllers\PagosController;
 use App\Http\Controllers\PlaneacionesController;
@@ -32,6 +34,7 @@ use App\Http\Controllers\SSO;
 use App\Http\Controllers\TutoresController;
 use App\Http\Controllers\VentasControllers;
 use App\Http\Controllers\VestimentaController;
+use App\Models\VdescTransacciones;
 use Illuminate\Support\Facades\Route;
 //
 
@@ -242,7 +245,9 @@ Route::middleware('DirectorPermisos')->group(function () {
         Route::get('/ColegiaturaImprimirRecibo/{id}', 'show')->name('ColegiaturaImprimirRecibo');
         //
         Route::get('/ListaColegiaturasFaltantes', function () {
-            $Faltantes = [];
+
+            $Faltantes = VdescTransacciones::where('TipoTransaccion', 'X')
+                ->paginate(0);
             return view('director.Colegfaltantes', ['Faltantes' => $Faltantes]);
         })->name('ListaColegiaturasFaltantes');
         //
@@ -320,6 +325,8 @@ Route::middleware('DirectorPermisos')->group(function () {
     Route::get('/MenuDirector', function () {
         return view('director.Menu');
     })->name('MenuDirector');
+    //------------------------Administracion de bajas
+    Route::get('/AdministracionBajas', [Controller::class, 'bajas'])->name('AdministracionBajas');
 });
 //------------------------------------------------------------------------------------------------------------
 
@@ -340,20 +347,25 @@ Route::middleware('AlumnoPermisos')->group(function () {
 
 //------------------------------------------------------------------------------------------------------------
 
+Route::middleware('DocentePermisos')->group(function () {
+    Route::get('/MenuDocente', [ModuloDocenteController::class, 'index'])->name('MenuDocente');
+    Route::get('/MisHorarios', [ModuloDocenteController::class, 'vistaHorario'])->name('MisHorarios');
+    Route::get('/InasistenciasDocente', [ModuloDocenteController::class, 'vistaInasistencias'])->name('InasistenciasDocente');
+    Route::get('/VistaRegistrarCalificacion', [ModuloDocenteController::class, 'vistaCalificacion'])->name('VistaRegistrarCalificacion');
+    Route::get('/RegistrarCalificacion/{id}', [ModuloDocenteController::class, 'registrarCalificacion'])->name('RegistrarCalificacion');
+    Route::get('/listaRegistrarInasistencia', [ModuloDocenteController::class, 'listaRegistrarInasistencia'])->name('listaRegistrarInasistencia');
+});
+
+//------------------------------------------------------------------------------------------------------------
 
 
-//registrar nominas, calificaciones, pago remoto y eventos 
+
+//registrar nominas, calificaciones y eventos 
 /*administracion de bajas, hiatorial calificaciones y grupos, y validar 
 aparicion de periodos en pagos, ventas y compras*/
-
 //impresion de recivos, constancias, calificaciones
 
-//patrones de diseño -Observador -Fachada -Estrategia
-//Middlewares
-//patrones de resiliencia
-//procesos en segundo plano
-//envio de emails
-//Integracion de APIs 
+
 
 //------------------------------------------------------------------------------------------------------------
 Route::middleware('auth')->group(function () {
@@ -363,3 +375,9 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__ . '/auth.php';
+//patrones de diseño -Observador -Fachada -Estrategia
+//Middlewares
+//patrones de resiliencia
+//procesos en segundo plano
+//envio de emails
+//Integracion de APIs 
