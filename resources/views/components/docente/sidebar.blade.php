@@ -32,10 +32,16 @@
             <div x-show="open" x-collapse class="pl-8 mt-1">
                 @if (Session::has('Grupos'))
                     @foreach (Session::get('Grupos') as $grupo)
-                        <a href="#"
+                    <form action="/VerGrupo/{{ $Grupo->idGrupo }}" method="GET">
+                        <a href=""
                             class="block text-white py-1 px-2 hover:bg-gray-300 hover:text-black transition-all duration-200">
+
                             {{ $grupo->NombreGrado }} {{ $grupo->NivelAcademico }} {{ $grupo->Paquete }}
+                           
+                                <button class="bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Comunicado</button>
+                          
                         </a>
+                        </form>
                     @endforeach
                 @else
                     <p class="text-gray-400 text-sm">No hay grupos disponibles.</p>
