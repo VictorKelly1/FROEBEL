@@ -22,7 +22,7 @@
         <!-- Opción Calificaciones -->
         <a href="#" class="flex items-center text-white font-bold py-2 px-4 rounded hover:bg-gray-300 hover:text-black hover:border-l-4 hover:border-red-500 transition-all duration-200">
             <i class="fas fa-file-alt text-xl"></i>
-            <span x-show="!collapsed" class="ml-3 transition-all duration-200">CALIFICACIONES</span>
+            <span x-show="!collapsed" class="ml-3 transition-all duration-200">GRUPOS</span>
         </a>
 
         <!-- Opción Comunicado -->
@@ -46,13 +46,13 @@
         <!-- Opción Mis Inasistencias -->
         <a href="#" class="flex items-center text-white font-bold py-2 px-4 rounded hover:bg-gray-300 hover:text-black hover:border-l-4 hover:border-red-500 transition-all duration-200">
             <i class="fas fa-user-check text-xl"></i>
-            <span x-show="!collapsed" class="ml-3 transition-all duration-200">MIS INASISTENCIAS</span>
+            <span x-show="!collapsed" class="ml-3 transition-all duration-200">MIS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INASISTENCIAS</span>
         </a>
     </nav>
 
     <!-- Botón para colapsar/expandir -->
     <button @click="collapsed = !collapsed" 
-            class="bg-red-600 text-white p-3 shadow-md rounded-full transition-all duration-300 self-center mb-4">
+            class="bg-red-600 text-white p-3 shadow-md rounded-full transition-all duration-100 self-center mb-4">
         <svg :class="collapsed ? 'rotate-180' : 'rotate-0'" 
              class="w-6 h-6 transition-transform duration-300" 
              fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

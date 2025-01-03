@@ -57,42 +57,7 @@
 
     </div>
 
-    <style>
-        .imagen-header {
-            width: 100%;
-            /* La imagen ocupará el 100% del ancho del contenedor */
-            max-width: 25%;
-            /* Limita el tamaño máximo de la imagen al 100% */
-            height: auto;
-            /* Mantiene la proporción de la imagen */
-        }
 
-        /* Si deseas que la imagen no sea más alta que el encabezado */
-        header {
-            height: 10%;
-            /* Ajusta la altura del header según sea necesario */
-        }
-
-
-        .imagen-header2 {
-            position: relative;
-            width: 100%;
-            /* La imagen ocupará el 100% del ancho del contenedor */
-            max-width: 120%;
-            /* Limita el tamaño máximo de la imagen al 100% */
-            height: auto;
-            /* Mantiene la proporción de la imagen */
-            margin-left: -150px;
-        }
-
-
-        .imagen-header2 {
-            height: 100%;
-            /* Ajusta la altura de la imagen al 100% del contenedor */
-            width: auto;
-            /* Mantiene la proporción de la imagen */
-        }
-    </style>
 
     <script>
         document.querySelector('.dropdown-btn').addEventListener('click', function() {

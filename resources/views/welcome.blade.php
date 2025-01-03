@@ -26,63 +26,207 @@
             }
         }
 
+        /* Estilo general del cuerpo */
+        body {
+            font-family: 'Colegios Frebel', sans-serif;
+            background-color:rgb(8, 7, 28); /* Fondo azul oscuro */
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Logo del Colegio */
+        .logo {
+            max-width: 80px;
+            margin-bottom: 1rem;
+        }
+
         /* Botón de inicio de sesión */
         .login-button {
-            background: linear-gradient(to right, #4f46e5, #6b21a8);
+            background: linear-gradient(to right,rgb(0, 225, 255),rgb(23, 11, 249));
             color: #fff;
             border: none;
             border-radius: 8px;
             padding: 10px 20px;
-            font-size: 1rem;
+            font-size: 1.1rem;
             cursor: pointer;
             transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
         }
+
         .login-button:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         }
+
+        /* Estilo de los contenedores */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-direction: column;
+            min-height: 100vh;
+            padding: 0 1rem;
+        }
+
+        /* Flexbox para los contenedores laterales y el contenedor central */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            width: 100%;
+        }
+
+        .login-container {
+            background: #222;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .login-container h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        /* Animación de entrada para el formulario */
+        .login-container {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Estilo del logo */
+        .login-logo {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Estilo de los contenedores laterales */
+        .side-container {
+            background-color:rgb(11, 14, 40);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            max-width: 300px;
+            color: white;
+            flex: 1;
+            margin: 0 10px;
+        }
+
+        .side-container h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .side-container a {
+            color:rgb(143, 142, 165);
+            text-decoration: none;
+            display: block;
+            margin-top: 0.5rem;
+        }
+
+        .side-container a:hover {
+            text-decoration: underline;
+        }
+
+        /* Header */
+        header {
+            background-color: rgb(22, 29, 43);
+            padding: 20px;
+            text-align: center;
+            color: white;
+            font-size: 1.2rem;
+            position: sticky; 
+            
+        }
+
+        /* Footer */
+        footer {
+            background-color:rgb(22, 29, 43);
+            padding: 10px;
+            text-align: center;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Flexbox para los contenedores laterales en una fila */
+        .side-containers {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 40px;
+        }
+
+        /* Asegurar que todos los contenedores laterales tengan la misma altura */
+        .side-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Estilo para la alineación correcta de los contenedores laterales */
+        .side-container {
+            flex: 1;
+        }
+
+        /* Ajuste del contenedor central para que no ocupe demasiado espacio */
+        .login-container {
+            margin-top: 0; /* Remover margen superior innecesario */
+        }
     </style>
 </head>
-<body class="bg-gray-900 flex items-center justify-center min-h-screen">
-    <div class="container mx-auto px-4">
+<body>
 
-        <!-- Título -->
-        <div class="text-center mb-10">
-            <h1 class="text-4xl md:text-5xl font-bold text-white uppercase">COLEGIO FROEBEL</h1>
-            <div class="title"></div>
-        </div>
+    <!-- Header -->
+    <header>
+        Bienvenido al Portal del Colegio Froebel
+    </header>
+
+    <div class="container">
+        <div class="main-content">
+            <div class="login-container text-center">
+
+                <!-- Título -->
+                <h1 class="text-4xl font-bold text-white uppercase">COLEGIO FROEBEL</h1>
+                <div class="title"></div>
+
+                <!-- Formulario de Inicio de sesión -->
+                <h2 class="text-xl font-semibold text-white mt-6">Accede con tu correo Institucional</h2>
+                @if (session('error'))
+                    <div class="alert alert-danger mb-4">
+                        {{ session('error') }}
+                    </div>
+                @endif
+
+                <a href="/google_auth/redirect" class="login-button w-full block py-2 rounded-lg text-white text-lg">
+                    Iniciar Sesión
+                </a>
+            </div>
+
         
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
-            
-            <!-- Izquierda: Información -->
-            <div class="p-5 rounded-lg shadow-md bg-gray-800 text-white">
-                <h2 class="text-xl font-bold">Información</h2>
-                <p class="text-sm mt-2">Accede con tu cuenta institucional para gestionar tus actividades escolares.</p>
-                <a href="#" class="text-blue-400 hover:underline mt-2 inline-block">Más información</a>
-            </div>
-            
-            <!-- Centro: Formulario de inicio de sesión -->
-            <div class="flex items-center justify-center">
-                <div class="login-container text-center shadow-lg p-6 rounded-lg bg-gray-800 w-full max-w-md">
-                    <h1 class="text-2xl font-bold text-white mb-5">Accede con tu correo Institucional</h1>
-                    @if (session('error'))
-                        <div class="alert alert-danger mb-4">
-                            {{ session('error') }}
-                        </div>
-                    @endif
-                    <a href="/google_auth/redirect" class="login-button w-full block py-2 rounded-lg text-white text-lg">
-                        Iniciar Sesión
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Derecha: Soporte -->
-            <div class="p-5 rounded-lg shadow-md bg-gray-800 text-white flex flex-col justify-between">
-                <h2 class="text-xl font-bold">Soporte</h2>
-                <p class="text-sm mt-2">¿Necesitas ayuda? Contacta con el equipo de soporte.</p>
-                <a href="#" class="text-blue-400 hover:underline mt-2 inline-block">Contactar</a>
-            </div>
         </div>
     </div>
+
+    <!-- Footer -->
+    <footer>
+        © 2025 Colegio Froebel. Todos los derechos reservados.
+    </footer>
+
 </body>
 </html>

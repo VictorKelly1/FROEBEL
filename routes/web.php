@@ -339,8 +339,9 @@ Route::middleware('AlumnoPermisos')->group(function () {
 });
 
 //------------------------------------------------------------------------------------------------------------
-
-
+Route::get('/MenuDocente', function () {
+    return view('docente.Menu'); // Asegúrate de que la vista 'MenuDocente' exista en la carpeta 'resources/views'
+})->name('MenuDocente');
 
 //registrar nominas, calificaciones, pago remoto y eventos 
 /*administracion de bajas, hiatorial calificaciones y grupos, y validar 

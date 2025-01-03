@@ -9,41 +9,40 @@
      <p>&nbsp;</p>
 
 
-    <!-- Opciones del Sidebar -->
-    <nav class="flex-1 space-y-2">
-        <!-- Opción Home -->
-    <a href="{{ route('MenuAlumno') }}" class="flex items-center text-white font-bold py-2 px-4 rounded hover:bg-blue-300 transition-all duration-200">
-    <div class="flex items-center justify-center"  style="font-size: 20px;">
-    <span x-show="!collapsed" class="transition-all duration-200">INICIO</span>
-</div>
 
-    </a>
+   <!-- Opciones del Sidebar -->
+   <nav class="flex-1 space-y-2">
+        <!-- Opción Inicio -->
+        <a href="#" class="flex items-center text-white font-bold py-2 px-4 rounded hover:bg-gray-300 hover:text-black hover:border-l-4 hover:border-blue-500 transition-all duration-200">
+            <i class=" text-xl "></i>
+            <span style="font-size: 20px;" x-show="!collapsed" class="ml-3 transition-all duration-200">INICIO</span>
+        </a>
 
-        <!-- Botón CALIFICACIONES -->
-        <a href="{{ route('MisCalificaciones') }}" class="flex items-center text-white font-bold py-2 px-4 rounded hover:bg-blue-300 hover:text-black hover:border-l-4 hover:border-blue-500 transition-all duration-200">
-            <i class="fas fa-graduation-cap text-xl" style="font-size: 30px;"></i>
+        <!-- Opción Calificaciones -->
+        <a href="{{ route('MisCalificaciones') }}" class="flex items-center text-white font-bold py-2 px-4 rounded hover:bg-gray-300 hover:text-black hover:border-l-4 hover:border-blue-500 transition-all duration-200">
+            <i class="fas fa-file-alt text-xl"></i>
             <span x-show="!collapsed" class="ml-3 transition-all duration-200">CALIFICACIONES</span>
         </a>
 
-        <!-- Botón INASISTENCIAS -->
-        <a href="{{ route('MisInasistencias') }}" class="flex items-center text-white font-bold py-2 px-4 rounded hover:bg-blue-300 hover:text-black hover:border-l-4 hover:border-blue-500 transition-all duration-200">
-            <i class="fas fa-user-times text-xl" style="font-size: 30px;"></i>
+        <!-- Opción Comunicado -->
+        <a href="{{ route('MisInasistencias') }}" class="flex items-center text-white font-bold py-2 px-4 rounded hover:bg-gray-300 hover:text-black hover:border-l-4 hover:border-blue-500 transition-all duration-200">
+            <i class="fas fa-bullhorn text-xl"></i>
             <span x-show="!collapsed" class="ml-3 transition-all duration-200">INASISTENCIAS</span>
         </a>
 
-        <!-- Botón HORARIO -->
-        <a href="{{ route('MiHorario') }}" class="flex items-center text-white font-bold py-2 px-4 rounded hover:bg-blue-300 hover:text-black hover:border-l-4 hover:border-blue-500 transition-all duration-200">
-            <i class="fas fa-clock text-xl" style="font-size: 30px;"></i>
+        <!-- Opción Horarios -->
+        <a href="{{ route('MiHorario') }}" class="flex items-center text-white font-bold py-2 px-4 rounded hover:bg-gray-300 hover:text-black hover:border-l-4 hover:border-blue-500 transition-all duration-200">
+            <i class="fas fa-calendar-alt text-xl"></i>
             <span x-show="!collapsed" class="ml-3 transition-all duration-200">HORARIO</span>
         </a>
 
-        <!-- Botón PAGOS -->
-        <a href="{{ route('MisColegiaturas') }}" class="flex items-center text-white font-bold py-2 px-4 rounded hover:bg-blue-300 hover:text-black hover:border-l-4 hover:border-blue-500 transition-all duration-200">
-            <i class="fas fa-wallet text-xl" style="font-size: 30px;"></i>
+        <!-- Opción Inasistencias -->
+        <a href="{{ route('MisColegiaturas') }}" class="flex items-center text-white font-bold py-2 px-4 rounded hover:bg-gray-300 hover:text-black hover:border-l-4 hover:border-blue-500 transition-all duration-200">
+            <i class="fas fa-user-times text-xl"></i>
             <span x-show="!collapsed" class="ml-3 transition-all duration-200">PAGOS</span>
         </a>
-    </nav>
 
+   
    
     <!-- Botón para colapsar/expandir -->
     <button @click="collapsed = !collapsed" 

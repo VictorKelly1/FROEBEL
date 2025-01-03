@@ -12,7 +12,8 @@
     <link rel="stylesheet" href="{{ asset('css/Alumnocss/sidebar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/Alumnocss/header.css') }}">
     <link rel="stylesheet" href="{{ asset('css/Alumnocss/Colegiatura.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('css/Alumnocss/Menu.css') }}">
+  
 
     
     <script src="https://cdn.tailwindcss.com"></script>

@@ -1,99 +1,76 @@
 /* Estilos para pantallas entre 768px y 4991px */
 @media (min-width: 768px) and (max-width: 4991px) {
-  /* Sidebar */
-  .sidebar {
-      margin: 0;
-      padding: 0;
-      width: 20%; /* Sidebar ocupa el 20% del ancho de la pantalla */
-      background-color: #000000;
-      position: fixed;
-      height: 100vh; /* Altura completa de la ventana */
-      overflow-y: auto;
-      scrollbar-width: thin;
-      scrollbar-color: #0023c1 #1f2937;
-  }
+    /* Sidebar */
+    .sidebar {
+        margin: 0;
+        padding: 0;
+        width: 20%; /* 20% del ancho de la pantalla */
+        background-color: #000000;
+        position: fixed;
+        height: 100vh; /* Full height */
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: #0023c1 #036cff;
+    }
 
-  .sidebar a {
-      display: block;
-      color: rgb(255, 255, 255);
-      padding: 6%; /* Espaciado adaptable */
-      text-decoration: none;
-      font-size: 1rem; /* Tamaño de fuente relativo */
-  }
-
-  .sidebar a.active {
-      background-color: #04AA6D;
-      color: white;
-  }
-
-  .sidebar a:hover:not(.active) {
-      background-color: #0023c1;
-      color: white;
-  }
-
-  /* Contenido principal */
-  div.content {
-      margin-left: 20%; /* Espacio dejado por el sidebar */
-      padding: 2% 3%; /* Espaciado adaptable */
-      height: 10%; /* Altura dinámica */
-  }
-
-  /* Iconos personalizados */
-  .custom-icon {
-      font-size: 1.6rem;
-  }
-
-  /* Botón de colapsar */
-  .sidebar button {
-      transition: right 0.5s ease-in-out, background-color 1.5s ease-in-out;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 18%; /* Adaptable al sidebar */
-      height: 6vh; /* Altura en relación con la ventana */
-  }
-
-  .sidebar.w-20 button {
-      right: 2%; /* Se asegura de que quede visible */
-      width: 3vw; /* Botón adaptable al ancho de la ventana */
-      height: 3vw;
-  }
-
-  .sidebar button svg {
-      margin: 0 auto;
-  }
-
-  /* Scrollbar personalizado */
-  .sidebar::-webkit-scrollbar {
-      width: 0.5vw;
-  }
-
-  .sidebar::-webkit-scrollbar-track {
-      background: #1f2937;
-  }
-
-  .sidebar::-webkit-scrollbar-thumb {
-      background-color: #0023c1;
-      border-radius: 6px;
-  }
-
-  /* Animación LED */
-  @keyframes ledBackground {
-      0% {
-          background-color: #0023c1;
-          box-shadow: 0 0 1vw #0d1e69;
-      }
-      50% {
-          background-color: #0023c1;
-          box-shadow: 0 0 1.5vw #0c1e70;
-      }
-      100% {
-          background-color: #0023c1;
-          box-shadow: 0 0 1vw #102272;
-      }
-  }
-
-  .animate-led-bg {
-      animation: ledBackground 1.5s infinite alternate;
-  }
+    .sidebar a {
+        display: block;
+        color: rgb(255, 255, 255);
+        padding: 10px 8%; /* Espaciado controlado */
+        text-decoration: none;
+        font-size: 1.2rem; /* Tamaño de fuente más moderado */
+        position: relative;
+        overflow: hidden;
+        border-bottom: 2px solid #000dff; /* Línea debajo de cada opción */
+    }
+  
+    /* Efecto hover en las opciones */
+    .sidebar a:hover {
+        background-color: #1f1f1f; /* Fondo oscuro al pasar el mouse */
+        color: #000dff; /* Texto azul al pasar el mouse */
+    }
+  
+    /* Línea LED debajo de cada opción */
+    .sidebar a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #000dff, #000dff);
+        transition: width 0.5s ease-in-out;
+    }
+  
+    .sidebar a:hover::after {
+        width: 100%;
+    }
+  
+    /* Contenido principal */
+    div.content {
+        margin-left: 20%; /* El contenido ocupa el 80% del ancho de la pantalla */
+        padding: 3% 4%; /* Espaciado ajustado */
+        height: 100%; /* Full height */
+    }
+  
+    /* Botón de colapso */
+    .sidebar.w-20 button {
+        right: 2%;
+        width: 40px; /* Ancho fijo */
+        height: 40px; /* Alto fijo */
+    }
+  
+    /* Scrollbar personalizado */
+    .sidebar::-webkit-scrollbar {
+        width: 6px; /* Ancho controlado del scrollbar */
+    }
+  
+    .sidebar::-webkit-scrollbar-track {
+        background: #1f2937;
+    }
+  
+    .sidebar::-webkit-scrollbar-thumb {
+        background-color: #0023c1;
+        border-radius: 6px;
+    }
 }
