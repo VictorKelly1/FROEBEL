@@ -26,6 +26,25 @@
         }
 
 
+
+        .posicionlistaalta{
+
+            position: absolute;
+            top: 15%;    /* alto */
+            left: 20%; /* lado */
+            width: 75%;
+        }
+        .posicionlistaalta2{
+
+                position: absolute;
+                top: 15%;    /* alto */
+                left: 60%; /* lado */
+                width: 75%;
+
+            }
+
+
+
         .posiciontablasmedia{
 
             position: absolute;
@@ -45,6 +64,15 @@
         
             /* Permite el desplazamiento interno si el contenido es más grande que el contenedor */
             }
+            .posiciontablasmediabaja{
+
+                position: absolute;
+                top: 55%;    /* alto */
+                left: 20%; /* lado */
+                width: 75%;
+            
+                /* Permite el desplazamiento interno si el contenido es más grande que el contenedor */
+                }
             .posiciontablas{
 
                 position: absolute;
@@ -54,6 +82,60 @@
             
                 /* Permite el desplazamiento interno si el contenido es más grande que el contenedor */
                 }
+
+                .posiciontablas2{
+
+                    position: absolute;
+                    top: 15%;    /* alto */
+                    left: 60%; /* lado */
+                    width: 75%;
+                
+                    /* Permite el desplazamiento interno si el contenido es más grande que el contenedor */
+                    }
+
+                    .posiciontablasmedia{
+
+                        position: absolute;
+                        top: 25%;    /* alto */
+                        left: 20%; /* lado */
+                        width: 75%;
+                    
+                        /* Permite el desplazamiento interno si el contenido es más grande que el contenedor */
+                        }
+        
+                        .posiciontablas2media{
+        
+                            position: absolute;
+                            top: 25%;    /* alto */
+                            left: 60%; /* lado */
+                            width: 75%;
+                        
+                            /* Permite el desplazamiento interno si el contenido es más grande que el contenedor */
+                            }
+
+                            .posiciontablas33media{
+
+                                position: absolute;
+                                top: 35%;    /* alto */
+                                left: 20%; /* lado */
+                                width: 75%;
+                            
+                                /* Permite el desplazamiento interno si el contenido es más grande que el contenedor */
+                                }
+                
+                                .posiciontablas3media{
+                
+                                    position: absolute;
+                                    top: 35%;    /* alto */
+                                    left: 60%; /* lado */
+                                    width: 75%;
+                                
+                                    /* Permite el desplazamiento interno si el contenido es más grande que el contenedor */
+                                    }
+
+
+
+
 
 
 

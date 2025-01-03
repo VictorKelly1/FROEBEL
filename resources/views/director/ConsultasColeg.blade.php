@@ -4,9 +4,9 @@
 
 
 
-<div class="posiciontablas relative mb-4 flex items-center gap-2">
+<div class=" ">
     <!-- Selector de columna -->
-    <select id="columnSelect" class="p-2 bg-gray-800 text-white rounded-md">
+    <select id="columnSelect" class="posiciontablas p-1 bg-gray-800 text-white rounded-md text-sm w-1/3">
         <option value="Nombre">Nombre</option>
         <option value="Clave">Clave</option>
         <option value="FechaInicio">Inicio de Periodo</option>
@@ -19,8 +19,47 @@
 
     <!-- Input de búsqueda -->
     <input type="search" id="searchInput" placeholder="Buscar..." 
-        class="buscador-input posiciontablas" 
-        style="width: 550px; height: 50px; padding: 8px; background-color: #2d2d2d; color: white; border-radius: 5px;">
+        class="buscador-input posiciontablas2" 
+        style="width: 550px; height: 40px; padding: 8px; background-color: #2d2d2d; color: white; border-radius: 5px;">
+</div>
+
+
+<div class=" ">
+    <!-- Selector de columna -->
+    <select id="columnSelect" class="posiciontablasmedia p-1 bg-gray-800 text-white rounded-md text-sm w-1/3">
+        <option value="Nombre">Nombre</option>
+        <option value="Clave">Clave</option>
+        <option value="FechaInicio">Inicio de Periodo</option>
+        <option value="FechaFin">Fin de Periodo</option>
+        <option value="MetodoPago">Metodo de Pago</option>
+        <option value="CuentaRecibido">Cuenta Recibido</option>
+        <option value="Monto">Monto Total</option>
+        <option value="created_at">Día que se realizó</option>
+    </select>
+
+    <!-- Input de búsqueda -->
+    <input type="search" id="searchInput" placeholder="Buscar..." 
+        class="buscador-input posiciontablas2media" 
+        style="width: 550px; height: 40px; padding: 8px; background-color: #2d2d2d; color: white; border-radius: 5px;">
+</div>
+
+<div class=" ">
+    <!-- Selector de columna -->
+    <select id="columnSelect" class="posiciontablas33media p-1 bg-gray-800 text-white rounded-md text-sm w-1/3">
+        <option value="Nombre">Nombre</option>
+        <option value="Clave">Clave</option>
+        <option value="FechaInicio">Inicio de Periodo</option>
+        <option value="FechaFin">Fin de Periodo</option>
+        <option value="MetodoPago">Metodo de Pago</option>
+        <option value="CuentaRecibido">Cuenta Recibido</option>
+        <option value="Monto">Monto Total</option>
+        <option value="created_at">Día que se realizó</option>
+    </select>
+
+    <!-- Input de búsqueda -->
+    <input type="search" id="searchInput" placeholder="Buscar..." 
+        class="buscador-input posiciontablas3media" 
+        style="width: 550px; height: 40px; padding: 8px; background-color: #2d2d2d; color: white; border-radius: 5px;">
 </div>
 
 
@@ -28,48 +67,47 @@
 
 
 
-
-        <div class="overflow-x-auto posiciontablas">
-            <table class=" text-xs text-left text-white">
-                <thead>
-                    <tr class="bg-transparent">
-                        <th class="px-2 py-1 border-b border-purple-500 animate-border ">Nombre</th>
-                        <th class="px-2 py-1 border-b border-purple-500 animate-border ">Clave</th>
-                        <th class="px-2 py-1 border-b border-purple-500 animate-border ">Inicio de Periodo</th>
-                        <th class="px-2 py-1 border-b border-purple-500 animate-border ">Fin de Periodo</th>
-                        <th class="px-2 py-1 border-b border-purple-500 animate-border ">Metodo de Pago</th>
-                        <th class="px-2 py-1 border-b border-purple-500 animate-border ">Cuenta Recibido</th>
-                        <th class="px-2 py-1 border-b border-purple-500 animate-border ">Monto Total</th>
-                        <th class="px-2 py-1 border-b border-purple-500 animate-border ">Dia que se realizo</th>
-                        <th class="px-2 py-1 border-b border-purple-500 animate-border">Ver mas</th>
+<div class="posiciontablasmediabaja flex items-center justify-center bg-gray-900 p-4 mt-4 rounded-md border border-blue-500 shadow-md md:w-3/4 lg:w-2/3 overflow-x-auto">
+        <table class="text-sm text-white border-collapse border border-blue-500 rounded-md">
+            <thead class="bg-blue-700 text-center">
+                <tr>
+                <th class="px-3 py-2 border-b border-blue-500">Nombre</th>
+                <th class="px-3 py-2 border-b border-blue-500">Clave</th>
+                <th class="px-3 py-2 border-b border-blue-500">Inicio de Periodo</th>
+                <th class="px-3 py-2 border-b border-blue-500">Fin de Periodo</th>
+                <th class="px-3 py-2 border-b border-blue-500">Metodo de Pago</th>
+                <th class="px-3 py-2 border-b border-blue-500">Cuenta Recibido</th>
+                <th class="px-3 py-2 border-b border-blue-500">Monto Total</th>
+                <th class="px-3 py-2 border-b border-blue-500">Dia que se realizo</th>
+                <th class="px-3 py-2 border-b border-blue-500">Ver mas</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($Colegiaturas as $Colegiatura)
-                        <tr class="hover:bg-gray-800 bg-transparent">
-                            <td class="px-2 py-1 border-t border-purple-500 animate-border nombre">
+                    <tr class="hover:bg-gray-800 text-center">
+                            <td class="px-3 py-2 border-t border-blue-500 nombre">
                                 {{ $Colegiatura->Nombre }}
                                 {{ $Colegiatura->ApellidoPaterno }}
                                 {{ $Colegiatura->ApellidoMaterno }}
                             </td>
-                            <td class="px-2 py-1 border-t border-purple-500 animate-border clave">
+                           <td class="px-3 py-2 border-t border-blue-500 clave">
                                 {{ $Colegiatura->Clave }}
                             </td>
-                            <td class="px-2 py-1 border-t border-purple-500 animate-border fechainicio">
+                           <td class="px-3 py-2 border-t border-blue-500 fechainicio">
                                 {{ $Colegiatura->FechaInicio }}</td>
-                            <td class="px-2 py-1 border-t border-purple-500 animate-border fechafin">{{ $Colegiatura->FechaFin }}
+                            <td class="px-3 py-2 border-t border-blue-500 fechafin">{{ $Colegiatura->FechaFin }}
                             </td>
-                            <td class="px-2 py-1 border-t border-purple-500 animate-border metodopago">
+                           <td class="px-3 py-2 border-t border-blue-500 metodopago">
                                 {{ $Colegiatura->MetodoPago }}
                             </td>
-                            <td class="px-2 py-1 border-t border-purple-500 animate-border cuentarecibido">
+                           <td class="px-3 py-2 border-t border-blue-500 cuentarecibido">
                                 {{ $Colegiatura->CuentaRecibido }}</td>
-                            <td class="px-2 py-1 border-t border-purple-500 animate-border monto">{{ $Colegiatura->Monto }}
+                           <td class="px-3 py-2 border-t border-blue-500 monto">{{ $Colegiatura->Monto }}
                             </td>
-                            <td class="px-2 py-1 border-t border-purple-500 animate-border created_at">
+                            <td class="px-3 py-2 border-t border-blue-500 created_at">
                                 {{ $Colegiatura->created_at }}
                             </td>
-                            <td class="px-4 py-2 border-t border-purple-500 animate-border text-center">
+                           <td class="px-3 py-2 border-t border-blue-500 text-center">
                                 <form action="" method="GET">
                                     @csrf
                                     <button
