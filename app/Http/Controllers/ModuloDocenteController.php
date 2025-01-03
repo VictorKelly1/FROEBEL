@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\VInasistencias;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class ModuloDocenteController extends Controller
@@ -32,11 +33,12 @@ class ModuloDocenteController extends Controller
 
     public function verGrupo(String $id)
     {
+
         $AlumnosDelGrupo = DB::table('vGruposAlumnos')
             ->where('idGrupo', $id)
             ->get();
 
-        return view('dinamicas.GrupoDocente', ['AlumnosDelGrupo' => $AlumnosDelGrupo]);
+        return view('docenteDinamicas.GrupoDocente', ['AlumnosDelGrupo' => $AlumnosDelGrupo]);
     }
 
     public function vistaInasistencias()

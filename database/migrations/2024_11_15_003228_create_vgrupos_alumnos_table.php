@@ -22,6 +22,7 @@ return new class extends Migration
             a.ApellidoMaterno AS ApellidoMaterno,
             a.Matricula AS Matricula,
             a.Estado AS Estado,
+            a.Foto AS Foto,
             ga.idGrupo,
             g.ClavePeriodo,
             g.TipoPeriodo,

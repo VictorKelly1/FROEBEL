@@ -32,15 +32,16 @@
             <div x-show="open" x-collapse class="pl-8 mt-1">
                 @if (Session::has('Grupos'))
                     @foreach (Session::get('Grupos') as $grupo)
-                    <form action="/VerGrupo/{{ $Grupo->idGrupo }}" method="GET">
-                        <a href=""
-                            class="block text-white py-1 px-2 hover:bg-gray-300 hover:text-black transition-all duration-200">
+                        <form
+                            class="block text-white py-1 px-2 hover:bg-gray-300 hover:text-black transition-all duration-200"
+                            action="/VerGrupo/{{ $grupo->idGrupo }}" method="GET">
 
-                            {{ $grupo->NombreGrado }} {{ $grupo->NivelAcademico }} {{ $grupo->Paquete }}
-                           
-                                <button class="bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Comunicado</button>
-                          
-                        </a>
+                            <button class="#">
+                                {{ $grupo->NombreGrado }}
+                                {{ $grupo->NivelAcademico }}
+                                {{ $grupo->Paquete }}
+                            </button>
+
                         </form>
                     @endforeach
                 @else

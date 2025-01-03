@@ -351,7 +351,7 @@ Route::middleware('DocentePermisos')->group(function () {
     Route::get('/MenuDocente', [ModuloDocenteController::class, 'index'])->name('MenuDocente');
     Route::get('/MisHorarios', [ModuloDocenteController::class, 'vistaHorario'])->name('MisHorarios');
     Route::get('/InasistenciasDocente', [ModuloDocenteController::class, 'vistaInasistencias'])->name('InasistenciasDocente');
-    Route::post('/VerGrupo/{id}', [ModuloDocenteController::class, 'verGrupo'])->name('VerGrupo');
+    Route::get('/VerGrupo/{id}', [ModuloDocenteController::class, 'verGrupo'])->name('VerGrupo');
     Route::get('/VistaRegistrarCalificacion', [ModuloDocenteController::class, 'vistaCalificacion'])->name('VistaRegistrarCalificacion');
     Route::post('/RegistrarCalificacion/{id}', [ModuloDocenteController::class, 'registrarCalificacion'])->name('RegistrarCalificacion');
     Route::post('/listaRegistrarInasistencia', [ModuloDocenteController::class, 'listaRegistrarInasistencia'])->name('listaRegistrarInasistencia');
@@ -364,6 +364,7 @@ Route::middleware('DocentePermisos')->group(function () {
 //registrar nominas, calificaciones y eventos 
 //modulo docente
 
+//rutas delete patch y update 
 //impresion de recivos, constancias, calificaciones
 
 
