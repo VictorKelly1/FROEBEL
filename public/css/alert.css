@@ -1,0 +1,51 @@
+.alert {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    max-width: 400px;
+    width: 100%;
+    padding: 15px;
+    background-color: #28a745;
+    color: white;
+    font-size: 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+    z-index: 9999;
+}
+
+.alert p {
+    margin: 0;
+    font-weight: bold;
+}
+
+.alert-success {
+    background-color: #4CAF50;
+}
+
+.alert.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animación de desvanecimiento */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .alert {
+        width: 90%;
+        right: 5%;
+        padding: 12px;
+    }
+}

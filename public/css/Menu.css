@@ -1,0 +1,141 @@
+/* Botón de Buzón */
+.boton-buzon {
+    position: fixed;
+    bottom: 5%;
+    right: 35%; /* Más a la izquierda */
+    z-index: 1000;
+}
+
+.boton-icono {
+    background: #0d01ff;
+    color: white;
+    width: 5vw;
+    height: 5vw;
+    min-width: 50px;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 1.5vw;
+    box-shadow: 0 0 1vw #0008e1;
+    text-decoration: none;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.boton-icono:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 2vw #0011f9;
+}
+
+/* Contenedor de Calendario */
+.contenedor-calendario {
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+    background: #1e1e2d;
+    color: white;
+    border-radius: 1vw;
+    box-shadow: 0 0 1vw #0123ff;
+    padding: 1.5%;
+    z-index: 999;
+    text-align: center;
+    overflow: hidden;
+    width: 20%;
+    min-width: 200px;
+}
+
+.encabezado-calendario {
+    background: #4c4cff;
+    border-radius: 0.5vw;
+    margin-bottom: 1%;
+    padding: 0.5%;
+    font-weight: bold;
+    font-size: 1vw;
+    text-transform: uppercase;
+}
+
+.reloj {
+    font-size: 1vw;
+    margin-bottom: 1%;
+}
+
+.calendario table {
+    width: 100%;
+    font-size: 0.9vw;
+}
+
+.calendario th, .calendario td {
+    text-align: center;
+    padding: 0.5vw;
+}
+
+.calendario td.hoy {
+    background: yellow;
+    color: black;
+    font-weight: bold;
+    border-radius: 0.5vw;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .boton-buzon {
+        right: 10%;
+        bottom: 10%;
+    }
+
+    .boton-icono {
+        width: 10vw;
+        height: 10vw;
+        font-size: 3vw;
+    }
+
+    .contenedor-calendario {
+        width: 50%;
+        right: 10%;
+        bottom: 10%;
+    }
+
+    .encabezado-calendario {
+        font-size: 3vw;
+    }
+
+    .reloj {
+        font-size: 2.5vw;
+    }
+
+    .calendario table {
+        font-size: 2vw;
+    }
+}
+
+@media (max-width: 480px) {
+    .boton-buzon {
+        right: 5%;
+        bottom: 15%;
+    }
+
+    .boton-icono {
+        width: 15vw;
+        height: 15vw;
+        font-size: 4vw;
+    }
+
+    .contenedor-calendario {
+        width: 70%;
+        right: 5%;
+        bottom: 5%;
+    }
+
+    .encabezado-calendario {
+        font-size: 4vw;
+    }
+
+    .reloj {
+        font-size: 3.5vw;
+    }
+
+    .calendario table {
+        font-size: 2.5vw;
+    }
+}

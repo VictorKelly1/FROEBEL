@@ -22,7 +22,7 @@ class AlumnoMiddleware
                 return $next($request);
             }
 
-            Session::flash('error', 'Tu sesion a expirado o nesesitas iniciar sesion');
+            Session::flash('error', 'Tu sesion a expirado/Nesesitas iniciar sesion');
             return redirect()->route('log');
         }
         //

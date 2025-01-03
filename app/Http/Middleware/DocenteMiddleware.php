@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
 
-class DirectorMiddleware
+class DocenteMiddleware
 {
     public function handle(Request $request, Closure $next): Response
     {
@@ -16,7 +16,7 @@ class DirectorMiddleware
         Log::info('Permiso actual:', ['permiso' => Session::get('Permiso')]);
 
         // Si no es director, redirigir a login
-        if (Session::get('Permiso') !== 'Director') {
+        if (Session::get('Permiso') !== 'Docente') {
             // Evitar bucle de redirección
             if ($request->routeIs('log')) {
                 return $next($request);
@@ -25,7 +25,7 @@ class DirectorMiddleware
             Session::flash('error', 'Tu sesion a expirado/Nesesitas iniciar sesion');
             return redirect()->route('log');
         }
-
+        //
         return $next($request);
     }
 }

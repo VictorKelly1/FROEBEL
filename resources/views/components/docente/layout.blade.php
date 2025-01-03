@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{ asset('css/Docentecss/General.css') }}">
     <link rel="stylesheet" href="{{ asset('css/Docentecss/sidebar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/Docentecss/header.css') }}">
-    
+    <link rel="stylesheet" href="{{ asset('css/Docentecss/Menu.css') }}">
 
 
 
