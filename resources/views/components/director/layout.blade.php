@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ asset('css/sidebar1.css') }}">
     
     <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
-    
+    <link rel="stylesheet" href="{{ asset('css/alert.css') }}">
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
     <link rel="stylesheet" href="{{ asset('css/Menu.css') }}">
     <link rel="stylesheet" href="{{ asset('css/pruebasidebar.css') }}">

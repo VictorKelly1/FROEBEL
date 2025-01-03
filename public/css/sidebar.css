@@ -29,8 +29,8 @@
         .posiciontablasmedia{
 
             position: absolute;
-            top: 25%;    /* alto */
-            left: 25%; /* lado */
+            top: 15%;    /* alto */
+            left: 20%; /* lado */
             width: 75%;
         
             /* Permite el desplazamiento interno si el contenido es más grande que el contenedor */
@@ -39,8 +39,8 @@
         .posiciontablasbaja{
 
             position: absolute;
-            top: 65%;    /* alto */
-            left: 25%; /* lado */
+            top: 85%;    /* alto */
+            left: 20%; /* lado */
             width: 75%;
         
             /* Permite el desplazamiento interno si el contenido es más grande que el contenedor */

@@ -2,6 +2,7 @@
 
     <div class=" flex items-center posiciontablas ">
 
+ 
         <form class="formulario" action="{{ route('RegistrarAlumno') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
@@ -108,5 +109,9 @@
             <button type="submit" class="btn btn-primary">Registrar Alumno</button>
         </form>
     </div>
+
+
+
+
 
 </x-director.layout>

@@ -1,11 +1,12 @@
 <x-director.layout>
 
     <!-- ✅ Mensaje de Éxito -->
-    @if(session('success'))
+    @if (session('success'))
     <div class="alert alert-success">
-        {{ session('success') }}
+        <p>{{ session('success') }}</p>
     </div>
-    @endif
+@endif
+
    <!-- 🧑‍💻 Campo de Búsqueda -->
    <div class="relative mb-4">
                 <div class="absolute top-0 right-0 p-2">
@@ -113,5 +114,25 @@
             });
         });
     </script>
+
+<script>
+window.onload = function() {
+    var successAlert = document.querySelector('.alert');
+    if (successAlert) {
+        successAlert.classList.add('show');
+        setTimeout(function() {
+            successAlert.classList.remove('show');
+        }, 5000); // El mensaje se oculta después de 5 segundos
+    }
+};
+
+
+
+
+</script>
+
+
+
+
 
 </x-director.layout>
