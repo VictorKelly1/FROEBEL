@@ -1,22 +1,21 @@
 <x-director.layout>
 
-    <div class=" flex items-center led2 posicionsregisalum">
+<h3>
+                  {{ $Alumnos->Nombre }} {{ $Alumnos->ApellidoPaterno }} {{ $Alumnos->ApellidoMaterno }} {{ $Alumnos->Matricula }}
+           
+                </h3>
+    <div class=" flex items-center posicionregisdesc">
 
-        <form class="" action="{{ route('RegistrarColegiatura') }}" method="POST" enctype="multipart/form-data">
+        <form class="formulario2x2" action="{{ route('RegistrarColegiatura') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <!-- Datos -->
-            <h3>Datos</h3>
-
-            <div class="form-group posicion1">
-                <label for="Alumno">Alumno:</label>
-                <select name="idAlumno" id="Alumno" class="form-control" required>
-                    <option value="">Seleccione</option>
-                    <option value="{{ $Alumnos->Matricula }}">{{ $Alumnos->Matricula }} - {{ $Alumnos->Nombre }}
-                        {{ $Alumnos->ApellidoPaterno }} {{ $Alumnos->ApellidoMaterno }}</option>
 
 
-                </select>
-            </div>
+            <div class="form-group">
+    <label for="Alumno">Alumno:</label>
+    <input type="hidden" name="idAlumno" id="Alumno" value="{{ $Alumnos->Nombre }} {{ $Alumnos->ApellidoPaterno }} {{ $Alumnos->ApellidoMaterno }}">
+    <input type="text" class="form-control" value="{{ $Alumnos->Nombre }} {{ $Alumnos->ApellidoPaterno }} {{ $Alumnos->ApellidoMaterno }}" disabled>
+</div>
+
 
             <div class="form-group">
                 <label for="Metodo">Metodo de pago:</label>
@@ -24,7 +23,7 @@
             </div>
 
 
-            <div class="form-group posicion2">
+            <div class="form-group ">
                 <label for="Periodo">Periodo:</label>
                 <select name="idPeriodo" id="Periodo" class="form-control" required>
                     <option value="">Seleccione</option>
@@ -45,7 +44,7 @@
             </div>
 
 
-            <div class="form-group posicion2">
+            <div class="form-group ">
                 <label for="Descuento">Descuento:</label>
                 <select name="idDescuento" id="Descuento" class="form-control">
                     <option value="">Seleccione</option>
