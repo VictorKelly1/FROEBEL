@@ -1,43 +1,43 @@
 <x-director.layout>
 
+    <!-- ✅ Mensaje de Éxito -->
     @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
+    <div class="alert alert-success">
+        <p>{{ session('success') }}</p>
+    </div>
+@endif
 
-    <!-- Contenedor Principal -->
-    <div class="flex flex-col items-center bg-gray-900 p-2 posiciontablas borderAnimation rounded-md max-w-md mx-auto shadow-md">
-
-        <!-- Buscador -->
-        <div class="relative tamañobuscadorsidebar w-full mb-2">
-            <div class="buscador-contenedor">
-                <input type="search" id="searchInput" 
-                       placeholder="Buscar Alumno..." 
-                       class="buscador-input w-full p-1 text-sm rounded-md border border-gray-600 focus:outline-none focus:border-purple-500">
+   <!-- 🧑‍💻 Campo de Búsqueda -->
+   <div class="relative mb-4">
+                <div class="posiciontablaalumno absolute top-0 right-0 p-2">
+                    <input type="search" id="searchInput" placeholder="Buscar Alumno..." 
+                        class="buscador-input" style="width: 1120px; height: 10%; padding: 18px; background-color: #2d2d2d; color: white; border-radius: 5px;">
+                </div>
             </div>
-        </div>
+    <!-- ✅ Contenedor de la Tabla con Búsqueda -->
+    <div class="posiciontablas flex items-center justify-center bg-gray-900 p-2 mt-4 rounded-md border border-blue-500 shadow-md w-3/4 sm:w-1/2 lg:w-3/4 overflow-x-auto z-30">
+        <div class="w-full max-w-full">
 
-        <!-- Tabla -->
-        <div class="overflow-x-auto w-full">
-            <table class="w-full text-xs text-white border-collapse border border-purple-500 rounded-md shadow-sm">
-                <thead>
-                    <tr class="bg-transparent text-center">
 
-                        <th class="px-3 py-2 border-b border-purple-500 animate-border">Foto</th>
-                        <th class="px-3 py-2 border-b border-purple-500 animate-border">Nombre</th>
-                        <th class="px-3 py-2 border-b border-purple-500 animate-border">Fecha</th>
-                        <th class="px-3 py-2 border-b border-purple-500 animate-border">Motivo</th>
+            <!-- ✅ Tabla sin cambios en tamaño -->
+            <table class="text-sm text-left text-white w-full table-auto z-30">
+                <thead class="bg-blue-700">
+                    <tr>
+
+                        <th class="px-3 py-2 border-b border-blue-500 animate-border">Foto</th>
+                        <th class="px-3 py-2 border-b border-blue-500 animate-border">Nombre</th>
+                        <th class="px-3 py-2 border-b border-blue-500 animate-border">Fecha</th>
+                        <th class="px-3 py-2 border-b border-blue-500 animate-border">Motivo</th>
                     </tr>
                 </thead>
                 <tbody id="tableBody">
                     @foreach ($Vestimentas as $Vestimenta)
                         <tr class="hover:bg-gray-800 bg-transparent text-center">
 
-                            <td class="px-3 py-2 border-t border-purple-500 animate-border">{{ $Vestimenta->Foto }}</td>
-                            <td class="px-3 py-2 border-t border-purple-500 animate-border">{{ $Vestimenta->Nombre }} {{ $Vestimenta->ApellidoPaterno }} {{ $Vestimenta->ApellidoMaterno }}</td>
-                            <td class="px-3 py-2 border-t border-purple-500 animate-border">{{ $Vestimenta->Fecha }}</td>
-                            <td class="px-3 py-2 border-t border-purple-500 animate-border">{{ $Vestimenta->Motivo }}</td>
+                        <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Vestimenta->Foto }}</td>
+                        <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Vestimenta->Nombre }} {{ $Vestimenta->ApellidoPaterno }} {{ $Vestimenta->ApellidoMaterno }}</td>
+                        <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Vestimenta->Fecha }}</td>
+                        <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Vestimenta->Motivo }}</td>
                         </tr>
                     @endforeach
                 </tbody>

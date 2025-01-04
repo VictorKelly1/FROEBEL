@@ -1,10 +1,10 @@
 <x-director.layout>
 
 
-        <div class=" flex items-center posiciontablas">
+        <div class=" flex items-center posicionregisdesc">
 
 
-            <form class="formulario" action="{{ route('RegistrarConceptos') }}" method="POST"
+            <form class="formulario1x1" action="{{ route('RegistrarConceptos') }}" method="POST"
                 enctype="multipart/form-data">
                 @csrf
 
@@ -36,7 +36,7 @@
             </form>
         </div>
         <div
-            class="posiciontablasbaja flex items-center justify-center bg-gray-900 p-6 mt-6 rounded-md border border-blue-500 shadow-md w-3/4 sm:w-2/3 lg:w-1/2 overflow-x-auto">
+            class="posiciontablaregisdesc flex items-center justify-center bg-gray-900 p-6 mt-6 rounded-md border border-blue-500 shadow-md w-3/4 sm:w-2/3 lg:w-1/2 overflow-x-auto">
             <table class="w-full text-lg text-white border-collapse border border-blue-500 rounded-md">
                 <thead class="bg-blue-700 text-center">
                     <tr>

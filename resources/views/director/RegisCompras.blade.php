@@ -1,12 +1,10 @@
 <x-director.layout>
 
-    <div class=" flex items-center led2 posicionsregisalum">
+    <div class=" flex items-center posicionregisdesc">
 
-        <form class="formulario" action="{{ route('RegistrarCompra') }}" method="POST" enctype="multipart/form-data">
+        <form class="formulario1x1" action="{{ route('RegistrarCompra') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
-            <!-- Datos de Aula -->
-            <h3>Datos</h3>
 
             <div class="form-group">
                 <label for="Cantidad">Cantidad:</label>

@@ -1,8 +1,8 @@
 <x-director.layout>
 
-    <div class=" flex items-center posiciontablas">
+<div class=" flex items-center posicionregisdesc ">
       
-    <form class="formulario" action="{{ route('RegistrarMateria') }}" method="POST" enctype="multipart/form-data">
+    <form class="formulario1x1" action="{{ route('RegistrarMateria') }}" method="POST" enctype="multipart/form-data">
     @csrf
             <!-- Datos de Materia -->
         
@@ -13,13 +13,13 @@
             </div>
 
             <div class="form-group">
-                <label for="NombreMateria">Nombre de Materia:</label>
+                <label for="NombreMateria">Materia:</label>
                 <input type="text" name="NombreMateria" id="NombreMateria" class="form-control" required>
             </div>
 
             <div class="form-group">
                 <label for="Tipo">Tipo:</label>
-                <input type="text" name="Tipo" id="Tipo" class="form-control" required>
+                <input  type="text" name="Tipo" id="Tipo" class="form-control" required>
             </div>
 
             <!-- Botón de envío -->

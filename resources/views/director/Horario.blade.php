@@ -1,11 +1,11 @@
 <x-director.layout>
 
-
-    <form class="" action="{{ route('AsignarHorario') }}" method="POST" enctype="multipart/form-data">
+<div class=" flex items-center posicionregisdesc">
+    <form class="formulario1x2" action="{{ route('AsignarHorario') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
 
-        <div class="form-group posicion1">
+        <div class="form-group">
             <label for="Aula">Aula:</label>
             <select name="idAula" id="Aula" class="form-control" required>
                 <option value="">Selecciona Aula</option>
@@ -16,7 +16,7 @@
             </select>
         </div>
 
-        <div class="form-group posicion2">
+        <div class="form-group">
             <label for="GrupoMat">GrupoMat:</label>
             <select name="idGrupoMat" id="GrupoMat" class="form-control" required>
                 <option value="">Selecciona materia y grupo</option>
@@ -59,15 +59,40 @@
 
 
         <!-- Botón de envío -->
-        <button type="submit" class="btn btn-primary posicion2">Asignar</button>
+        <button type="submit" class="btn btn-primary">Asignar</button>
 
     </form>
+</div>
 
-    <div class="flex items-center justify-center bg-gray-900 p-2 posiciontablas borderAnimation ">
-        <div class="overflow-x-auto">
-            <table class=" text-xs text-left text-white">
-                <thead>
-                    <tr class="bg-transparent">
+
+
+
+
+
+
+    <!-- ✅ Mensaje de Éxito -->
+    @if (session('success'))
+    <div class="alert alert-success">
+        <p>{{ session('success') }}</p>
+    </div>
+@endif
+
+   <!-- 🧑‍💻 Campo de Búsqueda -->
+   <div class="relative mb-4">
+                <div class="posiciontablaalumno absolute top-0 right-0 p-2">
+                    <input type="search" id="searchInput" placeholder="Buscar Alumno..." 
+                        class="buscador-input" style="width: 1120px; height: 10%; padding: 18px; background-color: #2d2d2d; color: white; border-radius: 5px;">
+                </div>
+            </div>
+    <!-- ✅ Contenedor de la Tabla con Búsqueda -->
+    <div class="posiciontablas flex items-center justify-center bg-gray-900 p-2 mt-4 rounded-md border border-blue-500 shadow-md w-3/4 sm:w-1/2 lg:w-3/4 overflow-x-auto z-30">
+        <div class="w-full max-w-full">
+
+
+            <!-- ✅ Tabla sin cambios en tamaño -->
+            <table class="text-sm text-left text-white w-full table-auto z-30">
+                <thead class="bg-blue-700">
+                    <tr>
 
                         <th class="px-2 py-1 border-b border-purple-500 animate-border">Aula</th>
                         <th class="px-2 py-1 border-b border-purple-500 animate-border">Materia</th>

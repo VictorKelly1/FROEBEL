@@ -9,9 +9,9 @@
 
    <!-- 🧑‍💻 Campo de Búsqueda -->
    <div class="relative mb-4">
-                <div class="posiciontablas absolute top-0 right-0 p-2">
+                <div class="posiciontablaalumno absolute top-0 right-0 p-2">
                     <input type="search" id="searchInput" placeholder="Buscar Alumno..." 
-                        class="buscador-input" style="width: 550px; height: 65px; padding: 8px; background-color: #2d2d2d; color: white; border-radius: 5px;">
+                        class="buscador-input" style="width: 1120px; height: 10%; padding: 18px; background-color: #2d2d2d; color: white; border-radius: 5px;">
                 </div>
             </div>
     <!-- ✅ Contenedor de la Tabla con Búsqueda -->

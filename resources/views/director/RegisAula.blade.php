@@ -1,8 +1,8 @@
 <x-director.layout>
 
-    <div class=" flex items-center posiciontablas ">
+    <div class=" flex items-center posicionregisdesc ">
 
-        <form class="formulario" action="{{ route('RegistrarAula') }}" method="POST" enctype="multipart/form-data">
+        <form class="formulario1x2" action="{{ route('RegistrarAula') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <!-- Datos de Aula -->

@@ -1,8 +1,8 @@
 <x-director.layout>
-<h1 class="posiciontitulo">Datos</h1>
-    <div class=" flex items-center posiciontablasmedia">
+
+    <div class=" flex items-center posiciontablas">
     
-        <form class="formulario " action="{{ route('RegistrarPago') }}" method="POST" enctype="multipart/form-data">
+        <form class="formulario2x2 " action="{{ route('RegistrarPago') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <!-- Datos -->
             
@@ -84,14 +84,6 @@
             <button type="submit" class="btn btn-primary">Registrar Pago</button>
         </form>
     </div>
-
-
-
-
-
-
-
-
 
 
 

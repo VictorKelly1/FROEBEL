@@ -76,12 +76,43 @@
             .posiciontablas{
 
                 position: absolute;
-                top: 15%;    /* alto */
+                top: 12%;    /* alto */
                 left: 20%; /* lado */
                 width: 75%;
             
                 /* Permite el desplazamiento interno si el contenido es más grande que el contenedor */
                 }
+
+
+                .posicionregisdesc{
+
+                    position: absolute;
+                    top: 12%;    /* alto */
+                    left: 20%; /* lado */
+                    width: 25%;
+                
+                    /* Permite el desplazamiento interno si el contenido es más grande que el contenedor */
+                    }
+                    .posiciontablaregisdesc{
+
+                        position: absolute;
+                        top: 12%;    /* alto */
+                        left: 50%; /* lado */
+                        width: 95%;
+                    
+                        /* Permite el desplazamiento interno si el contenido es más grande que el contenedor */
+                        }
+
+                .posiciontablaalumno{
+
+                    position: absolute;
+                    top: 14%;    /* alto */
+                    left: 20%; /* lado */
+                    width: 75%;
+                
+                    /* Permite el desplazamiento interno si el contenido es más grande que el contenedor */
+                    }
+
 
                 .posiciontablas2{
 
@@ -191,7 +222,7 @@
         input[type="file"],
         input[type="search"],
         input[type="date"] {
-            width: 70%; /* Ancho relativo al contenedor padre */
+            width: 95%; /* Ancho relativo al contenedor padre */
             padding: 2%;
             border: 2px solid #0023c1;
             border-radius: 10px;
@@ -358,21 +389,26 @@
             font-size: 1vw;
         }
     
-        /* Botón Primario */
         .btn-primary {
-            background-color: rgb(26, 19, 230);
-            color: white;
-            border: 2px solid rgb(255, 255, 255);
-            padding: 5% 5%;
-            font-size: 1vw;
-            font-weight: bold;
-            border-radius: 15px;
-            cursor: pointer;
-            transition: all 0.3s ease-in-out;
-            margin-top: 5%;
-            justify-content: center;
+            background-color: rgb(26, 19, 230);  /* Establece el color de fondo del botón a un azul oscuro */
+            color: white;  /* El color del texto dentro del botón será blanco */
+            border: 2px solid rgb(255, 255, 255);  /* Define un borde de 2px de color blanco alrededor del botón */
+            padding: 1% 3%;  /* Ajuste del espaciado interno (padding): 1% en la parte superior e inferior y 3% a los lados */
+            font-size: 1vw;  /* Establece el tamaño de la fuente en función del ancho de la ventana (1% del ancho de la ventana) */
+            font-weight: bold;  /* Hace que el texto dentro del botón sea negrita */
+            border-radius: 10px;  /* Redondea las esquinas del botón con un radio de 10px */
+            cursor: pointer;  /* Cambia el cursor a una mano cuando el usuario pasa el mouse sobre el botón */
+            transition: all 0.3s ease-in-out;  /* Aplica una transición suave en todas las propiedades que cambien (como el color, fondo, etc.) en 0.3 segundos */
+            margin-top: 2%;  /* Añade un margen en la parte superior del botón, un 2% del contenedor superior */
+            display: inline-block;  /* Hace que el botón se ajuste al tamaño de su contenido */
+            text-align: center;  /* Alinea el texto dentro del botón al centro */
         }
+        
+        
+
     
+
+
         .btn-primary:hover {
             background-color: rgb(41, 9, 248);
             border-color: rgb(192, 192, 192);
@@ -388,10 +424,67 @@
 
     .formulario {
         display: grid;
-        grid-template-columns: 1fr 1fr; /* Dos columnas iguales */
-        grid-gap: 2%; /* Espacio entre celdas */
-        }
-        
+        grid-template-columns: 1fr 1fr 1fr 1fr; /* Tres columnas iguales */
+        grid-gap: 4%; /* Espacio entre celdas */
+        background-color: #0a0f2c; /* Azul oscuro */
+        border-radius: 10px; /* Bordes redondos */
+        border: 2px solid #00d9ff; /* Línea LED azul celeste */
+        padding: 8%; /* Espaciado interno en porcentaje */
+        box-shadow: 0 0 10px #00d9ff; /* Efecto LED brillante */
+        min-height: 60vh; /* Altura mínima para formularios más largos */
+        max-width: 100%; /* Ancho máximo en porcentaje */
+        margin: 0 auto; /* Centrar el formulario */
+    }
+    
+    
+    
         .formulario > * {
         grid-column: auto; /* Asigna cada elemento a una celda */
         }
+
+
+        
+        .formulario1x1 {
+            display: grid;
+            grid-template-columns:1fr; /* Una sola columna */
+            grid-gap: 7%; /* Espacio entre celdas */
+            background-color: #0a0f2c; /* Azul oscuro */
+            border-radius: 10px; /* Bordes redondos */
+            border: 2px solid #00d9ff; /* Línea LED azul celeste */
+            padding: 8%; /* Espaciado interno en porcentaje */
+            box-shadow: 0 0 10px #00d9ff; /* Efecto LED brillante */
+            min-height: 60vh; /* Altura mínima para formularios más largos */
+            max-width: 100%; /* Ancho máximo en porcentaje */
+            margin: 0 auto; /* Centrar el formulario */
+        }
+         
+        .formulario1x2 {
+            display: grid;
+            grid-template-columns:1fr; /* Una sola columna */
+            grid-gap: 7%; /* Espacio entre celdas */
+            background-color: #0a0f2c; /* Azul oscuro */
+            border-radius: 10px; /* Bordes redondos */
+            border: 2px solid #00d9ff; /* Línea LED azul celeste */
+            padding: 8%; /* Espaciado interno en porcentaje */
+            box-shadow: 0 0 10px #00d9ff; /* Efecto LED brillante */
+            min-height: 80vh; /* Altura mínima para formularios más largos */
+            max-width: 100%; /* Ancho máximo en porcentaje */
+            margin: 0 auto; /* Centrar el formulario */
+        }
+
+
+
+        .formulario2x2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Una sola columna */
+            grid-gap: 4%; /* Espacio entre celdas */
+            background-color: #0a0f2c; /* Azul oscuro */
+            border-radius: 10px; /* Bordes redondos */
+            border: 2px solid #00d9ff; /* Línea LED azul celeste */
+            padding: 4%; /* Espaciado interno en porcentaje */
+            box-shadow: 0 0 10px #00d9ff; /* Efecto LED brillante */
+            min-height: 50vh; /* Altura mínima para formularios más largos */
+            max-width: 100%; /* Ancho máximo en porcentaje */
+            margin: 0 auto; /* Centrar el formulario */
+        }
+        

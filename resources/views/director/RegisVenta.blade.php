@@ -1,12 +1,12 @@
 <x-director.layout>
 
-    <div class=" flex items-center led2 posicionsregisalum">
+    <div class=" flex items-center posicionregisdesc">
 
-        <form class="formulario" action="{{ route('RegistrarVenta') }}" method="POST" enctype="multipart/form-data">
+        <form class="formulario1x2" action="{{ route('RegistrarVenta') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <!-- Datos de venta -->
-            <h3>Datos</h3>
+
 
             <div class="form-group">
                 <label for="Cantidad">Cantidad:</label>
@@ -18,7 +18,7 @@
                 <input type="text" name="Monto" id="Monto" class="form-control" required>
             </div>
 
-            <div class="form-group posicion2">
+            <div class="form-group">
                 <label for="Concepto">Concepto:</label>
                 <select name="idConcepto" id="Concepto" class="form-control" required>
                     <option value="">Seleccione</option>
@@ -36,7 +36,7 @@
                 <input type="text" name="MetodoPago" id="MetodoPago" class="form-control" required>
             </div>
 
-            <div class="form-group posicion2">
+            <div class="form-group">
                 <label for="Descuento">Descuento:</label>
                 <select name="idDescuento" id="Descuento" class="form-control">
                     <option value="">Seleccione</option>

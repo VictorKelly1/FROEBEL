@@ -1,12 +1,10 @@
 <x-director.layout>
 
 
+        <div class=" flex items-center posicionregisdesc">
 
 
-        <div class=" flex items-center posiciontablas">
-
-
-            <form class="formulario" action="{{ route('RegistrarDescuento') }}" method="POST"
+            <form class="formulario1x1" action="{{ route('RegistrarDescuento') }}" method="POST"
                 enctype="multipart/form-data">
                 @csrf
 
@@ -18,8 +16,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="Para">Tipo de transacción para el que está dedicado este concepto</label>
-                    <select name="Para" id="Para" class="form-control" required>
+                  
+                    <select class="form-control" required>
                         <option value="">Seleccione</option>
                         <option value="Ventas">Ventas </option>
                         <option value="Compras">Compras</option>
@@ -41,11 +39,10 @@
                 <button type="submit" class="btn btn-primary">Registrar Descuento</button>
             </form>
         </div>
-        <div
-            class="posiciontablasbaja flex items-center justify-center bg-gray-900 p-6 mt-6 rounded-md border border-blue-500 shadow-md w-3/4 sm:w-2/3 lg:w-1/2 overflow-x-auto">
-            <table class="w-full text-lg text-white border-collapse border border-blue-500 rounded-md">
-                <thead class="bg-blue-700 text-center">
-                    <tr>
+        <div class="posiciontablaregisdesc flex items-center justify-center bg-gray-900 p-6 mt-6 rounded-md border border-blue-500 shadow-md w-3/4 sm:w-2/3 lg:w-1/2 overflow-x-auto">
+    <table class="w-full table-auto text-lg text-white border-collapse border border-blue-500 rounded-md">
+        <thead class="bg-blue-700 text-center">
+            <tr>
                         <th class="px-4 py-2 border-b border-blue-500">Nombre</th>
                         <th class="px-4 py-2 border-b border-blue-500">Para</th>
                         <th class="px-4 py-2 border-b border-blue-500">Tipo</th>
