@@ -19,7 +19,8 @@ return new class extends Migration
                 h.idAula,
                 a.Nombre AS NombreAula,
                 h.idGrupoMateria,
-                m.NombreMateria AS NombreMateria,
+                gm.ClavePeriodo AS ClavePeriodo,
+                gm.NombreMateria AS NombreMateria,
                 h.HoraL,
                 h.HoraM,
                 h.HoraMi,
@@ -30,7 +31,7 @@ return new class extends Migration
             INNER JOIN 
                 Aulas a ON h.idAula = a.idAula
             INNER JOIN 
-                Materias m ON h.idGrupoMateria = m.idMateria
+                vGruposMaterias gm ON h.idGrupoMateria = gm.idGrupoMateria
         ');
     }
 
