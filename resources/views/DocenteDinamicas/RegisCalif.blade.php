@@ -75,9 +75,6 @@
                         @endforeach
                     </tbody>
                 </table>
-<<<<<<< HEAD
-                <button class="bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Calificar</button>
-=======
 
                 <!-- ✅ Botón para enviar los datos -->
                 <div class="flex justify-center mt-4">
@@ -86,7 +83,6 @@
                         Guardar Cambios
                     </button>
                 </div>
->>>>>>> fb3b88880cef3ed39fe270f226120e016b616bb8
             </form>
         </div>
     </div>
