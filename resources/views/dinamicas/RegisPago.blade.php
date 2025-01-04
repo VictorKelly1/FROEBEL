@@ -87,50 +87,6 @@
 
 
 
-<style>
-
-
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
-
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
-
-.posiciontitulo {
-    font-family: 'Playfair Display', serif; /* Fuente formal */
-    font-size: 4vw; /* Tamaño de fuente responsivo */
-    font-weight: bold; /* Texto en negrita */
-    text-align: center; /* Centrar texto */
-    color: white; /* Texto blanco */
-    text-transform: uppercase; /* Texto en mayúsculas */
-    letter-spacing: 1px; /* Espaciado entre letras */
-    margin: 0 auto; /* Centrar horizontalmente */
-    background: linear-gradient(90deg, #6f42c1, #ff6f61, #42a5f5, #6f42c1);
-    background-size: 400% 400%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: waveAnimation 5s infinite linear;
-    display: inline-block; /* Tamaño ajustado al texto */
-    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
-
-    top: 35%;    /* alto */
-    left: 20%; /* lado */
-}
-
-@keyframes waveAnimation {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-
-
-
-</style>
 
 
 
