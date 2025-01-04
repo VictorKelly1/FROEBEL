@@ -1,10 +1,6 @@
 <x-director.layout>
 
 
-
-
-    <x-director.layout>
-
         <div class=" flex items-center posiciontablas">
 
 
@@ -68,20 +64,3 @@
         </div>
 
     </x-director.layout>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</x-director.layout>

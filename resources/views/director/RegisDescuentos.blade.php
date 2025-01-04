@@ -3,8 +3,6 @@
 
 
 
-    <x-director.layout>
-
         <div class=" flex items-center posiciontablas">
 
 
@@ -78,18 +76,3 @@
     </x-director.layout>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</x-director.layout>

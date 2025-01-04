@@ -8,23 +8,23 @@
 
             <!-- Datos de Persona -->
             <div class="form-group">
-                <label for="Nombre">Nombre:</label>
-                <input type="text" name="Nombre" id="Nombre" class="form-control" required>
+                <label for="Nombre">Nombre:</label  >
+                <input placeholder=" Nombre(s) del Alumno ..." type="text" name="Nombre" id="Nombre" class="form-control" required>
             </div>
 
             <div class="form-group">
                 <label for="ApellidoPaterno">Apellido Paterno:</label>
-                <input type="text" name="ApellidoPaterno" id="ApellidoPaterno" class="form-control" required>
+                <input placeholder=" Apellido Paterno del Alumno ..." type="text" name="ApellidoPaterno" id="ApellidoPaterno" class="form-control" required>
             </div>
 
             <div class="form-group">
                 <label for="ApellidoMaterno">Apellido Materno:</label>
-                <input type="text" name="ApellidoMaterno" id="ApellidoMaterno" class="form-control" required>
+                <input placeholder=" Apellido Materno del Alumno ..." type="text" name="ApellidoMaterno" id="ApellidoMaterno" class="form-control" required>
             </div>
 
             <div class="form-group">
                 <label for="CURP">CURP:</label>
-                <input type="text" name="CURP" id="CURP" class="form-control" required>
+                <input placeholder="XXXXXXXXXXXXXXXXXX" type="text" name="CURP" id="CURP" class="form-control" required>
             </div>
 
             <div class="form-group">
@@ -32,7 +32,7 @@
                 <input type="date" name="FechaNacimiento" id="FechaNacimiento" class="form-control" required>
             </div>
 
-            <div class="form-group">
+            <div  class="form-control p-4 mb-4 rounded-md text-lg">
                 <label for="Genero">Género:</label>
                 <select type="select" name="Genero" id="Genero" class="form-control" required>
                     <option value="">Seleccione</option>
@@ -43,42 +43,42 @@
 
             <div class="form-group">
                 <label for="Ciudad">Ciudad:</label>
-                <input type="text" name="Ciudad" id="Ciudad" class="form-control" required>
+                <input placeholder="Ciudad" type="text" name="Ciudad" id="Ciudad" class="form-control" required>
             </div>
 
             <div class="form-group">
                 <label for="Municipio">Municipio:</label>
-                <input type="text" name="Municipio" id="Municipio" class="form-control" required>
+                <input  placeholder="Municipio/Ciudad" type="text" name="Municipio" id="Municipio" class="form-control" required>
             </div>
 
             <div class="form-group">
                 <label for="CodigoPostal">Código Postal:</label>
-                <input type="text" name="CodigoPostal" id="CodigoPostal" class="form-control" required>
+                <input  placeholder="Ejemp.- 34424" type="text" name="CodigoPostal" id="CodigoPostal" class="form-control" required>
             </div>
 
             <div class="form-group">
                 <label for="ColFrac">Colonia/Fraccionamiento:</label>
-                <input type="text" name="ColFrac" id="ColFrac" class="form-control" required>
+                <input  placeholder="Colonia donde vive actualmente" type="text" name="ColFrac" id="ColFrac" class="form-control" required>
             </div>
 
             <div class="form-group">
                 <label for="Calle">Calle:</label>
-                <input type="text" name="Calle" id="Calle" class="form-control" required>
+                <input placeholder="Calle" type="text" name="Calle" id="Calle" class="form-control" required>
             </div>
 
             <div class="form-group">
                 <label for="NumeroExterior">Número Exterior:</label>
-                <input type="text" name="NumeroExterior" id="NumeroExterior" class="form-control" required>
+                <input placeholder="Ejemp.- 1002" type="text" name="NumeroExterior" id="NumeroExterior" class="form-control" required>
             </div>
 
             <div class="form-group">
                 <label for="EstadoCivil">Estado Civil:</label>
-                <input type="text" name="EstadoCivil" id="EstadoCivil" class="form-control" required>
+                <input placeholder="Casado/Soltero" type="text" name="EstadoCivil" id="EstadoCivil" class="form-control" required>
             </div>
 
             <div class="form-group">
                 <label for="Nacionalidad">Nacionalidad:</label>
-                <input type="text" name="Nacionalidad" id="Nacionalidad" class="form-control" required>
+                <input placeholder="Nacionalidad" type="text" name="Nacionalidad" id="Nacionalidad" class="form-control" required>
             </div>
 
             <div class="form-group">
@@ -90,19 +90,19 @@
   
             <div class="form-group">
                 <label for="Correo">Correo Electrónico:</label>
-                <input type="email" name="Correo" id="Correo" class="form-control" required>
+                <input placeholder="Correo del Alumno" type="email" name="Correo" id="Correo" class="form-control" required>
             </div>
 
             <!-- Datos de Alumno -->
       
             <div class="form-group">
                 <label for="Matricula">Matrícula:</label>
-                <input type="text" name="Matricula" id="Matricula" class="form-control" required>
+                <input placeholder="Matricula" type="text" name="Matricula" id="Matricula" class="form-control" required>
             </div>
 
             <div class="form-group">
                 <label for="EscuelaProcede">Escuela de Procedencia:</label>
-                <input type="text" name="EscuelaProcede" id="EscuelaProcede" class="form-control" required>
+                <input placeholder="Ultima Escuela con Registro" type="text" name="EscuelaProcede" id="EscuelaProcede" class="form-control" required>
             </div>
 
             <!-- Botón de envío -->

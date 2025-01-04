@@ -186,7 +186,7 @@
         input[type="search"],
         input[type="date"] {
             width: 70%; /* Ancho relativo al contenedor padre */
-            padding: 4%;
+            padding: 2%;
             border: 2px solid #0023c1;
             border-radius: 10px;
             background-color: #1e1e1e;
