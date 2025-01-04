@@ -96,9 +96,18 @@ class SSO extends Controller
                     Session::put('idDocente', $idDocente);
                     //
 
+                    // $Grupos = DB::table('vGruposDocentes')
+                    //     ->select('idGrupoDocente', 'idGrupo', 'NombreGrado', 'ClavePeriodo', 'Paquete', 'NivelAcademico')
+                    //     ->where('idDocente', $idDocente)
+                    //     ->get();
                     $Grupos = DB::table('vGruposDocentes')
                         ->select('idGrupoDocente', 'idGrupo', 'NombreGrado', 'ClavePeriodo', 'Paquete', 'NivelAcademico')
                         ->where('idDocente', $idDocente)
+                        ->whereRaw('SUBSTRING(ClavePeriodo, 1, 4) = (
+                                        SELECT MAX(SUBSTRING(ClavePeriodo, 1, 4)) 
+                                        FROM vGruposDocentes 
+                                        WHERE idDocente = ?
+                                    )', [$idDocente])
                         ->get();
 
                     Session::put('Grupos', $Grupos);

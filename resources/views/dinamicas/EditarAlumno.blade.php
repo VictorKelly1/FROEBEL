@@ -102,8 +102,10 @@
                     value="{{ $Alumno->Estado }}" required>
             </div>
 
-
-
+            <div class="form-group">
+                <label for="Foto">Foto:</label>
+                <input type="file" name="Foto" id="Foto" class="form-control">
+            </div>
 
             <!-- Datos de Alumno -->
             <h3>Datos Académicos</h3>

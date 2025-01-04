@@ -211,23 +211,34 @@ class AlumnoController extends Controller
 
             $idPersona = $Alumno->idPersona;
 
-            Persona::where('idPersona', $idPersona)
-                ->update([
-                    'Nombre' => $request->input('Nombre'),
-                    'ApellidoMaterno' => $request->input('ApellidoMaterno'),
-                    'ApellidoPaterno' => $request->input('ApellidoPaterno'),
-                    'CURP' => $request->input('CURP'),
-                    'FechaNacimiento' => $request->input('FechaNacimiento'),
-                    'Genero' => $request->input('Genero'),
-                    'Ciudad' => $request->input('Ciudad'),
-                    'Municipio' => $request->input('Municipio'),
-                    'CodigoPostal' => $request->input('CodigoPostal'),
-                    'ColFrac' => $request->input('ColFrac'),
-                    'Calle' => $request->input('Calle'),
-                    'NumeroExterior' => $request->input('NumeroExterior'),
-                    'EstadoCivil' => $request->input('EstadoCivil'),
-                    'Nacionalidad' => $request->input('Nacionalidad')
-                ]);
+            $dataToUpdate = [
+                'Nombre' => $request->input('Nombre'),
+                'ApellidoMaterno' => $request->input('ApellidoMaterno'),
+                'ApellidoPaterno' => $request->input('ApellidoPaterno'),
+                'CURP' => $request->input('CURP'),
+                'FechaNacimiento' => $request->input('FechaNacimiento'),
+                'Genero' => $request->input('Genero'),
+                'Ciudad' => $request->input('Ciudad'),
+                'Municipio' => $request->input('Municipio'),
+                'CodigoPostal' => $request->input('CodigoPostal'),
+                'ColFrac' => $request->input('ColFrac'),
+                'Calle' => $request->input('Calle'),
+                'NumeroExterior' => $request->input('NumeroExterior'),
+                'EstadoCivil' => $request->input('EstadoCivil'),
+                'Nacionalidad' => $request->input('Nacionalidad'),
+            ];
+
+            // Solo incluir 'Foto' si está presente en el request y no está vacío
+            if ($request->hasFile('Foto')) {
+                $nombreArchivo = $request->file('Foto')->getClientOriginalName();
+                $request->file('Foto')->move(public_path('fotos'), $nombreArchivo);
+                $dataToUpdate['Foto'] = $nombreArchivo; // Guardar solo el nombre del archivo
+            } else {
+                $dataToUpdate['Foto'] = null; // Si no hay foto, mantener el campo como null
+            }
+
+            // Realizar la actualización
+            Persona::where('idPersona', $idPersona)->update($dataToUpdate);
 
             DB::commit();
 

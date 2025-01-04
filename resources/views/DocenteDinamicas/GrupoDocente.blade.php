@@ -63,7 +63,7 @@
                                 </form>
                             </td>
                             <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">
-                                <form action="/EnviarComunicado/{{ $AlumnoDelGrupo->idAlumno }}" method="GET">
+                                <form action="/#/{{ $AlumnoDelGrupo->idAlumno }}" method="GET">
                                     <button
                                         class="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-blue-600">Comunicado</button>
                                 </form>

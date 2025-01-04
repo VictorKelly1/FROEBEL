@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Vcalificaciones;
 use App\Models\VInasistencias;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -28,7 +29,27 @@ class ModuloDocenteController extends Controller
 
     public function vistaHorario()
     {
-        return view('docente.Horarios');
+
+        $idDocente = Session::get('idDocente');
+        if (!$idDocente) {
+            abort(403, 'Usuario no autorizado');
+        }
+        //
+        $Grupos = DB::table('vGruposDocentes')
+            ->where('idDocente', $idDocente)
+            ->pluck('idGrupo');
+        //
+        $GM = DB::table('vGruposMaterias')
+            ->whereIn('idGrupo', $Grupos)
+            ->pluck('idGrupoMateria');
+        //
+        $Horarios = DB::table('vHorarios')
+            ->whereIn('idGrupoMateria', $GM)
+            ->get();
+
+        return view('docente.Horarios', [
+            'Horarios' => $Horarios,
+        ]);
     }
 
     public function verGrupo(String $id)
@@ -50,7 +71,8 @@ class ModuloDocenteController extends Controller
 
     public function vistaCalificacion(String $id)
     {
-        return view('docenteDinamicas.RegisCalif');
+        $Calificaciones = Vcalificaciones::where('idAlumno', $id);
+        return view('docenteDinamicas.RegisCalif', ['Calificaciones' => $Calificaciones]);
     }
 
     public function registrarCalificacion(String $id)
