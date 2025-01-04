@@ -93,7 +93,7 @@
 
             <div class="form-group">
                 <label for="NoINE">NoINE:</label>
-                <input type="number" name="NoINE" id="NoINE" class="form-control" required>
+                <input type="number" min="0" name="NoINE" id="NoINE" class="form-control" required>
             </div>
 
             <div class="form-group">

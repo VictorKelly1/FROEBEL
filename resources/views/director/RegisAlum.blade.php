@@ -71,9 +71,13 @@
                 <input placeholder="Ejemp.- 1002" type="text" name="NumeroExterior" id="NumeroExterior" class="form-control" required>
             </div>
 
-            <div class="form-group">
+            <div  class="form-control p-4 mb-4 rounded-md text-lg">
                 <label for="EstadoCivil">Estado Civil:</label>
-                <input placeholder="Casado/Soltero" type="text" name="EstadoCivil" id="EstadoCivil" class="form-control" required>
+                <select type="select" name="EstadoCivil" id="EstadoCivil" class="form-control" required>
+                    <option value="">Seleccione</option>
+                    <option value="Casado">Casado</option>
+                    <option value="Soltero">Soltero</option>
+                </select>
             </div>
 
             <div class="form-group">

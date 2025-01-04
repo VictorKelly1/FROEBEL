@@ -265,17 +265,24 @@
             display: block;
         }
     
-        /* Select */
-        select {
-            width: 70%; /* Ancho relativo al contenedor padre */
-            padding: 4%;
-            border: 2px solid #0023c1;
-            border-radius: 10px;
-            background-color: #1e1e1e;
-            color: #ffffff !important;
-            font-size: 1vw;
-            appearance: none;
-        }
+        /* Estilo para el elemento <select> */
+select {
+    width: 95%; /* Ancho relativo al contenedor padre */
+    padding: 2%;
+    border: 2px solid #0023c1;
+    border-radius: 10px;
+    background-color: #188bbc;
+    color: #ffffff; /* Asegura que el texto sea blanco */
+    font-size: 1vw;
+   
+}
+
+/* Estilo para las opciones dentro del <select> */
+select option {
+    background-color: #1e1e1e; /* Fondo oscuro */
+    color: #ffffff; /* Letras blancas */
+}
+
     
         select option {
             background-color: #1e1e1e;

@@ -22,7 +22,7 @@
 
             <div class="form-group">
                 <label for="NombreGrado">Grado:</label>
-                <input type="number" name="NombreGrado" id="NombreGrado" class="form-control"
+                <input type="number" min="0" name="NombreGrado" id="NombreGrado" class="form-control"
                     value="{{ $Grupo->NombreGrado }}" required>
             </div>
 

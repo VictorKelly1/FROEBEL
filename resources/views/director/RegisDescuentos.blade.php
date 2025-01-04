@@ -35,7 +35,7 @@
 
             <div class="form-group">
                 <label for="Monto">Monto:</label>
-                <input type="number" name="Monto" id="Monto" class="form-control" required>
+                <input type="number" min="0" name="Monto" id="Monto" class="form-control" required>
             </div>
 
             <!-- Botón de envío -->

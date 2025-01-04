@@ -36,37 +36,37 @@
 
                                 <!-- PARCIALES - Editables -->
                                 <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">
-                                    <input type="number" name="Parcial1[{{ $Calificacion->idCalificacion }}]"
+                                    <input type="number" min="0" name="Parcial1[{{ $Calificacion->idCalificacion }}]"
                                         value="{{ $Calificacion->Parcial1 }}"
                                         class="bg-transparent text-white border-none w-full text-center" min="0"
                                         max="10" step="0.1">
                                 </td>
                                 <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">
-                                    <input type="number" name="Parcial2[{{ $Calificacion->idCalificacion }}]"
+                                    <input type="number" min="0" name="Parcial2[{{ $Calificacion->idCalificacion }}]"
                                         value="{{ $Calificacion->Parcial2 }}"
                                         class="bg-transparent text-white border-none w-full text-center" min="0"
                                         max="10" step="0.1">
                                 </td>
                                 <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">
-                                    <input type="number" name="Parcial3[{{ $Calificacion->idCalificacion }}]"
+                                    <input type="number" min="0" name="Parcial3[{{ $Calificacion->idCalificacion }}]"
                                         value="{{ $Calificacion->Parcial3 }}"
                                         class="bg-transparent text-white border-none w-full text-center" min="0"
                                         max="10" step="0.1">
                                 </td>
                                 <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">
-                                    <input type="number" name="Parcial4[{{ $Calificacion->idCalificacion }}]"
+                                    <input type="number" min="0" name="Parcial4[{{ $Calificacion->idCalificacion }}]"
                                         value="{{ $Calificacion->Parcial4 }}"
                                         class="bg-transparent text-white border-none w-full text-center" min="0"
                                         max="10" step="0.1">
                                 </td>
                                 <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">
-                                    <input type="number" name="Parcial5[{{ $Calificacion->idCalificacion }}]"
+                                    <input type="number" min="0" name="Parcial5[{{ $Calificacion->idCalificacion }}]"
                                         value="{{ $Calificacion->Parcial5 }}"
                                         class="bg-transparent text-white border-none w-full text-center" min="0"
                                         max="10" step="0.1">
                                 </td>
                                 <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">
-                                    <input type="number" name="Parcial6[{{ $Calificacion->idCalificacion }}]"
+                                    <input type="number" min="0" name="Parcial6[{{ $Calificacion->idCalificacion }}]"
                                         value="{{ $Calificacion->Parcial6 }}"
                                         class="bg-transparent text-white border-none w-full text-center" min="0"
                                         max="10" step="0.1">

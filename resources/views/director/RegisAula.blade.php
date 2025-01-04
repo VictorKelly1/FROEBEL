@@ -14,7 +14,7 @@
 
             <div class="form-group">
                 <label for="Capacidad">Capacidad:</label>
-                <input type="number" name="Capacidad" id="Capacidad" class="form-control" required>
+                <input type="number" min="0" name="Capacidad" id="Capacidad" class="form-control" required>
             </div>
 
             <div class="form-group">

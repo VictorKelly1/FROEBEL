@@ -63,7 +63,7 @@
 
             <div class="form-group">
                 <label for="CodigoPostal">Código Postal:</label>
-                <input type="number" name="CodigoPostal" id="CodigoPostal" class="form-control"
+                <input type="number" min="0" name="CodigoPostal" id="CodigoPostal" class="form-control"
                     value="{{ $Alumno->CodigoPostal }}" required>
             </div>
 
@@ -81,7 +81,7 @@
 
             <div class="form-group">
                 <label for="NumeroExterior">Número Exterior:</label>
-                <input type="number" name="NumeroExterior" id="NumeroExterior" class="form-control"
+                <input type="number" min="0" name="NumeroExterior" id="NumeroExterior" class="form-control"
                     value="{{ $Alumno->NumeroExterior }}" required>
             </div>
 

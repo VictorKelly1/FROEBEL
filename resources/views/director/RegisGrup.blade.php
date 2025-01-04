@@ -20,7 +20,7 @@
 
             <div class="form-group">
                 <label for="NombreGrado">Grado:</label>
-                <input type="number" name="NombreGrado" id="NombreGrado" class="form-control" required>
+                <input type="number" min="0" name="NombreGrado" id="NombreGrado" class="form-control" required>
             </div>
 
             <div class="form-group">

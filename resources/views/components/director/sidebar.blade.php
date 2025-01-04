@@ -38,10 +38,11 @@
             <a href="{{ route('VistaRegistrarConcepto') }}"
                 class="block text-black py-1 px-2 rounded hover:bg-gray-200">Concepto</a>
             <a href="{{ route('VistaRegistrarCompra') }}"
-                class="block text-black py-1 px-2 rounded hover:bg-gray-200">Compra</a>
+                class="block text-black py-1 px-2 rounded hover:bg-gray-200">Compra/Gasto</a>
             <a href="{{ route('VistaRegistrarVenta') }}"
                 class="block text-black py-1 px-2 rounded hover:bg-gray-200">Venta</a>
-
+                <a href=""
+                class="block text-black py-1 px-2 rounded hover:bg-gray-200">Periodo</a>
         </div>
     </div>
 

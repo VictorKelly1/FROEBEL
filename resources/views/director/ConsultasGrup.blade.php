@@ -32,7 +32,7 @@
                     <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Tipo</th>
                     <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Cantidad de Alumnos</th>
 
-                    <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Editar</th>
+                   
                     </tr>
                 </thead>
                 <tbody id="tableBody">
@@ -52,12 +52,7 @@
                             </td>
                             <td class="px-6 py-4 border-t border-blue-500 animate-border text-center">
                                 {{ $Grupo->cantidadAlumnos }}</td>
-                                <td class="px-6 py-4 border-t border-blue-500 animate-border text-center">
-                                <form action="/VistaEditarGrupo/{{ $Grupo->idGrupo }}" method="GET">
-                                    @csrf
-                                    <button type="submit" class="btn btn-primary">Edición</button>
-                                </form>
-                            </td>
+                               
 
                         </tr>
                     @endforeach
