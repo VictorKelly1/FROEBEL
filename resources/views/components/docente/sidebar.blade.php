@@ -60,7 +60,7 @@
         </a>
 
         <!-- Opción Horarios -->
-        <a href="#"
+        <a href="{{ route('MisHorarios') }}"
             class="flex items-center text-white font-bold py-2 px-4 rounded hover:bg-gray-300 hover:text-black hover:border-l-4 hover:border-red-500 transition-all duration-200">
             <i class="fas fa-calendar-alt text-xl"></i>
             <span x-show="!collapsed" class="ml-3 transition-all duration-200">HORARIOS</span>

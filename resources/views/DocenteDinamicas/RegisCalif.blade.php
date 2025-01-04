@@ -5,7 +5,7 @@
         <div class="w-full max-w-full">
 
             <!-- ✅ Formulario para enviar los datos -->
-            <form action="/RegistrarCalificacion/{{ $Calificacion->first()->idAlumno }}" method="POST">
+            <form action="/RegistrarCalificacion/{{ $Calificaciones->first()->idAlumno }}" method="POST">
                 @csrf
                 <!-- ✅ Tabla sin cambios en tamaño -->
                 <table class="text-sm text-left text-white w-full table-auto z-30">
