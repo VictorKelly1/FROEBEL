@@ -186,9 +186,15 @@ class ModuloDocenteController extends Controller
     }
 
 
-    public function listaRegistrarInasistencia()
+    public function listaRegistrarInasistencia(String $id)
     {
-        return view('docente.RegisInasist');
+
+        //
+        $AlumnosDelGrupo = DB::table('vGruposAlumnos')
+            ->where('idGrupo', $id)
+            ->get();
+
+        return view('docenteDinamicas.RegisInasist', ['AlumnosDelGrupo' => $AlumnosDelGrupo]);
     }
 }
 

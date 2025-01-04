@@ -71,7 +71,7 @@
             <a href="#" @click="open = !open"
                 class="flex items-center text-white font-bold py-2 px-4 rounded hover:bg-gray-300 hover:text-black hover:border-l-4 hover:border-red-500 transition-all duration-200">
                 <i class="fas fa-file-alt text-xl"></i>
-                <span x-show="!collapsed" class="ml-3 transition-all duration-200">Inasistencia</span>
+                <span x-show="!collapsed" class="ml-3 transition-all duration-200">Nombrar lista</span>
                 <i class="fas fa-chevron-down ml-auto" :class="{ 'rotate-180': open }"></i>
             </a>
 
@@ -81,7 +81,7 @@
                     @foreach (Session::get('Grupos') as $grupo)
                         <form
                             class="block text-white py-1 px-2 hover:bg-gray-300 hover:text-black transition-all duration-200"
-                            action="/VerGrupo/{{ $grupo->idGrupo }}" method="GET">
+                            action="/listaRegistrarInasistencia/{{ $grupo->idGrupo }}" method="GET">
 
                             <button class="#">
                                 {{ $grupo->NombreGrado }}

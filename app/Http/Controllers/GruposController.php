@@ -92,7 +92,7 @@ class GruposController extends Controller
             } else {
                 $idGrado = $gradoExistente->idGrado;
             }
-            $idPeriodo = $Periodo->id;
+            $idPeriodo = $Periodo->idPeriodo;
 
             //Objeto Grupo
             $Grupo = new Grupo();
