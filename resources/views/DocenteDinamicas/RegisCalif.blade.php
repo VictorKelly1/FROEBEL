@@ -4,7 +4,7 @@
         <div class="w-full max-w-full">
 
             <!-- ✅ Formulario para enviar los datos -->
-            <form action="" method="POST">
+            <form action="/RegistrarCalificacion/{{ $Calificacion->first()->idAlumno }}" method="POST">
                 @csrf
                 <!-- ✅ Tabla sin cambios en tamaño -->
                 <table class="text-sm text-left text-white w-full table-auto z-30">
@@ -48,13 +48,7 @@
                         @endforeach
                     </tbody>
                 </table>
-
-                <!-- ✅ Botón para enviar los datos -->
-                <div class="flex justify-center mt-4">
-                    <button type="submit" class="px-6 py-2 bg-blue-500 text-white font-bold rounded-md hover:bg-blue-600 transition-all duration-200">
-                        Guardar Cambios
-                    </button>
-                </div>
+                <button class="bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Calificar</button>
             </form>
         </div>
     </div>
