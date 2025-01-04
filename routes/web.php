@@ -131,6 +131,7 @@ Route::middleware('DirectorPermisos')->group(function () {
         Route::post('/RegistrarConceptos', 'store')->name('RegistrarConceptos');
         Route::get('/VistaEditarConceptos/{id}', 'edit')->name('VistaEditarConceptos');
         Route::post('/EditarConcepto', 'update')->name('EditarConcepto');
+        Route::get('/EliminarConcepto/{id}', 'destroy')->name('EliminarConcepto');
     });
 });
 

@@ -8,7 +8,6 @@ use App\Models\Vcalificaciones;
 use App\Models\VInasistencias;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 
 class ModuloDocenteController extends Controller

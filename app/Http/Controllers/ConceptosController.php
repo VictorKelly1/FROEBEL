@@ -97,7 +97,7 @@ class ConceptosController extends Controller
             //confirmar transaccion
             DB::commit();
 
-            return view('director.RegisConcep');
+            return redirect()->route('ListaConceptos')->with('success', 'Registro actualizado con exito.');
         } catch (\Exception $e) {
             // Revertir transacción si hay un error
             DB::rollBack();
@@ -109,8 +109,9 @@ class ConceptosController extends Controller
     // Elimina el registro de la tabla Conceptos
     public function destroy(Concepto $concepto)
     {
+
         $concepto->delete();
         // Redirige a alguna vista o devuelve un mensaje de éxito
-        return redirect()->route('director.AsigGrupAlum')->with('success', 'Registro eliminado con correctamente.');
+        return redirect()->route('ListaConceptos')->with('success', 'Registro eliminado con correctamente.');
     }
 }

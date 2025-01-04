@@ -108,7 +108,7 @@ class DescuentosController extends Controller
             //confirmar transaccion
             DB::commit();
 
-            return view('director.ConsultasDesc');
+            return redirect()->route('ListaDescuantos')->with('success', 'Registro actualizado con exito.');
         } catch (\Exception $e) {
             // Revertir transacción si hay un error
             DB::rollBack();
