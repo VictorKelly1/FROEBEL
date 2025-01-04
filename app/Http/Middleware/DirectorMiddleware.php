@@ -21,7 +21,10 @@ class DirectorMiddleware
             if ($request->routeIs('log')) {
                 return $next($request);
             }
-
+            if (Session::get('Estado') == 'Activo') {
+                Session::flash('error', 'No tienes autorizacion para hacer esto');
+                return redirect()->route('log');
+            }
             Session::flash('error', 'Tu sesion a expirado/Nesesitas iniciar sesion');
             return redirect()->route('log');
         }

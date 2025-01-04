@@ -14,8 +14,7 @@ class MateriasController extends Controller
     */
     public function index()
     {
-        $Materias = Materia::paginate(50);
-        return view('director.ConsultasMat', ['Materias' => $Materias]);
+        //
     }
 
     /*
@@ -23,7 +22,8 @@ class MateriasController extends Controller
     */
     public function create()
     {
-        return view('director.RegisMat');
+        $Materias = Materia::paginate(50);
+        return view('director.RegisMat', ['Materias' => $Materias]);
     }
 
     /*Almacena una materia en la base de datos */

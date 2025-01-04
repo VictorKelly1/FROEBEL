@@ -106,7 +106,20 @@ class ModuloDocenteController extends Controller
         }
 
 
-        $Calificaciones = Vcalificaciones::where('idAlumno', $id)->get();
+        $ultimoPeriodo = Vcalificaciones::where('idAlumno', $id)
+            ->select('ClavePeriodo')
+            ->distinct()
+            ->get()
+            ->map(function ($cal) {
+                return substr($cal->ClavePeriodo, 0, 4);
+            })
+            ->max();
+
+        // Obtenemos solo las calificaciones de ese período
+        $Calificaciones = Vcalificaciones::where('idAlumno', $id)
+            ->where('ClavePeriodo', 'LIKE', $ultimoPeriodo . '%')
+            ->get();
+
         return view('docenteDinamicas.RegisCalif', ['Calificaciones' => $Calificaciones]);
     }
 

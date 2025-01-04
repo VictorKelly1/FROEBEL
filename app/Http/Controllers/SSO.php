@@ -95,11 +95,6 @@ class SSO extends Controller
                     Session::put('Estado', $Estado);
                     Session::put('idDocente', $idDocente);
                     //
-
-                    // $Grupos = DB::table('vGruposDocentes')
-                    //     ->select('idGrupoDocente', 'idGrupo', 'NombreGrado', 'ClavePeriodo', 'Paquete', 'NivelAcademico')
-                    //     ->where('idDocente', $idDocente)
-                    //     ->get();
                     $Grupos = DB::table('vGruposDocentes')
                         ->select('idGrupoDocente', 'idGrupo', 'NombreGrado', 'ClavePeriodo', 'Paquete', 'NivelAcademico')
                         ->where('idDocente', $idDocente)
