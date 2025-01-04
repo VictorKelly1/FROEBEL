@@ -204,7 +204,7 @@ Route::middleware('DirectorPermisos')->group(function () {
     Route::controller(GruposMatController::class)->group(function () {
         Route::get('/GruposMaterias', 'index')->name('ListaGruposMaterias');
         Route::post('/AsignarGrupMateria', 'store')->name('AsignarGrupMateria');
-        Route::get('/GruposMateria/{GM}', 'destroy')->name('EliminarGrupMateria');
+        Route::get('/EliminarGruposMateria/{GM}', 'destroy')->name('EliminarGrupMateria');
     });
 
     Route::controller(AlumnosRelacionesController::class)->group(function () {
@@ -361,10 +361,8 @@ Route::middleware('DocentePermisos')->group(function () {
 
 
 
-//registrar nominas Periodos de colegiaturas y eventos 
-//
+//registrar nominas y Periodos de colegiaturas 
 
-//rutas delete patch y update 
 //impresion de recivos, constancias, calificaciones
 
 

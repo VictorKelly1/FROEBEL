@@ -37,8 +37,17 @@ class ModuloDocenteController extends Controller
             abort(403, 'Usuario no autorizado');
         }
         //
-        $Grupos = DB::table('vGruposDocentes')
+        $ultimoPeriodo = DB::table('vGruposAlumnos')
+            ->select('ClavePeriodo')
+            ->get()
+            ->map(function ($grupo) {
+                return substr($grupo->ClavePeriodo, 0, 4);
+            })
+            ->max();
+        //
+        $Grupos = DB::table('vGruposDocente')
             ->where('idDocente', $idDocente)
+            ->where('ClavePeriodo', 'LIKE', $ultimoPeriodo . '%')
             ->pluck('idGrupo');
         //
         $GM = DB::table('vGruposMaterias')

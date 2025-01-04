@@ -23,6 +23,7 @@ class ModuloAlumnoController extends Controller
     /* 
       Menu del Alumno
     */
+
     public function index()
     {
         return view('alumno.Menu');
@@ -36,9 +37,18 @@ class ModuloAlumnoController extends Controller
             return response()->json(['error' => 'El idAlumno no está definido en la sesión'], 400);
         }
 
-        // Consultar las calificaciones correspondientes al Alumno
+        $ultimoPeriodo = DB::table('vGruposAlumnos')
+            ->select('ClavePeriodo')
+            ->get()
+            ->map(function ($grupo) {
+                return substr($grupo->ClavePeriodo, 0, 4);
+            })
+            ->max();
+
+        // Consultar las calificaciones correspondientes al Alumno del periodo mas reciente
         $Calificaciones = DB::table('vCalificaciones')
             ->where('idAlumno', $idAlumno)
+            ->where('ClavePeriodo', 'LIKE', $ultimoPeriodo . '%')
             ->get();
 
         if ($Calificaciones->isEmpty()) {
@@ -50,7 +60,34 @@ class ModuloAlumnoController extends Controller
 
     public function horario()
     {
-        $Horario = [];
+        $idAlumno = FacadesSession::get('idAlumno');
+        if (!$idAlumno) {
+            abort(403, 'Usuario no autorizado');
+        }
+        // periodo de grupos actuales 
+        $ultimoPeriodo = DB::table('vGruposAlumnos')
+            ->select('ClavePeriodo')
+            ->get()
+            ->map(function ($grupo) {
+                return substr($grupo->ClavePeriodo, 0, 4);
+            })
+            ->max();
+
+        // Obtenemos los grupos de ese período
+        $Grupos = DB::table('vGruposAlumnos')
+            ->where('idAlumno', $idAlumno)
+            ->where('ClavePeriodo', 'LIKE', $ultimoPeriodo . '%')
+            ->pluck('idGrupo');
+        //
+
+        $GM = DB::table('vGruposMaterias')
+            ->whereIn('idGrupo', $Grupos)
+            ->pluck('idGrupoMateria');
+        //
+        $Horario = DB::table('vHorarios')
+            ->whereIn('idGrupoMateria', $GM)
+            ->get();
+        //
         return view('alumno.Horario', ['Horarios' => $Horario]);
     }
 
@@ -154,7 +191,6 @@ class ModuloAlumnoController extends Controller
     {
         //
         $Monto = $request->input('Costo') / 100;
-        $Clave = $request->input('Clave');
 
         DB::beginTransaction();
 

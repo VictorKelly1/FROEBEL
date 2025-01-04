@@ -96,7 +96,7 @@ class AlumnoController extends Controller
 
                 $Persona->Foto = $nombreArchivo;
             } else {
-                $Persona->Foto = null;
+                $Persona->Foto = 'default';
             }
 
             $Persona->save();
@@ -234,7 +234,7 @@ class AlumnoController extends Controller
                 $request->file('Foto')->move(public_path('fotos'), $nombreArchivo);
                 $dataToUpdate['Foto'] = $nombreArchivo; // Guardar solo el nombre del archivo
             } else {
-                $dataToUpdate['Foto'] = null; // Si no hay foto, mantener el campo como null
+                $dataToUpdate['Foto'] = 'default'; // Si no hay foto, mantener el campo como null
             }
 
             // Realizar la actualización

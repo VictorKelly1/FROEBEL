@@ -80,7 +80,7 @@ class IntendentesController extends Controller
 
                 $Persona->Foto = $nombreArchivo;
             } else {
-                $Persona->Foto = null;
+                $Persona->Foto = 'default';
             }
 
             $Persona->save();

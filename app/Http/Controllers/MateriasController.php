@@ -51,7 +51,7 @@ class MateriasController extends Controller
             // Confirmar transacción
             DB::commit();
 
-            return redirect()->route('ListaMaterias')->with('success', 'Materia registrado con éxito.');
+            return redirect()->back()->with('success', 'Materia registrado con éxito.');
         } catch (\Exception $e) {
             // Revertir transacción si hay un error
             DB::rollBack();

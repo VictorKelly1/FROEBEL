@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Calificacion;
 use App\Models\GruposMateria;
 use App\Models\Materia;
 use App\Models\Vgrupos;
 use App\Models\VgruposMaterias;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class GruposMatController extends Controller
 {
@@ -114,9 +116,20 @@ class GruposMatController extends Controller
      */
     public function destroy(GruposMateria $GM)
     {
-        // Elimina el registro de la tabla GruposMaterias
-        $GM->delete();
-        // Redirige a alguna vista o devuelve un mensaje de éxito
-        return redirect()->route('ListaGruposMaterias')->with('success', 'Registro eliminado correctamente.');
+        DB::beginTransaction();
+        try {
+            // Eliminar registros relacionados en calificaciones
+            Calificacion::where('idGruposMaterias', $GM->idGrupoMateria)->delete();
+
+            // Eliminar el registro principal
+            $GM->delete();
+
+            DB::commit();
+            return redirect()->route('ListaGruposMaterias')->with('success', 'Registro eliminado correctamente.');
+        } catch (\Exception $e) {
+            dd($e);
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Error al eliminar el registro: ' . $e->getMessage());
+        }
     }
 }
