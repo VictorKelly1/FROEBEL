@@ -45,7 +45,7 @@ class ModuloDocenteController extends Controller
             })
             ->max();
         //
-        $Grupos = DB::table('vGruposDocente')
+        $Grupos = DB::table('vGruposDocentes')
             ->where('idDocente', $idDocente)
             ->where('ClavePeriodo', 'LIKE', $ultimoPeriodo . '%')
             ->pluck('idGrupo');
@@ -82,8 +82,19 @@ class ModuloDocenteController extends Controller
 
     public function vistaCalificacion(String $id)
     {
+        $ultimoPeriodo = DB::table('vGruposAlumnos')
+            ->where('idAlumno', $id)
+            ->select('ClavePeriodo')
+            ->get()
+            ->map(function ($grupo) {
+                return substr($grupo->ClavePeriodo, 0, 4);
+            })
+            ->max();
+
+        // Obtenemos solo los grupos de ese período
         $Grupos = DB::table('vGruposAlumnos')
             ->where('idAlumno', $id)
+            ->where('ClavePeriodo', 'LIKE', $ultimoPeriodo . '%')
             ->pluck('idGrupo');
 
         $GM = DB::table('vGruposMaterias')
