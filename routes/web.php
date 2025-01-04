@@ -27,6 +27,7 @@ use App\Http\Controllers\ModuloAlumnoController;
 use App\Http\Controllers\ModuloDocenteController;
 use App\Http\Controllers\NominasController;
 use App\Http\Controllers\PagosController;
+use App\Http\Controllers\PeriodosController;
 use App\Http\Controllers\PlaneacionesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RetardosController;
@@ -284,6 +285,11 @@ Route::middleware('DirectorPermisos')->group(function () {
 
     Route::controller(NominasController::class)->group(function () {
         Route::get('/Nominas', 'index')->name('ListaNominas');
+    });
+
+    Route::controller(PeriodosController::class)->group(function () {
+        Route::get('/PeriodosPagos', 'index')->name('ListaPeriodos');
+        Route::post('/RegistrarPeriodo', 'store')->name('RegistrarPeriodo');
     });
 
     //------------------------------------------------------------------------------------------------------------

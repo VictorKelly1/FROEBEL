@@ -41,7 +41,7 @@
                 class="block text-black py-1 px-2 rounded hover:bg-gray-200">Compra/Gasto</a>
             <a href="{{ route('VistaRegistrarVenta') }}"
                 class="block text-black py-1 px-2 rounded hover:bg-gray-200">Venta</a>
-                <a href=""
+            <a href="{{ route('ListaPeriodos') }}"
                 class="block text-black py-1 px-2 rounded hover:bg-gray-200">Periodo</a>
         </div>
     </div>

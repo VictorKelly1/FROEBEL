@@ -4,7 +4,7 @@
     <div class=" flex items-center posicionregisdesc">
 
 
-        <form class="formulario1x1" action="{{ route('RegistrarDescuento') }}" method="POST" enctype="multipart/form-data">
+        <form class="formulario1x1" action="{{ route('RegistrarPeriodo') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <!-- Datos de Persona -->
