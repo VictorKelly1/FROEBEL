@@ -192,9 +192,8 @@
                 class="block text-black py-1 px-2 rounded hover:bg-gray-200">Grupo-Docente</a>
             <a href="{{ route('ListaGruposMaterias') }}"
                 class="block text-black py-1 px-2 rounded hover:bg-gray-200">Grupo-Materia</a>
-
-
-
+            <a href="{{ route('ListaHorarios') }}"
+                class="block text-black py-1 px-2 rounded hover:bg-gray-200">Horarios</a>
 
         </div>
     </div>
