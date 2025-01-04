@@ -11,7 +11,7 @@
    <div class="relative mb-4">
                 <div class="posiciontablaalumno absolute top-0 right-0 p-2">
                     <input type="search" id="searchInput" placeholder="Buscar Alumno..." 
-                        class="buscador-input" style="width: 1120px; height: 10%; padding: 18px; background-color: #2d2d2d; color: white; border-radius: 5px;">
+                        class="buscador-input" style="width: 1110px; height: 10%; padding: 18px; background-color: #2d2d2d; color: white; border-radius: 5px;">
                 </div>
             </div>
     <!-- ✅ Contenedor de la Tabla con Búsqueda -->
@@ -116,16 +116,19 @@
     </script>
 
 <script>
-window.onload = function() {
-    var successAlert = document.querySelector('.alert');
-    if (successAlert) {
-        successAlert.classList.add('show');
-        setTimeout(function() {
-            successAlert.classList.remove('show');
-        }, 5000); // El mensaje se oculta después de 5 segundos
-    }
-};
+// Mostrar alerta
+document.querySelector('.alert').classList.add('show');
 
+// Después de 5 segundos, aplicar la clase de desvanecimiento y eliminarla
+setTimeout(() => {
+    let alertElement = document.querySelector('.alert');
+    alertElement.classList.add('fade-out');
+
+    // Esperar el final de la animación para eliminar el elemento del DOM
+    setTimeout(() => {
+        alertElement.remove();
+    }, 1000); // Aseguramos que la animación de desvanecimiento termine antes de eliminarla
+}, 5000); // 5 segundos de espera
 
 
 
