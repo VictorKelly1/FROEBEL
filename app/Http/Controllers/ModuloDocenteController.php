@@ -239,6 +239,15 @@ class ModuloDocenteController extends Controller
             return redirect()->route('MenuDocente')->with('error', 'Ya has nombrado lista el dia de hoy' . $e->getMessage());
         }
     }
+
+    public function inasistenciasParticulares(String $id)
+    {
+        $Inasistencias = DB::table('Inasistencias')
+            ->where('idPersona', $id)
+            ->paginate(50);
+
+        return view('dinamicas.InasistPersonal', ['Inasistencias' => $Inasistencias]);
+    }
 }
 
 //historial calificaciones 

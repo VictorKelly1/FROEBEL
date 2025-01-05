@@ -311,6 +311,7 @@ Route::middleware('DirectorPermisos')->group(function () {
 
     Route::controller(InasistenciasController::class)->group(function () {
         Route::get('/Inasistencias', 'index')->name('ListaInasistencias');
+        Route::get('/InasistenciasParticulares', 'inasistenciasParticulares')->name('InasistenciasParticulares');
     });
 
     Route::controller(RetardosController::class)->group(function () {
@@ -358,6 +359,7 @@ Route::middleware('DocentePermisos')->group(function () {
     Route::get('/MenuDocente', [ModuloDocenteController::class, 'index'])->name('MenuDocente');
     Route::get('/MisHorarios', [ModuloDocenteController::class, 'vistaHorario'])->name('MisHorarios');
     Route::get('/InasistenciasDocente', [ModuloDocenteController::class, 'vistaInasistencias'])->name('InasistenciasDocente');
+    Route::get('/InasistenciasParticulares', [ModuloDocenteController::class, 'inasistenciasParticulares'])->name('InasistenciasParticulares');
     Route::get('/VerGrupo/{id}', [ModuloDocenteController::class, 'verGrupo'])->name('VerGrupo');
     Route::get('/VistaRegistrarCalificacion/{id}', [ModuloDocenteController::class, 'vistaCalificacion'])->name('VistaRegistrarCalificacion');
     Route::post('/RegistrarCalificacion/{id}', [ModuloDocenteController::class, 'guardarCalificaciones'])->name('RegistrarCalificacion');
