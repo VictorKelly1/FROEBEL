@@ -7,7 +7,7 @@
     max-width: 600px;
     width: 90%; /* Ancho adaptativo */
     padding: 40px; /* Más espacio dentro del recuadro */
-    background-color: #010101; /* Fondo más oscuro */
+    background-color: #000000; /* Fondo más oscuro */
     color: #fff;
     font-size: 44px; /* Letra más grande */
     font-weight: 700; /* Negrita */
@@ -21,7 +21,7 @@
     align-items: center;
     justify-content: center;
     border: 4px solid #00b5e2; /* Borde LED celeste por defecto */
-    background-image: linear-gradient(45deg, #141a28, #2a3c58);
+    background-image: linear-gradient(45deg, #141a28, #000000);
     background-size: 400% 400%; /* Fondo animado */
     animation: gradientBackground 3s ease infinite; /* Fondo animado */
 }

@@ -126,7 +126,7 @@
         }
     </style>
 
-    <div class="container posiciontablasasig">
+    <div class="container posiciontablas">
         @foreach ($periodos as $periodo)
             <form class="formulario" action="{{ route('PagarColegiatura') }}" method="POST" enctype="multipart/form-data">
                 @csrf

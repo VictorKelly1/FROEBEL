@@ -2,18 +2,24 @@
 
 @if (!empty($Calificaciones))
     <!-- ✅ Contenedor de la Tabla con Búsqueda -->
+    <!-- 🧑‍💻 Campo de Búsqueda -->
+    <div class="relative mb-4">
+        <div class="posiciontablaalumno absolute top-0 right-0 p-2">
+            <input type="search" id="searchInput" placeholder="Buscar Alumno..." class="buscador-input"
+                style="width: 1110px; height: 10%; padding: 18px; background-color: #2d2d2d; color: white; border-radius: 5px;">
+        </div>
+    </div>
+    <!-- ✅ Contenedor de la Tabla con Búsqueda -->
     <div
-        class="posiciontablas flex items-center justify-center bg-gray-900 p-2 mt-4 rounded-md border border-red-500 shadow-md w-3/4 sm:w-1/2 lg:w-3/4 overflow-x-auto z-30">
+        class="posiciontablas flex items-center justify-center bg-gray-900 p-2 mt-4 rounded-md border border-blue-500 shadow-md w-3/4 sm:w-1/2 lg:w-3/4 overflow-x-auto z-30">
         <div class="w-full max-w-full">
 
-            <!-- ✅ Formulario para enviar los datos -->
-            <form action="/RegistrarCalificacion/{{ $Calificaciones->first()->idAlumno }}" method="POST">
-                @csrf
-                <!-- ✅ Tabla sin cambios en tamaño -->
-                <table class="text-sm text-left text-white w-full table-auto z-30">
-                    <thead class="bg-red-700">
-                        <tr>
-                            <th class="px-4 py-2 text-lg border-b border-red-500 animate-border text-center">Materia
+
+            <!-- ✅ Tabla sin cambios en tamaño -->
+            <table class="text-sm text-left text-white w-full table-auto z-30">
+                <thead class="bg-blue-700">
+                    <tr>
+                             <th class="px-4 py-2 text-lg border-b border-red-500 animate-border text-center">Materia
                             </th>
                             <th class="px-4 py-2 text-lg border-b border-red-500 animate-border text-center">Parcial 1
                             </th>

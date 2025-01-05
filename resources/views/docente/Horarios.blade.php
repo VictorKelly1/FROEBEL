@@ -1,11 +1,5 @@
 <x-docente.layout>
-@if(!empty($Horarios) && $Horarios = null)
-    <!-- ✅ Mensaje de Éxito -->
-    @if (session('success'))
-    <div class="alert alert-success">
-        <p>{{ session('success') }}</p>
-    </div>
-@endif
+
 
    <!-- 🧑‍💻 Campo de Búsqueda -->
    <div class="relative mb-4">
@@ -61,11 +55,7 @@
         </div>
 
     </div>
-    @else
-    <div class="sindatos">
-        ⚠️ No se encontraron datos para mostrar.
-    </div>
-@endif
+
     <!-- Script de Búsqueda -->
     <script>
         document.getElementById("searchInput").addEventListener("input", function () {

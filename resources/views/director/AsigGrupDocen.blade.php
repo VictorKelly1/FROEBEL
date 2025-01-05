@@ -19,6 +19,8 @@
         <form class="w-full text-white text-base" action="{{ route('AsignarGrupDocente') }}" method="POST"
             enctype="multipart/form-data">
             @csrf
+    <!-- 🔍 Buscador -->
+    <input type="text" id="searchInput" placeholder="Buscar..." class="mb-4 p-2 rounded-md border border-blue-500 text-black w-full md:w-1/2">
 
             <!-- 👩‍🏫 Docente -->
             <div class="mb-4">

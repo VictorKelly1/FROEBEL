@@ -1,38 +1,36 @@
 <x-alumno.layout>
 
-    <div id="app posicion1">
-        <!-- Botón para imprimir la tabla -->
-        <button class= "posicion2" id="btn-imprimir" onclick="printTable()">🖨️ IMPRIMIR</button>
+<div
+        class="posiciontablas flex items-center justify-center bg-gray-900 p-2 mt-4 rounded-md border border-blue-500 shadow-md w-3/4 sm:w-1/2 lg:w-3/4 overflow-x-auto z-30">
+        <div class="w-full max-w-full">
 
-        <div class="flex items-center justify-center bg-gray-900 p-2 posiciontablas borderAnimation ">
 
-            <div class="overflow-x-auto">
-               
-                <table class=" text-xs text-left text-white">
-                    <thead>
-                        <tr class="bg-transparent">
+            <!-- ✅ Tabla sin cambios en tamaño -->
+            <table class="text-sm text-left text-white w-full table-auto z-30">
+                <thead class="bg-blue-700">
+                    <tr>
 
-                            <th class="px-2 py-1 border-b border-purple-500 animate-border">Foto</th>
-                            <th class="px-2 py-1 border-b border-purple-500 animate-border">Nombre</th>
-                            <th class="px-2 py-1 border-b border-purple-500 animate-border">Fecha</th>
-                            <th class="px-2 py-1 border-b border-purple-500 animate-border">Motivo</th>
+                    <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Foto</th>
+                    <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Nombre</th>
+                    <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Fecha</th>
+                    <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Motivo</th>
                         </tr>
                     </thead>
                     <tbody id="tableBody">
                         @foreach ($Inasistencias as $Inasistencia)
-                            <tr class="hover:bg-gray-800 bg-transparent">
+                        <tr class="hover:bg-gray-800 bg-transparent">
 
 
-                                <td class="px-2 py-1 border-t border-purple-500 animate-border">
+                        <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">
                                     {{ $Inasistencia->Foto }}</td>
-                                <td class="px-2 py-1 border-t border-purple-500 animate-border">
+                                    <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">
                                     {{ $Inasistencia->Nombre }}
                                     {{ $Inasistencia->ApellidoPaterno }}
                                     {{ $Inasistencia->ApellidoMaterno }}
                                 </td>
-                                <td class="px-2 py-1 border-t border-purple-500 animate-border">
+                                <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">
                                     {{ $Inasistencia->Fecha }}</td>
-                                <td class="px-2 py-1 border-t border-purple-500 animate-border">
+                                    <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">
                                     {{ $Inasistencia->Motivo }}</td>
                             </tr>
                         @endforeach

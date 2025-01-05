@@ -5,14 +5,6 @@
         <p>{{ session('success') }}</p>
     </div>
 @endif
-    <!-- 🧑‍💻 Campo de Búsqueda para Filtrar Materias -->
-    <div class="relative mb-4">
-        <div class="absolute top-0 right-0 p-2">
-            <input type="search" id="searchInput" placeholder="Buscar Materia..." class="buscador-input"
-                style="width: 550px; height: 50px; padding: 8px; background-color: #2d2d2d; color: white; border-radius: 5px;">
-        </div>
-    </div>
-
     <!-- ✅ Formulario Compacto para Asignación de Materia a Grupo -->
     <div
         class="posiciontablasmedia flex items-center justify-center bg-gray-900 p-6 mt-6 rounded-md border border-blue-500 shadow-md w-3/4 sm:w-2/3 lg:w-1/2">
@@ -20,6 +12,9 @@
             enctype="multipart/form-data">
             @csrf
 
+             <!-- 🔍 Buscador -->
+    <input type="text" id="searchInput" placeholder="Buscar..." class="mb-4 p-2 rounded-md border border-blue-500 text-black w-full md:w-1/2">
+   
             <!-- 📖 Materia -->
             <div class="mb-4">
                 <label for="Materia" class="block mb-2 text-lg">Materia:</label>
@@ -57,15 +52,6 @@
    <!-- ✅ Contenedor con Buscador y Tabla Compacta -->
 <div
     class="posiciontablasbaja flex flex-col items-center justify-center bg-gray-900 p-6 mt-6 rounded-md border border-blue-500 shadow-md w-3/4 sm:w-2/3 lg:w-1/2 overflow-x-auto">
-
-    <!-- ✅ Buscador -->
-    <div class="w-full mb-4">
-        <input 
-            type="text" 
-            id="searchInput" 
-            class="w-full p-2 border border-blue-500 rounded-md text-gray-900" 
-            placeholder="🔍 Buscar en la tabla...">
-    </div>
 
     <!-- ✅ Tabla Compacta -->
     <table class="w-full text-lg text-white border-collapse border border-blue-500 rounded-md">
@@ -109,22 +95,26 @@
         {{ $GrupMat->links() }}
     </div>
 
-    <!-- ✅ Funcionalidad de Búsqueda en Tiempo Real -->
     <script>
-        document.getElementById("searchInput").addEventListener("input", function() {
-            var filter = this.value.toLowerCase();
-            var rows = document.getElementById("tableBody").getElementsByTagName("tr");
 
-            Array.from(rows).forEach(function(row) {
-                var text = row.textContent.toLowerCase();
-                if (text.includes(filter)) {
-                    row.style.display = "";
-                } else {
-                    row.style.display = "none";
-                }
-            });
+
+document.addEventListener('DOMContentLoaded', function () {
+    const searchInput = document.getElementById('searchInput');
+    const tableBody = document.getElementById('tableBody');
+    const rows = tableBody.getElementsByTagName('tr');
+
+    searchInput.addEventListener('keyup', function () {
+        const searchValue = searchInput.value.toLowerCase();
+
+        Array.from(rows).forEach(row => {
+            const rowText = row.textContent.toLowerCase();
+            row.style.display = rowText.includes(searchValue) ? '' : 'none';
         });
-    </script>
+    });
+});
+
+
+</script>
 <script>
         // Mostrar alerta
         document.querySelector('.alert').classList.add('show');
@@ -143,19 +133,9 @@
 
 <script>
 
-// ✅ Filtrar tabla dinámicamente
-document.getElementById('searchInput').addEventListener('input', function () {
-    let filter = this.value.toLowerCase();
-    let rows = document.querySelectorAll('#tableBody tr');
-
-    rows.forEach(row => {
-        let text = row.textContent.toLowerCase();
-        row.style.display = text.includes(filter) ? '' : 'none';
-    });
-});
 
 
-
+    
 </script>
 
 

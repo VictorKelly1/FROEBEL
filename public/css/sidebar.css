@@ -58,7 +58,7 @@
         .posiciontablasbaja{
 
             position: absolute;
-            top: 85%;    /* alto */
+            top: 75%;    /* alto */
             left: 20%; /* lado */
             width: 75%;
         
@@ -82,8 +82,24 @@
             
                 /* Permite el desplazamiento interno si el contenido es más grande que el contenedor */
                 }
+                .posiciontablas2{
 
+                    position: absolute;
+                    top: 12%;    /* alto */
+                    left: 60%; /* lado */
+                    width: 75%;
+                
+                    /* Permite el desplazamiento interno si el contenido es más grande que el contenedor */
+                    }
+                    .posiciontablas05{
 
+                        position: absolute;
+                        top: 9%;    /* alto */
+                        left: 20%; /* lado */
+                        width: 75%;
+                    
+                        /* Permite el desplazamiento interno si el contenido es más grande que el contenedor */
+                        }
                 .posicionregisdesc{
 
                     position: absolute;

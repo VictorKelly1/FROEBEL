@@ -8,12 +8,12 @@
     </div>
 @endif
 
-    <div class="flex items-center justify-center bg-gray-900 p-2 posiciontablas borderAnimation overflow-x-hidden z-40">
-        <div class="overflow-x-auto w-full max-w-full z-40">
-
-            <table class="text-sm text-left text-white w-full table-auto z-40">
-                <thead>
-
+    <div class="posiciontablas flex items-center justify-center bg-gray-900 p-2 mt-4 rounded-md border border-blue-500 shadow-md w-3/4 sm:w-1/2 lg:w-3/4 overflow-x-auto z-30">
+    <div class="w-full max-w-full">
+            <!-- ✅ Tabla sin cambios en tamaño -->
+            <table class="text-sm text-left text-white w-full table-auto z-30">
+            <thead class="bg-blue-700">
+            
                     <form class="" action="{{ route('BuscarColegiaturaFaltante') }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
@@ -33,27 +33,27 @@
                     </form>
 
 
-                    <tr class="bg-transparent">
-                        <th class="px-4 py-2 text-lg border-b border-purple-500 animate-border text-center">Foto del
+                    <tr>
+                    <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Foto del
                             Alumno</th>
-                        <th class="px-4 py-2 text-lg border-b border-purple-500 animate-border text-center">Matrícula
+                            <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Matrícula
                         </th>
-                        <th class="custom-cell px-4 py-2 text-lg border-b border-purple-500 animate-border text-center">
+                        <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">
                             Nombre</th>
-                        <th class="px-4 py-2 text-lg border-b border-purple-500 animate-border text-center">CURP</th>
+                            <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">CURP</th>
                         <th class="px-4 py-2 text-lg border-b border-purple-500 animate-border text-center">
                             Fecha Ingreso</th>
-                        <th class="px-4 py-2 text-lg border-b border-purple-500 animate-border text-center">Estado
+                            <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Estado
                         </th>
-                        <th class="px-4 py-2 text-lg border-b border-purple-500 animate-border text-center">Comunicado
+                        <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Comunicado
                         </th>
 
                 </thead>
                 <tbody id="tableBody">
                     @foreach ($Faltantes as $Faltante)
-                        <tr class="hover:bg-gray-800 bg-transparent">
+                    <tr class="hover:bg-gray-800 bg-transparent">
                             <!-- Foto -->
-                            <td class="px-6 py-4 border-t border-purple-500 animate-border text-center">
+                            <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">
                                 @if ($Faltante->Foto)
                                     <img src="{{ asset('fotos/' . $Faltante->Foto) }}" alt="Usuario"
                                         class="w-28 h-28 rounded-full">
@@ -63,26 +63,26 @@
                             </td>
 
                             <!-- Matrícula -->
-                            <td class="px-4 py-2 border-t border-purple-500 animate-border">{{ $Faltante->Matricula }}
+                            <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Faltante->Matricula }}
                             </td>
 
                             <!-- Nombre -->
-                            <td class="custom-cell px-4 py-2 border-t border-purple-500 animate-border text-center">
+                            <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">
                                 {{ $Faltante->Nombre }} {{ $Faltante->ApellidoPaterno }}
                                 {{ $Faltante->ApellidoMaterno }}</td>
 
                             <!-- CURP -->
-                            <td class="px-4 py-2 border-t border-purple-500 animate-border">{{ $Faltante->CURP }}</td>
+                            <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Faltante->CURP }}</td>
 
                             <!-- FechaInicio -->
-                            <td class="px-4 py-2 border-t border-purple-500 animate-border">
+                            <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">
                                 {{ $Faltante->FechaIngreso }}</td>
 
 
                             <!-- Estado -->
-                            <td class="px-4 py-2 border-t border-purple-500 animate-border">{{ $Faltante->Estado }}</td>
+                            <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Faltante->Estado }}</td>
 
-                            <td class="px-4 py-2 border-t border-purple-500 animate-border text-center">
+                            <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">
                                 <form action="/VistaComunicadoPersonal/{{ $Faltante->idAlumno }}" method="GET">
                                     @csrf
                                     <button

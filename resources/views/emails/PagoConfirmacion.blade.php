@@ -9,30 +9,45 @@
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
-            color: #333;
+            color: #fff; /* Letra blanca */
             margin: 0;
             padding: 0;
-            background-color: #f4f4f9;
+            background-color: #121212; /* Fondo negro */
         }
 
         .email-container {
             max-width: 600px;
             margin: 20px auto;
             padding: 20px;
-            background: #ffffff;
-            border: 1px solid #ddd;
+            background: #121212; /* Fondo negro en el contenedor */
+            border: 3px solid #00FFFF; /* Borde LED celeste */
             border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.8); /* Efecto LED alrededor */
+            animation: glow 1.5s ease-in-out infinite; /* Animación del borde LED */
+        }
+
+        /* Animación del borde con efecto LED */
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 10px rgba(0, 255, 255, 0.8), 0 0 20px rgba(0, 255, 255, 0.6), 0 0 30px rgba(0, 255, 255, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(0, 255, 255, 1), 0 0 40px rgba(0, 255, 255, 0.8), 0 0 60px rgba(0, 255, 255, 0.6);
+            }
+            100% {
+                box-shadow: 0 0 10px rgba(0, 255, 255, 0.8), 0 0 20px rgba(0, 255, 255, 0.6), 0 0 30px rgba(0, 255, 255, 0.4);
+            }
         }
 
         .header {
             text-align: center;
-            border-bottom: 2px solid #4CAF50;
+            border-bottom: 2px solid #00FFFF; /* Borde inferior celeste */
             padding-bottom: 10px;
             margin-bottom: 20px;
         }
 
         .header h1 {
-            color: #4CAF50;
+            color: #fff; /* Letra blanca */
             margin: 0;
         }
 
@@ -42,13 +57,14 @@
 
         .details p {
             margin: 5px 0;
+            color: #fff; /* Letra blanca */
         }
 
         .footer {
             text-align: center;
             margin-top: 20px;
             font-size: 12px;
-            color: #777;
+            color: #aaa; /* Texto en gris claro */
         }
     </style>
 </head>
