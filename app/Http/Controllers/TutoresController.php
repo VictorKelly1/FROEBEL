@@ -108,15 +108,7 @@ class TutoresController extends Controller
             // Confirmar transacción
             DB::commit();
 
-            $Alumnos = VAlumno::all();
-            $Tutores = VTutor::all();
-            return view(
-                'director.AsigAlumTutor',
-                [
-                    'Alumnos' => $Alumnos,
-                    'Tutores' => $Tutores,
-                ]
-            );
+            return redirect()->back()->with('success', 'Registrado con exito ');
         } catch (\Exception $e) {
             // Revertir transacción si hay un error
             DB::rollBack();
