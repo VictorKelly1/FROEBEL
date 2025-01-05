@@ -112,7 +112,16 @@
                 
                     /* Permite el desplazamiento interno si el contenido es más grande que el contenedor */
                     }
+                    .posiciontablahorario{
 
+                        position: absolute;
+                        top: 14%;    /* alto */
+                        left: 45%; /* lado */
+                        width: 75%;
+                    
+                        /* Permite el desplazamiento interno si el contenido es más grande que el contenedor */
+                        }
+    
 
                 .posiciontablas2{
 
@@ -409,6 +418,7 @@ select option {
             margin-top: 2%;  /* Añade un margen en la parte superior del botón, un 2% del contenedor superior */
             display: inline-block;  /* Hace que el botón se ajuste al tamaño de su contenido */
             text-align: center;  /* Alinea el texto dentro del botón al centro */
+            
         }
         
         
@@ -483,6 +493,7 @@ select option {
 
         .formulario2x2 {
             display: grid;
+            z-index: 10; 
             grid-template-columns: 1fr 1fr; /* Una sola columna */
             grid-gap: 4%; /* Espacio entre celdas */
             background-color: #0a0f2c; /* Azul oscuro */
@@ -495,3 +506,17 @@ select option {
             margin: 0 auto; /* Centrar el formulario */
         }
         
+        .formulario8x1 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr ; /* Una sola columna */
+            grid-gap: 4%; /* Espacio entre celdas */
+            background-color: #0a0f2c; /* Azul oscuro */
+            border-radius: 10px; /* Bordes redondos */
+            border: 2px solid #00d9ff; /* Línea LED azul celeste */
+            padding: 4%; /* Espaciado interno en porcentaje */
+            box-shadow: 0 0 10px #00d9ff; /* Efecto LED brillante */
+            min-height: 50vh; /* Altura mínima para formularios más largos */
+            max-width: 100%; /* Ancho máximo en porcentaje */
+            margin: 0 auto; /* Centrar el formulario */
+        }
+

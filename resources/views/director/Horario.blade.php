@@ -1,7 +1,7 @@
 <x-director.layout>
 
     <div class=" flex items-center posicionregisdesc">
-        <form class="formulario1x2" action="{{ route('AsignarHorario') }}" method="POST" enctype="multipart/form-data">
+        <form class="formulario2x2 z-30" action="{{ route('AsignarHorario') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
 
@@ -79,65 +79,57 @@
 
     <!-- 🧑‍💻 Campo de Búsqueda -->
     <div class="relative mb-4">
-        <div class="posiciontablaalumno absolute top-0 right-0 p-2">
+        <div class="posiciontablahorario absolute top-0 right-0 p-2">
             <input type="search" id="searchInput" placeholder="Buscar Alumno..." class="buscador-input"
-                style="width: 1120px; height: 10%; padding: 18px; background-color: #2d2d2d; color: white; border-radius: 5px;">
+                style="width: 950px; height: 10%; padding: 18px; background-color: #2d2d2d; color: white; border-radius: 5px; z-30">
         </div>
     </div>
-    <!-- ✅ Contenedor de la Tabla con Búsqueda -->
-    <div
-        class="posiciontablas flex items-center justify-center bg-gray-900 p-2 mt-4 rounded-md border border-blue-500 shadow-md w-3/4 sm:w-1/2 lg:w-3/4 overflow-x-auto z-30">
-        <div class="w-full max-w-full">
+   <!-- ✅ Contenedor Compacto de la Tabla con Búsqueda -->
+<div class="posiciontablahorario flex items-center justify-center bg-gray-900 p-1 mt-2 rounded-md border border-blue-500 shadow-md w-full sm:w-3/4 lg:w-2/3 overflow-x-auto z-30">
+    <div class="w-full">
 
-
-            <!-- ✅ Tabla sin cambios en tamaño -->
-            <table class="text-sm text-left text-white w-full table-auto z-30">
-                <thead class="bg-blue-700">
-                    <tr>
-
-                        <th class="px-2 py-1 border-b border-purple-500 animate-border">Aula</th>
-                        <th class="px-2 py-1 border-b border-purple-500 animate-border">Materia</th>
-                        <th class="px-2 py-1 border-b border-purple-500 animate-border">Grupo</th>
-                        <th class="px-2 py-1 border-b border-purple-500 animate-border">Lunes</th>
-                        <th class="px-2 py-1 border-b border-purple-500 animate-border">Martes</th>
-                        <th class="px-2 py-1 border-b border-purple-500 animate-border">Miercoles</th>
-                        <th class="px-2 py-1 border-b border-purple-500 animate-border">Jueves</th>
-                        <th class="px-2 py-1 border-b border-purple-500 animate-border">Viernes</th>
-                        <th class="px-2 py-1 border-b border-purple-500 animate-border">Quitar Materia</th>
+        <!-- ✅ Tabla Compacta -->
+        <table class="text-xs text-left text-white w-full table-auto z-30">
+            <thead class="bg-blue-700 text-center">
+                <tr>
+                    <th class="px-1 py-1 border-b border-purple-500">Aula</th>
+                    <th class="px-1 py-1 border-b border-purple-500">Materia</th>
+                    <th class="px-1 py-1 border-b border-purple-500">Grupo</th>
+                    <th class="px-1 py-1 border-b border-purple-500">Lunes</th>
+                    <th class="px-1 py-1 border-b border-purple-500">Martes</th>
+                    <th class="px-1 py-1 border-b border-purple-500">Miércoles</th>
+                    <th class="px-1 py-1 border-b border-purple-500">Jueves</th>
+                    <th class="px-1 py-1 border-b border-purple-500">Viernes</th>
+                    <th class="px-1 py-1 border-b border-purple-500">Quitar</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                @foreach ($Horarios as $Horario)
+                    <tr class="hover:bg-gray-800 text-center">
+                        <td class="px-1 py-1 border-t border-purple-500">{{ $Horario->NombreAula }}</td>
+                        <td class="px-1 py-1 border-t border-purple-500">{{ $Horario->NombreMateria }}</td>
+                        <td class="px-1 py-1 border-t border-purple-500">{{ $Horario->ClavePeriodo }}</td>
+                        <td class="px-1 py-1 border-t border-purple-500">{{ $Horario->HoraL }}</td>
+                        <td class="px-1 py-1 border-t border-purple-500">{{ $Horario->HoraM }}</td>
+                        <td class="px-1 py-1 border-t border-purple-500">{{ $Horario->HoraMi }}</td>
+                        <td class="px-1 py-1 border-t border-purple-500">{{ $Horario->HoraJ }}</td>
+                        <td class="px-1 py-1 border-t border-purple-500">{{ $Horario->HoraV }}</td>
+                        <td class="px-1 py-1 border-t border-purple-500">
+                            <form action="/Horario/{{ $Horario->idHorario }}" method="GET">
+                                <button class="bg-red-600 text-white px-1 py-0.5 rounded hover:bg-red-700 text-xs">🗑️</button>
+                            </form>
+                        </td>
                     </tr>
-                </thead>
-                <tbody id="tableBody">
-                    @foreach ($Horarios as $Horario)
-                        <tr class="hover:bg-gray-800 bg-transparent">
+                @endforeach
+            </tbody>
+        </table>
 
-                            <td class="px-2 py-1 border-t border-purple-500 animate-border">
-                                {{ $Horario->NombreAula }}</td>
-                            <td class="px-2 py-1 border-t border-purple-500 animate-border">
-                                {{ $Horario->NombreMateria }}</td>
-                            <td class="px-2 py-1 border-t border-purple-500 animate-border">
-                                {{ $Horario->ClavePeriodo }}</td>
-                            <td class="px-2 py-1 border-t border-purple-500 animate-border">
-                                {{ $Horario->HoraL }}</td>
-                            <td class="px-2 py-1 border-t border-purple-500 animate-border">
-                                {{ $Horario->HoraM }}</td>
-                            <td class="px-2 py-1 border-t border-purple-500 animate-border">
-                                {{ $Horario->HoraMi }}</td>
-                            <td class="px-2 py-1 border-t border-purple-500 animate-border">
-                                {{ $Horario->HoraJ }}</td>
-                            <td class="px-2 py-1 border-t border-purple-500 animate-border">
-                                {{ $Horario->HoraV }}</td>
-                            <td class="px-2 py-1 border-t border-purple-500 animate-border text-center">
-                                <form action="/Horario/{{ $Horario->idHorario }}" method="GET">
-                                    <button
-                                        class="bg-purple-600 text-white px-2 py-1 rounded hover:bg-purple-700">Eliminar</button>
-                                </form>
-
-                        </tr>
-                    @endforeach
-                    {{ $Horarios->links() }}
-                </tbody>
-            </table>
+        <!-- ✅ Paginación -->
+        <div class="mt-2 text-center text-white">
+            {{ $Horarios->links() }}
         </div>
     </div>
+</div>
+
 
 </x-director.layout>

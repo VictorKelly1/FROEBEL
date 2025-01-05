@@ -11,6 +11,7 @@
         overflow-y: auto;
         scrollbar-width: thin;
         scrollbar-color: #0023c1 #036cff;
+        z-index: 40; 
     }
 
     .sidebar a {
