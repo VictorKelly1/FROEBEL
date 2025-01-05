@@ -199,8 +199,45 @@ class ModuloDocenteController extends Controller
 
     public function RegistrarInasistencias(Request $request)
     {
-        //
-        return $request;
+        try {
+            $alumnosIds = $request->input('seleccionar'); // Asegúrate de que sea un array
+
+            // Obtén la fecha actual
+            $fechaHoy = date('Y-m-d');
+
+            // Verificar si ya existen registros de inasistencias para el día de hoy
+            $existenInasistenciasHoy = DB::table('Inasistencias')
+                ->whereIn('idPersona', DB::table('Alumnos')->whereIn('idAlumno', $alumnosIds)->pluck('idPersona'))
+                ->where('fecha', $fechaHoy)
+                ->exists();
+
+            if ($existenInasistenciasHoy) {
+                throw new \Exception('Ya has registrado inasistencias para el día de hoy.');
+            }
+
+            // Recupera las idPersona correspondientes a los alumnos
+            $personasIds = DB::table('Alumnos')
+                ->whereIn('idAlumno', $alumnosIds) // id es la columna que identifica a los alumnos
+                ->pluck('idPersona')
+                ->toArray();
+
+            $inasistencias = array_map(function ($idPersona) use ($fechaHoy) {
+                return [
+                    'fecha' => $fechaHoy,
+                    'motivo' => 'Injustificado',
+                    'idPersona' => $idPersona,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ];
+            }, $personasIds);
+
+            DB::table('Inasistencias')->insert($inasistencias);
+
+            return redirect()->route('MenuDocente')->with('success', 'Inasistencias registradas.');
+        } catch (\Exception $e) {
+
+            return redirect()->route('MenuDocente')->with('error', 'Ya has nombrado lista el dia de hoy' . $e->getMessage());
+        }
     }
 }
 

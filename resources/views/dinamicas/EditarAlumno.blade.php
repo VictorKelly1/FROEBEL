@@ -1,15 +1,12 @@
 <x-director.layout>
 
-    <div class=" flex items-center led2 posicionsregisalum">
+    <div class=" flex items-center  posiciontablas">
 
         <form class="formulario" action="{{ route('EditarAlumno') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <div>
-                <input type="hidden" name="id" value="{{ $Alumno->idAlumno }}">
 
-            </div>
             <!-- Datos de Persona -->
-            <h3>Datos Personales</h3>
+
             <div class="form-group">
                 <label for="Nombre">Nombre:</label>
                 <input type="text" name="Nombre" id="Nombre" class="form-control" value="{{ $Alumno->Nombre }}"
@@ -108,7 +105,7 @@
             </div>
 
             <!-- Datos de Alumno -->
-            <h3>Datos Académicos</h3>
+
             <div class="form-group">
                 <label for="Matricula">Matrícula:</label>
                 <input type="text" name="Matricula" id="Matricula" class="form-control"
@@ -123,6 +120,11 @@
 
             <!-- Botón de envío -->
             <button type="submit" class="btn btn-primary">Editar Alumno</button>
+
+            <div>
+                <input type="hidden" name="id" value="{{ $Alumno->idAlumno }}">
+
+            </div>
         </form>
     </div>
 
