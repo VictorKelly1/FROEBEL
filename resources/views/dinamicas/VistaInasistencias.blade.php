@@ -1,5 +1,6 @@
 
 <x-director.layout>
+@if(!empty($Calificaciones) && $Calificaciones = null)
     <div posicion1 id="app">
     <h3>
                     {{ $Calificaciones->first()->NombreAlumno }}
@@ -34,4 +35,11 @@
                     </tbody>
                 </table>
             </div>
+
+            @else
+    <div class="sindatos">
+        ⚠️ No se encontraron datos para mostrar.
+    </div>
+@endif
+
  </x-director.layout>

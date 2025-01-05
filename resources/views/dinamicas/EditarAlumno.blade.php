@@ -1,5 +1,5 @@
 <x-director.layout>
-
+@if(!empty($Alumno) && $Alumno = null)
     <div class=" flex items-center  posiciontablas">
 
         <form class="formulario" action="{{ route('EditarAlumno') }}" method="POST" enctype="multipart/form-data">
@@ -127,5 +127,9 @@
             </div>
         </form>
     </div>
-
+    @else
+    <div class="sindatos">
+        ⚠️ No se encontraron datos para mostrar.
+    </div>
+@endif
 </x-director.layout>

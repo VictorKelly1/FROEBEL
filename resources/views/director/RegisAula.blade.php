@@ -1,5 +1,10 @@
 <x-director.layout>
-
+    <!-- ✅ Mensaje de Éxito -->
+    @if (session('success'))
+    <div class="alert alert-success">
+        <p>{{ session('success') }}</p>
+    </div>
+@endif
     <div class=" flex items-center posicionregisdesc ">
 
         <form class="formulario1x2" action="{{ route('RegistrarAula') }}" method="POST" enctype="multipart/form-data">
@@ -42,7 +47,21 @@
 
 
 
+    <script>
+        // Mostrar alerta
+        document.querySelector('.alert').classList.add('show');
 
+        // Después de 5 segundos, aplicar la clase de desvanecimiento y eliminarla
+        setTimeout(() => {
+            let alertElement = document.querySelector('.alert');
+            alertElement.classList.add('fade-out');
+
+            // Esperar el final de la animación para eliminar el elemento del DOM
+            setTimeout(() => {
+                alertElement.remove();
+            }, 1000); // Aseguramos que la animación de desvanecimiento termine antes de eliminarla
+        }, 5000); // 5 segundos de espera
+    </script>
 
 
 

@@ -1,4 +1,6 @@
 <x-director.layout>
+
+@if(!empty($Calificaciones) && $Calificaciones = null)
     <div posicion1 id="app">
 
 
@@ -83,4 +85,11 @@
             </div>
         </div>
     </div>
+
+    @else
+    <div class="sindatos">
+        ⚠️ No se encontraron datos para mostrar.
+    </div>
+@endif
+
 </x-director.layout>

@@ -1,5 +1,5 @@
 <x-director.layout>
-
+@if(!empty($Alumnos) && $Alumnos = null)
 <h3>
                   {{ $Alumnos->Nombre }} {{ $Alumnos->ApellidoPaterno }} {{ $Alumnos->ApellidoMaterno }} {{ $Alumnos->Matricula }}
            
@@ -12,7 +12,7 @@
 
             <div class="form-group">
     <label for="Alumno">Alumno:</label>
-    <input type="hidden" name="idAlumno" id="Alumno" value="{{ $Alumnos->Nombre }} {{ $Alumnos->ApellidoPaterno }} {{ $Alumnos->ApellidoMaterno }}">
+    <input type="hidden" name="idAlumno" id="Alumno" value="{{ $Alumnos->idAlumno }}">
     <input type="text" class="form-control" value="{{ $Alumnos->Nombre }} {{ $Alumnos->ApellidoPaterno }} {{ $Alumnos->ApellidoMaterno }}" disabled>
 </div>
 
@@ -62,5 +62,10 @@
             <button type="submit" class="btn btn-primary">Registrar Colegiatura</button>
         </form>
     </div>
+    @else
+    <div class="sindatos">
+        ⚠️ No se encontraron datos para mostrar.
+    </div>
+@endif
 
 </x-director.layout>

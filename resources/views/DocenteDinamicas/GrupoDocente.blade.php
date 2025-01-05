@@ -1,6 +1,6 @@
 <x-docente.layout>
 
-
+@if(!empty($AlumnosDelGrupo) && $AlumnosDelGrupo = null)
 
     <!-- 🧑‍💻 Campo de Búsqueda -->
     <div class="relative mb-4">
@@ -98,6 +98,12 @@
 
 
 
+@else
+    <div class="sindatos">
+        ⚠️ No se encontraron datos para mostrar.
+    </div>
+@endif
+</x-docente.layout>
 
 
 

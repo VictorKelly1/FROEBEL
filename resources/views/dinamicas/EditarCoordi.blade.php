@@ -1,7 +1,7 @@
 
 
 <x-director.layout>
-
+@if(!empty($Coordinador) && $Coordinador = null)
     <div class="container posicionsregisalum">
 
         <form action="{{ route('EditarCoordi') }}" method="POST" enctype="multipart/form-data">
@@ -133,5 +133,10 @@
             <button type="submit" class="btn btn-primary">Editar Coordinador</button>
         </form>
     </div>
+    @else
+    <div class="sindatos">
+        ⚠️ No se encontraron datos para mostrar.
+    </div>
+@endif
 
 </x-director.layout>

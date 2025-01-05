@@ -1,8 +1,8 @@
 <x-director.layout>
+@if(!empty($Alumno) && $Alumno = null)
+    <div class=" flex items-center  posiciontablaalumno">
 
-    <div class=" flex items-center led2 posicionsregisalum">
-
-        <form class="" action="{{ route('ComunicadoPersonal') }}" method="POST" enctype="multipart/form-data">
+        <form class="formulario" action="{{ route('ComunicadoPersonal') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <!-- Datos -->
             <h2>Enviar correo a: {{ $Alumno->first()->Nombre }}
@@ -26,5 +26,9 @@
             <button type="submit" class="btn btn-primary">Enviar Correo</button>
         </form>
     </div>
-
+    @else
+    <div class="sindatos">
+        ⚠️ No se encontraron datos para mostrar.
+    </div>
+@endif
 </x-director.layout>

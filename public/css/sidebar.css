@@ -520,3 +520,27 @@ select option {
             margin: 0 auto; /* Centrar el formulario */
         }
 
+        .sindatos {
+            display: flex;
+            justify-content: center; /* Centra horizontalmente */
+            align-items: center; /* Centra verticalmente */
+            position: fixed; /* Fija el elemento en la pantalla */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Asegura el centrado exacto */
+            width: 30vw; /* Ancho del 30% de la pantalla */
+            max-width: 400px; /* Máximo ancho */
+            height: auto; /* Altura automática según el contenido */
+            padding: 1.5vw; /* Espaciado interno */
+            background-color: #000; /* Fondo negro */
+            color: #fff; /* Letras blancas */
+            font-size: 1.2vw; /* Tamaño de letra ajustado */
+            font-weight: bold; /* Letras en negrita */
+            text-align: center; /* Alinea el texto al centro */
+            border: 3px solid red; /* Borde rojo */
+            border-radius: 10px; /* Bordes ligeramente redondeados */
+            box-shadow: 0 0 10px 2px red; /* Efecto LED rojo */
+            margin: 1vw; /* Margen alrededor del recuadro */
+            z-index: 9999; /* Asegura que esté por encima de otros elementos */
+        }
+        

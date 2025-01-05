@@ -1,9 +1,12 @@
 <x-director.layout>
 
 
+     <!-- ✅ Mensaje de Éxito -->
+     @if (session('success'))
     <div class="alert alert-success">
-        {{ session('success') }}
+        <p>{{ session('success') }}</p>
     </div>
+@endif
 
     <div class="flex items-center justify-center bg-gray-900 p-2 posiciontablas borderAnimation overflow-x-hidden z-40">
         <div class="overflow-x-auto w-full max-w-full z-40">
@@ -99,7 +102,21 @@
         </div>
     </div>
 
+    <script>
+        // Mostrar alerta
+        document.querySelector('.alert').classList.add('show');
 
+        // Después de 5 segundos, aplicar la clase de desvanecimiento y eliminarla
+        setTimeout(() => {
+            let alertElement = document.querySelector('.alert');
+            alertElement.classList.add('fade-out');
+
+            // Esperar el final de la animación para eliminar el elemento del DOM
+            setTimeout(() => {
+                alertElement.remove();
+            }, 1000); // Aseguramos que la animación de desvanecimiento termine antes de eliminarla
+        }, 5000); // 5 segundos de espera
+    </script>
     <style>
         .custom-cell {
             min-width: 230px;

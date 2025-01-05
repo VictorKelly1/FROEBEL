@@ -1,5 +1,5 @@
 <x-director.layout>
-
+@if(!empty($Inasistencias) && $Inasistencias = null)
     <!-- ✅ Mensaje de Éxito -->
     @if (session('success'))
         <div class="alert alert-success">
@@ -69,7 +69,11 @@
 
         </div>
     </div>
-
+    @else
+    <div class="sindatos">
+        ⚠️ No se encontraron datos para mostrar.
+    </div>
+@endif
 
     <style>
         .custom-cell {

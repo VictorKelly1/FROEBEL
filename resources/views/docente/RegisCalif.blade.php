@@ -1,6 +1,11 @@
 <x-docente.layout>
 
-
+    <!-- ✅ Mensaje de Éxito -->
+    @if (session('success'))
+    <div class="alert alert-success">
+        <p>{{ session('success') }}</p>
+    </div>
+@endif
 <form class="posiciontablas" action="{{ route('filtrar') }}" method="GET">
     <select id="grupo" name="grupo_id">
         @foreach($grupos as $grupo)
@@ -14,24 +19,6 @@
         <!-- Aquí se cargarán los alumnos mediante AJAX -->
     </select>
 </form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <script>
@@ -52,15 +39,6 @@
     }
 </script>
 
-
-
-
-
-
-
-
-
-
     <button type="submit">Filtrar</button>
 </form>
 
@@ -76,10 +54,21 @@
 
 
 
+<script>
+        // Mostrar alerta
+        document.querySelector('.alert').classList.add('show');
 
+        // Después de 5 segundos, aplicar la clase de desvanecimiento y eliminarla
+        setTimeout(() => {
+            let alertElement = document.querySelector('.alert');
+            alertElement.classList.add('fade-out');
 
-
-
+            // Esperar el final de la animación para eliminar el elemento del DOM
+            setTimeout(() => {
+                alertElement.remove();
+            }, 1000); // Aseguramos que la animación de desvanecimiento termine antes de eliminarla
+        }, 5000); // 5 segundos de espera
+    </script>
 
 
 

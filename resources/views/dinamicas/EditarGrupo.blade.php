@@ -1,4 +1,7 @@
 <x-director.layout>
+
+@if(!empty($Grupo) && $Grupo = null)
+
     <div class="posiciontablas">
 
         <form action="{{ route('EditarGrupo') }}" method="POST" enctype="multipart/form-data">
@@ -60,5 +63,11 @@
             <button type="submit" class="btn btn-primary">Editar Grupo</button>
         </form>
     </div>
+
+    @else
+    <div class="sindatos">
+        ⚠️ No se encontraron datos para mostrar.
+    </div>
+@endif
 
 </x-director.layout>
