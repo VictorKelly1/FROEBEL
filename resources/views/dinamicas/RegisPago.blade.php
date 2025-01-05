@@ -1,11 +1,11 @@
 <x-director.layout>
-@if(!empty($Alumnos) && $Alumnos = null)
+
     <div class=" flex items-center posiciontablas">
-    
+
         <form class="formulario2x2 " action="{{ route('RegistrarPago') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <!-- Datos -->
-            
+
 
             <div class="form-group ">
                 <label for="Alumno">Alumno:</label>
@@ -84,11 +84,7 @@
             <button type="submit" class="btn btn-primary">Registrar Pago</button>
         </form>
     </div>
-    @else
-    <div class="sindatos">
-        ⚠️ No se encontraron datos para mostrar.
-    </div>
-@endif
+
 
 
 </x-director.layout>

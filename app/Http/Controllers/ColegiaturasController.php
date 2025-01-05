@@ -101,6 +101,7 @@ class ColegiaturasController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'MetodoPago' => 'required',
             'Monto' => 'required',
@@ -132,7 +133,7 @@ class ColegiaturasController extends Controller
             $Colegiatura->Monto = $request->input('Monto');
 
             $Colegiatura->CuentaRecibido = $request->input('CuentaRecibido') ?? 'N/A'; //
-
+            dd($Colegiatura);
             $Colegiatura->save();
             // Si DescTransaccion tiene algún valor
             if ($request->input('idDescuento')) {
