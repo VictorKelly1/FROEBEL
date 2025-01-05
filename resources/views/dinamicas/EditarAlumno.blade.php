@@ -2,7 +2,7 @@
 
     <div class=" flex items-center led2 posicionsregisalum">
 
-        <form action="{{ route('EditarAlumno') }}" method="POST" enctype="multipart/form-data">
+        <form class="formulario" action="{{ route('EditarAlumno') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div>
                 <input type="hidden" name="id" value="{{ $Alumno->idAlumno }}">
