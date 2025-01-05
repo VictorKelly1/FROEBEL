@@ -1,7 +1,7 @@
 <x-docente.layout>
     <!-- ✅ Contenedor de la Tabla con Búsqueda -->
     <div
-        class="posiciontablas flex items-center justify-center bg-gray-900 p-2 mt-4 rounded-md border border-blue-500 shadow-md w-3/4 sm:w-1/2 lg:w-3/4 overflow-x-auto z-30">
+        class="posiciontablas flex items-center justify-center bg-gray-900 p-2 mt-4 rounded-md border border-red-500 shadow-md w-3/4 sm:w-1/2 lg:w-3/4 overflow-x-auto z-30">
         <div class="w-full max-w-full">
 
             <!-- ✅ Formulario para enviar los datos -->
@@ -9,21 +9,21 @@
                 @csrf
                 <!-- ✅ Tabla sin cambios en tamaño -->
                 <table class="text-sm text-left text-white w-full table-auto z-30">
-                    <thead class="bg-blue-700">
+                    <thead class="bg-red-700">
                         <tr>
-                            <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Materia
+                            <th class="px-4 py-2 text-lg border-b border-red-500 animate-border text-center">Materia
                             </th>
-                            <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Parcial 1
+                            <th class="px-4 py-2 text-lg border-b border-red-500 animate-border text-center">Parcial 1
                             </th>
-                            <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Parcial 2
+                            <th class="px-4 py-2 text-lg border-b border-red-500 animate-border text-center">Parcial 2
                             </th>
-                            <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Parcial 3
+                            <th class="px-4 py-2 text-lg border-b border-red-500 animate-border text-center">Parcial 3
                             </th>
-                            <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Parcial 4
+                            <th class="px-4 py-2 text-lg border-b border-red-500 animate-border text-center">Parcial 4
                             </th>
-                            <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Parcial 5
+                            <th class="px-4 py-2 text-lg border-b border-red-500 animate-border text-center">Parcial 5
                             </th>
-                            <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Parcial 6
+                            <th class="px-4 py-2 text-lg border-b border-red-500 animate-border text-center">Parcial 6
                             </th>
                         </tr>
                     </thead>
@@ -31,41 +31,41 @@
                         @foreach ($Calificaciones as $Calificacion)
                             <tr class="hover:bg-gray-800 bg-transparent">
                                 <!-- Materia -->
-                                <td class="px-4 py-2 border-t border-blue-500 animate-border">
+                                <td class="px-4 py-2 border-t border-red-500 animate-border">
                                     {{ $Calificacion->NombreMateria }}</td>
 
                                 <!-- PARCIALES - Editables -->
-                                <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">
+                                <td class="px-4 py-2 border-t border-red-500 animate-border text-center">
                                     <input type="number" min="0" name="Parcial1[{{ $Calificacion->idCalificacion }}]"
                                         value="{{ $Calificacion->Parcial1 }}"
                                         class="bg-transparent text-white border-none w-full text-center" min="0"
                                         max="10" step="0.1">
                                 </td>
-                                <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">
+                                <td class="px-4 py-2 border-t border-red-500 animate-border text-center">
                                     <input type="number" min="0" name="Parcial2[{{ $Calificacion->idCalificacion }}]"
                                         value="{{ $Calificacion->Parcial2 }}"
                                         class="bg-transparent text-white border-none w-full text-center" min="0"
                                         max="10" step="0.1">
                                 </td>
-                                <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">
+                                <td class="px-4 py-2 border-t border-red-500 animate-border text-center">
                                     <input type="number" min="0" name="Parcial3[{{ $Calificacion->idCalificacion }}]"
                                         value="{{ $Calificacion->Parcial3 }}"
                                         class="bg-transparent text-white border-none w-full text-center" min="0"
                                         max="10" step="0.1">
                                 </td>
-                                <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">
+                                <td class="px-4 py-2 border-t border-red-500 animate-border text-center">
                                     <input type="number" min="0" name="Parcial4[{{ $Calificacion->idCalificacion }}]"
                                         value="{{ $Calificacion->Parcial4 }}"
                                         class="bg-transparent text-white border-none w-full text-center" min="0"
                                         max="10" step="0.1">
                                 </td>
-                                <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">
+                                <td class="px-4 py-2 border-t border-red-500 animate-border text-center">
                                     <input type="number" min="0" name="Parcial5[{{ $Calificacion->idCalificacion }}]"
                                         value="{{ $Calificacion->Parcial5 }}"
                                         class="bg-transparent text-white border-none w-full text-center" min="0"
                                         max="10" step="0.1">
                                 </td>
-                                <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">
+                                <td class="px-4 py-2 border-t border-red-500 animate-border text-center">
                                     <input type="number" min="0" name="Parcial6[{{ $Calificacion->idCalificacion }}]"
                                         value="{{ $Calificacion->Parcial6 }}"
                                         class="bg-transparent text-white border-none w-full text-center" min="0"
