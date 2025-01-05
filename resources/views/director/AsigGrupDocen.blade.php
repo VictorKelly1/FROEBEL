@@ -58,6 +58,7 @@
                 <tr>
                     <th class="px-4 py-2 border-b border-blue-500">Nombre del Docente</th>
                     <th class="px-4 py-2 border-b border-blue-500">Grupos a Cargo</th>
+                    <th class="px-4 py-2 border-b border-blue-500">Periodo del grupo</th>
                     <th class="px-4 py-2 border-b border-blue-500">Desasignaciones</th>
                 </tr>
             </thead>
@@ -70,6 +71,9 @@
                         </td>
                         <td class="px-4 py-2 border-t border-blue-500">
                             {{ $GrupDoc->NombreGrado }} {{ $GrupDoc->NivelAcademico }} {{ $GrupDoc->Paquete }}
+                        </td>
+                        <td class="px-4 py-2 border-t border-blue-500">
+                            {{ $GrupDoc->ClavePeriodo }}
                         </td>
                         <td class="px-4 py-2 border-t border-blue-500">
                             <form action="/GruposAlumnos/{{ $GrupDoc->idGrupoDocente }}" method="GET">

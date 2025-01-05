@@ -19,7 +19,28 @@ class HorariosController extends Controller
     {
         $Aulas = Aula::All();
         $GrupMat = VgruposMaterias::All();
-        $Horarios = Vhorarios::paginate(50);
+        //
+        $ultimoPeriodo = DB::table('vGruposAlumnos')
+            ->select('ClavePeriodo')
+            ->get()
+            ->map(function ($grupo) {
+                return substr($grupo->ClavePeriodo, 0, 4);
+            })
+            ->max();
+
+        // Obtenemos solo los grupos de ese período
+        $Grupos = DB::table('vGruposAlumnos')
+            ->where('ClavePeriodo', 'LIKE', $ultimoPeriodo . '%')
+            ->pluck('idGrupo');
+        //
+        $GM = DB::table('vGruposMaterias')
+            ->whereIn('idGrupo', $Grupos)
+            ->pluck('idGrupoMateria');
+        //
+        $Horarios = DB::table('vHorarios')
+            ->whereIn('idGrupoMateria', $GM)
+            ->paginate(50);
+        //
         return view(
             'director.Horario',
             [

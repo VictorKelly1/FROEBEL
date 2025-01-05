@@ -362,6 +362,7 @@ Route::middleware('DocentePermisos')->group(function () {
     Route::get('/VistaRegistrarCalificacion/{id}', [ModuloDocenteController::class, 'vistaCalificacion'])->name('VistaRegistrarCalificacion');
     Route::post('/RegistrarCalificacion/{id}', [ModuloDocenteController::class, 'guardarCalificaciones'])->name('RegistrarCalificacion');
     Route::get('/listaRegistrarInasistencia/{id}', [ModuloDocenteController::class, 'listaRegistrarInasistencia'])->name('listaRegistrarInasistencia');
+    Route::post('/RegistrarInasistencias', [ModuloDocenteController::class, 'RegistrarInasistencias'])->name('RegistrarInasistencias');
 });
 
 //------------------------------------------------------------------------------------------------------------

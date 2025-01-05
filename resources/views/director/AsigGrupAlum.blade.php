@@ -60,6 +60,7 @@
                     <th class="px-4 py-2 border-b border-blue-500">Matrícula</th>
                     <th class="px-4 py-2 border-b border-blue-500">Nombre</th>
                     <th class="px-4 py-2 border-b border-blue-500">Grupo</th>
+                    <th class="px-4 py-2 border-b border-blue-500">Periodo del grupo</th>
                     <th class="px-4 py-2 border-b border-blue-500">Quitar Alumno</th>
                 </tr>
             </thead>
@@ -74,6 +75,9 @@
                         <td class="px-4 py-2 border-t border-blue-500">
                             {{ $GruposAlum->NombreGrado }} {{ $GruposAlum->NivelAcademico }}
                             {{ $GruposAlum->Paquete }}
+                        </td>
+                        <td class="px-4 py-2 border-t border-blue-500">
+                            {{ $GruposAlum->ClavePeriodo }}
                         </td>
                         <td class="px-4 py-2 border-t border-blue-500">
                             <form action="/GruposAlumnos/{{ $GruposAlum->idGrupoAlumno }}" method="GET">

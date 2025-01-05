@@ -196,6 +196,12 @@ class ModuloDocenteController extends Controller
 
         return view('docenteDinamicas.RegisInasist', ['AlumnosDelGrupo' => $AlumnosDelGrupo]);
     }
+
+    public function RegistrarInasistencias(Request $request)
+    {
+        //
+        return $request;
+    }
 }
 
 //historial calificaciones 

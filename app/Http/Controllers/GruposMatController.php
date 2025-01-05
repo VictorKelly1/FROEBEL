@@ -42,6 +42,7 @@ class GruposMatController extends Controller
         //
         $GrupMat = VgruposMaterias::orderByRaw('SUBSTRING(ClavePeriodo, 1, 4) DESC')
             ->paginate(50);
+        //
         return view(
             'director.AsigGrupMat',
             [
