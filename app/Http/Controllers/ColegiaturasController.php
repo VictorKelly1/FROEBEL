@@ -127,13 +127,13 @@ class ColegiaturasController extends Controller
             $Colegiatura->idPeriodo = $idPeriodo;
 
             // Asignar idPersona desde la tabla VAlumnos donde coincide la matrícula con la enviada desde front
-            $idPersona = VAlumno::where('Matricula', $request->input('idAlumno'))->first()->idPersona;
+            $idPersona = VAlumno::where('idAlumno', $request->input('idAlumno'))->first()->idPersona;
             $Colegiatura->idPersona = $idPersona;
 
             $Colegiatura->Monto = $request->input('Monto');
 
             $Colegiatura->CuentaRecibido = $request->input('CuentaRecibido') ?? 'N/A'; //
-            dd($Colegiatura);
+
             $Colegiatura->save();
             // Si DescTransaccion tiene algún valor
             if ($request->input('idDescuento')) {
@@ -232,7 +232,7 @@ class ColegiaturasController extends Controller
                 . $Colegiatura->Monto);
         } catch (\Exception $e) {
 
-            // Revertir transacción si hay un error
+            // Revertir transacción si hay  error
             DB::rollBack();
 
             return redirect()->back()->with('error', 'Error al registrar el pago: ' . $e->getMessage());
