@@ -80,7 +80,7 @@
                                 </form>
                             </td>
                             <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">
-                                <form action="" method="GET">
+                            <form action="/VistaInasistenciaPersonal/{{ $alumno->idAlumno }}" method="GET">
                                     <button
                                         class="bg-orange-600 text-white px-4 py-2 rounded-md hover:bg-blue-600">Inasistencias</button>
                                 </form>
