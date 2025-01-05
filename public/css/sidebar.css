@@ -73,6 +73,15 @@
             
                 /* Permite el desplazamiento interno si el contenido es más grande que el contenedor */
                 }
+                .posiciontablascorto{
+
+                    position: absolute;
+                    top: 12%;    /* alto */
+                    left: 13%; /* lado */
+                    width: 75%;
+                
+                    /* Permite el desplazamiento interno si el contenido es más grande que el contenedor */
+                    }
             .posiciontablas{
 
                 position: absolute;
@@ -95,7 +104,7 @@
 
                         position: absolute;
                         top: 9%;    /* alto */
-                        left: 20%; /* lado */
+                        left: 60%; /* lado */
                         width: 75%;
                     
                         /* Permite el desplazamiento interno si el contenido es más grande que el contenedor */

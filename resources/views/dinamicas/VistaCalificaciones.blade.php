@@ -16,7 +16,7 @@
    
     <!-- ✅ Contenedor de la Tabla con Búsqueda -->
     <div
-        class="posiciontablas flex items-center justify-center bg-gray-900 p-2 mt-4 rounded-md border border-blue-500 shadow-md w-3/4 sm:w-1/2 lg:w-3/4 overflow-x-auto z-30">
+        class="posiciontablascorto flex items-center justify-center bg-gray-900 p-2 mt-4 rounded-md border border-blue-500 shadow-md w-3/4 sm:w-1/2 lg:w-3/4 overflow-x-auto z-30">
         <div class="w-full max-w-full">
 
 
