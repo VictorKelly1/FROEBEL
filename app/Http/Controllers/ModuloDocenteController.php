@@ -205,16 +205,6 @@ class ModuloDocenteController extends Controller
             // Obtén la fecha actual
             $fechaHoy = date('Y-m-d');
 
-            // Verificar si ya existen registros de inasistencias para el día de hoy
-            $existenInasistenciasHoy = DB::table('Inasistencias')
-                ->whereIn('idPersona', DB::table('Alumnos')->whereIn('idAlumno', $alumnosIds)->pluck('idPersona'))
-                ->where('fecha', $fechaHoy)
-                ->exists();
-
-            if ($existenInasistenciasHoy) {
-                throw new \Exception('Ya has registrado inasistencias para el día de hoy.');
-            }
-
             // Recupera las idPersona correspondientes a los alumnos
             $personasIds = DB::table('Alumnos')
                 ->whereIn('idAlumno', $alumnosIds) // id es la columna que identifica a los alumnos
