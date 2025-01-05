@@ -311,7 +311,7 @@ Route::middleware('DirectorPermisos')->group(function () {
 
     Route::controller(InasistenciasController::class)->group(function () {
         Route::get('/Inasistencias', 'index')->name('ListaInasistencias');
-        Route::get('/InasistenciasParticulares', 'inasistenciasParticulares')->name('InasistenciasParticulares');
+        Route::get('/InasistenciasParticularesD/{id}', 'inasistenciasParticulares')->name('InasistenciasParticulares');
     });
 
     Route::controller(RetardosController::class)->group(function () {

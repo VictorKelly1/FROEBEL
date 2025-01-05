@@ -101,7 +101,7 @@ class VentasControllers extends Controller
 
             $Periodo->save();
 
-            $Venta->idPeriodo = $Periodo->id;
+            $Venta->idPeriodo = $Periodo->idPeriodo;
 
             $Venta->idPersona = Session::get('idPersona'); //id persona de sesion
 
