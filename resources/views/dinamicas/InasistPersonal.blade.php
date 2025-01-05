@@ -24,46 +24,28 @@
             <table class="text-sm text-left text-white w-full table-auto z-30">
                 <thead class="bg-red-700">
                     <tr>
-                    <th class="px-4 py-2 text-lg border-b border-red-500 animate-border text-center">Persona:</th>
-                    <th class="px-4 py-2 text-lg border-b border-red-500 animate-border text-center">Nombre:</th>
-                    <th class="px-4 py-2 text-lg border-b border-red-500 animate-border text-center"> Grupo:</th>
-                    <th class="px-4 py-2 text-lg border-b border-red-500 animate-border text-center">Fecha:</th>
-                    <th class="px-4 py-2 text-lg border-b border-red-500 animate-border text-center">Motivo</th>
-                    <th class="px-4 py-2 text-lg border-b border-red-500 animate-border text-center">Justificar</th>
+                        <th class="px-4 py-2 text-lg border-b border-red-500 animate-border text-center">Nombre:</th>
+                        <th class="px-4 py-2 text-lg border-b border-red-500 animate-border text-center">Fecha:</th>
+                        <th class="px-4 py-2 text-lg border-b border-red-500 animate-border text-center">Motivo</th>
                     </tr>
                 </thead>
                 <tbody id="tableBody">
-                    @foreach ($Inasistencias as $Inasistencia)
-                    <tr class="hover:bg-gray-800 bg-transparent">
+                    @foreach ($Inasistencias as $InasistenciaPersonal)
+                        <tr class="hover:bg-gray-800 bg-transparent">
 
                             <!-- Foto -->
                             <td class="px-4 py-2 border-t border-red-500 animate-border text-center">
-                                @if ($InasistenciaPersonal->Foto)
-                                    <img src="{{ asset('fotos/' . $InasistenciaPersonal->Foto) }}" alt="Usuario"
-                                        class="w-28 h-28 rounded-full">
-                                @else
-                                    <span class="text-gray-500">Sin foto</span>
-                                @endif
-                            </td>
+                                {{ $InasistenciaPersonal->Nombre }} {{ $InasistenciaPersonal->ApellidoPaterno }}
+                                {{ $InasistenciaPersonal->ApellidoMaterno }}</td>
                             <td class="px-4 py-2 border-t border-red-500 animate-border text-center">
-                                {{ $InasistenciaPersonal->Nombre }} {{ $InasistenciaPersonal->ApellidoPaterno }} {{ $InasistenciaPersonal->ApellidoMaterno }}</td>
+                                {{ $InasistenciaPersonal->Fecha }}</td>
+                            <td class="px-4 py-2 border-t border-red-500 animate-border text-center">
+                                {{ $InasistenciaPersonal->Motivo }}</td>
 
-                                <td class="px-4 py-2 border-t border-red-500 animate-border text-center">{{ $InasistenciaPersonal->Grupo }}</td>
-                                <td class="px-4 py-2 border-t border-red-500 animate-border text-center">{{ $InasistenciaPersonal->Fecha }}</td>
-                                <td class="px-4 py-2 border-t border-red-500 animate-border text-center">{{ $InasistenciaPersonal->Motivo }}</td>
-                                <td class="px-4 py-2 border-t border-red-500 animate-border text-center">
-                                <form action="" method="GET">
-                                    @csrf
-                                    <button
-                                        class="bg-red-600 text-white px-4 py-3 rounded-lg transition-all duration-500 hover:bg-purple-600 hover:-translate-y-2 hover:shadow-2xl">
-                                        Justificar
-                                    </button>
-                                </form>
-                            </td>
 
                         </tr>
                     @endforeach
-                   
+
                 </tbody>
             </table>
 
@@ -90,16 +72,5 @@
         }
     </style>
 
-    
+
 </x-director.layout>
-
-
-
-
-
-
-
-
-
-
-

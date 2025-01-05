@@ -67,6 +67,7 @@ class ComprasControllers extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'MetodoPago' => 'required',
             'Monto' => 'required',
@@ -80,7 +81,7 @@ class ComprasControllers extends Controller
             $Compra = new Transaccion();
 
             $Compra->Cantidad = $request->input('Cantidad');
-            $Compra->Tipo = 'Venta';
+            $Compra->Tipo = 'Compra';
             $Compra->MetodoPago = $request->input('MetodoPago');
 
             // Asignar idConcepto desde la tabla Conceptos donde coincide idConcepto elegido en front
@@ -95,7 +96,7 @@ class ComprasControllers extends Controller
 
             $Periodo->save();
 
-            $Compra->idPeriodo = $Periodo->id;
+            $Compra->idPeriodo = $Periodo->idPeriodo;
 
             $Compra->idPersona = Session::get('idPersona'); //id persona de sesion
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Alumno;
 use App\Models\VInasistencias;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -21,8 +22,9 @@ class InasistenciasController extends Controller
 
     public function inasistenciasParticulares(String $id)
     {
-        $Inasistencias = DB::table('Inasistencias')
-            ->where('idPersona', $id)
+        $idPersona = Alumno::where('idAlumno', $id)->value('idPersona');
+        $Inasistencias = DB::table('vInasistencias')
+            ->where('idPersona', $idPersona)
             ->paginate(50);
 
         return view('dinamicas.InasistPersonal', ['Inasistencias' => $Inasistencias]);
