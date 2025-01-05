@@ -1,6 +1,6 @@
 <x-docente.layout>
 
-@if(!empty($AlumnosDelGrupo) && $AlumnosDelGrupo = null)
+@if (!empty($AlumnosDelGrupo))
 
     <!-- 🧑‍💻 Campo de Búsqueda -->
     <div class="relative mb-4">

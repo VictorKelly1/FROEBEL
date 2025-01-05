@@ -54,42 +54,55 @@
         </form>
     </div>
 
-    <!-- ✅ Tabla Compacta con Diseño Original -->
-    <div
-        class="posiciontablasbaja flex items-center justify-center bg-gray-900 p-6 mt-6 rounded-md border border-blue-500 shadow-md w-3/4 sm:w-2/3 lg:w-1/2 overflow-x-auto">
-        <table class="w-full text-lg text-white border-collapse border border-blue-500 rounded-md">
-            <thead class="bg-blue-700 text-center">
-                <tr>
-                    <th class="px-4 py-2 border-b border-blue-500">Clave</th>
-                    <th class="px-4 py-2 border-b border-blue-500">Nombre</th>
-                    <th class="px-4 py-2 border-b border-blue-500">Grupo</th>
-                    <th class="px-4 py-2 border-b border-blue-500">Quitar Materia</th>
-                </tr>
-            </thead>
-            <tbody id="tableBody">
-                @foreach ($GrupMat as $GruposMat)
-                    <tr class="hover:bg-gray-800 text-center">
-                        <td class="px-4 py-2 border-t border-blue-500">
-                            {{ $GruposMat->Clave }}
-                        </td>
-                        <td class="px-4 py-2 border-t border-blue-500">
-                            {{ $GruposMat->NombreMateria }} {{ $GruposMat->Tipo }}
-                        </td>
-                        <td class="px-4 py-2 border-t border-blue-500">
-                            {{ $GruposMat->NombreGrado }} {{ $GruposMat->NivelAcademico }} {{ $GruposMat->Paquete }}
-                        </td>
-                        <td class="px-4 py-2 border-t border-blue-500">
-                            <form action="/EliminarGruposMateria/{{ $GruposMat->IdGrupoMateria }}" method="DELETE">
-                                @csrf
-                                <button
-                                    class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 text-lg">Eliminar</button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+   <!-- ✅ Contenedor con Buscador y Tabla Compacta -->
+<div
+    class="posiciontablasbaja flex flex-col items-center justify-center bg-gray-900 p-6 mt-6 rounded-md border border-blue-500 shadow-md w-3/4 sm:w-2/3 lg:w-1/2 overflow-x-auto">
+
+    <!-- ✅ Buscador -->
+    <div class="w-full mb-4">
+        <input 
+            type="text" 
+            id="searchInput" 
+            class="w-full p-2 border border-blue-500 rounded-md text-gray-900" 
+            placeholder="🔍 Buscar en la tabla...">
     </div>
+
+    <!-- ✅ Tabla Compacta -->
+    <table class="w-full text-lg text-white border-collapse border border-blue-500 rounded-md">
+        <thead class="bg-blue-700 text-center">
+            <tr>
+                <th class="px-4 py-2 border-b border-blue-500">Clave</th>
+                <th class="px-4 py-2 border-b border-blue-500">Nombre</th>
+                <th class="px-4 py-2 border-b border-blue-500">Grupo</th>
+                <th class="px-4 py-2 border-b border-blue-500">Quitar Materia</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            @foreach ($GrupMat as $GruposMat)
+                <tr class="hover:bg-gray-800 text-center">
+                    <td class="px-4 py-2 border-t border-blue-500">
+                        {{ $GruposMat->Clave }}
+                    </td>
+                    <td class="px-4 py-2 border-t border-blue-500">
+                        {{ $GruposMat->NombreMateria }} {{ $GruposMat->Tipo }}
+                    </td>
+                    <td class="px-4 py-2 border-t border-blue-500">
+                        {{ $GruposMat->NombreGrado }} {{ $GruposMat->NivelAcademico }} {{ $GruposMat->Paquete }}
+                    </td>
+                    <td class="px-4 py-2 border-t border-blue-500">
+                        <form action="/EliminarGruposMateria/{{ $GruposMat->IdGrupoMateria }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button
+                                class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 text-lg">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
+
 
     <!-- ✅ Paginación -->
     <div class="mt-4 text-lg text-center text-white">
@@ -127,4 +140,23 @@
             }, 1000); // Aseguramos que la animación de desvanecimiento termine antes de eliminarla
         }, 5000); // 5 segundos de espera
     </script>
+
+<script>
+
+// ✅ Filtrar tabla dinámicamente
+document.getElementById('searchInput').addEventListener('input', function () {
+    let filter = this.value.toLowerCase();
+    let rows = document.querySelectorAll('#tableBody tr');
+
+    rows.forEach(row => {
+        let text = row.textContent.toLowerCase();
+        row.style.display = text.includes(filter) ? '' : 'none';
+    });
+});
+
+
+
+</script>
+
+
 </x-director.layout>
