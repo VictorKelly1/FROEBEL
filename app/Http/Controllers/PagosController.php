@@ -63,7 +63,14 @@ class PagosController extends Controller
             ->where('Tipo', '!=', 'Regular')
             ->where('Tipo', '!=', 'Extraescolar')
             ->where('Tipo', '!=', 'Verano')
+            ->whereNot(function ($query) {
+                $query->where('clave', 'like', 'Compra%')
+                    ->orWhere('clave', 'like', 'Venta%');
+            })
             ->get();
+
+
+
 
 
         // Pasar los datos a la vista
@@ -116,6 +123,7 @@ class PagosController extends Controller
             $Pago->CuentaRecibido = $request->input('CuentaRecibido') ?? 'N/A'; //
 
             $Pago->save();
+
             // Si DescTransaccion tiene algún valor
             if ($request->input('idDescuento')) {
                 //
@@ -165,7 +173,7 @@ class PagosController extends Controller
         } catch (\Exception $e) {
             // Revertir transacción si hay un error
             DB::rollBack();
-            return 'error';
+
             return redirect()->back()->with('error', 'Error al registrar el pago: ' . $e->getMessage());
         }
     }

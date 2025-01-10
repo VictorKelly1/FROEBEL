@@ -19,6 +19,7 @@ return new class extends Migration
             SELECT 
                 ar.idRelacion,
                 ar.idTutor,
+                ar.Tipo,
                 vt.Nombre AS NombreTutor,
                 vt.ApellidoPaterno AS ApellidoPaternoT,
                 vt.ApellidoMaterno AS ApellidoMatT,

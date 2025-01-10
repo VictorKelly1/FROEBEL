@@ -2,10 +2,10 @@
 
     <!-- ✅ Mensaje de Éxito -->
     @if (session('success'))
-    <div class="alert alert-success">
-        <p>{{ session('success') }}</p>
-    </div>
-@endif
+        <div class="alert alert-success">
+            <p>{{ session('success') }}</p>
+        </div>
+    @endif
 
     <!-- 🧑‍💻 Campo de Búsqueda -->
     <div class="relative mb-4">
@@ -66,9 +66,11 @@
                             <td class="px-6 py-4 border-t border-blue-500 animate-border text-center">
                                 {{ $Grupo->cantidadAlumnos }}</td>
                             <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">
-                                <form action="#" method="GET">
+                                <form action="/EliminarGrupo/{{ $Grupo->idGrupo }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
                                     <button
-                                        class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Eliminar</button>
+                                        class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-600">Eliminar</button>
                                 </form>
                             </td>
 
@@ -96,21 +98,21 @@
             });
         </script>
 
-<script>
-        // Mostrar alerta
-        document.querySelector('.alert').classList.add('show');
+        <script>
+            // Mostrar alerta
+            document.querySelector('.alert').classList.add('show');
 
-        // Después de 5 segundos, aplicar la clase de desvanecimiento y eliminarla
-        setTimeout(() => {
-            let alertElement = document.querySelector('.alert');
-            alertElement.classList.add('fade-out');
-
-            // Esperar el final de la animación para eliminar el elemento del DOM
+            // Después de 5 segundos, aplicar la clase de desvanecimiento y eliminarla
             setTimeout(() => {
-                alertElement.remove();
-            }, 1000); // Aseguramos que la animación de desvanecimiento termine antes de eliminarla
-        }, 5000); // 5 segundos de espera
-    </script>
+                let alertElement = document.querySelector('.alert');
+                alertElement.classList.add('fade-out');
+
+                // Esperar el final de la animación para eliminar el elemento del DOM
+                setTimeout(() => {
+                    alertElement.remove();
+                }, 1000); // Aseguramos que la animación de desvanecimiento termine antes de eliminarla
+            }, 5000); // 5 segundos de espera
+        </script>
 
 
 

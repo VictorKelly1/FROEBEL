@@ -58,7 +58,7 @@
         .posiciontablasbaja{
 
             position: absolute;
-            top: 75%;    /* alto */
+            top: 65%;    /* alto */
             left: 20%; /* lado */
             width: 75%;
         
@@ -76,8 +76,8 @@
                 .posiciontablascorto{
 
                     position: absolute;
-                    top: 12%;    /* alto */
-                    left: 13%; /* lado */
+                    top: 52%;    /* alto */
+                    left: 20%; /* lado */
                     width: 75%;
                 
                     /* Permite el desplazamiento interno si el contenido es más grande que el contenedor */

@@ -1,17 +1,17 @@
 <x-director.layout>
     <!-- ✅ Mensaje de Éxito -->
     @if (session('success'))
-    <div class="alert alert-success">
-        <p>{{ session('success') }}</p>
-    </div>
-@endif
+        <div class="alert alert-success">
+            <p>{{ session('success') }}</p>
+        </div>
+    @endif
     <div class=" flex items-center posicionregisdesc">
-      
+
         <form class="formulario2x2" action="{{ route('RegistrarGrupo') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <!-- Datos de Persona -->
-         
+
 
             <div class="form-group">
                 <label for="Clave">Clave:</label>
@@ -33,13 +33,13 @@
                 <input type="text" name="NivelAcademico" id="NivelAcademico" class="form-control" required>
             </div>
 
-          
+
             <div class="form-group">
                 <label for="FechaInicio">Fecha de Inicio:</label>
                 <input type="date" name="FechaInicio" id="FechaInicio" class="form-control" required>
             </div>
 
-           
+
             <div class="form-group">
                 <label for="FechaFin">Fecha de Fin:</label>
                 <input type="date" name="FechaFin" id="FechaFin" class="form-control" required>

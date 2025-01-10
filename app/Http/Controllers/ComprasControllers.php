@@ -48,7 +48,14 @@ class ComprasControllers extends Controller
         $Conceptos = Concepto::where('Para', 'Compras')->get();
 
         //esto deveulve los peridos pendientes por pargar de un alumno
-        $Periodos = Periodo::where('Tipo', 'Compra')->get();
+        $Periodos = Periodo::where('Tipo', 'Compra')
+            ->whereNot(function ($query) {
+                $query->where('clave', 'like', 'Compra%')
+                    ->orWhere('clave', 'like', 'Venta%');
+            })
+            ->get();
+
+
 
 
         // Pasar los datos a la vista

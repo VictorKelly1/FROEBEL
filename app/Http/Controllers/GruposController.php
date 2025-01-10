@@ -195,5 +195,21 @@ class GruposController extends Controller
     public function destroy(string $id)
     {
         //
+        $G = Grupo::findOrFail($id);
+        //
+        DB::beginTransaction();
+        //
+        try {
+            // Eliminar registros relacionados en calificaciones
+            $G->delete();
+
+            DB::commit();
+            return redirect()->back()->with('success', 'Registro eliminado correctamente.');
+        } catch (\Exception $e) {
+            dd($e);
+            DB::rollBack();
+            return redirect()->back()->with('error', 'No es posible eliminar este grupo, verifica que 
+            no tenga Alumnos, docentes o materias asignados.');
+        }
     }
 }

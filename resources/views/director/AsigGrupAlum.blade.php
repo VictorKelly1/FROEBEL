@@ -1,10 +1,10 @@
 <x-director.layout>
     <!-- ✅ Mensaje de Éxito -->
     @if (session('success'))
-    <div class="alert alert-success">
-        <p>{{ session('success') }}</p>
-    </div>
-@endif
+        <div class="alert alert-success">
+            <p>{{ session('success') }}</p>
+        </div>
+    @endif
 
 
     <!-- ✅ Formulario Compacto para Asignación de Grupo -->
@@ -13,8 +13,9 @@
         <form class="w-full text-white text-base" action="{{ route('AsignarGrupAlum') }}" method="POST"
             enctype="multipart/form-data">
             @csrf
-    <!-- 🔍 Buscador -->
-    <input type="text" id="searchInput" placeholder="Buscar..." class="mb-4 p-2 rounded-md border border-blue-500 text-black w-full md:w-1/2">
+            <!-- 🔍 Buscador -->
+            <input type="text" id="searchInput" placeholder="Buscar..."
+                class="mb-4 p-2 rounded-md border border-blue-500 text-black w-full md:w-1/2">
 
             <!-- 🧑 Alumno -->
             <div class="mb-4">
@@ -52,47 +53,44 @@
         </form>
     </div>
 
-    <!-- ✅ Contenedor con Buscador y Tabla Compacta -->
-<div class="posiciontablasbaja flex flex-col items-center justify-center bg-gray-900 p-6 mt-6 rounded-md border border-blue-500 shadow-md w-3/4 sm:w-2/3 lg:w-1/2 overflow-x-auto">
 
-
-<!-- ✅ Tabla Compacta -->
-<table class="posiciontablasbaja text-lg text-white border-collapse border border-blue-500 rounded-md">
-    <thead class="bg-blue-700 text-center">
-        <tr>
-            <th class="px-4 py-2 border-b border-blue-500">Matrícula</th>
-            <th class="px-4 py-2 border-b border-blue-500">Nombre</th>
-            <th class="px-4 py-2 border-b border-blue-500">Grupo</th>
-            <th class="px-4 py-2 border-b border-blue-500">Periodo del grupo</th>
-            <th class="px-4 py-2 border-b border-blue-500">Quitar Alumno</th>
-        </tr>
-    </thead>
-    <tbody id="tableBody">
-        @foreach ($GrupAlum as $GruposAlum)
-            <tr class="hover:bg-gray-800 text-center">
-                <td class="px-4 py-2 border-t border-blue-500">{{ $GruposAlum->Matricula }}</td>
-                <td class="px-4 py-2 border-t border-blue-500">
-                    {{ $GruposAlum->Nombre }} {{ $GruposAlum->ApellidoPaterno }}
-                    {{ $GruposAlum->ApellidoMaterno }}
-                </td>
-                <td class="px-4 py-2 border-t border-blue-500">
-                    {{ $GruposAlum->NombreGrado }} {{ $GruposAlum->NivelAcademico }}
-                    {{ $GruposAlum->Paquete }}
-                </td>
-                <td class="px-4 py-2 border-t border-blue-500">
-                    {{ $GruposAlum->ClavePeriodo }}
-                </td>
-                <td class="px-4 py-2 border-t border-blue-500">
-                    <form action="/GruposAlumnos/{{ $GruposAlum->idGrupoAlumno }}" method="GET">
-                        <button
-                            class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 text-lg">Eliminar</button>
-                    </form>
-                </td>
+    <!-- ✅ Tabla Compacta -->
+    <table class="posiciontablasbaja text-lg text-white border-collapse border border-blue-500 rounded-md">
+        <thead class="bg-blue-700 text-center">
+            <tr>
+                <th class="px-4 py-2 border-b border-blue-500">Matrícula</th>
+                <th class="px-4 py-2 border-b border-blue-500">Nombre</th>
+                <th class="px-4 py-2 border-b border-blue-500">Grupo</th>
+                <th class="px-4 py-2 border-b border-blue-500">Periodo del grupo</th>
+                <th class="px-4 py-2 border-b border-blue-500">Quitar Alumno</th>
             </tr>
-        @endforeach
-    </tbody>
-</table>
-</div>
+        </thead>
+        <tbody id="tableBody">
+            @foreach ($GrupAlum as $GruposAlum)
+                <tr class="hover:bg-gray-800 text-center">
+                    <td class="px-4 py-2 border-t border-blue-500">{{ $GruposAlum->Matricula }}</td>
+                    <td class="px-4 py-2 border-t border-blue-500">
+                        {{ $GruposAlum->Nombre }} {{ $GruposAlum->ApellidoPaterno }}
+                        {{ $GruposAlum->ApellidoMaterno }}
+                    </td>
+                    <td class="px-4 py-2 border-t border-blue-500">
+                        {{ $GruposAlum->NombreGrado }} {{ $GruposAlum->NivelAcademico }}
+                        {{ $GruposAlum->Paquete }}
+                    </td>
+                    <td class="px-4 py-2 border-t border-blue-500">
+                        {{ $GruposAlum->ClavePeriodo }}
+                    </td>
+                    <td class="px-4 py-2 border-t border-blue-500">
+                        <form action="/GruposAlumnos/{{ $GruposAlum->idGrupoAlumno }}" method="GET">
+                            <button
+                                class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 text-lg">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+    </div>
 
 
     <!-- ✅ Paginación -->
@@ -100,7 +98,7 @@
         {{ $GrupAlum->links() }}
     </div>
 
-<script>
+    <script>
         // Mostrar alerta
         document.querySelector('.alert').classList.add('show');
 
@@ -118,26 +116,22 @@
 
 
 
-<script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const tableBody = document.getElementById('tableBody');
+            const rows = tableBody.getElementsByTagName('tr');
 
+            searchInput.addEventListener('keyup', function() {
+                const searchValue = searchInput.value.toLowerCase();
 
-document.addEventListener('DOMContentLoaded', function () {
-    const searchInput = document.getElementById('searchInput');
-    const tableBody = document.getElementById('tableBody');
-    const rows = tableBody.getElementsByTagName('tr');
-
-    searchInput.addEventListener('keyup', function () {
-        const searchValue = searchInput.value.toLowerCase();
-
-        Array.from(rows).forEach(row => {
-            const rowText = row.textContent.toLowerCase();
-            row.style.display = rowText.includes(searchValue) ? '' : 'none';
+                Array.from(rows).forEach(row => {
+                    const rowText = row.textContent.toLowerCase();
+                    row.style.display = rowText.includes(searchValue) ? '' : 'none';
+                });
+            });
         });
-    });
-});
-
-
-</script>
+    </script>
 
 
 

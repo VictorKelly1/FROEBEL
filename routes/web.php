@@ -157,8 +157,7 @@ Route::middleware('DirectorPermisos')->group(function () {
         Route::get('/Grupos', 'index')->name('ListaGrupos');
         Route::get('/VistaRegistrarGrupo', 'create')->name('VistaRegistrarGrupo');
         Route::post('/RegistrarGrupo', 'store')->name('RegistrarGrupo');
-        Route::get('/VistaEditarGrupo/{id}', 'edit')->name('VistaEditarGrupo');
-        Route::post('/EditarGrupo', 'update')->name('EditarGrupo');
+        Route::delete('/EliminarGrupo/{id}', 'destroy')->name('EliminarGrupo');
     });
 });
 

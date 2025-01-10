@@ -39,15 +39,16 @@
                 </thead>
                 <tbody id="tableBody">
                     @foreach ($AlumnosDelGrupo as $AlumnoDelGrupo)
-                    <tr class="hover:bg-gray-800 bg-transparent">
+                        <tr class="hover:bg-gray-800 bg-transparent">
                             <!-- Foto -->
                             <td class="px-4 py-2 border-t border-red-500 animate-border text-center">
-                            @if ($AlumnoDelGrupo->Foto)
-                            <img src="{{ asset('fotos/' . $AlumnoDelGrupo->Foto) }}" alt="Usuario" class="w-28 h-28 rounded-full">
-                            @else
-                            <span class="text-gray-500">Sin foto</span>
-                            @endif
-                        </td> 
+                                @if ($AlumnoDelGrupo->Foto)
+                                    <img src="{{ asset('fotos/' . $AlumnoDelGrupo->Foto) }}" alt="Usuario"
+                                        class="w-28 h-28 rounded-full">
+                                @else
+                                    <span class="text-gray-500">Sin foto</span>
+                                @endif
+                            </td>
 
                             <!-- Matrícula -->
                             <td class="px-4 py-2 border-t border-red-500 animate-border text-center">
@@ -100,7 +101,7 @@
     </script>
 
 
-<script>
+    <script>
         // Mostrar alerta
         document.querySelector('.alert').classList.add('show');
 
@@ -115,19 +116,6 @@
             }, 1000); // Aseguramos que la animación de desvanecimiento termine antes de eliminarla
         }, 5000); // 5 segundos de espera
     </script>
-
-
-
-</x-docente.layout>
-
-
-
-
-
-
-
-
-
 
 
 
