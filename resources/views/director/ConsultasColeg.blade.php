@@ -85,7 +85,7 @@
                     <td class="created_at">{{ $Colegiatura->created_at }}</td>
                     <td>
                         <!-- Botón de "Imprimir Recibo" -->
-                        <button onclick="printReceipt({{ json_encode($Colegiatura) }})" class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600">
+                        <button onclick="printReceipt(@json($Colegiatura))" class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600">
                             Imprimir Recibo
                         </button>
                     </td>
@@ -126,7 +126,7 @@
             // Crear el contenido del recibo (en formato de HTML)
             const receiptContent = `
                 <div style="font-family: Arial, sans-serif; width: 100%; padding: 20px;">
-                    <h2 style="text-align: center; color:rgb(249, 249, 0);">Recibo de Pago</h2>
+                    <h2 style="text-align: center; color: #4CAF50;">Recibo de Pago</h2>
                     <p><strong>Nombre:</strong> ${data.Nombre} ${data.ApellidoPaterno} ${data.ApellidoMaterno}</p>
                     <p><strong>Clave:</strong> ${data.Clave}</p>
                     <p><strong>Inicio de Periodo:</strong> ${data.FechaInicio}</p>
