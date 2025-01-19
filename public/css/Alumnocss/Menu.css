@@ -7,7 +7,7 @@
 }
 
 .boton-icono {
-    background: #0d01ff;
+    background: #039ed1;
     color: white;
     width: 5vw;
     height: 5vw;
@@ -18,14 +18,14 @@
     justify-content: center;
     border-radius: 50%;
     font-size: 1.5vw;
-    box-shadow: 0 0 1vw #0008e1;
+    box-shadow: 0 0 1vw #039ed1;
     text-decoration: none;
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .boton-icono:hover {
     transform: scale(1.1);
-    box-shadow: 0 0 2vw #0011f9;
+    box-shadow: 0 0 2vw #039ed1;
 }
 
 /* Contenedor de Calendario */
@@ -36,7 +36,7 @@
     background: #1e1e2d;
     color: white;
     border-radius: 1vw;
-    box-shadow: 0 0 1vw #0123ff;
+    box-shadow: 0 0 1vw #039ed1;
     padding: 1.5%;
     z-index: 999;
     text-align: center;
@@ -46,7 +46,7 @@
 }
 
 .encabezado-calendario {
-    background: #4c4cff;
+    background: #039ed1;
     border-radius: 0.5vw;
     margin-bottom: 1%;
     padding: 0.5%;

@@ -150,5 +150,20 @@
             }, 1000); // Aseguramos que la animación de desvanecimiento termine antes de eliminarla
         }, 5000); // 5 segundos de espera
     </script>
+  <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const tableBody = document.getElementById('tableBody');
+            const rows = tableBody.getElementsByTagName('tr');
 
+            searchInput.addEventListener('keyup', function() {
+                const searchValue = searchInput.value.toLowerCase();
+
+                Array.from(rows).forEach(row => {
+                    const rowText = row.textContent.toLowerCase();
+                    row.style.display = rowText.includes(searchValue) ? '' : 'none';
+                });
+            });
+        });
+    </script>
 </x-director.layout>

@@ -130,17 +130,17 @@ header .ml-auto {
   height: 40px;
   border-radius: 50%;
   border: 2px solid transparent;
-  box-shadow: 0 0 10px 2px rgb(25, 0, 255);
+  box-shadow: 0 0 10px 2px rgb(0, 183, 255);
   animation: led-border 1.5s infinite alternate;
 }
 
 /* Borde LED Animado */
 @keyframes led-border {
   0% {
-      box-shadow: 0 0 5px 2px rgb(93, 0, 255);
+      box-shadow: 0 0 5px 2px rgb(0, 174, 255);
   }
   100% {
-      box-shadow: 0 0 15px 4px rgb(17, 0, 255);
+      box-shadow: 0 0 15px 4px rgb(0, 183, 255);
   }
 }
 
@@ -153,8 +153,8 @@ header .ml-auto {
   transform: translateX(20%);
   background-color: #1e1e2d;
   border-radius: 8px;
-  border: 2px solid rgb(0, 0, 255);
-  box-shadow: 0 0 15px rgb(13, 0, 255);
+  border: 2px solid rgb(0, 187, 255);
+  box-shadow: 0 0 15px rgb(0, 234, 255);
   z-index: 9;
   overflow: hidden;
   min-width: 180px;
@@ -183,7 +183,7 @@ header .ml-auto {
 }
 
 .dropdown-content a:hover {
-  background: #0015ff;
+  background: #00b3ff;
   color: #fff;
 }
 

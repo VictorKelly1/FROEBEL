@@ -10,7 +10,7 @@
         height: 100vh; /* Full height */
         overflow-y: auto;
         scrollbar-width: thin;
-        scrollbar-color: #0023c1 #1f2937;
+        scrollbar-color: #039ed1 #1f2937;
     }
 
     .sidebar a {
@@ -21,13 +21,13 @@
         font-size: 1.2rem; /* Tamaño de fuente más moderado */
         position: relative;
         overflow: hidden;
-        border-bottom: 2px solid #000dff; /* Línea debajo de cada opción */
+        border-bottom: 2px solid #039ed1; /* Línea debajo de cada opción */
     }
   
     /* Efecto hover en las opciones */
     .sidebar a:hover {
         background-color: #1f1f1f; /* Fondo oscuro al pasar el mouse */
-        color: #000dff; /* Texto azul al pasar el mouse */
+        color: #039ed1; /* Texto azul al pasar el mouse */
     }
   
     /* Línea LED debajo de cada opción */
@@ -38,7 +38,7 @@
         left: 0;
         width: 0;
         height: 2px;
-        background: linear-gradient(90deg, #000dff, #000dff);
+        background: linear-gradient(90deg, #039ed1, #039ed1);
         transition: width 0.5s ease-in-out;
     }
   
@@ -70,7 +70,7 @@
     }
   
     .sidebar::-webkit-scrollbar-thumb {
-        background-color: #0023c1;
+        background-color: #039ed1;
         border-radius: 6px;
     }
 }

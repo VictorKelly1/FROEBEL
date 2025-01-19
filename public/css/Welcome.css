@@ -1,0 +1,166 @@
+/* Ajustes generales */
+body {
+    font-family: 'Colegios Frebel', sans-serif;
+    background-color: rgb(8, 7, 28); /* Azul oscuro */
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    color: white;
+    line-height: 1.6;
+}
+
+/* Header */
+header {
+    background-color: rgb(22, 29, 43);
+    padding: 1% 3%; /* Ajustado para mayor consistencia */
+    text-align: center;
+    color: white;
+    font-size: 1.5rem; /* Tamaño más destacado */
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    width: 100%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Contenedor principal */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 3%; /* Espaciado uniforme */
+    margin-top: 2%;
+}
+
+/* Contenedor de inicio de sesión */
+.login-container {
+    display: flex;
+    align-items: center;
+    background: #222; /* Fondo gris oscuro */
+    padding: 4%; /* Más espacio interno */
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 72, 255, 0.895);
+    max-width: 70%; /* Más ancho */
+    margin-top: 2%;
+    gap: 5%; /* Más espacio entre logo y contenido */
+    flex-wrap: wrap; /* Para manejar pantallas pequeñas */
+}
+
+/* Logo */
+.logo-container {
+    flex: 1;
+    text-align: center;
+}
+
+.logo {
+    max-width: 80%; /* Más grande, pero adaptable */
+    height: auto;
+}
+
+/* Título */
+.title {
+    font-size: 3rem; /* Tamaño destacado */
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+/* Texto */
+.text {
+    font-size: 1.5rem; /* Ajustado para legibilidad */
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+/* Botón de inicio de sesión */
+.login-button {
+    background: linear-gradient(to right, rgb(0, 225, 255), rgb(23, 11, 249));
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 1.5% 5%; /* Espaciado interno mayor */
+    font-size: 1.8rem; /* Tamaño destacado */
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-shadow: 0 4px 12px rgba(0, 255, 255, 0.4);
+    text-align: center;
+}
+
+.login-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(17, 0, 255, 0.6);
+}
+
+/* Footer */
+footer {
+    background-color: rgb(22, 29, 43);
+    padding: 1% 3%; /* Espaciado más consistente */
+    text-align: center;
+    font-size: 1rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Footer Links */
+.footer-links,
+.footer-links-right {
+    position: absolute;
+    bottom: 12%;
+    background-color: rgb(11, 14, 40);
+    color: white;
+    padding: 2% 3%;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 255, 255, 0.4);
+    width: 20%; /* Ajustado para pantallas pequeñas */
+    text-align: center;
+    font-size: 1rem;
+}
+
+.footer-links {
+    left: 3%;
+}
+
+.footer-links-right {
+    right: 3%;
+}
+
+/* Links en contenedores */
+.footer-links span,
+.footer-links-right span {
+    display: block;
+    margin: 8px 0;
+    color: rgb(143, 142, 165);
+    font-size: 1rem;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .login-container {
+        flex-direction: column; /* Apilado en pantallas pequeñas */
+        text-align: center;
+        gap: 2%;
+    }
+
+    .logo-container {
+        margin-bottom: 2%;
+    }
+
+    .footer-links,
+    .footer-links-right {
+        width: 40%; /* Ajustar ancho para pantallas más pequeñas */
+        bottom: 15%; /* Subir ligeramente */
+    }
+}
+
+@media (max-width: 480px) {
+    .login-container {
+        padding: 5%;
+    }
+
+    .footer-links,
+    .footer-links-right {
+        width: 50%; /* Más compacto en móviles */
+    }
+}

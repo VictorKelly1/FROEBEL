@@ -133,6 +133,21 @@
         });
     </script>
 
+ <!-- ✅ Funcionalidad de Búsqueda en Tiempo Real -->
+ <script>
+        document.getElementById("searchInput").addEventListener("input", function() {
+            var filter = this.value.toLowerCase();
+            var rows = document.getElementById("tableBody").getElementsByTagName("tr");
 
+            Array.from(rows).forEach(function(row) {
+                var text = row.textContent.toLowerCase();
+                if (text.includes(filter)) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        });
+    </script>
 
 </x-director.layout>
