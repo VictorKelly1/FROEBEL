@@ -66,6 +66,7 @@
                         <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Método de Pago</th>
                         <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Cuenta Recibido</th>
                         <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Monto Total</th>
+                        <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Imprimir Recibo</th> <!-- Nueva columna para botón -->
                     </tr>
                 </thead>
                 <tbody id="tableBody">
@@ -78,6 +79,9 @@
                         <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $pago->MetodoPago }}</td>
                         <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $pago->CuentaRecibido }}</td>
                         <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $pago->Monto }}</td>
+                        <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">
+                            <button onclick="printRecibo({{ $pago }})" class="px-4 py-2 bg-yellow-400 text-white rounded-md">Imprimir Recibo</button>
+                        </td>
                     </tr>
                     @endforeach
                     {{ $Pagos->links() }}
@@ -113,6 +117,43 @@
         document.querySelectorAll("input[type='search'], select").forEach(element => {
             element.addEventListener("input", filterTable);
         });
-    </script>
 
+        // Función para imprimir recibo
+        function printRecibo(pago) {
+            const reciboHTML = `
+                <html>
+                    <head>
+                        <title>Recibo de Pago</title>
+                        <style>
+                            body { font-family: Arial, sans-serif; padding: 20px; }
+                            .recibo { width: 100%; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; }
+                            .recibo h1 { text-align: center; }
+                            .recibo table { width: 100%; margin-top: 20px; border-collapse: collapse; }
+                            .recibo table th, .recibo table td { padding: 8px 12px; border: 1px solid #ccc; text-align: left; }
+                            .recibo table th { background-color: #f2f2f2; }
+                        </style>
+                    </head>
+                    <body>
+                        <div class="recibo">
+                            <h1>Recibo de Pago</h1>
+                            <table>
+                                <tr><th>Nombre</th><td>${pago.Nombre} ${pago.ApellidoPaterno} ${pago.ApellidoMaterno}</td></tr>
+                                <tr><th>Clave</th><td>${pago.Clave}</td></tr>
+                                <tr><th>Inicio de Periodo</th><td>${pago.FechaInicio}</td></tr>
+                                <tr><th>Fin de Periodo</th><td>${pago.FechaFin}</td></tr>
+                                <tr><th>Método de Pago</th><td>${pago.MetodoPago}</td></tr>
+                                <tr><th>Cuenta Recibido</th><td>${pago.CuentaRecibido}</td></tr>
+                                <tr><th>Monto Total</th><td>${pago.Monto}</td></tr>
+                            </table>
+                        </div>
+                    </body>
+                </html>
+            `;
+
+            const ventanaImpresion = window.open('', '_blank');
+            ventanaImpresion.document.write(reciboHTML);
+            ventanaImpresion.document.close();
+            ventanaImpresion.print();
+        }
+    </script>
 </x-director.layout>
