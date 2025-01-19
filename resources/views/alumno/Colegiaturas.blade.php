@@ -3,9 +3,9 @@
         /* Contenedor principal */
         .posiciontablasasig {
             display: flex;
-            flex-wrap: nowrap;
-            gap: 1.5rem; /* Aumentamos el espacio entre los contenedores */
-            overflow-x: auto;
+            flex-wrap: nowrap; /* Asegura que no se haga salto de línea */
+            gap: 1.5rem; /* Espacio entre los recuadros */
+            overflow-x: auto; /* Desplazamiento horizontal si es necesario */
             padding: 1rem;
             background: #121212;
             scrollbar-width: thin;
@@ -14,9 +14,9 @@
 
         /* Tarjeta de formulario */
         .formulario {
-            flex: 0 0 30%;
-            max-width: 30%;
-            min-height: 450px; /* Aumentamos la altura */
+            flex: 0 0 30%; /* Asegura que los recuadros ocupen un 30% del contenedor */
+            max-width: 30%; /* Limita el ancho a 30% */
+            min-height: 450px; /* Aumenta la altura de los recuadros */
             border-radius: 15px;
             overflow: hidden;
             position: relative;
@@ -58,13 +58,13 @@
         }
 
         .formulario:hover::before {
-            animation: glowHover 2s ease-in-out infinite; /* Animación cuando el mouse pasa */
+            animation: glowHover 2s ease-in-out infinite;
         }
 
         @keyframes glowHover {
             0% {
                 background-position: 0% 50%;
-                background: linear-gradient(90deg, #00d4ff, #00ff99, #00d4ff); /* Celeste a verde claro */
+                background: linear-gradient(90deg, #00d4ff, #00ff99, #00d4ff);
             }
             50% {
                 background-position: 100% 50%;
