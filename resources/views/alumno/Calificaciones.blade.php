@@ -24,10 +24,8 @@
         <div class="posiciontablas flex items-center justify-center bg-gray-900 p-2 mt-4 rounded-md border border-blue-500 shadow-md w-3/4 sm:w-1/2 lg:w-3/4 overflow-x-auto z-30">
             <div class="w-full max-w-full">
 
-                <!-- Botón para imprimir -->
-                <div class="mb-4 text-center">
-                    <button onclick="printTable()" class="px-4 py-2 bg-blue-500 text-white rounded-md">Imprimir Tabla</button>
-                </div>
+         
+
 
                 <!-- Tabla -->
                 <table id="miTabla" class="text-sm text-left text-white w-full table-auto z-30">
@@ -61,40 +59,7 @@
             </div>
         </div>
 
-        <script>
-            function printTable() {
-                const tabla = document.getElementById('miTabla').outerHTML; // Captura la tabla completa
-
-                // Abre la ventana de impresión directamente
-                const ventanaImpresion = window.open('', '_blank'); // Nueva ventana para impresión
-                ventanaImpresion.document.write(`
-                    <html>
-                        <head>
-                            <title>Imprimir Tabla</title>
-                            <style>
-                                table {
-                                    width: 100%;
-                                    border-collapse: collapse;
-                                }
-                                th, td {
-                                    border: 1px solid #000;
-                                    padding: 8px;
-                                    text-align: left;
-                                }
-                                th {
-                                    background-color: rgb(0, 21, 255);
-                                }
-                            </style>
-                        </head>
-                        <body>
-                            ${tabla}
-                        </body>
-                    </html>
-                `);
-                ventanaImpresion.document.close();
-                ventanaImpresion.print(); // Imprime directamente
-            }
-        </script>
+       
 
     </div>
 
