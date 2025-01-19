@@ -128,7 +128,7 @@ class GruposMatController extends Controller
             DB::commit();
             return redirect()->route('ListaGruposMaterias')->with('success', 'Registro eliminado correctamente.');
         } catch (\Exception $e) {
-            dd($e);
+
             DB::rollBack();
             return redirect()->back()->with('error', 'Error al eliminar el registro: ' . $e->getMessage());
         }

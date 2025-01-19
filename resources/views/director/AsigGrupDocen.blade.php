@@ -1,17 +1,11 @@
 <x-director.layout>
     <!-- ✅ Mensaje de Éxito -->
     @if (session('success'))
-    <div class="alert alert-success">
-        <p>{{ session('success') }}</p>
-    </div>
-@endif
-    <!-- 🧑‍💻 Campo de Búsqueda para Filtrar Docentes -->
-    <div class="relative mb-4">
-        <div class="absolute top-0 right-0 p-2">
-            <input type="search" id="searchInput" placeholder="Buscar Docente..." class="buscador-input"
-                style="width: 550px; height: 50px; padding: 8px; background-color: #2d2d2d; color: white; border-radius: 5px;">
+        <div class="alert alert-success">
+            <p>{{ session('success') }}</p>
         </div>
-    </div>
+    @endif
+
 
     <!-- ✅ Formulario Compacto para Asignación de Docente a Grupo -->
     <div
@@ -19,8 +13,9 @@
         <form class="w-full text-white text-base" action="{{ route('AsignarGrupDocente') }}" method="POST"
             enctype="multipart/form-data">
             @csrf
-    <!-- 🔍 Buscador -->
-    <input type="text" id="searchInput" placeholder="Buscar..." class="mb-4 p-2 rounded-md border border-blue-500 text-black w-full md:w-1/2">
+            <!-- 🔍 Buscador -->
+            <input type="text" id="searchInput" placeholder="Buscar..."
+                class="mb-4 p-2 rounded-md border border-blue-500 text-black w-full md:w-1/2">
 
             <!-- 👩‍🏫 Docente -->
             <div class="mb-4">
@@ -58,52 +53,44 @@
     </div>
 
     <!-- ✅ Contenedor con Buscador y Tabla Compacta -->
-<div
-    class="posiciontablasbaja flex flex-col items-center justify-center bg-gray-900 p-6 mt-6 rounded-md border border-blue-500 shadow-md w-3/4 sm:w-2/3 lg:w-1/2 overflow-x-auto">
+    <div
+        class="posiciontablasbaja flex flex-col items-center justify-center bg-gray-900 p-6 mt-6 rounded-md border border-blue-500 shadow-md w-3/4 sm:w-2/3 lg:w-1/2 overflow-x-auto">
 
-    <!-- ✅ Buscador -->
-    <div class="w-full mb-4">
-        <input 
-            type="text" 
-            id="searchInput" 
-            class="w-full p-2 border border-blue-500 rounded-md text-gray-900" 
-            placeholder="🔍 Buscar en la tabla...">
-    </div>
 
-    <!-- ✅ Tabla Compacta -->
-    <table class="w-full text-lg text-white border-collapse border border-blue-500 rounded-md">
-        <thead class="bg-blue-700 text-center">
-            <tr>
-                <th class="px-4 py-2 border-b border-blue-500">Nombre del Docente</th>
-                <th class="px-4 py-2 border-b border-blue-500">Grupos a Cargo</th>
-                <th class="px-4 py-2 border-b border-blue-500">Periodo del grupo</th>
-                <th class="px-4 py-2 border-b border-blue-500">Desasignaciones</th>
-            </tr>
-        </thead>
-        <tbody id="tableBody">
-            @foreach ($GrupDocen as $GrupDoc)
-                <tr class="hover:bg-gray-800 text-center">
-                    <td class="px-4 py-2 border-t border-blue-500">
-                        {{ $GrupDoc->NombreDocente }} {{ $GrupDoc->ApellidoPaternoDocente }}
-                        {{ $GrupDoc->ApellidoMaternoDocente }}
-                    </td>
-                    <td class="px-4 py-2 border-t border-blue-500">
-                        {{ $GrupDoc->NombreGrado }} {{ $GrupDoc->NivelAcademico }} {{ $GrupDoc->Paquete }}
-                    </td>
-                    <td class="px-4 py-2 border-t border-blue-500">
-                        {{ $GrupDoc->ClavePeriodo }}
-                    </td>
-                    <td class="px-4 py-2 border-t border-blue-500">
-                        <form action="/GruposAlumnos/{{ $GrupDoc->idGrupoDocente }}" method="GET">
-                            <button
-                                class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 text-lg">Eliminar</button>
-                        </form>
-                    </td>
+        <!-- ✅ Tabla Compacta -->
+        <table class="w-full text-lg text-white border-collapse border border-blue-500 rounded-md">
+            <thead class="bg-blue-700 text-center">
+                <tr>
+                    <th class="px-4 py-2 border-b border-blue-500">Nombre del Docente</th>
+                    <th class="px-4 py-2 border-b border-blue-500">Grupos a Cargo</th>
+                    <th class="px-4 py-2 border-b border-blue-500">Periodo del grupo</th>
+                    <th class="px-4 py-2 border-b border-blue-500">Desasignaciones</th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
-</div>
+            </thead>
+            <tbody id="tableBody">
+                @foreach ($GrupDocen as $GrupDoc)
+                    <tr class="hover:bg-gray-800 text-center">
+                        <td class="px-4 py-2 border-t border-blue-500">
+                            {{ $GrupDoc->NombreDocente }} {{ $GrupDoc->ApellidoPaternoDocente }}
+                            {{ $GrupDoc->ApellidoMaternoDocente }}
+                        </td>
+                        <td class="px-4 py-2 border-t border-blue-500">
+                            {{ $GrupDoc->NombreGrado }} {{ $GrupDoc->NivelAcademico }} {{ $GrupDoc->Paquete }}
+                        </td>
+                        <td class="px-4 py-2 border-t border-blue-500">
+                            {{ $GrupDoc->ClavePeriodo }}
+                        </td>
+                        <td class="px-4 py-2 border-t border-blue-500">
+                            <form action="/GruposAlumnos/{{ $GrupDoc->idGrupoDocente }}" method="GET">
+                                <button
+                                    class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 text-lg">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 
 
     <!-- ✅ Paginación -->
@@ -111,21 +98,18 @@
         {{ $GrupDocen->links() }}
     </div>
 
-<script>
-// ✅ Filtrar tabla dinámica
-document.getElementById('searchInput').addEventListener('input', function () {
-    let filter = this.value.toLowerCase();
-    let rows = document.querySelectorAll('#tableBody tr');
+    <script>
+        // ✅ Filtrar tabla dinámica
+        document.getElementById('searchInput').addEventListener('input', function() {
+            let filter = this.value.toLowerCase();
+            let rows = document.querySelectorAll('#tableBody tr');
 
-    rows.forEach(row => {
-        let text = row.textContent.toLowerCase();
-        row.style.display = text.includes(filter) ? '' : 'none';
-    });
-});
-
-
-
-</script>
+            rows.forEach(row => {
+                let text = row.textContent.toLowerCase();
+                row.style.display = text.includes(filter) ? '' : 'none';
+            });
+        });
+    </script>
 
 
 
@@ -145,7 +129,7 @@ document.getElementById('searchInput').addEventListener('input', function () {
             });
         });
     </script>
-<script>
+    <script>
         // Mostrar alerta
         document.querySelector('.alert').classList.add('show');
 

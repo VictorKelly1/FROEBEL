@@ -1,22 +1,22 @@
 <x-director.layout>
-        <!-- ✅ Mensaje de Éxito -->
-        @if (session('success'))
-    <div class="alert alert-success">
-        <p>{{ session('success') }}</p>
-    </div>
-@endif
-    <!-- 🧑‍💻 Campo de Búsqueda para Filtrar Personas -->
-    <div class="relative mb-4">
-        <div class="absolute top-0 right-0 p-2">
-            <input type="search" id="searchInput" placeholder="Buscar Persona..." 
-                class="buscador-input" style="width: 550px; height: 50px; padding: 8px; background-color: #2d2d2d; color: white; border-radius: 5px;">
+    <!-- ✅ Mensaje de Éxito -->
+    @if (session('success'))
+        <div class="alert alert-success">
+            <p>{{ session('success') }}</p>
         </div>
-    </div>
+    @endif
 
+    </div>
     <!-- ✅ Formulario Compacto de Asignación de Contacto -->
-    <div class="posiciontablasmedia flex items-center justify-center bg-gray-900 p-6 mt-6 rounded-md border border-blue-500 shadow-md w-3/4 sm:w-2/3 lg:w-1/2">
-        <form class="w-full text-white text-base" action="{{ route('AsignarContacto') }}" method="POST" enctype="multipart/form-data">
+    <div
+        class="posiciontablasmedia flex items-center justify-center bg-gray-900 p-6 mt-6 rounded-md border border-blue-500 shadow-md w-3/4 sm:w-2/3 lg:w-1/2">
+        <form class="w-full text-white text-base" action="{{ route('AsignarContacto') }}" method="POST"
+            enctype="multipart/form-data">
             @csrf
+            <!-- 🔍 Buscador -->
+            <input type="text" id="searchInput" placeholder="Buscar..."
+                class="mb-4 p-2 rounded-md border border-blue-500 text-black w-full md:w-1/2">
+
 
             <!-- 📋 Encabezado -->
             <h3 class="text-lg font-bold mb-4 text-center">Datos Personales</h3>
@@ -24,11 +24,13 @@
             <!-- 🧑 Persona -->
             <div class="mb-4">
                 <label for="Persona" class="block mb-2 text-lg">Persona:</label>
-                <select name="idPersona" id="Persona" class="w-full px-4 py-2 rounded-md bg-gray-800 border border-blue-500 text-white text-lg" required>
+                <select name="idPersona" id="Persona"
+                    class="w-full px-4 py-2 rounded-md bg-gray-800 border border-blue-500 text-white text-lg" required>
                     <option value="">Seleccione</option>
                     @foreach ($Personas as $Persona)
                         <option value="{{ $Persona->idPersona }}" class="personaOption">
-                            {{ $Persona->CURP }} - {{ $Persona->Nombre }} {{ $Persona->ApellidoPaterno }} {{ $Persona->ApellidoMaterno }}
+                            {{ $Persona->CURP }} - {{ $Persona->Nombre }} {{ $Persona->ApellidoPaterno }}
+                            {{ $Persona->ApellidoMaterno }}
                         </option>
                     @endforeach
                 </select>
@@ -37,7 +39,8 @@
             <!-- 📞 Tipo de Contacto -->
             <div class="mb-4">
                 <label for="TipoContacto" class="block mb-2 text-lg">Tipo de Contacto:</label>
-                <select name="TipoContacto" id="TipoContacto" class="w-full px-4 py-2 rounded-md bg-gray-800 border border-blue-500 text-white text-lg" required>
+                <select name="TipoContacto" id="TipoContacto"
+                    class="w-full px-4 py-2 rounded-md bg-gray-800 border border-blue-500 text-white text-lg" required>
                     <option value="">Seleccione</option>
                     <option value="Email">Email</option>
                     <option value="Celular">Celular</option>
@@ -52,31 +55,33 @@
             </div>
 
             <!-- ✅ Botón de Envío -->
-            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-md text-lg">
+            <button type="submit"
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-md text-lg">
                 Asignar Contacto
             </button>
         </form>
     </div>
 
-    <!-- ✅ Funcionalidad de Búsqueda en Tiempo Real para Personas -->
     <script>
-        document.getElementById("searchInput").addEventListener("input", function() {
-            var filter = this.value.toLowerCase();
-            var options = document.querySelectorAll(".personaOption");
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const tableBody = document.getElementById('tableBody');
+            const rows = tableBody.getElementsByTagName('tr');
 
-            options.forEach(function(option) {
-                var text = option.textContent.toLowerCase();
-                if (text.includes(filter)) {
-                    option.style.display = "";
-                } else {
-                    option.style.display = "none";
-                }
+            searchInput.addEventListener('keyup', function() {
+                const searchValue = searchInput.value.toLowerCase();
+
+                Array.from(rows).forEach(row => {
+                    const rowText = row.textContent.toLowerCase();
+                    row.style.display = rowText.includes(searchValue) ? '' : 'none';
+                });
             });
         });
     </script>
 
     <!-- ✅ Tabla Compacta de Contactos -->
-    <div class="posiciontablasbaja flex items-center justify-center bg-gray-900 p-6 mt-6 rounded-md border border-blue-500 shadow-md w-3/4 sm:w-2/3 lg:w-1/2 overflow-x-auto">
+    <div
+        class="posiciontablasbaja flex items-center justify-center bg-gray-900 p-6 mt-6 rounded-md border border-blue-500 shadow-md w-3/4 sm:w-2/3 lg:w-1/2 overflow-x-auto">
         <table class="w-full text-lg text-white border-collapse border border-blue-500 rounded-md">
             <thead class="bg-blue-700 text-center">
                 <tr>
