@@ -75,17 +75,19 @@ class DescuentosController extends Controller
      */
     public function edit(Descuento $id)
     {
-        if (!$id) {
+        if ($id) {
+            return view('dinamicas.EditarDesc', ['Descuento' => $id]);
+
+           
+        } else {      
             return response()->json(['error' => 'Descuento no encontrado'], 404);
-        } else {
-            return view('dinamicas.EditarDescuento', ['Descuento' => $id]);
         }
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
         $request->validate([
             'Nombre' => 'required|string|max:255',

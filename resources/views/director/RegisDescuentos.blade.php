@@ -20,7 +20,7 @@
             </div>
 
             <div class="form-group">
-
+            <label for="Para">Para:</label>
                 <select name="Para" id="Para" class="form-control" required>
                     <option value="">Seleccione</option>
                     <option value="Ventas">Ventas </option>
@@ -75,7 +75,7 @@
                             {{ $Descuento->Monto }}
                         </td>
                         <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">
-                            <form action="/VistaEditarConceptos/{{ $Descuento->idDescuento }}" method="GET">
+                            <form action="/VistaEditarDescuento/{{ $Descuento->idDescuento }}" method="GET">
                                 <button
                                     class="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-blue-600">Editar</button>
                             </form>
