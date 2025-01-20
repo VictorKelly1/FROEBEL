@@ -69,7 +69,14 @@ class ModuloDocenteController extends Controller
             ->where('idGrupo', $id)
             ->get();
 
-        return view('docenteDinamicas.GrupoDocente', ['AlumnosDelGrupo' => $AlumnosDelGrupo]);
+        $NA = DB::table('vGrupos')
+            ->where('idGrupo', $id)
+            ->value('NivelAcademico');
+
+        return view('docenteDinamicas.GrupoDocente', [
+            'AlumnosDelGrupo' => $AlumnosDelGrupo,
+            'NivelAcademico' => $NA
+        ]);
     }
 
     public function vistaInasistencias()
@@ -113,12 +120,12 @@ class ModuloDocenteController extends Controller
                 $CP = new Calificacion();
                 $CP->idAlumno = $id;
                 $CP->idGruposMaterias = $idGrupoMateria;
-                $CP->parcial1 = 0;
-                $CP->parcial2 = 0;
-                $CP->parcial3 = 0;
-                $CP->parcial4 = 0;
-                $CP->parcial5 = 0;
-                $CP->parcial6 = 0;
+                $CP->parcial1 = " ";
+                $CP->parcial2 = " ";
+                $CP->parcial3 = " ";
+                $CP->parcial4 = " ";
+                $CP->parcial5 = " ";
+                $CP->parcial6 = " ";
 
                 $CP->save();
             }
@@ -138,6 +145,8 @@ class ModuloDocenteController extends Controller
         $Calificaciones = Vcalificaciones::where('idAlumno', $id)
             ->where('ClavePeriodo', 'LIKE', $ultimoPeriodo . '%')
             ->get();
+
+        //if kinder o guar =  return view('docenteDinamicas.RegisCalifKinder', ['Calificaciones' => $Calificaciones]);
 
         return view('docenteDinamicas.RegisCalif', ['Calificaciones' => $Calificaciones]);
     }
