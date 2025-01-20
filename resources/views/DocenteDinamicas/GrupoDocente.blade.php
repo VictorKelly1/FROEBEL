@@ -67,7 +67,7 @@
                                     <button
                                         class="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-600">Calificar</button>
                                         <input type="hidden" name="NivelAcademico" value="{{ $AlumnoDelGrupo->NivelAcademico }}">
-
+                                        <input type="hidden" name="idGrupo" value="{{ $AlumnoDelGrupo->idGrupo->id }}">
                                 </form>
                             </td>
                             <td class="px-4 py-2 border-t border-red-500 animate-border text-center">

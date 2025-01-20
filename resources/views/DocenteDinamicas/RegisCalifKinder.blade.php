@@ -37,6 +37,7 @@
                                     <td class="px-4 py-2 border-t border-red-500 animate-border text-center">
                                         <select name="Parcial{{ $i }}[{{ $Calificacion->idCalificacion }}]"
                                             class="bg-gray-800 text-white border-none w-full text-center rounded-md">
+                                            <option value="" {{ empty($Calificacion->{'Parcial'.$i}) ? 'selected' : '' }}>Seleccionar</option>
                                             <option value="Bien Hecho" {{ $Calificacion->{'Parcial'.$i} == 'Bien Hecho' ? 'selected' : '' }}>Bien Hecho</option>
                                             <option value="Esfuérzate Más" {{ $Calificacion->{'Parcial'.$i} == 'Esfuérzate Más' ? 'selected' : '' }}>Esfuérzate Más</option>
                                             <option value="Necesitas Aplicarte" {{ $Calificacion->{'Parcial'.$i} == 'Necesitas Aplicarte' ? 'selected' : '' }}>Necesitas Aplicarte</option>
