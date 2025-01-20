@@ -75,7 +75,7 @@ class DescuentosController extends Controller
      */
     public function edit(Descuento $id)
     {
-        if (!$id) {
+        if ($id) {
             return view('dinamicas.EditarDesc', ['Descuento' => $id]);
         } else {
             return response()->json(['error' => 'Descuento no encontrado'], 404);
@@ -85,7 +85,7 @@ class DescuentosController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
         $request->validate([
             'Nombre' => 'required|string|max:255',
@@ -97,6 +97,7 @@ class DescuentosController extends Controller
 
         try {
             //Objeto Descuento
+            $id = $request->input('idDescuento');
             $Descuento = Descuento::findOrFail($id);
 
             $Descuento->Nombre = $request->input('Nombre');
