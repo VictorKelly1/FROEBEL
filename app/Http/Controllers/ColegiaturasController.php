@@ -30,7 +30,7 @@ class ColegiaturasController extends Controller
         $Pagos = VTransacciones::where('TipoTransaccion', 'Pago')
             ->where('vTransacciones.TipoTransaccion', 'Pago')
             ->where('vTransacciones.NombreConcepto', 'Colegiatura')
-            ->paginate(50);
+            ->paginate(300);
         //pagos que se les aplico descuento
         $PagosDesc = VdescTransacciones::where('TipoTransaccion', 'Pago')
             ->where('NombreConcepto', 'Colegiatura')

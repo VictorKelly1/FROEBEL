@@ -4,12 +4,12 @@
             @csrf
 
             <!-- Campo oculto para enviar el ID del descuento -->
-            <input type="hidden" name="id" value="{{ $Descuento->idDescuento }}">
+            <input type="hidden" name="idDescuento" value="{{ $Descuento->idDescuento }}">
 
             <div class="form-group">
                 <label for="Nombre">Nombre:</label>
-                <input type="text" name="Nombre" id="Nombre" class="form-control"
-                    value="{{ $Descuento->Nombre }}" required>
+                <input type="text" name="Nombre" id="Nombre" class="form-control" value="{{ $Descuento->Nombre }}"
+                    required>
             </div>
 
             <div class="form-group">
@@ -30,13 +30,20 @@
                 </select>
             </div>
 
+
             <div class="form-group">
                 <label for="Monto">Monto:</label>
-                <input type="number" min="0" name="Monto" id="Monto" value="{{ $Descuento->Monto }}" required>
+                <input type="number" min="0" name="Monto" id="Monto" value="{{ $Descuento->Monto }}"
+                    required>
             </div>
+
+
+
+
 
             <!-- Botón de envío -->
             <button type="submit" class="btn btn-primary">Editar Descuento</button>
         </form>
     </div>
+
 </x-director.layout>

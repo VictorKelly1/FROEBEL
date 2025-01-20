@@ -8,5 +8,5 @@ class Descuento extends Model
 {
     protected $table = 'Descuentos';
     protected $primaryKey = 'idDescuento';
-    protected $fillable = ['Nombre', 'Tipo', 'Monto'];
+    protected $fillable = ['Nombre', 'Tipo', 'Monto', 'Para'];
 }

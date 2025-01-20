@@ -77,9 +77,7 @@ class DescuentosController extends Controller
     {
         if ($id) {
             return view('dinamicas.EditarDesc', ['Descuento' => $id]);
-
-           
-        } else {      
+        } else {
             return response()->json(['error' => 'Descuento no encontrado'], 404);
         }
     }
@@ -98,26 +96,30 @@ class DescuentosController extends Controller
         DB::beginTransaction();
 
         try {
-            //Objeto Descuento
+            // Obtener el objeto Descuento
+            $id = $request->input('idDescuento');
             $Descuento = Descuento::findOrFail($id);
 
-            $Descuento->Nombre = $request->input('Nombre');
-            $Descuento->Tipo = $request->input('Tipo');
-            $Descuento->Monto = $request->input('Monto');
+            // Actualizar los valores
+            $Descuento->update([
+                'Nombre' => $request->input('Nombre'),
+                'Tipo' => $request->input('Tipo'),
+                'Para' => $request->input('Para'),
+                'Monto' => $request->input('Monto'),
+            ]);
 
-            $Descuento->save();
-
-            //confirmar transaccion
+            // Confirmar la transacción
             DB::commit();
 
-            return redirect()->route('ListaDescuantos')->with('success', 'Registro actualizado con exito.');
+            return redirect()->route('VistaRegistrarDescuento')->with('success', 'Registro actualizado con éxito.');
         } catch (\Exception $e) {
-            // Revertir transacción si hay un error
+            // Revertir la transacción si hay un error
             DB::rollBack();
 
             return redirect()->back()->with('error', 'Error al registrar el descuento: ' . $e->getMessage());
         }
     }
+
 
     /**
      * Remove the specified resource from storage.
