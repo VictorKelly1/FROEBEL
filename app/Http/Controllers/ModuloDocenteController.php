@@ -86,7 +86,7 @@ class ModuloDocenteController extends Controller
         return view('docente.MisInasist', ['Inasistencias' => $Inasist]);
     }
 
-    public function vistaCalificacion(String $id)
+    public function vistaCalificacion(String $id, Request $request)
     {
         $ultimoPeriodo = DB::table('vGruposAlumnos')
             ->where('idAlumno', $id)
@@ -145,9 +145,13 @@ class ModuloDocenteController extends Controller
         $Calificaciones = Vcalificaciones::where('idAlumno', $id)
             ->where('ClavePeriodo', 'LIKE', $ultimoPeriodo . '%')
             ->get();
+        //
+        if ($request->input('NivelAcademico') == 'Kinder' || $request->input('NivelAcademico') == 'Guarderia') {
+            return "vista calif k";
+            return view('docenteDinamicas.RegisCalifKinder', ['Calificaciones' => $Calificaciones]);
+        }
 
-        //if kinder o guar =  return view('docenteDinamicas.RegisCalifKinder', ['Calificaciones' => $Calificaciones]);
-
+        //
         return view('docenteDinamicas.RegisCalif', ['Calificaciones' => $Calificaciones]);
     }
 
