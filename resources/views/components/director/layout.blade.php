@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $title ?? 'Mi Aplicación' }}</title>
+
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sidebar1.css') }}">
     
@@ -18,6 +18,8 @@
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.10.5/dist/cdn.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
+    <title>COLEGIO FROEBEL/Director</title>
+    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png">
 
 </head>
 

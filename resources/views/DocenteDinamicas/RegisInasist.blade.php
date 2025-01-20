@@ -12,11 +12,11 @@
                     <table class="text-sm text-left text-white w-full table-auto z-30">
                         <thead class="bg-red-700">
                             <tr>
-                                <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">
+                                <th class="px-4 py-2 text-lg border-b border-red-500 animate-border text-center">
                                     Alumno</th>
-                                <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">
+                                <th class="px-4 py-2 text-lg border-b border-red-500 animate-border text-center">
                                     Matrícula</th>
-                                <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">
+                                <th class="px-4 py-2 text-lg border-b border-red-500 animate-border text-center">
                                     Registrar Asistencia</th>
 
                             </tr>
@@ -25,24 +25,24 @@
                             @foreach ($AlumnosDelGrupo as $AlumnoDelGrupo)
                                 <tr class="hover:bg-gray-800 bg-transparent">
                                     <!-- Foto -->
-                                    {{-- <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">
+                                    {{-- <td class="px-4 py-2 border-t border-red-500 animate-border text-center">
                             @if ($AlumnoDelGrupo->Foto)
                             <img src="{{ asset('fotos/' . $AlumnoDelGrupo->Foto) }}" alt="Usuario" class="w-28 h-28 rounded-full">
                             @else
                             <span class="text-gray-500">Sin foto</span>
                             @endif
                         </td> --}}
-                                    <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">
+                                    <td class="px-4 py-2 border-t border-red-500 animate-border text-center">
                                         {{ $AlumnoDelGrupo->Nombre }} {{ $AlumnoDelGrupo->ApellidoPaterno }}
                                         {{ $AlumnoDelGrupo->ApellidoMaterno }}
                                     </td>
                                     <!-- Matrícula -->
-                                    <td class="px-4 py-2 border-t border-blue-500 animate-border">
+                                    <td class="px-4 py-2 border-t border-red-500 animate-border">
                                         {{ $AlumnoDelGrupo->Matricula }}</td>
 
                                     <!-- Nombre -->
 
-                                    <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">
+                                    <td class="px-4 py-2 border-t border-red-500 animate-border text-center">
                                         <input type="checkbox" name="seleccionar[]"
                                             value="{{ $AlumnoDelGrupo->idAlumno }}">
                                     </td>
@@ -55,7 +55,7 @@
                     </table>
                     <div class="flex justify-center mt-4">
                         <button type="submit"
-                            class="px-6 py-2 bg-green-500 text-white font-bold rounded-md hover:bg-blue-600 transition-all duration-200">
+                            class="px-6 py-2 bg-green-500 text-white font-bold rounded-md hover:bg-red-600 transition-all duration-200">
                             Subir Lista de Asistencia
                         </button>
                 </form>

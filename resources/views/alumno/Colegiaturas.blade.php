@@ -3,20 +3,18 @@
         /* Contenedor principal */
         .posiciontablasasig {
             display: flex;
-            flex-wrap: nowrap; /* Asegura que no se haga salto de línea */
-            gap: 1.5rem; /* Espacio entre los recuadros */
-            overflow-x: auto; /* Desplazamiento horizontal si es necesario */
+            flex-wrap: nowrap; /* Evita que los elementos bajen */
+            gap: 1.5rem; /* Espacio entre tarjetas */
+            overflow-x: auto; /* Permite desplazamiento horizontal */
             padding: 1rem;
             background: #121212;
-            scrollbar-width: thin;
-            scrollbar-color: #007bff #1e1e1e;
         }
 
-        /* Tarjeta de formulario */
+        /* Estilo para las tarjetas (formularios) */
         .formulario {
-            flex: 0 0 30%; /* Asegura que los recuadros ocupen un 30% del contenedor */
-            max-width: 30%; /* Limita el ancho a 30% */
-            min-height: 450px; /* Aumenta la altura de los recuadros */
+            flex: 0 0 25%; /* Ancho relativo del recuadro */
+            max-width: 25%;
+            min-height: 500px; /* Incrementa el alto */
             border-radius: 15px;
             overflow: hidden;
             position: relative;
@@ -24,10 +22,10 @@
         }
 
         .formulario:hover {
-            transform: translateY(-5px);
+            transform: translateY(-5px); /* Efecto al pasar el cursor */
         }
 
-        /* Borde LED animado */
+        /* Efecto LED animado */
         .formulario::before {
             content: "";
             position: absolute;
@@ -47,25 +45,6 @@
             0% {
                 background-position: 0% 50%;
             }
-
-            50% {
-                background-position: 100% 50%;
-            }
-
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        .formulario:hover::before {
-            animation: glowHover 2s ease-in-out infinite;
-        }
-
-        @keyframes glowHover {
-            0% {
-                background-position: 0% 50%;
-                background: linear-gradient(90deg, #00d4ff, #00ff99, #00d4ff);
-            }
             50% {
                 background-position: 100% 50%;
             }
@@ -79,40 +58,29 @@
             border-radius: 15px;
             color: #fff;
             text-align: center;
-            padding: 1.5rem;
+            padding: 2rem; /* Espaciado interno más grande */
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-            position: relative;
-        }
-
-        .card-body {
-            text-align: center;
         }
 
         .card-title {
-            font-size: 1.6rem;
+            font-size: 1.8rem; /* Aumenta el tamaño del título */
             font-weight: bold;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             color: #00d4ff;
         }
 
         .card-text {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid #444;
-        }
-
-        .card-text:last-child {
-            border-bottom: none;
+            font-size: 1.4rem; /* Texto más grande */
+            margin-bottom: 1.5rem;
         }
 
         .btn-primary {
             background-color: #007bff;
             border: none;
             border-radius: 25px;
-            padding: 0.6rem 1.5rem;
-            font-size: 1rem;
-            margin-top: 1rem;
+            padding: 0.8rem 2rem; /* Botón más grande */
+            font-size: 1.2rem;
+            margin-top: 1.5rem;
             transition: background-color 0.3s ease;
         }
 
@@ -120,18 +88,14 @@
             background-color: #00d4ff;
         }
 
-        /* Estilo del scrollbar */
+        /* Scrollbar personalizado */
         .posiciontablasasig::-webkit-scrollbar {
-            height: 8px;
-        }
-
-        .posiciontablasasig::-webkit-scrollbar-track {
-            background: #1e1e1e;
+            height: 10px; /* Tamaño del scrollbar horizontal */
         }
 
         .posiciontablasasig::-webkit-scrollbar-thumb {
             background: #007bff;
-            border-radius: 10px;
+            border-radius: 5px;
         }
 
         .posiciontablasasig::-webkit-scrollbar-thumb:hover {
@@ -139,7 +103,7 @@
         }
     </style>
 
-    <div class="container posiciontablas">
+    <div class="container posiciontablasasig">
         @foreach ($periodos as $periodo)
             <form class="formulario" action="{{ route('PagarColegiatura') }}" method="POST" enctype="multipart/form-data">
                 @csrf
