@@ -76,9 +76,9 @@ class DescuentosController extends Controller
     public function edit(Descuento $id)
     {
         if (!$id) {
-            return response()->json(['error' => 'Descuento no encontrado'], 404);
+            return view('dinamicas.EditarDesc', ['Descuento' => $id]);
         } else {
-            return view('dinamicas.EditarDescuento', ['Descuento' => $id]);
+            return response()->json(['error' => 'Descuento no encontrado'], 404);
         }
     }
 
@@ -101,6 +101,7 @@ class DescuentosController extends Controller
 
             $Descuento->Nombre = $request->input('Nombre');
             $Descuento->Tipo = $request->input('Tipo');
+            $Descuento->Descripcion = $request->input('Tipo');
             $Descuento->Monto = $request->input('Monto');
 
             $Descuento->save();

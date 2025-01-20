@@ -41,7 +41,8 @@
             <span class="text-sm font-semibold uppercase">{{ Session::get('Nombre') }}.</span>
         </div>
         <button class="dropdown-btn">
-            <img src="{{ asset('images/b1.png') }}" alt="Perfil" class="img-perfil">
+        <img src="{{ asset('fotos/' . Session::get('Foto')) }}" alt="Perfil" class="img-perfil">
+
             <!-- Indicador de estado -->
             <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 rounded-full"></span>
         </button>

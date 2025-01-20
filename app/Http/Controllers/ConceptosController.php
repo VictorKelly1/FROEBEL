@@ -71,7 +71,7 @@ class ConceptosController extends Controller
         if (!$id) {
             return response()->json(['error' => 'Concepto no encontrado'], 404);
         } else {
-            return view('dinamicas.EditarConcepto', ['Concepto' => $id]);
+            return view('dinamicas.EditarConcepto', ['Conceptos' => $id]);
         }
     }
 

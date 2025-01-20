@@ -29,7 +29,7 @@
             <table class="text-sm text-left text-white w-full table-auto z-30">
                 <thead class="bg-red-700">
                     <tr>
-                    <th class="px-4 py-2 text-lg border-b border-red-500 animate-border text-center">Persona:</th>
+
                     <th class="px-4 py-2 text-lg border-b border-red-500 animate-border text-center">Nombre:</th>
                     <th class="px-4 py-2 text-lg border-b border-red-500 animate-border text-center"> Grupo:</th>
                     <th class="px-4 py-2 text-lg border-b border-red-500 animate-border text-center">Fecha:</th>
@@ -41,15 +41,7 @@
                     @foreach ($Inasistencias as $Inasistencia)
                     <tr class="hover:bg-gray-800 bg-transparent">
 
-                            <!-- Foto -->
-                            <td class="px-4 py-2 border-t border-red-500 animate-border text-center">
-                                @if ($Inasistencia->Foto)
-                                    <img src="{{ asset('fotos/' . $Inasistencia->Foto) }}" alt="Usuario"
-                                        class="w-28 h-28 rounded-full">
-                                @else
-                                    <span class="text-gray-500">Sin foto</span>
-                                @endif
-                            </td>
+
                             <td class="px-4 py-2 border-t border-red-500 animate-border text-center">
                                 {{ $Inasistencia->Nombre }} {{ $Inasistencia->ApellidoPaterno }} {{ $Inasistencia->ApellidoMaterno }}</td>
 

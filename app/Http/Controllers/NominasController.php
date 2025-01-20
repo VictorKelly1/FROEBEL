@@ -16,7 +16,7 @@ class NominasController extends Controller
     {
         $Nominas = Vtransacciones::where('TipoTransaccion', 'Nomina')
             ->where('NombreConcepto', 'Nomina')
-            ->paginate(50);
+            ->paginate(300);
 
 
         return view(

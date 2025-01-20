@@ -3,24 +3,20 @@
         /* Contenedor principal */
         .posiciontablasasig {
             display: flex;
-            flex-wrap: nowrap;
-            /* Evita el salto de línea */
-            gap: 1rem;
-            overflow-x: auto;
-            /* Desplazamiento horizontal */
+            flex-wrap: nowrap; /* Asegura que no se haga salto de línea */
+            gap: 1.5rem; /* Espacio entre los recuadros */
+            overflow-x: auto; /* Desplazamiento horizontal si es necesario */
             padding: 1rem;
             background: #121212;
-            /* Fondo oscuro */
             scrollbar-width: thin;
             scrollbar-color: #007bff #1e1e1e;
         }
 
         /* Tarjeta de formulario */
         .formulario {
-            flex: 0 0 30%;
-            /* Cada tarjeta ocupa el 30% del contenedor */
-            max-width: 30%;
-            min-height: 400px;
+            flex: 0 0 30%; /* Asegura que los recuadros ocupen un 30% del contenedor */
+            max-width: 30%; /* Limita el ancho a 30% */
+            min-height: 450px; /* Aumenta la altura de los recuadros */
             border-radius: 15px;
             overflow: hidden;
             position: relative;
@@ -61,14 +57,31 @@
             }
         }
 
+        .formulario:hover::before {
+            animation: glowHover 2s ease-in-out infinite;
+        }
+
+        @keyframes glowHover {
+            0% {
+                background-position: 0% 50%;
+                background: linear-gradient(90deg, #00d4ff, #00ff99, #00d4ff);
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
         .card {
             background: #1e1e1e;
-            /* Fondo de la tarjeta */
             border-radius: 15px;
             color: #fff;
             text-align: center;
             padding: 1.5rem;
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
         }
 
         .card-body {
@@ -76,14 +89,14 @@
         }
 
         .card-title {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: bold;
             margin-bottom: 1rem;
             color: #00d4ff;
         }
 
         .card-text {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             margin-bottom: 1rem;
             padding-bottom: 1rem;
             border-bottom: 1px solid #444;

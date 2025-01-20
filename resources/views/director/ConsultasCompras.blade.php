@@ -73,6 +73,7 @@
                         <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Concepto</th>
                         <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Método de Pago</th>
                         <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Monto</th>
+                        <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Acciones</th>
                     </tr>
                 </thead>
                 <tbody id="tableBody">
@@ -87,6 +88,9 @@
                         <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Compra->NombreConcepto }}</td>
                         <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Compra->MetodoPago }}</td>
                         <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Compra->Monto }}</td>
+                        <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">
+                            <button onclick="imprimirRecibo({{ $Compra->id }})" class="bg-blue-500 text-white px-4 py-2 rounded-md">Imprimir Recibo</button>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -122,6 +126,35 @@
         document.querySelectorAll("input[type='search'], select").forEach(element => {
             element.addEventListener("input", filterTable);
         });
+    </script>
+
+    <script>
+        // Función para imprimir el recibo
+        function imprimirRecibo(id) {
+            const row = document.querySelector(`tr[data-id='${id}']`);
+            const data = row.innerText;
+            const windowContent = `
+                <html>
+                    <head>
+                        <title>Recibo de Pago</title>
+                        <style>
+                            body { font-family: Arial, sans-serif; margin: 20px; }
+                            .recibo { border: 1px solid #000; padding: 20px; }
+                        </style>
+                    </head>
+                    <body>
+                        <div class="recibo">
+                            <h2>Recibo de Pago</h2>
+                            <pre>${data}</pre>
+                        </div>
+                    </body>
+                </html>
+            `;
+            const printWindow = window.open('', '', 'height=500,width=800');
+            printWindow.document.write(windowContent);
+            printWindow.document.close();
+            printWindow.print();
+        }
     </script>
 
     <script>

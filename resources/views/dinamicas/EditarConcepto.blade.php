@@ -1,7 +1,6 @@
 
 <x-director.layout>
 
-    @if (!empty($Grupo))
         <div class="posiciontablas">
 
             <form action="{{ route('EditarConcepto') }}" method="POST" enctype="multipart/form-data">
@@ -27,16 +26,16 @@
                         value="{{ $Conceptos->Para }}" required>
                 </div>
 
+                <div class="form-group">
+                    <label for="Monto">Monto:</label>
+                    <input type="number" min="0" name="Monto" id="Monto" value="{{ $Descuento->Monto }}" required>
+                </div>
 
 
                 <!-- Botón de envío -->
                 <button type="submit" class="btn btn-primary">Editar Concepto</button>
             </form>
         </div>
-    @else
-        <div class="sindatos">
-            ⚠️ No se encontraron datos para mostrar.
-        </div>
-    @endif
+
 
 </x-director.layout>

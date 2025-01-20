@@ -8,7 +8,6 @@
     <div class="posiciontablasmedia table-container bg-gray-900 p-4 mt-4 rounded-md border border-blue-500 shadow-md md:w-3/4 lg:w-2/3 overflow-x-auto">
         <!-- Contenedor de filtros -->
         <div class="filters flex flex-col md:flex-row items-center justify-start gap-4 mb-4">
-            <!-- Filtro 1 -->
             <div class="flex flex-col">
                 <select id="columnSelect1" class="p-1 bg-gray-800 text-white rounded-md text-sm">
                     <option value="nombre">Nombre</option>
@@ -23,8 +22,6 @@
                 <input type="search" id="searchInput1" placeholder="Buscar..."
                     class="p-2 bg-gray-800 text-white rounded-md text-sm mt-2" style="width: 200px;">
             </div>
-
-            <!-- Filtro 2 -->
             <div class="flex flex-col">
                 <select id="columnSelect2" class="p-1 bg-gray-800 text-white rounded-md text-sm">
                     <option value="nombre">Nombre</option>
@@ -39,8 +36,6 @@
                 <input type="search" id="searchInput2" placeholder="Buscar..."
                     class="p-2 bg-gray-800 text-white rounded-md text-sm mt-2" style="width: 200px;">
             </div>
-
-            <!-- Filtro 3 -->
             <div class="flex flex-col">
                 <select id="columnSelect3" class="p-1 bg-gray-800 text-white rounded-md text-sm">
                     <option value="nombre">Nombre</option>
@@ -85,7 +80,7 @@
                     <td class="created_at">{{ $Colegiatura->created_at }}</td>
                     <td>
                         <!-- Botón de "Imprimir Recibo" -->
-                        <button onclick="printReceipt({{ json_encode($Colegiatura) }})" class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600">
+                        <button onclick="printReceipt('{{ $Colegiatura->Nombre }}', '{{ $Colegiatura->ApellidoPaterno }}', '{{ $Colegiatura->ApellidoMaterno }}', '{{ $Colegiatura->Clave }}', '{{ $Colegiatura->FechaInicio }}', '{{ $Colegiatura->FechaFin }}', '{{ $Colegiatura->MetodoPago }}', '{{ $Colegiatura->CuentaRecibido }}', '{{ $Colegiatura->Monto }}', '{{ $Colegiatura->created_at }}')" class="px-4 py-2 bg-yellow-400 text-white rounded-md hover:bg-green-600">
                             Imprimir Recibo
                         </button>
                     </td>
@@ -96,12 +91,13 @@
     </div>
 
     <script>
+        // Filtrado de la tabla
         function filterTable() {
             let rows = document.querySelectorAll("tbody tr");
             let filters = [
                 { column: document.getElementById("columnSelect1").value, input: document.getElementById("searchInput1").value.toLowerCase() },
                 { column: document.getElementById("columnSelect2").value, input: document.getElementById("searchInput2").value.toLowerCase() },
-                { column: document.getElementById("columnSelect3").value, input: document.getElementById("searchInput3").value.toLowerCase() },
+                { column: document.getElementById("columnSelect3").value, input: document.getElementById("searchInput3").value.toLowerCase() }
             ];
 
             rows.forEach(row => {
@@ -122,44 +118,50 @@
             element.addEventListener("input", filterTable);
         });
 
-        function printReceipt(data) {
-            // Crear el contenido del recibo (en formato de HTML)
+        // Función para imprimir el recibo de cada línea
+        function printReceipt(nombre, apellidoPaterno, apellidoMaterno, clave, fechaInicio, fechaFin, metodoPago, cuentaRecibido, monto, createdAt) {
             const receiptContent = `
                 <div style="font-family: Arial, sans-serif; width: 100%; padding: 20px;">
-                    <h2 style="text-align: center; color:rgb(249, 249, 0);">Recibo de Pago</h2>
-                    <p><strong>Nombre:</strong> ${data.Nombre} ${data.ApellidoPaterno} ${data.ApellidoMaterno}</p>
-                    <p><strong>Clave:</strong> ${data.Clave}</p>
-                    <p><strong>Inicio de Periodo:</strong> ${data.FechaInicio}</p>
-                    <p><strong>Fin de Periodo:</strong> ${data.FechaFin}</p>
-                    <p><strong>Método de Pago:</strong> ${data.MetodoPago}</p>
-                    <p><strong>Cuenta Recibido:</strong> ${data.CuentaRecibido}</p>
-                    <p><strong>Monto Total:</strong> $${data.Monto}</p>
-                    <p><strong>Día que se realizó:</strong> ${data.created_at}</p>
+                    <h2 style="text-align: center; color:rgb(253, 227, 0);">Recibo de Pago</h2>
+                    <p><strong>Nombre:</strong> ${nombre} ${apellidoPaterno} ${apellidoMaterno}</p>
+                    <p><strong>Clave:</strong> ${clave}</p>
+                    <p><strong>Inicio de Periodo:</strong> ${fechaInicio}</p>
+                    <p><strong>Fin de Periodo:</strong> ${fechaFin}</p>
+                    <p><strong>Método de Pago:</strong> ${metodoPago}</p>
+                    <p><strong>Cuenta Recibido:</strong> ${cuentaRecibido}</p>
+                    <p><strong>Monto Total:</strong> $${monto}</p>
+                    <p><strong>Día que se realizó:</strong> ${createdAt}</p>
                 </div>
             `;
 
-            // Abrir una nueva ventana para la impresión
-            const printWindow = window.open('', '_blank');
-            printWindow.document.write(`
+            // Crear un iframe oculto para el recibo
+            const iframe = document.createElement('iframe');
+            iframe.style.position = 'absolute';
+            iframe.style.width = '0px';
+            iframe.style.height = '0px';
+            iframe.style.border = 'none';
+            document.body.appendChild(iframe);
+            const iframeDocument = iframe.contentWindow.document;
+
+            iframeDocument.open();
+            iframeDocument.write(`
                 <html>
                     <head>
-                        <title>Imprimir Recibo</title>
+                        <title>Recibo de Pago</title>
                         <style>
-                            body { font-family: Arial, sans-serif; padding: 20px; }
+                            body { font-family: Arial, sans-serif; }
                         </style>
                     </head>
                     <body>
                         ${receiptContent}
-                        <script>
-                            window.onload = function() {
-                                window.print();
-                                window.close();
-                            }
-                        </script>
                     </body>
                 </html>
             `);
-            printWindow.document.close();
+            iframeDocument.close();
+
+            // Imprimir directamente desde el iframe
+            iframe.contentWindow.focus();
+            iframe.contentWindow.print();
         }
     </script>
 </x-director.layout>
