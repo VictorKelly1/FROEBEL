@@ -75,6 +75,7 @@ class ModuloDocenteController extends Controller
 
         return view('docenteDinamicas.GrupoDocente', [
             'AlumnosDelGrupo' => $AlumnosDelGrupo,
+            'idGrupo' => $id,
             'NivelAcademico' => $NA
         ]);
     }
@@ -88,6 +89,7 @@ class ModuloDocenteController extends Controller
 
     public function vistaCalificacion(String $id, Request $request)
     {
+        //
         $ultimoPeriodo = DB::table('vGruposAlumnos')
             ->where('idAlumno', $id)
             ->select('ClavePeriodo')
@@ -102,6 +104,7 @@ class ModuloDocenteController extends Controller
             ->where('idAlumno', $id)
             ->where('ClavePeriodo', 'LIKE', $ultimoPeriodo . '%')
             ->pluck('idGrupo');
+        //
 
         $GM = DB::table('vGruposMaterias')
             ->whereIn('idGrupo', $Grupos)
@@ -142,12 +145,19 @@ class ModuloDocenteController extends Controller
             ->max();
 
         // Obtenemos solo las calificaciones de ese período
+        $idGrupo = $request->input('idGrupo');
+
+        $idsGM = DB::table('vGruposMaterias')
+            ->where('idGrupo', $idGrupo)
+            ->pluck('idGrupoMateria');
+
         $Calificaciones = Vcalificaciones::where('idAlumno', $id)
             ->where('ClavePeriodo', 'LIKE', $ultimoPeriodo . '%')
+            ->whereIn('idGruposMaterias', $idsGM)
             ->get();
         //
         if ($request->input('NivelAcademico') == 'Kinder' || $request->input('NivelAcademico') == 'Guarderia') {
-            return "vista calif k";
+
             return view('docenteDinamicas.RegisCalifKinder', ['Calificaciones' => $Calificaciones]);
         }
 
@@ -160,14 +170,6 @@ class ModuloDocenteController extends Controller
     {
         try {
             // Validar los datos enviados
-            $request->validate([
-                'Parcial1.*' => 'required|numeric|min:0|max:10',
-                'Parcial2.*' => 'required|numeric|min:0|max:10',
-                'Parcial3.*' => 'required|numeric|min:0|max:10',
-                'Parcial4.*' => 'required|numeric|min:0|max:10',
-                'Parcial5.*' => 'required|numeric|min:0|max:10',
-                'Parcial6.*' => 'required|numeric|min:0|max:10',
-            ]);
 
             DB::beginTransaction();
 
