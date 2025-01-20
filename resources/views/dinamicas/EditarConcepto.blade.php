@@ -26,14 +26,10 @@
                         value="{{ $Conceptos->Para }}" required>
                 </div>
 
-<<<<<<< HEAD
                 <div class="form-group">
                     <label for="Monto">Monto:</label>
                     <input type="number" min="0" name="Monto" id="Monto" value="{{ $Descuento->Monto }}" required>
                 </div>
-=======
-       
->>>>>>> 5360172056c304cde73993ee386f2da9b1aafa15
 
 
                 <!-- Botón de envío -->
