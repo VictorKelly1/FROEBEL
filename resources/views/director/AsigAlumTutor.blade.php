@@ -71,6 +71,7 @@
                     <th class="px-3 py-2 border-b border-blue-500">Matrícula</th>
                     <th class="px-3 py-2 border-b border-blue-500">Nombre del Alumno</th>
                     <th class="px-3 py-2 border-b border-blue-500">Nombre del Tutor</th>
+                    <th class="px-3 py-2 border-b border-blue-500">Parentesco</th>
                     <th class="px-3 py-2 border-b border-blue-500">Desasignación</th>
                 </tr>
             </thead>

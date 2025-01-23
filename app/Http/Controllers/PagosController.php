@@ -28,7 +28,8 @@ class PagosController extends Controller
         //pagos que no se les aplico descuento
         $Pagos = VTransacciones::where('TipoTransaccion', 'Pago')
             ->where('NombreConcepto', '!=', 'Colegiatura')
-            ->paginate(300);
+            ->orderBy('vTransacciones.created_at', 'desc')
+            ->paginate(10000);
         //pagos que se les aplico descuento
         $PagosDesc = VdescTransacciones::where('TipoTransaccion', 'Pago')
             ->paginate(50);

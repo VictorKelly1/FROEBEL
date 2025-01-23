@@ -23,7 +23,7 @@ class AlumnoController extends Controller
         */
 
         $Alumnos = VAlumno::where('Estado', 'Activo')
-            ->paginate(200);
+            ->paginate(250);
         return view('director.ConsultasAlum', ['Alumnos' => $Alumnos]);
     }
 

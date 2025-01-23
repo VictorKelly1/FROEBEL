@@ -45,7 +45,12 @@ class PeriodosController extends Controller
             $Periodo->Clave = $request->input('Clave');
             $Periodo->FechaInicio = $request->input('FechaInicio');
             $Periodo->FechaFin = $request->input('FechaFin');
-            $Periodo->Tipo = $request->input('Tipo');
+            if ($request->input('Tipo') === 'verano' || $request->input('Tipo') === 'extraescolar') {
+                $Periodo->Tipo = "-" . $request->input('Tipo');
+            } else {
+                $Periodo->Tipo = $request->input('Tipo');
+            }
+
 
             $Periodo->save();
 
