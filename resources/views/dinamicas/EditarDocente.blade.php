@@ -1,15 +1,12 @@
 <x-director.layout>
     @if (!empty($Docente))
-        <div class="container posicionsregisalum">
+    <div class=" flex items-center  posiciontablas">
 
-            <form action="{{ route('EditarDocente') }}" method="POST" enctype="multipart/form-data">
+            <form class="formulario" action="{{ route('EditarDocente') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <div>
-                    <input type="hidden" name="id" value="{{ $Docente->idDocente }}">
-
-                </div>
+  
                 <!-- Datos de Persona -->
-                <h3>Datos Personales</h3>
+               
                 <div class="form-group">
                     <label for="Nombre">Nombre:</label>
                     <input type="text" name="Nombre" id="Nombre" class="form-control"
@@ -129,6 +126,11 @@
 
                 <!-- Botón de envío -->
                 <button type="submit" class="btn btn-primary">Editar Docente</button>
+
+                <div>
+                    <input type="hidden" name="id" value="{{ $Docente->idDocente }}">
+
+                </div>
             </form>
         </div>
     @else

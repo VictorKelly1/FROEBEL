@@ -1,15 +1,12 @@
 <x-director.layout>
     @if (!empty($Administrador))
-        <div class="container posicionsregisalum">
+    <div class=" flex items-center  posiciontablas">
 
-            <form action="{{ route('EditarAdmin') }}" method="POST" enctype="multipart/form-data">
+            <form class="formulario" action="{{ route('EditarAdmin') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <div>
-                    <input type="hidden" name="id" value="{{ $Administrador->idAdministrador }}">
 
-                </div>
                 <!-- Datos de Persona -->
-                <h3>Datos Personales</h3>
+            
                 <div class="form-group">
                     <label for="Nombre">Nombre:</label>
                     <input type="text" name="Nombre" id="Nombre" class="form-control"
@@ -129,6 +126,12 @@
 
                 <!-- Botón de envío -->
                 <button type="submit" class="btn btn-primary">Editar Administrador</button>
+
+                <div>
+                    <input type="hidden" name="id" value="{{ $Administrador->idAdministrador }}">
+
+                </div>
+
             </form>
         </div>
     @else

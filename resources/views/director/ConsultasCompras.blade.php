@@ -22,6 +22,7 @@
                         <option value="TipoTransaccion">Tipo de Transacción</option>
                         <option value="NombreConcepto">Concepto</option>
                         <option value="MetodoPago">Método de Pago</option>
+                        <option value="created_at">Día que se realizó</option>
                         <option value="Monto">Monto</option>
                     </select>
                     <input type="search" id="searchInput1" placeholder="Buscar..." class="p-2 bg-gray-800 text-white rounded-md text-sm mt-2 w-full">
@@ -38,6 +39,7 @@
                         <option value="TipoTransaccion">Tipo de Transacción</option>
                         <option value="NombreConcepto">Concepto</option>
                         <option value="MetodoPago">Método de Pago</option>
+                        <option value="created_at">Día que se realizó</option>
                         <option value="Monto">Monto</option>
                     </select>
                     <input type="search" id="searchInput2" placeholder="Buscar..." class="p-2 bg-gray-800 text-white rounded-md text-sm mt-2 w-full">
@@ -54,6 +56,7 @@
                         <option value="TipoTransaccion">Tipo de Transacción</option>
                         <option value="NombreConcepto">Concepto</option>
                         <option value="MetodoPago">Método de Pago</option>
+                        <option value="created_at">Día que se realizó</option>
                         <option value="Monto">Monto</option>
                     </select>
                     <input type="search" id="searchInput3" placeholder="Buscar..." class="p-2 bg-gray-800 text-white rounded-md text-sm mt-2 w-full">
@@ -64,6 +67,7 @@
             <table class="text-sm text-left text-white w-full table-auto z-30">
                 <thead class="bg-blue-700">
                     <tr>
+                        <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">No Transaccion</th>
                         <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Nombre</th>
                         <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Clave</th>
                         <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Fecha de Inicio</th>
@@ -72,6 +76,7 @@
                         <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Tipo de Transacción</th>
                         <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Concepto</th>
                         <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Método de Pago</th>
+                        <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Dia que se Realizo</th>
                         <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Monto</th>
                         <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Acciones</th>
                     </tr>
@@ -79,6 +84,7 @@
                 <tbody id="tableBody">
                     @foreach ($Compras as $Compra)
                     <tr class="hover:bg-gray-800 bg-transparent">
+                        <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Compra->idTransaccion }}</td>
                         <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Compra->Nombre }} {{ $Compra->ApellidoPaterno }} {{ $Compra->ApellidoMaterno }}</td>
                         <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Compra->Clave }}</td>
                         <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Compra->FechaInicio }}</td>
@@ -87,6 +93,7 @@
                         <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Compra->TipoTransaccion }}</td>
                         <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Compra->NombreConcepto }}</td>
                         <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Compra->MetodoPago }}</td>
+                        <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Compra->created_at }}</td>
                         <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Compra->Monto }}</td>
                         <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">
                             <button onclick="imprimirRecibo({{ $Compra->id }})" class="bg-blue-500 text-white px-4 py-2 rounded-md">Imprimir Recibo</button>

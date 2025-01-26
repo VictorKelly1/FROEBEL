@@ -26,31 +26,19 @@
                         <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Nombre</th>
                 
                         <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">CURP</th>
-                        <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Fecha de
-                            Nacimiento</th>
-                        <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Género</th>
-                        <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Ciudad</th>
-                        <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Municipio
-                        </th>
-                        <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Código
-                            Postal</th>
+                       
                         <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">
                             Colonia/Fraccionamiento</th>
                         <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Calle</th>
                         <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Número
                             Exterior</th>
-                        <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Estado Civil
-                        </th>
-                        <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Nacionalidad
-                        </th>
-                        <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Foto</th>
+                       
                         <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Carrera</th>
-                        <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">FechaIngreso
-                        </th>
+                      
                         <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Estado</th>
-                        <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">RFC</th>
-                        <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">NoINE</th>
-                        <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Sueldo</th>
+                      
+                       
+                      
                         <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Editar</th>
                     </tr>
                 </thead>
@@ -61,40 +49,22 @@
                                 {{ $Docente->Nombre }}  {{ $Docente->ApellidoPaterno }}  {{ $Docente->ApellidoMaterno }}</td>
                             <td class="px-6 py-4 border-t border-blue-500 animate-border text-center">
                                 {{ $Docente->CURP }}</td>
-                            <td class="px-6 py-4 border-t border-blue-500 animate-border text-center">
-                                {{ $Docente->FechaNacimiento }}</td>
-                            <td class="px-6 py-4 border-t border-blue-500 animate-border text-center">
-                                {{ $Docente->Genero }}</td>
-                            <td class="px-6 py-4 border-t border-blue-500 animate-border text-center">
-                                {{ $Docente->Ciudad }}</td>
-                            <td class="px-6 py-4 border-t border-purblueple-500 animate-border text-center">
-                                {{ $Docente->Municipio }}</td>
-                            <td class="px-6 py-4 border-t border-blue-500 animate-border text-center">
-                                {{ $Docente->CodigoPostal }}</td>
+                           
                             <td class="px-6 py-4 border-t border-blue-500 animate-border text-center">
                                 {{ $Docente->ColFrac }}</td>
                             <td class="px-6 py-4 border-t border-blue-500 animate-border text-center">
                                 {{ $Docente->Calle }}</td>
                             <td class="px-6 py-4 border-t border-blue-500 animate-border text-center">
                                 {{ $Docente->NumeroExterior }}</td>
-                            <td class="px-6 py-4 border-t border-blue-500 animate-border text-center">
-                                {{ $Docente->EstadoCivil }}</td>
-                            <td class="px-6 py-4 border-t border-blue-500 animate-border text-center">
-                                {{ $Docente->Nacionalidad }}</td>
-                            <td class="px-6 py-4 border-t border-blue-500 animate-border text-center">
-                                {{ $Docente->Foto }}</td>
+                           
                             <td class="px-6 py-4 border-t border-blue-500 animate-border text-center">
                                 {{ $Docente->Carrera }}</td>
-                            <td class="px-6 py-4 border-t border-blue-500 animate-border text-center">
-                                {{ $Docente->FechaIngreso }}</td>
+                           
                             <td class="px-6 py-4 border-t border-blue-500 animate-border text-center">
                                 {{ $Docente->Estado }}</td>
-                            <td class="px-6 py-4 border-t border-blue-500 animate-border text-center">
-                                {{ $Docente->RFC }}</td>
-                            <td class="px-6 py-4 border-t border-blue-500 animate-border text-center">
-                                {{ $Docente->NoINE }}</td>
-                            <td class="px-6 py-4 border-t border-blue-500 animate-border text-center">
-                                {{ $Docente->Sueldo }}</td>
+                           
+                           
+                           
                             <td class="px-6 py-4 border-t border-blue-500 animate-border text-center">
                                 <form action="/VistaEditarDocente/{{ $Docente->idDocente }}" method="GET">
                                     @csrf

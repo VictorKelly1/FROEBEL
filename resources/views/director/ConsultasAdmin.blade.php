@@ -24,13 +24,9 @@
                 <thead class="bg-blue-700">
                     <tr>
                         <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Nombre</th>
-                        <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Apellido
-                            Paterno</th>
-                        <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Apellido
-                            Materno</th>
+                       
                         <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">CURP</th>
-                        <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Fecha de
-                            Nacimiento</th>
+
 
                         <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Editar</th>
                     </tr>
@@ -38,16 +34,11 @@
                 <tbody id="tableBody">
                     @foreach ($Administradores as $Administrador)
                         <tr>
-                        <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Administrador->Nombre }}
+                        <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Administrador->Nombre }} {{ $Administrador->ApellidoPaterno }} {{ $Administrador->ApellidoMaterno }}
                             </td>
-                            <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">
-                                {{ $Administrador->ApellidoPaterno }}</td>
-                                <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">
-                                {{ $Administrador->ApellidoMaterno }}</td>
+
                                 <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Administrador->CURP }}
                             </td>
-                            <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">
-                                {{ $Administrador->FechaNacimiento }}</td>
 
                                 <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">
                                 <form action="/VistaEditarAdmin/{{ $Administrador->$idAdministrador }}" method="GET">

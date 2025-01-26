@@ -45,13 +45,15 @@
                             Fecha Ingreso</th>
                             <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Estado
                         </th>
+                        <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Día que se realizó</th>
                         <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Comunicado
                         </th>
-
+                       
                 </thead>
                 <tbody id="tableBody">
                     @foreach ($Faltantes as $Faltante)
                     <tr class="hover:bg-gray-800 bg-transparent">
+                        
                             <!-- Foto -->
                             <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">
                                 @if ($Faltante->Foto)
@@ -81,7 +83,7 @@
 
                             <!-- Estado -->
                             <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Faltante->Estado }}</td>
-
+                            <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Faltante->created_at }}</td>
                             <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">
                                 <form action="/VistaComunicadoPersonal/{{ $Faltante->idAlumno }}" method="GET">
                                     @csrf

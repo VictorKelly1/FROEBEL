@@ -21,6 +21,7 @@
                         <option value="FechaFin">Fin de Periodo</option>
                         <option value="MetodoPago">Método de Pago</option>
                         <option value="CuentaRecibido">Cuenta Recibido</option>
+                        <option value="created_at">Día que se realizó</option>
                         <option value="Monto">Monto Total</option>
                     </select>
                     <input type="search" id="searchInput1" placeholder="Buscar..." class="p-2 bg-gray-800 text-white rounded-md text-sm mt-2 w-full">
@@ -35,6 +36,7 @@
                         <option value="FechaFin">Fin de Periodo</option>
                         <option value="MetodoPago">Método de Pago</option>
                         <option value="CuentaRecibido">Cuenta Recibido</option>
+                        <option value="created_at">Día que se realizó</option>
                         <option value="Monto">Monto Total</option>
                     </select>
                     <input type="search" id="searchInput2" placeholder="Buscar..." class="p-2 bg-gray-800 text-white rounded-md text-sm mt-2 w-full">
@@ -49,6 +51,7 @@
                         <option value="FechaFin">Fin de Periodo</option>
                         <option value="MetodoPago">Método de Pago</option>
                         <option value="CuentaRecibido">Cuenta Recibido</option>
+                        <option value="created_at">Día que se realizó</option>
                         <option value="Monto">Monto Total</option>
                     </select>
                     <input type="search" id="searchInput3" placeholder="Buscar..." class="p-2 bg-gray-800 text-white rounded-md text-sm mt-2 w-full">
@@ -59,12 +62,14 @@
             <table class="text-sm text-left text-white w-full table-auto z-30">
                 <thead class="bg-blue-700">
                     <tr>
+                        <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">No Transaccion</th>
                         <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Nombre</th>
                         <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Clave</th>
                         <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Inicio de Periodo</th>
                         <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Fin de Periodo</th>
                         <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Método de Pago</th>
                         <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Cuenta Recibido</th>
+                        <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Día que se realizó</th>
                         <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Monto Total</th>
                         <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Imprimir Recibo</th> <!-- Nueva columna para botón -->
                     </tr>
@@ -72,12 +77,14 @@
                 <tbody id="tableBody">
                     @foreach ($Pagos as $pago)
                     <tr class="hover:bg-gray-800 bg-transparent">
+                        <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $pago->idTransaccion }}</td>
                         <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $pago->Nombre }} {{ $pago->ApellidoPaterno }} {{ $pago->ApellidoMaterno }}</td>
                         <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $pago->Clave }}</td>
                         <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $pago->FechaInicio }}</td>
                         <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $pago->FechaFin }}</td>
                         <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $pago->MetodoPago }}</td>
                         <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $pago->CuentaRecibido }}</td>
+                        <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $pago->created_at }}</td>
                         <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $pago->Monto }}</td>
                         <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">
                             <button onclick="printRecibo({{ $pago }})" class="px-4 py-2 bg-yellow-400 text-white rounded-md">Imprimir Recibo</button>

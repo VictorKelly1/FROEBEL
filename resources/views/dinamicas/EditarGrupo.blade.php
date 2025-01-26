@@ -1,14 +1,11 @@
 <x-director.layout>
 
     @if (!empty($Grupo))
-        <div class="posiciontablas">
+    <div class=" flex items-center  posiciontablas">
 
-            <form action="{{ route('EditarGrupo') }}" method="POST" enctype="multipart/form-data">
+            <form class="formulario" action="{{ route('EditarGrupo') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <div>
-                    <input type="hidden" name="id" value="{{ $Grupo->idGrupo }}">
 
-                </div>
 
                 <h3>Datos Del Grupo</h3>
                 <div class="form-group">
@@ -60,6 +57,12 @@
 
                 <!-- Botón de envío -->
                 <button type="submit" class="btn btn-primary">Editar Grupo</button>
+
+                <div>
+                    <input type="hidden" name="id" value="{{ $Grupo->idGrupo }}">
+
+                </div>
+
             </form>
         </div>
     @else

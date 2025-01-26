@@ -25,8 +25,7 @@
                     <tr>
                     <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Nombre</th>
                     <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">CURP</th>
-                    <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Fecha de
-                            Nacimiento</th>
+
 
                     <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Editar</th>
                     </tr>
@@ -38,8 +37,6 @@
                                 {{ $Coordinador->Nombre }}  {{ $Coordinador->ApellidoPaterno }}  {{ $Coordinador->ApellidoMaterno }}</td>
                                 <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">
                                 {{ $Coordinador->CURP }}</td>
-                                <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">
-                                {{ $Coordinador->FechaNacimiento }}</td>
 
                                 <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">
                                 <form action="/VistaEditarCoordi/{{ $Coordinador->idCoordinador }}" method="GET">

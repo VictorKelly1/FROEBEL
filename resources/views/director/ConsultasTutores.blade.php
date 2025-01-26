@@ -25,20 +25,15 @@
                     <tr>
                         <th class="px-3 py-2 text-lg border-b border-blue-500 animate-border text-center">Nombre</th>
                         <th class="px-3 py-2 text-lg border-b border-blue-500 animate-border text-center">CURP</th>
-                        <th class="px-3 py-2 text-lg border-b border-blue-500 animate-border text-center">Fecha de Nacimiento</th>
-                        <th class="px-3 py-2 text-lg border-b border-blue-500 animate-border text-center">Género</th>
-                        <th class="px-3 py-2 text-lg border-b border-blue-500 animate-border text-center">Ciudad</th>
-                        <th class="px-3 py-2 text-lg border-b border-blue-500 animate-border text-center">Municipio</th>
-                        <th class="px-3 py-2 text-lg border-b border-blue-500 animate-border text-center">Código Postal</th>
+
+                      
                         <th class="px-3 py-2 text-lg border-b border-blue-500 animate-border text-center">Colonia/Fraccionamiento</th>
                         <th class="px-3 py-2 text-lg border-b border-blue-500 animate-border text-center">Calle</th>
                         <th class="px-3 py-2 text-lg border-b border-blue-500 animate-border text-center">Número Exterior</th>
-                        <th class="px-3 py-2 text-lg border-b border-blue-500 animate-border text-center">Estado Civil</th>
-                        <th class="px-3 py-2 text-lg border-b border-blue-500 animate-border text-center">Nacionalidad</th>
-                        <th class="px-3 py-2 text-lg border-b border-blue-500 animate-border text-center">Foto</th>
-                        <th class="px-3 py-2 text-lg border-b border-blue-500 animate-border text-center">NoINE</th>
+                    
+                     
                         <th class="px-3 py-2 text-lg border-b border-blue-500 animate-border text-center">RFC</th>
-                        <th class="px-3 py-2 text-lg border-b border-blue-500 animate-border text-center">Lugar de Trabajo</th>
+                     
                         <th class="px-3 py-2 text-lg border-b border-blue-500 animate-border text-center">Editar</th>
                     </tr>
                 </thead>
@@ -47,20 +42,16 @@
                     <tr class="hover:bg-gray-800 bg-transparent">
                             <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Tutor->Nombre }}{{ $Tutor->ApellidoPaterno }}{{ $Tutor->ApellidoMaterno }}</td>
                             <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Tutor->CURP }}</td>
-                            <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Tutor->FechaNacimiento }}</td>
-                            <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Tutor->Genero }}</td>
-                            <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Tutor->Ciudad }}</td>
-                            <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Tutor->Municipio }}</td>
-                            <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Tutor->CodigoPostal }}</td>
+                            
+                         
+                        
                             <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Tutor->ColFrac }}</td>
                             <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Tutor->Calle }}</td>
                             <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Tutor->NumeroExterior }}</td>
-                            <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Tutor->EstadoCivil }}</td>
-                            <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Tutor->Nacionalidad }}</td>
-                            <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Tutor->Foto }}</td>
-                            <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Tutor->NoINE }}</td>
+                      
+                    
                             <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Tutor->RFC }}</td>
-                            <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Tutor->LugarTrabajo }}</td>
+  
                             <td class="px-4 py-2 border-t border-blue-500 animate-border">
                                 <form action="/VistaEditarTutor/{{ $Tutor->idTutor }}" method="GET">
                                     @csrf
