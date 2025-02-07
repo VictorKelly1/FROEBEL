@@ -62,7 +62,11 @@
                     <input type="search" id="searchInput3" placeholder="Buscar..." class="p-2 bg-gray-800 text-white rounded-md text-sm mt-2 w-full">
                 </div>
             </div>
-
+            <!-- ✅ Label para mostrar el monto total filtrado -->
+            <div class="mt-4">
+                <label class="text-white">Monto Total Filtrado: </label>
+                <span id="totalAmount" class="text-white font-bold">$0.00</span>
+            </div>
             <!-- ✅ Tabla sin cambios en tamaño -->
             <table class="text-sm text-left text-white w-full table-auto z-30">
                 <thead class="bg-blue-700">
@@ -105,9 +109,8 @@
         </div>
     </div>
 
-    <!-- ✅ Funcionalidad de Búsqueda en Tiempo Real -->
     <script>
-        // Filtrar la tabla por los valores de los campos seleccionados
+        // Función de filtrado
         function filterTable() {
             let rows = document.querySelectorAll("tbody tr");
             let filters = [
@@ -115,6 +118,8 @@
                 { column: document.getElementById("columnSelect2").value, input: document.getElementById("searchInput2").value.toLowerCase() },
                 { column: document.getElementById("columnSelect3").value, input: document.getElementById("searchInput3").value.toLowerCase() },
             ];
+
+            let totalAmount = 0; // Variable para acumular el monto total
 
             rows.forEach(row => {
                 let show = true;
@@ -127,57 +132,61 @@
                     }
                 });
                 row.style.display = show ? "" : "none";
+
+                // Sumar el monto si la fila es visible
+                if (show) {
+                    let montoCell = row.querySelector(".monto");
+                    if (montoCell) {
+                        totalAmount += parseFloat(montoCell.textContent) || 0;
+                    }
+                }
             });
+
+            // Actualizar el monto total en el label
+            document.getElementById("totalAmount").textContent = `$${totalAmount.toFixed(2)}`;
         }
 
         document.querySelectorAll("input[type='search'], select").forEach(element => {
             element.addEventListener("input", filterTable);
         });
-    </script>
 
-    <script>
-        // Función para imprimir el recibo
-        function imprimirRecibo(id) {
-            const row = document.querySelector(`tr[data-id='${id}']`);
-            const data = row.innerText;
-            const windowContent = `
+        // Función para imprimir recibo
+        function printRecibo(pago) {
+            const reciboHTML = `
                 <html>
                     <head>
                         <title>Recibo de Pago</title>
                         <style>
-                            body { font-family: Arial, sans-serif; margin: 20px; }
-                            .recibo { border: 1px solid #000; padding: 20px; }
+                            body { font-family: Arial, sans-serif; padding: 20px; }
+                            .recibo { width: 100%; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; }
+                            .recibo h1 { text-align: center; }
+                            .recibo table { width: 100%; margin-top: 20px; border-collapse: collapse; }
+                            .recibo table th, .recibo table td { padding: 8px 12px; border: 1px solid #ccc; text-align: left; }
+                            .recibo table th { background-color: #f2f2f2; }
                         </style>
                     </head>
                     <body>
                         <div class="recibo">
-                            <h2>Recibo de Pago</h2>
-                            <pre>${data}</pre>
+                            <h1>Recibo de Pago</h1>
+                            <table>
+                                <tr><th>Nombre</th><td>${pago.Nombre} ${pago.ApellidoPaterno} ${pago.ApellidoMaterno}</td></tr>
+                                <tr><th>Clave</th><td>${pago.Clave}</td></tr>
+                                <tr><th>Inicio de Periodo</th><td>${pago.FechaInicio}</td></tr>
+                                <tr><th>Fin de Periodo</th><td>${pago.FechaFin}</td></tr>
+                                <tr><th>Método de Pago</th><td>${pago.MetodoPago}</td></tr>
+                                <tr><th>Cuenta Recibido</th><td>${pago.CuentaRecibido}</td></tr>
+                                <tr><th>Monto Total</th><td>${pago.Monto}</td></tr>
+                            </table>
                         </div>
                     </body>
                 </html>
             `;
-            const printWindow = window.open('', '', 'height=500,width=800');
-            printWindow.document.write(windowContent);
-            printWindow.document.close();
-            printWindow.print();
+
+            const ventanaImpresion = window.open('', '_blank');
+            ventanaImpresion.document.write(reciboHTML);
+            ventanaImpresion.document.close();
+            ventanaImpresion.print();
         }
-    </script>
-
-    <script>
-        // Mostrar alerta
-        document.querySelector('.alert').classList.add('show');
-
-        // Después de 5 segundos, aplicar la clase de desvanecimiento y eliminarla
-        setTimeout(() => {
-            let alertElement = document.querySelector('.alert');
-            alertElement.classList.add('fade-out');
-
-            // Esperar el final de la animación para eliminar el elemento del DOM
-            setTimeout(() => {
-                alertElement.remove();
-            }, 1000); // Aseguramos que la animación de desvanecimiento termine antes de eliminarla
-        }, 5000); // 5 segundos de espera
     </script>
 
 </x-director.layout>
