@@ -52,6 +52,12 @@
             </div>
         </div>
 
+        <!-- Label para mostrar el monto total -->
+        <div class="mt-4">
+            <label class="text-white">Monto Total Filtrado: </label>
+            <span id="totalAmount" class="text-white font-bold">$0.00</span>
+        </div>
+
         <!-- Tabla -->
         <table class="text-sm text-white border-collapse border border-blue-500 rounded-md w-full">
             <thead class="bg-blue-700 text-center">
@@ -100,6 +106,8 @@
                 { column: document.getElementById("columnSelect3").value, input: document.getElementById("searchInput3").value.toLowerCase() }
             ];
 
+            let totalAmount = 0;
+
             rows.forEach(row => {
                 let show = true;
                 filters.forEach(filter => {
@@ -111,7 +119,18 @@
                     }
                 });
                 row.style.display = show ? "" : "none";
+
+                // Sumar el monto si la fila es visible
+                if (show) {
+                    let montoCell = row.querySelector(".monto");
+                    if (montoCell) {
+                        totalAmount += parseFloat(montoCell.textContent) || 0;
+                    }
+                }
             });
+
+            // Actualizar el monto total en el label
+            document.getElementById("totalAmount").textContent = `$${totalAmount.toFixed(2)}`;
         }
 
         document.querySelectorAll("input[type='search'], select").forEach(element => {
