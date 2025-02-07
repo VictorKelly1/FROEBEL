@@ -113,22 +113,22 @@
 
     <!-- ✅ Funcionalidad de Búsqueda en Tiempo Real -->
     <script>
-        // Función de filtrado
+        // Filtrado de la tabla
         function filterTable() {
             let rows = document.querySelectorAll("tbody tr");
             let filters = [
                 { column: document.getElementById("columnSelect1").value, input: document.getElementById("searchInput1").value.toLowerCase() },
                 { column: document.getElementById("columnSelect2").value, input: document.getElementById("searchInput2").value.toLowerCase() },
-                { column: document.getElementById("columnSelect3").value, input: document.getElementById("searchInput3").value.toLowerCase() },
+                { column: document.getElementById("columnSelect3").value, input: document.getElementById("searchInput3").value.toLowerCase() }
             ];
 
-            let totalAmount = 0; // Variable para acumular el monto total
+            let totalAmount = 0;
 
             rows.forEach(row => {
                 let show = true;
                 filters.forEach(filter => {
                     if (filter.input) {
-                        let cell = row.querySelector(`.${filter.column.toLowerCase()}`);
+                        let cell = row.querySelector(`.${filter.column}`);
                         if (cell && !cell.textContent.toLowerCase().includes(filter.input)) {
                             show = false;
                         }
@@ -153,42 +153,50 @@
             element.addEventListener("input", filterTable);
         });
 
-        // Función para imprimir recibo
-        function printRecibo(pago) {
-            const reciboHTML = `
+        // Función para imprimir el recibo de cada línea
+        function printReceipt(nombre, apellidoPaterno, apellidoMaterno, clave, fechaInicio, fechaFin, metodoPago, cuentaRecibido, monto, createdAt) {
+            const receiptContent = `
+                <div style="font-family: Arial, sans-serif; width: 100%; padding: 20px;">
+                    <h2 style="text-align: center; color:rgb(253, 227, 0);">Recibo de Pago</h2>
+                    <p><strong>Nombre:</strong> ${nombre} ${apellidoPaterno} ${apellidoMaterno}</p>
+                    <p><strong>Clave:</strong> ${clave}</p>
+                    <p><strong>Inicio de Periodo:</strong> ${fechaInicio}</p>
+                    <p><strong>Fin de Periodo:</strong> ${fechaFin}</p>
+                    <p><strong>Método de Pago:</strong> ${metodoPago}</p>
+                    <p><strong>Cuenta Recibido:</strong> ${cuentaRecibido}</p>
+                    <p><strong>Monto Total:</strong> $${monto}</p>
+                    <p><strong>Día que se realizó:</strong> ${createdAt}</p>
+                </div>
+            `;
+
+            // Crear un iframe oculto para el recibo
+            const iframe = document.createElement('iframe');
+            iframe.style.position = 'absolute';
+            iframe.style.width = '0px';
+            iframe.style.height = '0px';
+            iframe.style.border = 'none';
+            document.body.appendChild(iframe);
+            const iframeDocument = iframe.contentWindow.document;
+
+            iframeDocument.open();
+            iframeDocument.write(`
                 <html>
                     <head>
                         <title>Recibo de Pago</title>
                         <style>
-                            body { font-family: Arial, sans-serif; padding: 20px; }
-                            .recibo { width: 100%; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; }
-                            .recibo h1 { text-align: center; }
-                            .recibo table { width: 100%; margin-top: 20px; border-collapse: collapse; }
-                            .recibo table th, .recibo table td { padding: 8px 12px; border: 1px solid #ccc; text-align: left; }
-                            .recibo table th { background-color: #f2f2f2; }
+                            body { font-family: Arial, sans-serif; }
                         </style>
                     </head>
                     <body>
-                        <div class="recibo">
-                            <h1>Recibo de Pago</h1>
-                            <table>
-                                <tr><th>Nombre</th><td>${pago.Nombre} ${pago.ApellidoPaterno} ${pago.ApellidoMaterno}</td></tr>
-                                <tr><th>Clave</th><td>${pago.Clave}</td></tr>
-                                <tr><th>Inicio de Periodo</th><td>${pago.FechaInicio}</td></tr>
-                                <tr><th>Fin de Periodo</th><td>${pago.FechaFin}</td></tr>
-                                <tr><th>Método de Pago</th><td>${pago.MetodoPago}</td></tr>
-                                <tr><th>Cuenta Recibido</th><td>${pago.CuentaRecibido}</td></tr>
-                                <tr><th>Monto Total</th><td>${pago.Monto}</td></tr>
-                            </table>
-                        </div>
+                        ${receiptContent}
                     </body>
                 </html>
-            `;
+            `);
+            iframeDocument.close();
 
-            const ventanaImpresion = window.open('', '_blank');
-            ventanaImpresion.document.write(reciboHTML);
-            ventanaImpresion.document.close();
-            ventanaImpresion.print();
+            // Imprimir directamente desde el iframe
+            iframe.contentWindow.focus();
+            iframe.contentWindow.print();
         }
     </script>
 
