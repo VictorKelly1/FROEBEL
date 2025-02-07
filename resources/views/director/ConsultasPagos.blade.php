@@ -58,6 +58,12 @@
                 </div>
             </div>
 
+            <!-- ✅ Label para mostrar el monto total filtrado -->
+            <div class="mt-4">
+                <label class="text-white">Monto Total Filtrado: </label>
+                <span id="totalAmount" class="text-white font-bold">$0.00</span>
+            </div>
+
             <!-- ✅ Tabla -->
             <table class="text-sm text-left text-white w-full table-auto z-30">
                 <thead class="bg-blue-700">
@@ -85,7 +91,7 @@
                         <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $pago->MetodoPago }}</td>
                         <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $pago->CuentaRecibido }}</td>
                         <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $pago->created_at }}</td>
-                        <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $pago->Monto }}</td>
+                        <td class="px-4 py-2 border-t border-blue-500 animate-border text-center monto">{{ $pago->Monto }}</td>
                         <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">
                             <button onclick="printRecibo({{ $pago }})" class="px-4 py-2 bg-yellow-400 text-white rounded-md">Imprimir Recibo</button>
                         </td>
@@ -107,6 +113,8 @@
                 { column: document.getElementById("columnSelect3").value, input: document.getElementById("searchInput3").value.toLowerCase() },
             ];
 
+            let totalAmount = 0; // Variable para acumular el monto total
+
             rows.forEach(row => {
                 let show = true;
                 filters.forEach(filter => {
@@ -118,7 +126,18 @@
                     }
                 });
                 row.style.display = show ? "" : "none";
+
+                // Sumar el monto si la fila es visible
+                if (show) {
+                    let montoCell = row.querySelector(".monto");
+                    if (montoCell) {
+                        totalAmount += parseFloat(montoCell.textContent) || 0;
+                    }
+                }
             });
+
+            // Actualizar el monto total en el label
+            document.getElementById("totalAmount").textContent = `$${totalAmount.toFixed(2)}`;
         }
 
         document.querySelectorAll("input[type='search'], select").forEach(element => {
