@@ -14,16 +14,16 @@
                 <div class="filter-item w-1/3">
                     <!-- Filtro 1: Lista desplegable y buscador -->
                     <select id="columnSelect1" class="p-2 bg-gray-800 text-white rounded-md text-sm w-full">
-                        <option value="Nombre">Nombre</option>
-                        <option value="Clave">Clave</option>
-                        <option value="FechaInicio">Fecha de Inicio</option>
-                        <option value="FechaFin">Fecha de Fin</option>
-                        <option value="Cantidad">Cantidad</option>
-                        <option value="TipoTransaccion">Tipo de Transacción</option>
-                        <option value="NombreConcepto">Concepto</option>
-                        <option value="MetodoPago">Método de Pago</option>
+                        <option value="nombre">Nombre</option>
+                        <option value="clave">Clave</option>
+                        <option value="fechainicio">Fecha de Inicio</option>
+                        <option value="fechafin">Fecha de Fin</option>
+                        <option value="cantidad">Cantidad</option>
+                        <option value="tipotransaccion">Tipo de Transacción</option>
+                        <option value="nombreconcepto">Concepto</option>
+                        <option value="metodopago">Método de Pago</option>
                         <option value="created_at">Día que se realizó</option>
-                        <option value="Monto">Monto</option>
+                        <option value="monto">Monto</option>
                     </select>
                     <input type="search" id="searchInput1" placeholder="Buscar..." class="p-2 bg-gray-800 text-white rounded-md text-sm mt-2 w-full">
                 </div>
@@ -31,16 +31,16 @@
                 <div class="filter-item w-1/3">
                     <!-- Filtro 2: Lista desplegable y buscador -->
                     <select id="columnSelect2" class="p-2 bg-gray-800 text-white rounded-md text-sm w-full">
-                        <option value="Nombre">Nombre</option>
-                        <option value="Clave">Clave</option>
-                        <option value="FechaInicio">Fecha de Inicio</option>
-                        <option value="FechaFin">Fecha de Fin</option>
-                        <option value="Cantidad">Cantidad</option>
-                        <option value="TipoTransaccion">Tipo de Transacción</option>
-                        <option value="NombreConcepto">Concepto</option>
-                        <option value="MetodoPago">Método de Pago</option>
+                        <option value="nombre">Nombre</option>
+                        <option value="clave">Clave</option>
+                        <option value="fechainicio">Fecha de Inicio</option>
+                        <option value="fechafin">Fecha de Fin</option>
+                        <option value="cantidad">Cantidad</option>
+                        <option value="tipotransaccion">Tipo de Transacción</option>
+                        <option value="nombreconcepto">Concepto</option>
+                        <option value="metodopago">Método de Pago</option>
                         <option value="created_at">Día que se realizó</option>
-                        <option value="Monto">Monto</option>
+                        <option value="monto">Monto</option>
                     </select>
                     <input type="search" id="searchInput2" placeholder="Buscar..." class="p-2 bg-gray-800 text-white rounded-md text-sm mt-2 w-full">
                 </div>
@@ -48,16 +48,16 @@
                 <div class="filter-item w-1/3">
                     <!-- Filtro 3: Lista desplegable y buscador -->
                     <select id="columnSelect3" class="p-2 bg-gray-800 text-white rounded-md text-sm w-full">
-                        <option value="Nombre">Nombre</option>
-                        <option value="Clave">Clave</option>
-                        <option value="FechaInicio">Fecha de Inicio</option>
-                        <option value="FechaFin">Fecha de Fin</option>
-                        <option value="Cantidad">Cantidad</option>
-                        <option value="TipoTransaccion">Tipo de Transacción</option>
-                        <option value="NombreConcepto">Concepto</option>
-                        <option value="MetodoPago">Método de Pago</option>
+                        <option value="nombre">Nombre</option>
+                        <option value="clave">Clave</option>
+                        <option value="fechainicio">Fecha de Inicio</option>
+                        <option value="fechafin">Fecha de Fin</option>
+                        <option value="cantidad">Cantidad</option>
+                        <option value="tipotransaccion">Tipo de Transacción</option>
+                        <option value="nombreconcepto">Concepto</option>
+                        <option value="metodopago">Método de Pago</option>
                         <option value="created_at">Día que se realizó</option>
-                        <option value="Monto">Monto</option>
+                        <option value="monto">Monto</option>
                     </select>
                     <input type="search" id="searchInput3" placeholder="Buscar..." class="p-2 bg-gray-800 text-white rounded-md text-sm mt-2 w-full">
                 </div>
@@ -83,7 +83,7 @@
                         <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Concepto</th>
                         <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Método de Pago</th>
                         <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Dia que se Realizo</th>
-                        <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center monto">Monto</th>
+                        <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Monto</th>
                         <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Acciones</th>
                     </tr>
                 </thead>
@@ -91,15 +91,15 @@
                     @foreach ($Compras as $Compra)
                     <tr class="hover:bg-gray-800 bg-transparent">
                         <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Compra->idTransaccion }}</td>
-                        <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Compra->Nombre }} {{ $Compra->ApellidoPaterno }} {{ $Compra->ApellidoMaterno }}</td>
-                        <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Compra->Clave }}</td>
-                        <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Compra->FechaInicio }}</td>
-                        <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Compra->FechaFin }}</td>
-                        <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Compra->Cantidad }}</td>
-                        <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Compra->TipoTransaccion }}</td>
-                        <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Compra->NombreConcepto }}</td>
-                        <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Compra->MetodoPago }}</td>
-                        <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">{{ $Compra->created_at }}</td>
+                        <td class="px-4 py-2 border-t border-blue-500 animate-border text-center nombre">{{ $Compra->Nombre }} {{ $Compra->ApellidoPaterno }} {{ $Compra->ApellidoMaterno }}</td>
+                        <td class="px-4 py-2 border-t border-blue-500 animate-border text-center clave">{{ $Compra->Clave }}</td>
+                        <td class="px-4 py-2 border-t border-blue-500 animate-border text-center fechainicio">{{ $Compra->FechaInicio }}</td>
+                        <td class="px-4 py-2 border-t border-blue-500 animate-border text-center fechafin">{{ $Compra->FechaFin }}</td>
+                        <td class="px-4 py-2 border-t border-blue-500 animate-border text-center cantidad">{{ $Compra->Cantidad }}</td>
+                        <td class="px-4 py-2 border-t border-blue-500 animate-border text-center tipotransaccion">{{ $Compra->TipoTransaccion }}</td>
+                        <td class="px-4 py-2 border-t border-blue-500 animate-border text-center nombreconcepto">{{ $Compra->NombreConcepto }}</td>
+                        <td class="px-4 py-2 border-t border-blue-500 animate-border text-center metodopago">{{ $Compra->MetodoPago }}</td>
+                        <td class="px-4 py-2 border-t border-blue-500 animate-border text-center created_at">{{ $Compra->created_at }}</td>
                         <td class="px-4 py-2 border-t border-blue-500 animate-border text-center monto">{{ $Compra->Monto }}</td>
                         <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">
                             <button onclick="imprimirRecibo({{ $Compra->id }})" class="bg-blue-500 text-white px-4 py-2 rounded-md">Imprimir Recibo</button>
@@ -113,13 +113,13 @@
 
     <!-- ✅ Funcionalidad de Búsqueda en Tiempo Real -->
     <script>
-        // Filtrar la tabla por los valores de los campos seleccionados
+        // Filtrado de la tabla
         function filterTable() {
             let rows = document.querySelectorAll("tbody tr");
             let filters = [
-                { column: document.getElementById("columnSelect1").value, input: document.getElementById("searchInput1").value.toLowerCase() },
-                { column: document.getElementById("columnSelect2").value, input: document.getElementById("searchInput2").value.toLowerCase() },
-                { column: document.getElementById("columnSelect3").value, input: document.getElementById("searchInput3").value.toLowerCase() },
+                { column: document.getElementById("columnSelect1").value.toLowerCase(), input: document.getElementById("searchInput1").value.toLowerCase() },
+                { column: document.getElementById("columnSelect2").value.toLowerCase(), input: document.getElementById("searchInput2").value.toLowerCase() },
+                { column: document.getElementById("columnSelect3").value.toLowerCase(), input: document.getElementById("searchInput3").value.toLowerCase() }
             ];
 
             let totalAmount = 0; // Variable para acumular el monto total
@@ -128,7 +128,7 @@
                 let show = true;
                 filters.forEach(filter => {
                     if (filter.input) {
-                        let cell = row.querySelector(`.${filter.column.toLowerCase()}`);
+                        let cell = row.querySelector(`.${filter.column}`);
                         if (cell && !cell.textContent.toLowerCase().includes(filter.input)) {
                             show = false;
                         }
@@ -152,9 +152,7 @@
         document.querySelectorAll("input[type='search'], select").forEach(element => {
             element.addEventListener("input", filterTable);
         });
-    </script>
 
-    <script>
         // Función para imprimir el recibo
         function imprimirRecibo(id) {
             const row = document.querySelector(`tr[data-id='${id}']`);
