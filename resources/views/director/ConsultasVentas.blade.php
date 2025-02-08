@@ -138,7 +138,6 @@
         // Filtrado de la tabla
         function filterTable() {
             let rows = document.querySelectorAll("tbody tr");
-<<<<<<< HEAD
             let filters = [{
                     column: document.getElementById("columnSelect1").value,
                     input: document.getElementById("searchInput1").value.toLowerCase()
@@ -151,12 +150,6 @@
                     column: document.getElementById("columnSelect3").value,
                     input: document.getElementById("searchInput3").value.toLowerCase()
                 },
-=======
-            let filters = [
-                { column: document.getElementById("columnSelect1").value, input: document.getElementById("searchInput1").value.toLowerCase() },
-                { column: document.getElementById("columnSelect2").value, input: document.getElementById("searchInput2").value.toLowerCase() },
-                { column: document.getElementById("columnSelect3").value, input: document.getElementById("searchInput3").value.toLowerCase() }
->>>>>>> 3731a7e9d5d6f52426dd19f0b226f07ec6e01f4b
             ];
 
             let totalAmount = 0;
@@ -191,7 +184,8 @@
         });
 
         // Función para imprimir el recibo de cada línea
-        function printReceipt(nombre, apellidoPaterno, apellidoMaterno, clave, fechaInicio, fechaFin, metodoPago, cuentaRecibido, monto, createdAt) {
+        function printReceipt(nombre, apellidoPaterno, apellidoMaterno, clave, fechaInicio, fechaFin, metodoPago,
+            cuentaRecibido, monto, createdAt) {
             const receiptContent = `
                 <div style="font-family: Arial, sans-serif; width: 100%; padding: 20px;">
                     <h2 style="text-align: center; color:rgb(253, 227, 0);">Recibo de Pago</h2>
