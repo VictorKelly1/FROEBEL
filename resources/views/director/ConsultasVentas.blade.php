@@ -102,8 +102,21 @@
                         <td class="px-4 py-2 border-t border-blue-500 animate-border text-center metodopago">{{ $Venta->MetodoPago }}</td>
                         <td class="px-4 py-2 border-t border-blue-500 animate-border text-center monto">{{ $Venta->Monto }}</td>
                         <td class="px-4 py-2 border-t border-blue-500 animate-border text-center created_at">{{ $Venta->created_at }}</td>
-                        <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">
-                            <button onclick="printReceipt({{ $Venta->Clave }})" class="px-4 py-2 bg-yellow-400 text-white rounded-md">Imprimir Recibo</button>
+                        <td>
+                            <!-- Botón de "Imprimir Recibo" -->
+                            <button onclick="printReceipt(
+                                '{{ $Venta->Nombre }}',
+                                '{{ $Venta->ApellidoPaterno }}',
+                                '{{ $Venta->ApellidoMaterno }}',
+                                '{{ $Venta->Clave }}',
+                                '{{ $Venta->FechaInicio }}',
+                                '{{ $Venta->FechaFin }}',
+                                '{{ $Venta->MetodoPago }}',
+                                '{{ $Venta->Monto }}',
+                                '{{ $Venta->created_at }}'
+                            )" class="px-4 py-2 bg-yellow-400 text-white rounded-md hover:bg-green-600">
+                                Imprimir Recibo
+                            </button>
                         </td>
                     </tr>
                     @endforeach
@@ -112,65 +125,33 @@
         </div>
     </div>
 
-    <!-- ✅ Funcionalidad de Búsqueda en Tiempo Real -->
+    <!-- ✅ Script para generar el recibo -->
     <script>
-        // Filtrado de la tabla
-        function filterTable() {
-            let rows = document.querySelectorAll("tbody tr");
-            let filters = [
-                { column: document.getElementById("columnSelect1").value, input: document.getElementById("searchInput1").value.toLowerCase() },
-                { column: document.getElementById("columnSelect2").value, input: document.getElementById("searchInput2").value.toLowerCase() },
-                { column: document.getElementById("columnSelect3").value, input: document.getElementById("searchInput3").value.toLowerCase() }
-            ];
-
-            let totalAmount = 0; // Variable para acumular el monto total
-
-            rows.forEach(row => {
-                let show = true;
-                filters.forEach(filter => {
-                    if (filter.input) {
-                        let cell = row.querySelector(`.${filter.column}`);
-                        if (cell && !cell.textContent.toLowerCase().includes(filter.input)) {
-                            show = false;
-                        }
-                    }
-                });
-                row.style.display = show ? "" : "none";
-
-                // Sumar el monto si la fila es visible
-                if (show) {
-                    let montoCell = row.querySelector(".monto");
-                    if (montoCell) {
-                        totalAmount += parseFloat(montoCell.textContent) || 0;
-                    }
-                }
-            });
-
-            // Actualizar el monto total en el label
-            document.getElementById("totalAmount").textContent = `$${totalAmount.toFixed(2)}`;
-        }
-
-        document.querySelectorAll("input[type='search'], select").forEach(element => {
-            element.addEventListener("input", filterTable);
-        });
-
-        // Función para imprimir el recibo de cada línea
-        function printReceipt(nombre, apellidoPaterno, apellidoMaterno, clave, fechaInicio, fechaFin, metodoPago, cuentaRecibido, monto, createdAt) {
+        function printReceipt(nombre, apellidoPaterno, apellidoMaterno, clave, fechaInicio, fechaFin, metodoPago, monto, createdAt) {
             const receiptContent = `
-                <div style="font-family: Arial, sans-serif; width: 100%; padding: 20px;">
-                    <h2 style="text-align: center; color:rgb(253, 227, 0);">Recibo de Pago</h2>
-                    <p><strong>Nombre:</strong> ${nombre} ${apellidoPaterno} ${apellidoMaterno}</p>
-                    <p><strong>Clave:</strong> ${clave}</p>
-                    <p><strong>Inicio de Periodo:</strong> ${fechaInicio}</p>
-                    <p><strong>Fin de Periodo:</strong> ${fechaFin}</p>
-                    <p><strong>Método de Pago:</strong> ${metodoPago}</p>
-                    <p><strong>Cuenta Recibido:</strong> ${cuentaRecibido}</p>
-                    <p><strong>Monto Total:</strong> $${monto}</p>
-                    <p><strong>Día que se realizó:</strong> ${createdAt}</p>
+                <div style="font-family: 'Arial', sans-serif; width: 90%; max-width: 400px; margin: auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); background: #fff; color: #333;">
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        <img src="{{ asset('images/logoWelcome.png') }}" alt="Logo Colegio" style="width: 100px; height: auto; margin-bottom: 10px;">
+                        <h1 style="font-size: 20px; font-weight: bold; color: #2c3e50; margin: 5px 0;">COLEGIO FROEBEL</h1>
+                        <p style="font-size: 12px; color: #7f8c8d; margin: 0;">Dirección: Av. Principal #123, Ciudad</p>
+                        <p style="font-size: 12px; color: #7f8c8d; margin: 0;">Teléfono: (555) 123-4567</p>
+                        <p style="font-size: 12px; color: #7f8c8d; margin: 0;">Email: info@colegiofroebel.com</p>
+                    </div>
+                    <h2 style="font-size: 18px; font-weight: bold; color: #34495e; text-align: center; margin-bottom: 15px;">RECIBO DE PAGO</h2>
+                    <div style="margin-bottom: 20px;">
+                        <p style="font-size: 14px; margin: 5px 0;"><strong>Alumno:</strong> ${nombre} ${apellidoPaterno} ${apellidoMaterno}</p>
+                        <p style="font-size: 14px; margin: 5px 0;"><strong>Clave:</strong> ${clave}</p>
+                        <p style="font-size: 14px; margin: 5px 0;"><strong>Período:</strong> ${fechaInicio} - ${fechaFin}</p>
+                        <p style="font-size: 14px; margin: 5px 0;"><strong>Método de Pago:</strong> ${metodoPago}</p>
+                        <p style="font-size: 14px; margin: 5px 0;"><strong>Monto Total:</strong> $${parseFloat(monto).toFixed(2)}</p>
+                        <p style="font-size: 14px; margin: 5px 0;"><strong>Fecha de Pago:</strong> ${new Date(createdAt).toLocaleDateString()}</p>
+                    </div>
+                    <div style="text-align: center; font-size: 12px; color: #7f8c8d; border-top: 1px solid #e0e0e0; padding-top: 10px;">
+                        <p style="margin: 0;">Este es un comprobante de pago oficial.</p>
+                        <p style="margin: 0;">Gracias por su confianza.</p>
+                    </div>
                 </div>
             `;
-
-            // Crear un iframe oculto para el recibo
             const iframe = document.createElement('iframe');
             iframe.style.position = 'absolute';
             iframe.style.width = '0px';
@@ -185,7 +166,10 @@
                     <head>
                         <title>Recibo de Pago</title>
                         <style>
-                            body { font-family: Arial, sans-serif; }
+                            body { font-family: Arial, sans-serif; margin: 0; padding: 20px; text-align: center; background: #fff; }
+                            @media print {
+                                body { width: 100mm; height: 150mm; margin: 0 auto; }
+                            }
                         </style>
                     </head>
                     <body>
@@ -195,10 +179,52 @@
             `);
             iframeDocument.close();
 
-            // Imprimir directamente desde el iframe
             iframe.contentWindow.focus();
             iframe.contentWindow.print();
         }
-    </script>
 
+        // Filtrado de la tabla
+        document.addEventListener("DOMContentLoaded", function () {
+            const columnSelect1 = document.getElementById('columnSelect1');
+            const searchInput1 = document.getElementById('searchInput1');
+            const columnSelect2 = document.getElementById('columnSelect2');
+            const searchInput2 = document.getElementById('searchInput2');
+            const columnSelect3 = document.getElementById('columnSelect3');
+            const searchInput3 = document.getElementById('searchInput3');
+            const tableBody = document.getElementById('tableBody');
+            
+            function filterTable() {
+                const rows = tableBody.querySelectorAll('tr');
+                rows.forEach(row => {
+                    let matchesFilter = true;
+
+                    const column1 = row.querySelector(`.${columnSelect1.value}`);
+                    if (column1 && !column1.textContent.toLowerCase().includes(searchInput1.value.toLowerCase())) {
+                        matchesFilter = false;
+                    }
+
+                    const column2 = row.querySelector(`.${columnSelect2.value}`);
+                    if (column2 && !column2.textContent.toLowerCase().includes(searchInput2.value.toLowerCase())) {
+                        matchesFilter = false;
+                    }
+
+                    const column3 = row.querySelector(`.${columnSelect3.value}`);
+                    if (column3 && !column3.textContent.toLowerCase().includes(searchInput3.value.toLowerCase())) {
+                        matchesFilter = false;
+                    }
+
+                    row.style.display = matchesFilter ? '' : 'none';
+                });
+            }
+
+            searchInput1.addEventListener('input', filterTable);
+            columnSelect1.addEventListener('change', filterTable);
+
+            searchInput2.addEventListener('input', filterTable);
+            columnSelect2.addEventListener('change', filterTable);
+
+            searchInput3.addEventListener('input', filterTable);
+            columnSelect3.addEventListener('change', filterTable);
+        });
+    </script>
 </x-director.layout>
