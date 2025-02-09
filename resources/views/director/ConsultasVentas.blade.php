@@ -1,5 +1,4 @@
 <x-director.layout>
-
     <!-- ✅ Mensaje de Éxito -->
     @if (session('success'))
         <div class="alert alert-success">
@@ -17,16 +16,16 @@
                 <div class="filter-item w-1/3">
                     <!-- Filtro 1: Lista desplegable y buscador -->
                     <select id="columnSelect1" class="p-2 bg-gray-800 text-white rounded-md text-sm w-full">
-                        <option value="Nombre">Nombre</option>
-                        <option value="Clave">Clave</option>
-                        <option value="FechaInicio">Fecha de Inicio</option>
-                        <option value="FechaFin">Fecha de Fin</option>
-                        <option value="Cantidad">Cantidad</option>
-                        <option value="TipoTransaccion">Tipo de Transacción</option>
-                        <option value="NombreConcepto">Concepto</option>
-                        <option value="MetodoPago">Método de Pago</option>
+                        <option value="nombre">Nombre</option>
+                        <option value="clave">Clave</option>
+                        <option value="fechainicio">Fecha de Inicio</option>
+                        <option value="fechafin">Fecha de Fin</option>
+                        <option value="cantidad">Cantidad</option>
+                        <option value="tipotransaccion">Tipo de Transacción</option>
+                        <option value="nombreconcepto">Concepto</option>
+                        <option value="metodopago">Método de Pago</option>
                         <option value="created_at">Día que se realizó</option>
-                        <option value="Monto">Monto</option>
+                        <option value="monto">Monto</option>
                     </select>
                     <input type="search" id="searchInput1" placeholder="Buscar..."
                         class="p-2 bg-gray-800 text-white rounded-md text-sm mt-2 w-full">
@@ -35,16 +34,16 @@
                 <div class="filter-item w-1/3">
                     <!-- Filtro 2: Lista desplegable y buscador -->
                     <select id="columnSelect2" class="p-2 bg-gray-800 text-white rounded-md text-sm w-full">
-                        <option value="Nombre">Nombre</option>
-                        <option value="Clave">Clave</option>
-                        <option value="FechaInicio">Fecha de Inicio</option>
-                        <option value="FechaFin">Fecha de Fin</option>
-                        <option value="Cantidad">Cantidad</option>
-                        <option value="TipoTransaccion">Tipo de Transacción</option>
-                        <option value="NombreConcepto">Concepto</option>
-                        <option value="MetodoPago">Método de Pago</option>
+                        <option value="nombre">Nombre</option>
+                        <option value="clave">Clave</option>
+                        <option value="fechainicio">Fecha de Inicio</option>
+                        <option value="fechafin">Fecha de Fin</option>
+                        <option value="cantidad">Cantidad</option>
+                        <option value="tipotransaccion">Tipo de Transacción</option>
+                        <option value="nombreconcepto">Concepto</option>
+                        <option value="metodopago">Método de Pago</option>
                         <option value="created_at">Día que se realizó</option>
-                        <option value="Monto">Monto</option>
+                        <option value="monto">Monto</option>
                     </select>
                     <input type="search" id="searchInput2" placeholder="Buscar..."
                         class="p-2 bg-gray-800 text-white rounded-md text-sm mt-2 w-full">
@@ -53,26 +52,28 @@
                 <div class="filter-item w-1/3">
                     <!-- Filtro 3: Lista desplegable y buscador -->
                     <select id="columnSelect3" class="p-2 bg-gray-800 text-white rounded-md text-sm w-full">
-                        <option value="Nombre">Nombre</option>
-                        <option value="Clave">Clave</option>
-                        <option value="FechaInicio">Fecha de Inicio</option>
-                        <option value="FechaFin">Fecha de Fin</option>
-                        <option value="Cantidad">Cantidad</option>
-                        <option value="TipoTransaccion">Tipo de Transacción</option>
-                        <option value="NombreConcepto">Concepto</option>
-                        <option value="MetodoPago">Método de Pago</option>
+                        <option value="nombre">Nombre</option>
+                        <option value="clave">Clave</option>
+                        <option value="fechainicio">Fecha de Inicio</option>
+                        <option value="fechafin">Fecha de Fin</option>
+                        <option value="cantidad">Cantidad</option>
+                        <option value="tipotransaccion">Tipo de Transacción</option>
+                        <option value="nombreconcepto">Concepto</option>
+                        <option value="metodopago">Método de Pago</option>
                         <option value="created_at">Día que se realizó</option>
-                        <option value="Monto">Monto</option>
+                        <option value="monto">Monto</option>
                     </select>
                     <input type="search" id="searchInput3" placeholder="Buscar..."
                         class="p-2 bg-gray-800 text-white rounded-md text-sm mt-2 w-full">
                 </div>
             </div>
+
             <!-- ✅ Label para mostrar el monto total filtrado -->
             <div class="mt-4">
                 <label class="text-white">Monto Total Filtrado: </label>
                 <span id="totalAmount" class="text-white font-bold">$0.00</span>
             </div>
+
             <!-- ✅ Tabla sin cambios en tamaño -->
             <table class="text-sm text-left text-white w-full table-auto z-30">
                 <thead class="bg-blue-700">
@@ -127,6 +128,34 @@
                                     class="px-4 py-2 bg-yellow-400 text-white rounded-md">Imprimir Recibo</button>
                             </td>
                         </tr>
+                        <tr class="hover:bg-gray-800 bg-transparent">
+                            <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">
+                                {{ $Venta->idTransaccion }}</td>
+                            <td class="px-4 py-2 border-t border-blue-500 animate-border text-center nombre">
+                                {{ $Venta->Nombre }} {{ $Venta->ApellidoPaterno }} {{ $Venta->ApellidoMaterno }}</td>
+                            <td class="px-4 py-2 border-t border-blue-500 animate-border text-center clave">
+                                {{ $Venta->Clave }}</td>
+                            <td class="px-4 py-2 border-t border-blue-500 animate-border text-center fechainicio">
+                                {{ $Venta->FechaInicio }}</td>
+                            <td class="px-4 py-2 border-t border-blue-500 animate-border text-center fechafin">
+                                {{ $Venta->FechaFin }}</td>
+                            <td class="px-4 py-2 border-t border-blue-500 animate-border text-center cantidad">
+                                {{ $Venta->Cantidad }}</td>
+                            <td class="px-4 py-2 border-t border-blue-500 animate-border text-center tipotransaccion">
+                                {{ $Venta->TipoTransaccion }}</td>
+                            <td class="px-4 py-2 border-t border-blue-500 animate-border text-center nombreconcepto">
+                                {{ $Venta->NombreConcepto }}</td>
+                            <td class="px-4 py-2 border-t border-blue-500 animate-border text-center metodopago">
+                                {{ $Venta->MetodoPago }}</td>
+                            <td class="px-4 py-2 border-t border-blue-500 animate-border text-center monto">
+                                {{ $Venta->Monto }}</td>
+                            <td class="px-4 py-2 border-t border-blue-500 animate-border text-center created_at">
+                                {{ $Venta->created_at }}</td>
+                            <td class="px-4 py-2 border-t border-blue-500 animate-border text-center">
+                                <button onclick="printReceipt({{ $Venta->Clave }})"
+                                    class="px-4 py-2 bg-yellow-400 text-white rounded-md">Imprimir Recibo</button>
+                            </td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
@@ -152,7 +181,7 @@
                 },
             ];
 
-            let totalAmount = 0;
+            let totalAmount = 0; // Variable para acumular el monto total
 
             rows.forEach(row => {
                 let show = true;
