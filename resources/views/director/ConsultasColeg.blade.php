@@ -1,11 +1,12 @@
 <x-director.layout>
     @if (session('success'))
-    <div class="alert alert-success">
-        <p>{{ session('success') }}</p>
-    </div>
+        <div class="alert alert-success">
+            <p>{{ session('success') }}</p>
+        </div>
     @endif
 
-    <div class="posiciontablasmedia table-container bg-gray-900 p-4 mt-4 rounded-md border border-blue-500 shadow-md md:w-3/4 lg:w-2/3 overflow-x-auto">
+    <div
+        class="posiciontablasmedia table-container bg-gray-900 p-4 mt-4 rounded-md border border-blue-500 shadow-md md:w-3/4 lg:w-2/3 overflow-x-auto">
         <!-- Contenedor de filtros -->
         <div class="filters flex flex-col md:flex-row items-center justify-start gap-4 mb-4">
             <!-- Filtros aquí -->
@@ -21,6 +22,7 @@
         <table class="text-sm text-white border-collapse border border-blue-500 rounded-md w-full">
             <thead class="bg-blue-700 text-center">
                 <tr>
+                    <th class="px-3 py-2 border-b border-blue-500">No. Recivo</th>
                     <th class="px-3 py-2 border-b border-blue-500">Nombre</th>
                     <th class="px-3 py-2 border-b border-blue-500">Clave</th>
                     <th class="px-3 py-2 border-b border-blue-500">Inicio de Periodo</th>
@@ -34,18 +36,20 @@
             </thead>
             <tbody>
                 @foreach ($Colegiaturas as $Colegiatura)
-                <tr class="hover:bg-gray-800 text-center">
-                    <td class="nombre">{{ $Colegiatura->Nombre }} {{ $Colegiatura->ApellidoPaterno }} {{ $Colegiatura->ApellidoMaterno }}</td>
-                    <td class="clave">{{ $Colegiatura->Clave }}</td>
-                    <td class="fechainicio">{{ $Colegiatura->FechaInicio }}</td>
-                    <td class="fechafin">{{ $Colegiatura->FechaFin }}</td>
-                    <td class="metodopago">{{ $Colegiatura->MetodoPago }}</td>
-                    <td class="cuentarecibido">{{ $Colegiatura->CuentaRecibido }}</td>
-                    <td class="monto">{{ $Colegiatura->Monto }}</td>
-                    <td class="created_at">{{ $Colegiatura->created_at }}</td>
-                    <td>
-                        <!-- Botón de "Imprimir Recibo" -->
-                        <button onclick="printReceipt(
+                    <tr class="hover:bg-gray-800 text-center">
+                        <td class="nombre">{{ $Colegiatura->Nombre }} {{ $Colegiatura->ApellidoPaterno }}
+                            {{ $Colegiatura->ApellidoMaterno }}</td>
+                        <td class="clave">{{ $Colegiatura->Clave }}</td>
+                        <td class="fechainicio">{{ $Colegiatura->FechaInicio }}</td>
+                        <td class="fechafin">{{ $Colegiatura->FechaFin }}</td>
+                        <td class="metodopago">{{ $Colegiatura->MetodoPago }}</td>
+                        <td class="cuentarecibido">{{ $Colegiatura->CuentaRecibido }}</td>
+                        <td class="monto">{{ $Colegiatura->Monto }}</td>
+                        <td class="created_at">{{ $Colegiatura->created_at }}</td>
+                        <td>
+                            <!-- Botón de "Imprimir Recibo" -->
+                            <button
+                                onclick="printReceipt(
                             '{{ $Colegiatura->Nombre }}',
                             '{{ $Colegiatura->ApellidoPaterno }}',
                             '{{ $Colegiatura->ApellidoMaterno }}',
@@ -56,11 +60,12 @@
                             '{{ $Colegiatura->CuentaRecibido }}',
                             '{{ $Colegiatura->Monto }}',
                             '{{ $Colegiatura->created_at }}'
-                        )" class="px-4 py-2 bg-yellow-400 text-white rounded-md hover:bg-green-600">
-                            Imprimir Recibo
-                        </button>
-                    </td>
-                </tr>
+                        )"
+                                class="px-4 py-2 bg-yellow-400 text-white rounded-md hover:bg-green-600">
+                                Imprimir Recibo
+                            </button>
+                        </td>
+                    </tr>
                 @endforeach
             </tbody>
         </table>
@@ -68,7 +73,8 @@
 
     <!-- Script para generar el recibo -->
     <script>
-        function printReceipt(nombre, apellidoPaterno, apellidoMaterno, clave, fechaInicio, fechaFin, metodoPago, cuentaRecibido, monto, createdAt) {
+        function printReceipt(nombre, apellidoPaterno, apellidoMaterno, clave, fechaInicio, fechaFin, metodoPago,
+            cuentaRecibido, monto, createdAt) {
             const receiptContent = `
                 <div style="font-family: 'Arial', sans-serif; width: 90%; max-width: 400px; margin: auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); background: #fff; color: #333;">
                     <!-- Encabezado con logo y detalles del colegio -->

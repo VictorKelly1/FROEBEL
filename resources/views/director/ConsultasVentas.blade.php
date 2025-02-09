@@ -1,13 +1,14 @@
 <x-director.layout>
     <!-- ✅ Mensaje de Éxito -->
     @if (session('success'))
-    <div class="alert alert-success">
-        <p>{{ session('success') }}</p>
-    </div>
+        <div class="alert alert-success">
+            <p>{{ session('success') }}</p>
+        </div>
     @endif
 
     <!-- ✅ Contenedor de la Tabla con Filtros y Búsqueda -->
-    <div class="posiciontablas flex items-center justify-center bg-gray-900 p-2 mt-4 rounded-md border border-blue-500 shadow-md w-3/4 sm:w-1/2 lg:w-3/4 overflow-x-auto z-30">
+    <div
+        class="posiciontablas flex items-center justify-center bg-gray-900 p-2 mt-4 rounded-md border border-blue-500 shadow-md w-3/4 sm:w-1/2 lg:w-3/4 overflow-x-auto z-30">
         <div class="w-full max-w-full">
 
             <!-- 🧑‍💻 Filtros (listas y buscadores) -->
@@ -26,7 +27,8 @@
                         <option value="created_at">Día que se realizó</option>
                         <option value="monto">Monto</option>
                     </select>
-                    <input type="search" id="searchInput1" placeholder="Buscar..." class="p-2 bg-gray-800 text-white rounded-md text-sm mt-2 w-full">
+                    <input type="search" id="searchInput1" placeholder="Buscar..."
+                        class="p-2 bg-gray-800 text-white rounded-md text-sm mt-2 w-full">
                 </div>
 
                 <div class="filter-item w-1/3">
@@ -43,7 +45,8 @@
                         <option value="created_at">Día que se realizó</option>
                         <option value="monto">Monto</option>
                     </select>
-                    <input type="search" id="searchInput2" placeholder="Buscar..." class="p-2 bg-gray-800 text-white rounded-md text-sm mt-2 w-full">
+                    <input type="search" id="searchInput2" placeholder="Buscar..."
+                        class="p-2 bg-gray-800 text-white rounded-md text-sm mt-2 w-full">
                 </div>
 
                 <div class="filter-item w-1/3">
@@ -60,7 +63,8 @@
                         <option value="created_at">Día que se realizó</option>
                         <option value="monto">Monto</option>
                     </select>
-                    <input type="search" id="searchInput3" placeholder="Buscar..." class="p-2 bg-gray-800 text-white rounded-md text-sm mt-2 w-full">
+                    <input type="search" id="searchInput3" placeholder="Buscar..."
+                        class="p-2 bg-gray-800 text-white rounded-md text-sm mt-2 w-full">
                 </div>
             </div>
 
@@ -74,17 +78,23 @@
             <table class="text-sm text-left text-white w-full table-auto z-30">
                 <thead class="bg-blue-700">
                     <tr>
-                        <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">No Transaccion</th>
+                        <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">No. Recivo
+                        </th>
                         <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Nombre</th>
                         <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Clave</th>
-                        <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Fecha de Inicio</th>
-                        <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Fecha de Fin</th>
+                        <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Fecha de
+                            Inicio</th>
+                        <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Fecha de Fin
+                        </th>
                         <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Cantidad</th>
-                        <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Tipo de Transacción</th>
+                        <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Tipo de
+                            Transacción</th>
                         <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Concepto</th>
-                        <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Método de Pago</th>
+                        <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Método de Pago
+                        </th>
                         <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Monto</th>
-                        <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Día que se realizó</th>
+                        <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Día que se
+                            realizó</th>
                         <th class="px-4 py-2 text-lg border-b border-blue-500 animate-border text-center">Acciones</th>
                     </tr>
                 </thead>
