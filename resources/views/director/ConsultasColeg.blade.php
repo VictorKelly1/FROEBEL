@@ -8,48 +8,7 @@
     <div class="posiciontablasmedia table-container bg-gray-900 p-4 mt-4 rounded-md border border-blue-500 shadow-md md:w-3/4 lg:w-2/3 overflow-x-auto">
         <!-- Contenedor de filtros -->
         <div class="filters flex flex-col md:flex-row items-center justify-start gap-4 mb-4">
-            <div class="flex flex-col">
-                <select id="columnSelect1" class="p-1 bg-gray-800 text-white rounded-md text-sm">
-                    <option value="nombre">Nombre</option>
-                    <option value="clave">Clave</option>
-                    <option value="fechainicio">Inicio de Periodo</option>
-                    <option value="fechafin">Fin de Periodo</option>
-                    <option value="metodopago">Método de Pago</option>
-                    <option value="cuentarecibido">Cuenta Recibido</option>
-                    <option value="monto">Monto Total</option>
-                    <option value="created_at">Día que se realizó</option>
-                </select>
-                <input type="search" id="searchInput1" placeholder="Buscar..."
-                    class="p-2 bg-gray-800 text-white rounded-md text-sm mt-2" style="width: 200px;">
-            </div>
-            <div class="flex flex-col">
-                <select id="columnSelect2" class="p-1 bg-gray-800 text-white rounded-md text-sm">
-                    <option value="nombre">Nombre</option>
-                    <option value="clave">Clave</option>
-                    <option value="fechainicio">Inicio de Periodo</option>
-                    <option value="fechafin">Fin de Periodo</option>
-                    <option value="metodopago">Método de Pago</option>
-                    <option value="cuentarecibido">Cuenta Recibido</option>
-                    <option value="monto">Monto Total</option>
-                    <option value="created_at">Día que se realizó</option>
-                </select>
-                <input type="search" id="searchInput2" placeholder="Buscar..."
-                    class="p-2 bg-gray-800 text-white rounded-md text-sm mt-2" style="width: 200px;">
-            </div>
-            <div class="flex flex-col">
-                <select id="columnSelect3" class="p-1 bg-gray-800 text-white rounded-md text-sm">
-                    <option value="nombre">Nombre</option>
-                    <option value="clave">Clave</option>
-                    <option value="fechainicio">Inicio de Periodo</option>
-                    <option value="fechafin">Fin de Periodo</option>
-                    <option value="metodopago">Método de Pago</option>
-                    <option value="cuentarecibido">Cuenta Recibido</option>
-                    <option value="monto">Monto Total</option>
-                    <option value="created_at">Día que se realizó</option>
-                </select>
-                <input type="search" id="searchInput3" placeholder="Buscar..."
-                    class="p-2 bg-gray-800 text-white rounded-md text-sm mt-2" style="width: 200px;">
-            </div>
+            <!-- Filtros aquí -->
         </div>
 
         <!-- Label para mostrar el monto total -->
@@ -70,7 +29,7 @@
                     <th class="px-3 py-2 border-b border-blue-500">Cuenta Recibido</th>
                     <th class="px-3 py-2 border-b border-blue-500">Monto Total</th>
                     <th class="px-3 py-2 border-b border-blue-500">Día que se realizó</th>
-                    <th class="px-3 py-2 border-b border-blue-500">Acciones</th> <!-- Columna para el botón -->
+                    <th class="px-3 py-2 border-b border-blue-500">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -86,7 +45,18 @@
                     <td class="created_at">{{ $Colegiatura->created_at }}</td>
                     <td>
                         <!-- Botón de "Imprimir Recibo" -->
-                        <button onclick="printReceipt('{{ $Colegiatura->Nombre }}', '{{ $Colegiatura->ApellidoPaterno }}', '{{ $Colegiatura->ApellidoMaterno }}', '{{ $Colegiatura->Clave }}', '{{ $Colegiatura->FechaInicio }}', '{{ $Colegiatura->FechaFin }}', '{{ $Colegiatura->MetodoPago }}', '{{ $Colegiatura->CuentaRecibido }}', '{{ $Colegiatura->Monto }}', '{{ $Colegiatura->created_at }}')" class="px-4 py-2 bg-yellow-400 text-white rounded-md hover:bg-green-600">
+                        <button onclick="printReceipt(
+                            '{{ $Colegiatura->Nombre }}',
+                            '{{ $Colegiatura->ApellidoPaterno }}',
+                            '{{ $Colegiatura->ApellidoMaterno }}',
+                            '{{ $Colegiatura->Clave }}',
+                            '{{ $Colegiatura->FechaInicio }}',
+                            '{{ $Colegiatura->FechaFin }}',
+                            '{{ $Colegiatura->MetodoPago }}',
+                            '{{ $Colegiatura->CuentaRecibido }}',
+                            '{{ $Colegiatura->Monto }}',
+                            '{{ $Colegiatura->created_at }}'
+                        )" class="px-4 py-2 bg-yellow-400 text-white rounded-md hover:bg-green-600">
                             Imprimir Recibo
                         </button>
                     </td>
@@ -96,64 +66,49 @@
         </table>
     </div>
 
+    <!-- Script para generar el recibo -->
     <script>
-        // Filtrado de la tabla
-        function filterTable() {
-            let rows = document.querySelectorAll("tbody tr");
-            let filters = [
-                { column: document.getElementById("columnSelect1").value, input: document.getElementById("searchInput1").value.toLowerCase() },
-                { column: document.getElementById("columnSelect2").value, input: document.getElementById("searchInput2").value.toLowerCase() },
-                { column: document.getElementById("columnSelect3").value, input: document.getElementById("searchInput3").value.toLowerCase() }
-            ];
-
-            let totalAmount = 0;
-
-            rows.forEach(row => {
-                let show = true;
-                filters.forEach(filter => {
-                    if (filter.input) {
-                        let cell = row.querySelector(`.${filter.column}`);
-                        if (cell && !cell.textContent.toLowerCase().includes(filter.input)) {
-                            show = false;
-                        }
-                    }
-                });
-                row.style.display = show ? "" : "none";
-
-                // Sumar el monto si la fila es visible
-                if (show) {
-                    let montoCell = row.querySelector(".monto");
-                    if (montoCell) {
-                        totalAmount += parseFloat(montoCell.textContent) || 0;
-                    }
-                }
-            });
-
-            // Actualizar el monto total en el label
-            document.getElementById("totalAmount").textContent = `$${totalAmount.toFixed(2)}`;
-        }
-
-        document.querySelectorAll("input[type='search'], select").forEach(element => {
-            element.addEventListener("input", filterTable);
-        });
-
-        // Función para imprimir el recibo de cada línea
         function printReceipt(nombre, apellidoPaterno, apellidoMaterno, clave, fechaInicio, fechaFin, metodoPago, cuentaRecibido, monto, createdAt) {
             const receiptContent = `
-                <div style="font-family: Arial, sans-serif; width: 100%; padding: 20px;">
-                    <h2 style="text-align: center; color:rgb(253, 227, 0);">Recibo de Pago</h2>
-                    <p><strong>Nombre:</strong> ${nombre} ${apellidoPaterno} ${apellidoMaterno}</p>
-                    <p><strong>Clave:</strong> ${clave}</p>
-                    <p><strong>Inicio de Periodo:</strong> ${fechaInicio}</p>
-                    <p><strong>Fin de Periodo:</strong> ${fechaFin}</p>
-                    <p><strong>Método de Pago:</strong> ${metodoPago}</p>
-                    <p><strong>Cuenta Recibido:</strong> ${cuentaRecibido}</p>
-                    <p><strong>Monto Total:</strong> $${monto}</p>
-                    <p><strong>Día que se realizó:</strong> ${createdAt}</p>
+                <div style="font-family: 'Arial', sans-serif; width: 90%; max-width: 400px; margin: auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); background: #fff; color: #333;">
+                    <!-- Encabezado con logo y detalles del colegio -->
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        <img src="{{ asset('images/logoWelcome.png') }}" alt="Logo Colegio" style="width: 100px; height: auto; margin-bottom: 10px;">
+                        <h1 style="font-size: 20px; font-weight: bold; color: #2c3e50; margin: 5px 0;">COLEGIO FROEBEL</h1>
+                        <p style="font-size: 12px; color: #7f8c8d; margin: 0;">Dirección: Av. Principal #123, Ciudad</p>
+                        <p style="font-size: 12px; color: #7f8c8d; margin: 0;">Teléfono: (555) 123-4567</p>
+                        <p style="font-size: 12px; color: #7f8c8d; margin: 0;">Email: info@colegiofroebel.com</p>
+                    </div>
+
+                    <!-- Título del recibo -->
+                    <h2 style="font-size: 18px; font-weight: bold; color: #34495e; text-align: center; margin-bottom: 15px;">RECIBO DE PAGO</h2>
+
+                    <!-- Detalles del pago -->
+                    <div style="margin-bottom: 20px;">
+                        <p style="font-size: 14px; margin: 5px 0;"><strong>Alumno:</strong> ${nombre} ${apellidoPaterno} ${apellidoMaterno}</p>
+                        <p style="font-size: 14px; margin: 5px 0;"><strong>Clave:</strong> ${clave}</p>
+                        <p style="font-size: 14px; margin: 5px 0;"><strong>Período:</strong> ${fechaInicio} - ${fechaFin}</p>
+                        <p style="font-size: 14px; margin: 5px 0;"><strong>Método de Pago:</strong> ${metodoPago}</p>
+                        <p style="font-size: 14px; margin: 5px 0;"><strong>Cuenta Recibido:</strong> ${cuentaRecibido}</p>
+                        <p style="font-size: 14px; margin: 5px 0;"><strong>Fecha de Pago:</strong> ${new Date(createdAt).toLocaleDateString()}</p>
+                    </div>
+
+                    <!-- Desglose del monto -->
+                    <div style="background: #f8f9fa; padding: 10px; border-radius: 5px; margin-bottom: 20px; text-align: center;">
+                        <p style="font-size: 16px; font-weight: bold; color: #27ae60; margin: 0;">Monto Total: $${parseFloat(monto).toFixed(2)}</p>
+                    </div>
+
+                  
+
+                    <!-- Pie de página -->
+                    <div style="text-align: center; font-size: 12px; color: #7f8c8d; border-top: 1px solid #e0e0e0; padding-top: 10px;">
+                        <p style="margin: 0;">Este es un comprobante de pago oficial.</p>
+                        <p style="margin: 0;">Gracias por su confianza.</p>
+                    </div>
                 </div>
             `;
 
-            // Crear un iframe oculto para el recibo
+            // Crear un iframe oculto para la impresión
             const iframe = document.createElement('iframe');
             iframe.style.position = 'absolute';
             iframe.style.width = '0px';
@@ -168,7 +123,10 @@
                     <head>
                         <title>Recibo de Pago</title>
                         <style>
-                            body { font-family: Arial, sans-serif; }
+                            body { font-family: Arial, sans-serif; margin: 0; padding: 20px; text-align: center; background: #fff; }
+                            @media print {
+                                body { width: 100mm; height: 150mm; margin: 0 auto; }
+                            }
                         </style>
                     </head>
                     <body>
