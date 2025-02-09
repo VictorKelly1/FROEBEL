@@ -54,13 +54,25 @@
                             @php $promedioGeneral = 0; $contador = 0; @endphp
                             @foreach ($Calificaciones as $Calificacion)
                                 @php
-                                    $trimestre1 = (is_numeric($Calificacion->Parcial1) && is_numeric($Calificacion->Parcial2)) ? ($Calificacion->Parcial1 + $Calificacion->Parcial2) / 2 : null;
-                                    $trimestre2 = (is_numeric($Calificacion->Parcial3) && is_numeric($Calificacion->Parcial4)) ? ($Calificacion->Parcial3 + $Calificacion->Parcial4) / 2 : null;
-                                    $trimestre3 = (is_numeric($Calificacion->Parcial5) && is_numeric($Calificacion->Parcial6)) ? ($Calificacion->Parcial5 + $Calificacion->Parcial6) / 2 : null;
-                                    $promedio = ($trimestre1 !== null && $trimestre2 !== null && $trimestre3 !== null) ? ($trimestre1 + $trimestre2 + $trimestre3) / 3 : null;
-                                    if ($promedio !== null) {
+                                    // Función para validar si un valor es numérico y calcular el promedio del trimestre
+                                    function calcularTrimestre($parcial1, $parcial2) {
+                                        if (is_numeric($parcial1) && is_numeric($parcial2)) {
+                                            return ($parcial1 + $parcial2) / 2;
+                                        }
+                                        return null; // Si no es numérico, devuelve null
+                                    }
+
+                                    $trimestre1 = calcularTrimestre($Calificacion->Parcial1, $Calificacion->Parcial2);
+                                    $trimestre2 = calcularTrimestre($Calificacion->Parcial3, $Calificacion->Parcial4);
+                                    $trimestre3 = calcularTrimestre($Calificacion->Parcial5, $Calificacion->Parcial6);
+
+                                    // Calcular el promedio general solo si todos los trimestres son numéricos
+                                    if ($trimestre1 !== null && $trimestre2 !== null && $trimestre3 !== null) {
+                                        $promedio = ($trimestre1 + $trimestre2 + $trimestre3) / 3;
                                         $promedioGeneral += $promedio;
                                         $contador++;
+                                    } else {
+                                        $promedio = null; // Si algún trimestre no es numérico, el promedio es null
                                     }
                                 @endphp
                                 <tr>

@@ -229,7 +229,7 @@ class ColegiaturasController extends Controller
             //manda el procesos de mail a segundo plano
             MailConfirmacion::dispatch($InfoMail);
 
-            return back()->with('success', 'El pago se registró correctamente, el monto a cobrar es.'
+            return redirect()->route('ListaColegiaturas')->with('success', 'El pago se registró correctamente, el monto a cobrar es.'
                 . $Colegiatura->Monto);
         } catch (\Exception $e) {
 

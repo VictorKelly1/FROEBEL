@@ -117,8 +117,7 @@ class ComprasControllers extends Controller
 
             //Confirmar transacción
             DB::commit();
-
-            return back()->with('success', 'La compra se registró correctamente, el monto a cobrar es.'
+            return redirect()->route('ListaCompras')->with('success', 'La compra se registró correctamente, el monto a cobrar es.'
                 . $Compra->Monto);
         } catch (\Exception $e) {
             // Revertir transacción si hay un error
